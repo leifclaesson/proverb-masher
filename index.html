@@ -502,7 +502,7 @@ async function serve() {
    ?auto=1 arms it; ?auto=20 arms it AND sets the DWELL in seconds -- the pause
    after a line finishes typing, not a fixed period, so a long line is never cut
    short. For a display with no keyboard in front of it. */
-const AUTO_DEFAULT = 5;
+const AUTO_DEFAULT = 10;
 let autoOn = false, autoSecs = AUTO_DEFAULT, autoTimer = null;
 /* The type-on runs ALWAYS. It deliberately does not consult
    prefers-reduced-motion: that flag is how you turn off window transitions and
