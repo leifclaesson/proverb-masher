@@ -1,0 +1,50 @@
+#               Ordspr†k 0.1á av Leif Claesson (Liket of Goto10)
+#
+#       Filformatet „r v„ldigt enkelt. Dela upp ordspr†k i grupper som passar
+#       ihop med varandra, och s„tt pipe-tecknet (|) p† r„tt st„lle.
+#       ** i b”rjan av raden indikerar filslut - programmet ignorerar
+#       efterf”ljande rader.
+#
+Dyra barn|leka b„st
+Dyrt barn|skyr elden
+Dyra kvastar|sopar b„st
+Dyra tunnor|skramlar mest
+En dyr h”na|hittar ocks† ett korn
+Ett dyrt samvete|„r den b„sta huvudkudden
+Allt guld i kungariket|„r den b„sta huvudv„rken
+Ett dyrt skratt|f”rl„nger livet
+En dyr tuva|stj„lper ofta stora lass
+Br„nt barn|skyr elden
+Egenber”m|luktar illa
+Lika barn|leka b„st
+Gamla kvastar|sopar b„st
+Tomma tunnor|skramlar mest
+Den som gapar efter mycket|mister ofta hela stycket
+En svala|g”r ingen sommar
+En blind h”na|hittar ocks† ett korn
+Ett gott samvete|„r den b„sta huvudkudden
+Ett gott skratt|f”rl„nger livet
+Liten tuva|stj„lper ofta stora lass
+En l”gnare|m†ste ha bra minne
+Den som gapar efter galen f†gel|ser inte ser inte skogen f”r alla ben
+*
+D„r det finns hj„rterum|finns det stj„rterum
+Av barn och d†rar|f†r man h”ra sanningen
+Vill man vara fin|f†r man lida pin
+Har man sagt a|f†r man s„ga b
+Som man b„ddar|f†r man ligga
+Som man ropar i skogen|f†r man svar
+Vill man ha n†gonting gjort|f†r man g”ra det sj„lv
+*
+B„ttre pissa i stupr„nna|„n stupa i pissr„nna
+B„ttre en f†gel i handen|„n tio i skogen
+B„ttre fly|„n illa f„kta
+*
+Allt „r inte|guld som glimmar
+Man ska inte k”pa|grisen i s„cken
+Man ska inte kasta ut|barnet med badvattnet
+**
+Man ska smida medan|j„rnet „r varmt
+D„r ”len g†r in|g†r vettet ut
+Ju fler kockar|desto s„mre soppa
+

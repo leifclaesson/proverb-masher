@@ -1,0 +1,227 @@
+#               Ordsprak 0.3  --  English remaster of Ordsprak 0.1-and-a-half
+#               original by Leif Claesson (Liket of Goto10), ~1996
+#
+#       The file format is very simple. Sort proverbs into groups that fit
+#       together grammatically, and put the pipe character (|) at the seam.
+#       A lone * starts the next group. ** marks end of file -- the program
+#       ignores every line after it.
+#
+#       Group 1 is deliberately stuffed with fake "expensive" decoys planted
+#       next to their real partners (the original planted Swedish "dyr" the
+#       same way), and the weighted group pick makes them dominate the
+#       output. The decoys ARE the joke.
+#
+#       Group 1 : singular subject | predicate   (biggest group = picked most
+#       often -- Swedish verbs don't conjugate for number, so the original got
+#       away with one big group; English needs singular and plural kept apart
+#       or the agreement breaks, and the joke is wrong MEANING, right grammar)
+An expensive child|dreads the fire
+An expensive conscience|is the softest pillow
+The expensive bird|catches the worm
+An expensive stone|gathers no moss
+An expensive pot|never boils
+Even an expensive squirrel|finds a nut now and then
+An expensive swallow|does not make a summer
+An expensive apple a day|keeps the doctor away
+An expensive picture|is worth a thousand words
+An expensive leopard|never changes its spots
+An expensive workman|blames his tools
+An expensive stitch in time|saves nine
+Expensive curiosity|killed the cat
+The expensive customer|is always right
+An expensive cloud|has a silver lining
+An expensive laugh|is the best medicine
+All the gold in the kingdom|is the finest headache
+A burnt child|dreads the fire
+A clear conscience|is the softest pillow
+The early bird|catches the worm
+A rolling stone|gathers no moss
+A watched pot|never boils
+Even a blind squirrel|finds a nut now and then
+One swallow|does not make a summer
+An apple a day|keeps the doctor away
+A picture|is worth a thousand words
+A leopard|never changes its spots
+A bad workman|blames his tools
+A stitch in time|saves nine
+Curiosity|killed the cat
+The customer|is always right
+Every cloud|has a silver lining
+Laughter|is the best medicine
+A liar|needs a good memory
+Self-praise|is no recommendation
+The squeaky wheel|gets the grease
+He who grasps at too much|often loses the whole lot
+He who lives in a glass house|shouldn't count his chickens
+He who hesitates|is lost
+He who laughs last|laughs longest
+He who pays the piper|calls the tune
+He who chases two hares|catches neither
+Honesty|is the best policy
+The pen|is mightier than the sword
+Absence|makes the heart grow fonder
+Practice|makes perfect
+The apple|never falls far from the tree
+The grass|is always greener on the other side
+A chain|is only as strong as its weakest link
+Rome|wasn't built in a day
+Blood|is thicker than water
+Charity|begins at home
+The proof of the pudding|is in the eating
+Beauty|is in the eye of the beholder
+Beauty|is only skin deep
+Money|talks
+Money|doesn't grow on trees
+Time|heals all wounds
+Time|flies when you're having fun
+Lightning|never strikes twice
+The road to hell|is paved with good intentions
+A journey of a thousand miles|begins with a single step
+Every dog|has its day
+Every rose|has its thorn
+Familiarity|breeds contempt
+Ignorance|is bliss
+Knowledge|is power
+Silence|is golden
+Talk|is cheap
+Seeing|is believing
+Variety|is the spice of life
+Necessity|is the mother of invention
+Haste|makes waste
+Cleanliness|is next to godliness
+Imitation|is the sincerest form of flattery
+Revenge|is a dish best served cold
+The devil|is in the details
+Tomorrow|never comes
+A drowning man|will clutch at a straw
+A bird in the hand|is worth two in the bush
+All that glitters|is not gold
+An idle mind|is the devil's workshop
+A little knowledge|is a dangerous thing
+Cream|rises to the top
+*
+#       Group 2 : plural subject | predicate
+Expensive brooms|sweep clean
+Expensive vessels|make the most noise
+Expensive dogs|seldom bite
+Expensive waters|run deep
+Expensive birds of a feather|flock together
+Expensive minds|think alike
+Expensive habits|die hard
+Expensive hands|make light work
+Expensive fences|make good neighbors
+The most expensive things in life|are free
+New brooms|sweep clean
+Empty vessels|make the most noise
+Barking dogs|seldom bite
+Still waters|run deep
+Birds of a feather|flock together
+Great minds|think alike
+Old habits|die hard
+Many hands|make light work
+Good fences|make good neighbors
+The best things in life|are free
+Actions|speak louder than words
+Two wrongs|don't make a right
+Fools|rush in where angels fear to tread
+Dead men|tell no tales
+Beggars|can't be choosers
+All good things|come to an end
+Walls|have ears
+Opposites|attract
+All roads|lead to Rome
+Cheaters|never prosper
+Desperate times|call for desperate measures
+Clothes|make the man
+A fool and his money|are soon parted
+Sticks and stones|may break my bones
+Boys|will be boys
+*
+#       Group 3 : condition | consequence
+When in Rome|do as the Romans do
+When the cat's away|the mice will play
+If you can't stand the heat|stay out of the kitchen
+If you want something done right|do it yourself
+If you play with fire|you'll get burned
+If the shoe fits|wear it
+As you make your bed|you must lie in it
+If you can't beat them|join them
+Where there's a will|there's a way
+Where there's smoke|there's fire
+When it rains|it pours
+If at first you don't succeed|try, try again
+When the going gets tough|the tough get going
+If it ain't broke|don't fix it
+When one door closes|another opens
+If you lie down with dogs|you get up with fleas
+If you snooze|you lose
+When life gives you lemons|make lemonade
+If you pay peanuts|you get monkeys
+If you want peace|prepare for war
+If you sow the wind|you reap the whirlwind
+If you scratch my back|I'll scratch yours
+When in doubt|leave it out
+If you give him an inch|he'll take a mile
+*
+#       Group 4 : better this | than that
+Better late|than never
+Better safe|than sorry
+Better the devil you know|than the devil you don't
+Better a bird in the hand|than two in the bush
+Better to bend|than to break
+Better an egg today|than a hen tomorrow
+Better to light a candle|than curse the darkness
+Better alone|than in bad company
+Better to have loved and lost|than never to have loved at all
+Better to die on your feet|than live on your knees
+Better a big fish in a small pond|than a small fish in the sea
+Better to be silent and thought a fool|than to speak and remove all doubt
+Better to ask the way|than go astray
+*
+#       Group 5 : don't do | the thing   (keep the tails adverbial -- a
+#       relative-clause tail like "that feeds you" re-agrees with its new
+#       head and leaks the seam)
+Don't count your chickens|before they hatch
+Don't put all your eggs|in one basket
+Don't look a gift horse|in the mouth
+Don't throw the baby out|with the bathwater
+Don't judge a book|by its cover
+Don't wash your dirty linen|in public
+Don't cry|over spilled milk
+Don't buy a pig|in a poke
+Don't put the cart|before the horse
+Don't burn your bridges|behind you
+Don't make a mountain|out of a molehill
+Don't carry coals|to Newcastle
+Don't change horses|in midstream
+Don't kick a man|when he's down
+Don't cross the bridge|before you come to it
+Don't cast pearls|before swine
+Don't hide your light|under a bushel
+Don't teach your grandmother|to suck eggs
+Don't beat|around the bush
+Don't burn the candle|at both ends
+Don't put new wine|in old bottles
+Don't wear your heart|on your sleeve
+Don't throw stones|if you live in a glass house
+*
+#       Group 6 : imperative | continuation
+Make hay|while the sun shines
+Look|before you leap
+Think|before you speak
+Laugh|and the world laughs with you
+Weep|and you weep alone
+Ask|and you shall receive
+Seek|and ye shall find
+Knock|and the door will be opened
+Eat, drink|and be merry
+Hope for the best|and prepare for the worst
+Cut your coat|according to your cloth
+Live|and let live
+Cross that bridge|when you come to it
+**
+#       -- spares, parked past ** where the program can't reach them.
+#       The same three spares the 1996 original parked, now in English.
+Strike while|the iron is hot
+When the ale goes in|the wit goes out
+Too many cooks|spoil the broth

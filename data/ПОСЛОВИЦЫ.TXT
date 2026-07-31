@@ -1,0 +1,130 @@
+#               Пословицы 0.3  —  русский ремастер Ordsprak 0.1-с-половиной
+#               оригинал: Leif Claesson (Liket of Goto10), ~1996
+#
+#       Формат файла очень простой. Пословицы разложены по группам, внутри
+#       которых половинки грамматически взаимозаменяемы; шов помечен
+#       вертикальной чертой (|). Одиночная * начинает следующую группу.
+#       ** — конец файла: всё, что после, программа не читает.
+#
+#       В каждой строке четыре поля:  голова|хвост|EN head|EN tail
+#       Английский перевод перемешивается той же парой индексов, что и
+#       русский, так что английская чепуха совпадает с русской один в один.
+#
+#       Группа 1 нарочно набита подсадными "дорогими" пословицами — в
+#       шведском оригинале так были подсажены фальшивые "dyr/dyrt/dyra"
+#       ("дорогой"). По-русски каламбур сложился сам: "дорогой" — это и
+#       "expensive", и "dear". Подсадные — и есть шутка; взвешенный выбор
+#       группы заставляет их выпадать чаще всех.
+#
+#       Русская особенность: английской версии хватило разделить группы по
+#       числу (ед./мн.), а русский ломается на ПАДЕЖАХ и на направлении
+#       движения ("в монастырь" ходят, но не водятся). Поэтому групп больше
+#       и они мельче. Проверяй ХУДШУЮ пару в группе, а не среднюю. В группе
+#       из двух строк правило "чёрта с два" даёт гарантированный обмен —
+#       такая пара всегда выдаёт обе перекрёстные склейки.
+#
+#       Группа 1 : подлежащее в ед. числе | сказуемое без рода
+#       (настоящее время или именное — прошедшее время согласуется в роде
+#       и потому сюда не допускается)
+Дорогая работа|не волк, в лес не убежит|An expensive job|is no wolf, it won't run off into the forest
+Дорогое слово|не воробей: вылетит — не поймаешь|An expensive word|is no sparrow: once it flies out, you'll never catch it
+Дорогое яблоко|от яблони недалеко падает|An expensive apple|falls not far from the tree
+Дорогой аппетит|приходит во время еды|An expensive appetite|comes with eating
+Дорогой язык|до Киева доведёт|An expensive tongue|will lead you all the way to Kyiv
+Дорогое утро|вечера мудренее|An expensive morning|is wiser than the evening
+Дорогой друг|лучше новых двух|A dear friend|is better than two new ones
+Дорогая рубашка|ближе к телу|An expensive shirt|sits closer to the skin
+Дорогой первый блин|комом|An expensive first pancake|comes out lumpy
+Дорогая копейка|рубль бережёт|An expensive kopeck|guards the rouble
+Всё золото мира|вечера мудренее|All the gold in the world|is wiser than the evening
+Работа|не волк, в лес не убежит|Work|is no wolf, it won't run off into the forest
+Слово|не воробей: вылетит — не поймаешь|A word|is no sparrow: once it flies out, you'll never catch it
+Яблоко|от яблони недалеко падает|The apple|falls not far from the tree
+Аппетит|приходит во время еды|Appetite|comes with eating
+Язык|до Киева доведёт|Your tongue|will lead you all the way to Kyiv
+Голод|не тётка|Hunger|is no kindly aunt
+Утро|вечера мудренее|The morning|is wiser than the evening
+Старый друг|лучше новых двух|An old friend|is better than two new ones
+Своя рубашка|ближе к телу|Your own shirt|sits closer to the skin
+Один в поле|не воин|One man alone in the field|is no warrior
+Первый блин|комом|The first pancake|comes out lumpy
+Копейка|рубль бережёт|The kopeck|guards the rouble
+Ложка дёгтя|портит бочку мёда|A spoonful of tar|spoils the barrel of honey
+Паршивая овца|всё стадо портит|One mangy sheep|spoils the whole flock
+Правда|глаза колет|The truth|stings the eyes
+Смелость|города берёт|Courage|takes cities
+Привычка|— вторая натура|Habit|is second nature
+*
+#       Группа 2 : подлежащее во мн. числе | сказуемое
+#       (свои подсадные — включая ту самую, ради которой всё затевалось)
+Дорогие друзья|познаются в беде|Dear friends|are known in times of trouble
+Дорогие деньги|счёт любят|Expensive riches|love being counted
+Дорогие вести|не лежат на месте|Expensive tidings|never rest in one place
+Друзья|познаются в беде|Friends|are known in times of trouble
+Деньги|не пахнут|Riches|have no smell
+Деньги|счёт любят|Riches|love being counted
+Худые вести|не лежат на месте|Ill tidings|never rest in one place
+Семеро|одного не ждут|Seven|don't wait for one
+Терпение и труд|всё перетрут|Patience and hard work|will grind through anything
+*
+#       Группа 3 : условие/повеление (2-е лицо) | продолжение
+#       (пунктуация едет в хвосте: хвост с ведущей запятой или двоеточием
+#       приклеивается без пробела — см. код)
+Тише едешь|— дальше будешь|Ride slower|— you'll get further
+Поспешишь|— людей насмешишь|Hurry|— and you'll make the whole village laugh
+Любишь кататься|— люби и саночки возить|If you love sledding|— then love hauling the sled uphill too
+Не рой другому яму|— сам в яму попадёшь|Don't dig a pit for another|— or you'll fall into a pit yourself
+Не говори гоп|, пока не перепрыгнешь|Don't say "hop"|until you've actually made the jump
+Семь раз отмерь|— один раз отрежь|Measure seven times|— cut once
+Не буди лихо|, пока тихо|Don't wake the trouble-beast|while things are quiet
+Взялся за гуж|— не говори, что не дюж|Grabbed the strap|— then don't say you're not strong enough
+Назвался груздем|— полезай в кузов|Called yourself a mushroom|— then climb into the basket
+Не плюй в колодец|— пригодится воды напиться|Don't spit in the well|— you may yet need to drink from it
+Не имей сто рублей|— имей сто друзей|Don't keep a hundred roubles|— keep a hundred friends
+Не плюй в колодец|: вылетит — не поймаешь|Don't spit in the well|: it'll fly out and you'll never catch it
+*
+#       Группа 4 : лучше то | чем сё
+Лучше синица в руках|, чем журавль в небе|Better a tomtit in the hand|than a crane in the sky
+Лучше поздно|, чем никогда|Better late|than never
+Лучше один раз увидеть|, чем сто раз услышать|Better to see once|than to hear a hundred times
+Лучше горькая правда|, чем сладкая ложь|Better a bitter truth|than a sweet lie
+*
+#       Группа 5 : кто ... | тот/тому ...
+Кто рано встаёт|— тому Бог подаёт|He who rises early|is fed by God
+Кто не рискует|— тот не пьёт шампанского|He who takes no risks|drinks no champagne
+Кто старое помянет|— тому глаз вон|He who dredges up the past|loses an eye
+*
+#       Группа 6 : обстоятельство места/времени | самостоятельное сказуемое
+#       (головы только локативные или временные — никаких дательных и
+#       никакого направления движения, иначе шов трещит)
+В тихом омуте|черти водятся|In the still pool|devils dwell
+На воре|шапка горит|On the thief|the hat is on fire
+В гостях|хорошо, а дома лучше|Away visiting|it's pleasant, but home is better
+На безрыбье|и рак рыба|When fish are scarce|even a crayfish counts as a fish
+После драки|кулаками не машут|After the fight|nobody swings fists
+В чужом пиру|похмелье|At another's feast|the hangover is yours
+*
+#       Группа 7 : дополнение | безличный глагол во мн. числе
+Коней на переправе|не меняют|Horses in midstream|aren't swapped
+Цыплят|по осени считают|Chickens|are counted come autumn
+Соловья|баснями не кормят|Nightingales|aren't fed on fables
+Клин|клином вышибают|Wedges|are knocked out with wedges
+*
+#       Группа 8 : направление | глагол движения  (микрогруппа из двух —
+#       обмен гарантирован)
+В чужой монастырь|со своим уставом не ходят|Into another's monastery|one doesn't march with one's own rulebook
+В Тулу|со своим самоваром не ездят|To Tula|one doesn't travel with one's own samovar
+*
+#       Группа 9 : что ... | коррелят  (микрогруппа из двух)
+Что посеешь|— то и пожнёшь|What you sow|you shall also reap
+Что написано пером|— не вырубишь топором|What's written with the pen|can't be hacked out with an axe
+*
+#       Группа 10 : инфинитив | инфинитив  (микрогруппа из двух)
+Волков бояться|— в лес не ходить|To fear the wolves|is to shun the forest
+Жизнь прожить|— не поле перейти|To live out a life|is no stroll across a field
+**
+#       — запасные, спрятанные за **, куда программе не добраться.
+#       Те же три запасных, что автор спрятал в 1996-м, теперь по-русски.
+Куй железо|, пока горячо|Strike the iron|while it's hot
+Что у трезвого на уме|— то у пьяного на языке|What the sober keep in mind|the drunk keep on the tongue
+У семи нянек|дитя без глазу|With seven nannies|the child loses an eye

@@ -1,0 +1,39 @@
+#  สุภาษิตมั่ว ๐.๒  --  รีมาสเตอร์ไทยของ Ordspråk โดย Leif (Liket of Goto10)
+#
+#  รูปแบบไฟล์:  ท่อนหน้า|ท่อนหลัง|EN head|EN tail
+#  จับสุภาษิตที่เข้ากันได้ทางไวยากรณ์ไว้กลุ่มเดียวกัน แล้วใส่ | ตรงรอยต่อ
+#  ช่องที่ ๓ และ ๔ คือคำแปลอังกฤษของท่อนหน้า/ท่อนหลัง -- ออกแบบให้สลับกัน
+#  แล้วยังถูกไวยากรณ์อังกฤษด้วย เวลาสับ ภาษาอังกฤษเลยมั่วตามไทยเป๊ะ
+#  * ขึ้นต้นบรรทัด = ขึ้นกลุ่มใหม่   ** = จบไฟล์ (บรรทัดถัดไปถูกข้าม)
+#
+#  กลุ่ม ๑ : สถานการณ์ | คำสอน   (กลุ่มใหญ่สุด = ออกบ่อยสุด = ฮาสุด)
+น้ำขึ้น|ให้รีบตัก|When the water rises,|hurry and scoop it up
+รักวัว|ให้ผูก|If you love your cow,|tie it up
+รักลูก|ให้ตี|If you love your child,|give it a beating
+วัวหาย|ล้อมคอก|When the cow is gone,|build the pen
+หนามยอก|เอาหนามบ่ง|When a thorn pricks you,|dig it out with a thorn
+เข้าเมืองตาหลิ่ว|ต้องหลิ่วตาตาม|In a town of squinters,|you must squint along
+น้ำเชี่ยว|อย่าขวางเรือ|In a fierce current,|don't row across
+ตักบาตร|อย่าถามพระ|When you give alms,|don't question the monk
+ช้าๆ|ได้พร้าเล่มงาม|Slow and steady,|you'll get a fine blade
+*
+#  กลุ่ม ๒ : ลงมือทำ | เป้าหมาย/วิธี
+ขี่ช้าง|จับตั๊กแตน|Ride an elephant|to catch a grasshopper
+เข็นครก|ขึ้นภูเขา|Push a mortar|up the mountain
+สีซอ|ให้ควายฟัง|Play the fiddle|for the buffalo to hear
+ฆ่าควาย|เสียดายพริก|Slaughter a buffalo|but skimp on the chili
+ปิดทอง|หลังพระ|Lay gold leaf|on the back of the Buddha
+ตีงู|ให้กากิน|Beat the snake|to feed the crows
+ตำน้ำพริก|ละลายแม่น้ำ|Pound chili paste|and stir it into the river
+*
+#  กลุ่ม ๓ : สำนวนคู่ขนาน (ท่อนหน้า/ท่อนหลังเป็นประโยคเต็มทั้งคู่)
+ไก่งามเพราะขน|คนงามเพราะแต่ง|A rooster is fine for its feathers,|a person for their clothes
+น้ำพึ่งเรือ|เสือพึ่งป่า|Water leans on the boat,|the tiger leans on the forest
+น้ำร้อนปลาเป็น|น้ำเย็นปลาตาย|In hot water the fish lives,|in cold water it dies
+เข้าหูซ้าย|ทะลุหูขวา|In the left ear,|out the right
+ปากว่า|ตาขยิบ|The mouth says one thing,|the eye winks another
+น้ำนิ่ง|ไหลลึก|Still waters,|run deep
+**
+#  -- ตัวสำรอง อยู่หลัง ** โปรแกรมไม่อ่าน (จงใจให้เหมือนต้นฉบับเป๊ะ) --
+รักยาวให้บั่น|รักสั้นให้ต่อ|If love is long, trim it short,|if short, splice it on
+ช้าๆ|ได้พร้าสองเล่มงาม|Slow and steady,|you'll get two fine blades
