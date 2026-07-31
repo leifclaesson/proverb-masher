@@ -377,7 +377,95 @@ async function loadLang(code) {
 }
 
 let current = "en";
-let typer = null;
+
+/* ---------------- Leif's own typing cadence ----------------
+   Measured 2026-07-29 for headroom (see its composer.rs): five timed runs of
+   `/remote-control`, every keystroke logged, any run with a backspace thrown
+   out. The point of it is that the shape is his FINGERING, not one flat speed
+   -- so this models the TRANSITION rather than replaying that one string:
+
+     hand alternation, same row       48ms   (o->t 47, e->m 48, o->n 48)
+     hand alternation, row change     88ms   (r->e 87, e->- 88, m->o 95)
+     same hand, neighbouring finger   56ms   (n->t 56, a roll)
+     same hand, row change           140ms   (t->r 136, -->c 144)
+
+   Those four numbers ARE his five runs, bucketed by transition -- not a guess
+   at what reads as human. A flat mean types the hard transitions too fast and
+   the easy ones too slow, which is exactly what does NOT look like a person.
+
+   He types Svorak, whose Latin block is plain Dvorak, so letters are placed
+   from that. His home row is `aoeuidhtns-'` (from him, same day), which is why
+   `-` is a right PINKY below and not a reach to the bottom-right -- getting
+   that wrong is what sent the first cadence analysis down a blind alley.
+   Swedish-QWERTY punctuation keeps its QWERTY spot and is deliberately NOT
+   modelled: unknown keys take the fallback instead of an invented position. */
+
+const GAP_FALLBACK = 87;   // pooled median of all 70 of his measured gaps
+const GAP_SPACE    = 75;   // thumb, alternates with everything -- extrapolated
+const GAP_SAMEFING = 170;  // slowest possible; never occurred in his sample
+const GAP_SHIFT    = 40;   // right pinky reaching shift -- extrapolated
+const ENTER_GAP    = 152;  // his measured pause before Enter, a different motion
+
+const SVORAK = (() => {
+  const rows = ["',.py|fgcrl", "aoeui|dhtns", ";qjkx|bmwvz"];
+  const fingers = [[0, 1, 2, 3, 3], [3, 3, 2, 1, 0]];   // pinky=0 .. index=3
+  const map = {};
+  rows.forEach((r, row) => r.split("|").forEach((half, hand) => {
+    for (let i = 0; i < half.length; i++) map[half[i]] = { hand, row, finger: fingers[hand][i] };
+  }));
+  map["-"] = { hand: 1, row: 1, finger: 0 };   // HIS home row, not QWERTY's
+  return map;
+})();
+
+/* His 14 actual measured gaps, keyed by the bigram that produced them. A
+   proverb containing "ot" gets his real 47ms, not a bucket's guess. Same
+   structure his Rust uses (exact table + fallback), just keyed by the letter
+   pair instead of by position, so it carries over to any text. */
+const HIS_BIGRAMS = {
+  "/r": 112, "re": 87, "em": 48, "mo": 95, "ot": 47, "te": 81, "e-": 88,
+  "-c": 144, "co": 96, "on": 48, "nt": 56, "tr": 136, "ro": 64, "ol": 88,
+};
+
+function gapMs(from, to) {
+  const lo = from.toLowerCase(), hi = to.toLowerCase();
+  const measured = HIS_BIGRAMS[lo + hi];
+  if (measured !== undefined) return measured;
+  if (from === " " || to === " ") return GAP_SPACE;
+  const a = SVORAK[lo], b = SVORAK[hi];
+  if (!a || !b) return GAP_FALLBACK;
+  let ms;
+  if (a.hand !== b.hand)          ms = a.row === b.row ? 48 : 88;
+  else if (a.finger === b.finger) ms = GAP_SAMEFING;
+  else                            ms = a.row === b.row ? 56 : 140;
+  // A pinky destination is visibly slower in his runs even on an easy
+  // alternation: e->- and o->l both 88, against o->t 47 and o->n 48.
+  if (b.finger === 0) ms += 30;
+  if (to !== to.toLowerCase()) ms += GAP_SHIFT;
+  return ms;
+}
+
+/* His own jitter, kept exactly: uniform 60%-150% of the base, floor 8ms, which
+   reproduces roughly the 16-184ms spread his runs actually showed. Drawn from
+   the page rng so ?seed= still gives a reproducible stream. */
+const jitter = ms => Math.max(8, Math.round(ms * (60 + rng() * 91) / 100));
+
+/* A generation token retires every in-flight timer at once. Cheaper and safer
+   than juggling ids: setTimeout and setInterval share ONE id pool, so a cleared
+   auto-timer id can be handed straight back to the next typing timer. */
+let gen = 0;
+
+function typeOut(el, line, done) {
+  const chars = Array.from(line);
+  const mine = ++gen;
+  let i = 0;
+  el.textContent = "";
+  (function step() {
+    if (mine !== gen) return;               // a newer line took over
+    el.textContent += chars[i++];
+    if (i >= chars.length) { setTimeout(() => { if (mine === gen) done(); }, ENTER_GAP); return; }
+    setTimeout(step, jitter(gapMs(chars[i - 1], chars[i])));
+  })();
+}
 
 async function serve() {
   const cfg = LANGS[current];
@@ -389,35 +477,38 @@ async function serve() {
   const mirrorEl = document.getElementById("mirror");
   document.getElementById("proverb").classList.toggle("thai", current === "th");
 
-  clearInterval(typer);
-  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* The OS "reduce motion" setting suppresses the type-on entirely -- which is
+     what makes the line appear all at once. ?type=1 forces typing on and
+     ?type=0 off, and the choice sticks. */
+  const reduced = forceType === null
+    ? matchMedia("(prefers-reduced-motion: reduce)").matches
+    : !forceType;
+
   if (reduced) {
+    gen++;                          // retire any typing still in flight
     textEl.textContent = line;
     mirrorEl.textContent = mirror ? "(" + mirror + ")" : "";
+    scheduleAuto();
   } else {
-    // type-on, like a terminal printing it
-    textEl.textContent = "";
     mirrorEl.textContent = "";
-    const chars = Array.from(line);
-    let i = 0;
-    typer = setInterval(() => {
-      textEl.textContent += chars[i++];
-      if (i >= chars.length) {
-        clearInterval(typer);
-        mirrorEl.textContent = mirror ? "(" + mirror + ")" : "";
-      }
-    }, 14);
+    // the autocycle dwell starts when the line FINISHES, not when it starts, so
+    // a long line is never cut short on a monitor
+    typeOut(textEl, line, () => {
+      mirrorEl.textContent = mirror ? "(" + mirror + ")" : "";
+      scheduleAuto();
+    });
   }
-  scheduleAuto();
 }
 
 /* --- autocycle, so it can be left up on a monitor (Alex Hartman's idea).
    [ ] and [X] are the same width in a monospace face, so the button never
    jitters as it toggles -- the one place the fake-retro font earns its keep.
-   ?auto=1 arms it; ?auto=20 arms it AND sets the period in seconds, for a
-   display with no keyboard in front of it. */
-const AUTO_DEFAULT = 8;
+   ?auto=1 arms it; ?auto=20 arms it AND sets the DWELL in seconds -- the pause
+   after a line finishes typing, not a fixed period, so a long line is never cut
+   short. For a display with no keyboard in front of it. */
+const AUTO_DEFAULT = 5;
 let autoOn = false, autoSecs = AUTO_DEFAULT, autoTimer = null;
+let forceType = null;   // null = follow the OS; true/false = ?type= override
 const autoBtn = document.getElementById("auto");
 
 function paintAuto() {
@@ -477,9 +568,20 @@ addEventListener("keydown", e => {
   if (a !== null) {
     autoOn = a !== "0";
     const secs = parseFloat(a);
-    if (secs > 1) autoSecs = secs;      // ?auto=20 -> every 20 seconds
+    if (secs > 1) autoSecs = secs;      // ?auto=20 -> dwell 20s on each line
   } else {
     try { autoOn = localStorage.getItem("cookieAuto") === "1"; } catch (e) {}
+  }
+
+  const t = params.get("type");
+  if (t !== null) {
+    forceType = t !== "0";
+    try { localStorage.setItem("cookieType", forceType ? "1" : "0"); } catch (e) {}
+  } else {
+    try {
+      const saved = localStorage.getItem("cookieType");
+      if (saved !== null) forceType = saved === "1";
+    } catch (e) {}
   }
 
   const q = params.get("lang");

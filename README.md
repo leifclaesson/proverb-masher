@@ -10,8 +10,14 @@ the whole point.
 **Live:** https://leifclaesson.github.io/proverb-masher/
 
 Hit `[X] Auto` to leave it cycling on a monitor. `?auto=1` arms that from the
-URL and `?auto=20` also sets the period in seconds, for a screen with no
-keyboard in front of it.
+URL and `?auto=20` also sets the dwell in seconds -- the pause after a line
+lands, so a long one is never cut short -- for a screen with no keyboard in
+front of it.
+
+The line types itself on at Leif's own measured keyboard cadence. That is
+suppressed if the OS asks for reduced motion, in which case the text just
+appears; `?type=1` forces the typing on anyway and `?type=0` off, and either
+choice sticks.
 
 ## How it works
 
