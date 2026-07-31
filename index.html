@@ -138,8 +138,16 @@
     font-family: var(--thai);
     line-height: 1.7;
   }
+  /* the DOS hardware cursor: a thick blinking underscore at the bottom
+     of the character cell, not a solid block */
   #cursor {
     display: inline-block;
+    width: 1ch;
+    height: .13em;
+    margin-left: .15ch;
+    background: var(--bright);
+    box-shadow: 0 0 8px rgba(255,225,77,.7);
+    vertical-align: -0.02em;
     animation: blink 1.06s steps(1) infinite;
   }
   @keyframes blink { 50% { opacity: 0; } }
@@ -188,7 +196,7 @@
 <div id="banner">COOKIE v0.3 · Liket of Goto10 · ~1996</div>
 
 <main>
-  <div id="proverb" aria-live="polite"><span id="text"></span><span id="cursor">▌</span></div>
+  <div id="proverb" aria-live="polite"><span id="text"></span><span id="cursor"></span></div>
   <div id="mirror"></div>
 </main>
 
