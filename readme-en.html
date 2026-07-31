@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mashed-up Proverbs — English Edition</title>
+<link rel="stylesheet" href="readme.css">
+</head>
+<body>
+<article>
+<a class="back" href="./?lang=en">← COOKIE</a>
+
+<h1>Mashed-up Proverbs — English Edition</h1>
+
+<blockquote>
+<p><strong>Provenance.</strong> English remaster of <code>COOKIE.BAS</code> by
+<strong>Leif Claesson (Liket of Goto10)</strong>, ~1996. The Swedish original
+and its full engine writeup live in <a href="readme-sv.html">the SV README</a>
+— read that first; this page only covers what the English transposition
+changed. A Thai edition and a Russian edition live here too
+(<a href="readme-th.html">TH</a>, <a href="readme-ru.html">RU</a>).</p>
+</blockquote>
+
+<p>Same engine, same joke: real proverbs are split by a pipe into a HEAD and a
+TAIL, grouped into sections of interchangeable halves, and the program glues
+one proverb's HEAD to a <em>different</em> proverb's TAIL. It is structurally
+incapable of printing an intact line — it can only ever be wrong.</p>
+
+<blockquote><p>A clear conscience is the finest headache. · New brooms run
+deep. · Don't count your chickens in public.</p></blockquote>
+
+<h2>What got transposed</h2>
+
+<table>
+<tr><th>Original (Swedish, 1996)</th><th>This edition</th></tr>
+<tr><td><code>ORDSPRÅK.TXT</code>, CP437</td><td><code>PROVERBS.TXT</code>, plain ASCII</td></tr>
+<tr><td>Swedish proverbs</td><td>Real English proverbs (many are direct counterparts: <em>Bränt barn skyr elden</em> → "A burnt child dreads the fire")</td></tr>
+<tr><td><em>dyr/dyrt/dyra</em> ("expensive") decoys stuffed into Group 1</td><td><strong>"Expensive" decoys</strong>, planted next to their real partners the same way ("An expensive pot never boils")</td></tr>
+<tr><td><code>fanheller:</code> retry label (the curse <em>fan heller</em> ≈ "like hell")</td><td>The <strong>"like hell" rule</strong> — per remaster tradition the curse gets translated too (the Thai edition swears in Thai, the Russian one in Russian)</td></tr>
+<tr><td>Three spares parked past the <code>**</code> terminator</td><td>The <strong>same three spares</strong>, translated: strike-while-the-iron, ale-in-wit-out, too-many-cooks</td></tr>
+<tr><td>One pre-mashed proverb planted in the <em>data</em> (<em>Den som gapar efter galen fågel…</em>)</td><td>"He who lives in a glass house|shouldn't count his chickens"</td></tr>
+</table>
+
+<h2>The English-only problem: number agreement</h2>
+
+<p>Swedish verbs don't conjugate for number (<em>barn leka</em>, <em>tunnor
+skramlar</em>, <em>en svala gör</em> — the same verb form regardless), so the
+1996 original could dump every subject+predicate proverb into one big Group 1
+and any swap stayed grammatical. <strong>English can't</strong>: "Expensive
+dogs catches the worm" leaks the seam, and the whole joke is <em>wrong
+meaning, right grammar</em>.</p>
+
+<p>So Group 1 is split by subject number:</p>
+
+<ul>
+<li><strong>Group 1: singular subjects</strong> ("A watched pot", "The early
+bird", …) — still the biggest group, so the weighted pick still fires the
+decoys most.</li>
+<li><strong>Group 2: plural subjects</strong> ("Empty vessels", "Barking
+dogs", …) — with its own decoys.</li>
+</ul>
+
+<p>Same trap, subtler form: a TAIL that is a <em>relative clause</em>
+re-agrees with its new head. "Don't bite the hand <strong>that feeds
+you</strong>" mashed onto "Don't count your chickens" gives "…chickens that
+feed<strong>s</strong> you" — broken. So the don't-group's tails are all
+adverbial ("in one basket", "over spilled milk", "in public"), which fit any
+head. When adding proverbs, test the worst pairing in the group, not the
+average one.</p>
+
+<h2>Real examples it spits out</h2>
+
+<table>
+<tr><th>Mashup</th><th>Made from</th></tr>
+<tr><td>A clear conscience is the finest headache.</td><td>the softest-pillow proverb + the planted gold-in-the-kingdom decoy</td></tr>
+<tr><td>An expensive pot never boils.</td><td>decoy firing exactly as designed</td></tr>
+<tr><td>New brooms run deep.</td><td>"new brooms sweep clean" + "still waters run deep"</td></tr>
+<tr><td>As you make your bed, stay out of the kitchen.</td><td>bed-lying + heat-in-the-kitchen</td></tr>
+<tr><td>Better safe than never.</td><td>better-safe-than-sorry + better-late-than-never</td></tr>
+<tr><td>Don't judge a book with the bathwater.</td><td>book-by-its-cover + baby-with-the-bathwater</td></tr>
+<tr><td>Cleanliness is the sincerest form of flattery.</td><td>next-to-godliness + imitation-flattery</td></tr>
+<tr><td>Seek and be merry.</td><td>seek-and-ye-shall-find + eat-drink-and-be-merry</td></tr>
+</table>
+
+<h2>A pun the translation lost</h2>
+
+<p>The original's decoy word <em>dyr</em> and English <em>dear</em> are the
+same Germanic word — Old English <em>dēore</em> meant both "beloved" and
+"costly" ("it cost him dear"). This edition chose "expensive" because
+dear-as-pricey reads archaic today, making English the one edition that
+<em>dropped</em> half the pun. The Russian edition got it back for free:
+«дорогой» still means both.</p>
+
+</article>
+<footer>Liket of Goto10, ~1996 → English remaster 2026 ·
+<a href="https://github.com/leifclaesson/proverb-masher">source</a> ·
+README in <a href="readme-sv.html">SV</a> · <a href="readme-th.html">TH</a> ·
+<a href="readme-ru.html">RU</a></footer>
+</body>
+</html>

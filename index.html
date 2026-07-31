@@ -195,6 +195,7 @@
 <footer>
   PowerBASIC 1996 → Python · Rust · JS 2026 —
   <span id="tagline">real proverbs, chopped and glued back wrong</span> ·
+  <a id="readmeLink" href="readme-en.html">README</a> ·
   <a href="https://github.com/leifclaesson/proverb-masher">source</a>
 </footer>
 
@@ -213,16 +214,23 @@
 const LANGS = {
   sv: { file: "data/ORDSPRÅK.TXT",   cp437: true,  period: true,  more: "En till",
         title: "ORDSPRÅK — mixade ordspråk",
-        tagline: "riktiga ordspråk, ihopklippta på fel sätt" },
+        tagline: "riktiga ordspråk, ihopklippta på fel sätt",
+        readme: "readme-sv.html",
+        // the 1996 data file stays byte-pristine; its English mirror
+        // rides in a sidecar with the same groups and line order
+        mirrorFile: "data/ORDSPRÅK-EN.TXT" },
   en: { file: "data/PROVERBS.TXT",   cp437: false, period: true,  more: "One more",
         title: "COOKIE — mashed-up proverbs",
-        tagline: "real proverbs, chopped and glued back wrong" },
+        tagline: "real proverbs, chopped and glued back wrong",
+        readme: "readme-en.html" },
   th: { file: "data/สุภาษิต.txt",     cp437: false, period: false, more: "อีกอัน",
         title: "สุภาษิตมั่ว",
-        tagline: "สุภาษิตจริง สับสลับผิดคู่" },
+        tagline: "สุภาษิตจริง สับสลับผิดคู่",
+        readme: "readme-th.html" },
   ru: { file: "data/ПОСЛОВИЦЫ.TXT",  cp437: false, period: true,  more: "Ещё одну",
         title: "ПОСЛОВИЦЫ — перемолотые пословицы",
-        tagline: "настоящие пословицы, склеенные не с теми половинками" },
+        tagline: "настоящие пословицы, склеенные не с теми половинками",
+        readme: "readme-ru.html" },
 };
 
 /* CP437 high half (0x80..0xFF) -> Unicode, hand-spelled for the third time:
@@ -303,7 +311,19 @@ async function loadLang(code) {
   const text = cfg.cp437
     ? decodeCp437(new Uint8Array(await res.arrayBuffer()))
     : await res.text();
-  return (cache[code] = parse(text));
+  const sections = parse(text);
+  if (cfg.mirrorFile) {
+    // zip the sidecar's EN halves onto the pristine main data, position
+    // by position; on any shape mismatch just skip the mirror
+    try {
+      const mirror = parse(await (await fetch(encodeURI(cfg.mirrorFile))).text());
+      sections.forEach((sec, s) => sec.forEach((p, i) => {
+        const m = mirror[s] && mirror[s][i];
+        if (m) { p[2] = m[0]; p[3] = m[1]; }
+      }));
+    } catch (e) {}
+  }
+  return (cache[code] = sections);
 }
 
 let current = "en";
@@ -347,6 +367,7 @@ function setLang(code, save = true) {
   document.title = cfg.title;
   document.getElementById("more").textContent = cfg.more;
   document.getElementById("tagline").textContent = cfg.tagline;
+  document.getElementById("readmeLink").href = cfg.readme;
   document.querySelectorAll(".langs button").forEach(b =>
     b.classList.toggle("active", b.dataset.lang === code));
   if (save) try { localStorage.setItem("cookieLang", code); } catch (e) {}

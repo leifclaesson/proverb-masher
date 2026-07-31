@@ -1,0 +1,55 @@
+#               ORDSPRÅK-EN.TXT -- English mirror sidecar for ORDSPRÅK.TXT
+#
+#       The 1996 Swedish data file stays byte-for-byte pristine (still CP437),
+#       so its English translations live here instead: same groups, same line
+#       order, one EN head|EN tail per proverb. The site zips the two files
+#       together and scrambles both with the same index pair, so the English
+#       nonsense matches the Swedish one-to-one.
+#
+#       Swedish verbs don't conjugate for number, which is how the original
+#       got away with one giant Group 1. English isn't so lucky, so these
+#       tails are phrased agreement-neutrally (will/must/dashes) to survive
+#       any head they get glued to.
+#
+Expensive children|will play together best
+An expensive child|will shun the fire
+Expensive brooms|will sweep the cleanest
+Expensive barrels|will rattle the loudest
+An expensive hen|will also find a grain
+An expensive conscience|-- the finest pillow there is
+All the gold in the kingdom|-- the finest headache there is
+An expensive laugh|will lengthen your life
+An expensive tussock|will often tip a heavy load
+A burnt child|will shun the fire
+Self-praise|will smell foul
+Children alike|will play together best
+Old brooms|will sweep the cleanest
+Empty barrels|will rattle the loudest
+He who gapes after too much|will often lose the whole piece
+One swallow|will make no summer
+A blind hen|will also find a grain
+A good conscience|-- the finest pillow there is
+A good laugh|will lengthen your life
+A little tussock|will often tip a heavy load
+A liar|must have a good memory
+He who gapes after a crazy bird|won't see won't see the forest for all the bones
+*
+Where there's room in the heart|there's room for the rear
+From children and fools|you'll get to hear the truth
+If you want to be fancy|you must suffer the pinch
+Once you've said A|you must say B
+As you make your bed|so you must lie
+As you shout into the forest|so you get your answer
+If you want something done|you must do it yourself
+*
+Better to piss in the drainpipe|than to drop in the piss-drain
+Better one bird in the hand|than ten in the forest
+Better to flee|than to fence badly
+*
+All is not|gold that glitters
+You shouldn't buy|the pig in the sack
+You shouldn't throw out|the baby with the bathwater
+**
+Strike while|the iron is warm
+Where the ale goes in|the wits go out
+The more cooks|the worse the soup
