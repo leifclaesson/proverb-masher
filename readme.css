@@ -22,6 +22,9 @@ body {
 }
 body.thai { font-family: var(--thai); }
 body.thai code, body.thai pre { font-family: var(--mono); }
+/* Thai quoted inside another language's page still gets the real Thai font --
+   never the fake-retro mono (which has no Thai glyphs at all) */
+[lang="th"] { font-family: var(--thai); }
 
 /* subtle scanlines, no flicker on a reading page */
 body::after {

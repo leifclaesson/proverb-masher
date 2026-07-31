@@ -89,6 +89,12 @@
     cursor: pointer;
     text-shadow: 0 0 6px rgba(216,216,216,.35);
   }
+  /* Any chrome holding Thai script gets the real Thai font, never the
+     fake-retro mono: the language button always, and the "one more" button +
+     tagline whenever Thai is the active language (setLang stamps lang= on
+     them). Scoped per element, because <html lang> gets rewritten to "th" on
+     a language switch and must NOT re-font the whole latin UI. */
+  button[lang="th"], #tagline[lang="th"] { font-family: var(--thai); }
   button:hover { border-color: var(--accent); color: var(--accent); }
   button.active, #more:active {
     background: var(--accent);
@@ -187,7 +193,7 @@
   <nav class="langs" aria-label="language">
     <button data-lang="sv">SV</button>
     <button data-lang="en">EN</button>
-    <button data-lang="th">ไทย</button>
+    <button data-lang="th" lang="th">ไทย</button>
     <button data-lang="ru">RU</button>
   </nav>
   <button id="more">One more</button>
@@ -373,8 +379,12 @@ function setLang(code, save = true) {
   const cfg = LANGS[code];
   document.documentElement.lang = code;
   document.title = cfg.title;
-  document.getElementById("more").textContent = cfg.more;
-  document.getElementById("tagline").textContent = cfg.tagline;
+  const more = document.getElementById("more");
+  const tagline = document.getElementById("tagline");
+  more.textContent = cfg.more;
+  tagline.textContent = cfg.tagline;
+  // stamp lang so the Thai strings pick up the real Thai font (see CSS)
+  more.lang = tagline.lang = code;
   document.getElementById("readmeLink").href = cfg.readme;
   document.querySelectorAll(".langs button").forEach(b =>
     b.classList.toggle("active", b.dataset.lang === code));

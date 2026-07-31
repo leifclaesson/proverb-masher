@@ -14,10 +14,12 @@
 
 <blockquote>
 <p><strong>Provenance.</strong> English remaster of <code>COOKIE.BAS</code> by
-<strong>Leif Claesson (Liket of Goto10)</strong>, ~1996. The Swedish original
-and its full engine writeup live in <a href="readme-sv.html">the SV README</a>
-— read that first; this page only covers what the English transposition
-changed. A Thai edition and a Russian edition live here too
+<strong>Leif Claesson (Liket of Goto10)</strong>, ~1996, written in PowerBASIC
+for DOS and recovered decades later from a dig through old disks. Its data file
+<code>ORDSPRÅK.TXT</code> is served on this site byte-for-byte pristine, still
+CP437. The Swedish original's own page is
+<a href="readme-sv.html">in Swedish</a>; the engine it describes is summarised
+below. A Thai edition and a Russian edition live here too
 (<a href="readme-th.html">TH</a>, <a href="readme-ru.html">RU</a>).</p>
 </blockquote>
 
@@ -28,6 +30,31 @@ incapable of printing an intact line — it can only ever be wrong.</p>
 
 <blockquote><p>A clear conscience is the finest headache. · New brooms run
 deep. · Don't count your chickens in public.</p></blockquote>
+
+<h2>The engine, unchanged since 1996</h2>
+
+<p>A data file is one <code>head|tail</code> proverb per line, <code>#</code>
+<code>;</code> <code>'</code> for a comment, <code>*</code> on its own line to
+start the next group, and <code>**</code> as a hard end-of-file (the author's
+three spares stay parked behind it, unreachable since 1996). Two details lift
+it above a dumb word-masher:</p>
+
+<blockquote>
+<p><strong>1. Population-weighted group choice.</strong> It does
+<strong>not</strong> pick a group uniformly. It builds a flat table
+<code>grupp[]</code> with <strong>one slot per proverb</strong>, each holding
+that proverb's group number, then picks a random slot — so a fat group is
+chosen in proportion to how many proverbs it holds, and the decoy-stuffed
+Group 1 dominates the output. The weighting is what makes the joke land
+reliably.</p>
+</blockquote>
+
+<blockquote>
+<p><strong>2. <code>fanheller:</code></strong> is the retry label that rejects
+two identical rolls, forcing head and tail to come from different lines. The
+name is a Swedish curse (<em>fan heller</em> ≈ "like hell"), and per remaster
+tradition every edition swears in its own language.</p>
+</blockquote>
 
 <h2>What got transposed</h2>
 
