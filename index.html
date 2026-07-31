@@ -108,6 +108,10 @@
     font-weight: bold;
   }
   #more:hover { background: var(--bright); color: #000; text-shadow: none; }
+  /* the autocycle checkbox: armed state is a colour shift, NOT the filled
+     .active look -- that one belongs to the selected language and shouldn't
+     read as "this is the current thing" on a toggle sitting next to it */
+  #auto[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
 
   /* --- banner: first to shed on short windows --- */
   #banner {
@@ -197,6 +201,7 @@
     <button data-lang="ru">RU</button>
   </nav>
   <button id="more">One more</button>
+  <button id="auto" aria-pressed="false">[ ] Auto</button>
 </header>
 
 <div id="banner">COOKIE v0.3 · Liket of Goto10 · ~1996</div>
@@ -232,6 +237,7 @@ const LANGS = {
         tagline: "riktiga ordspråk, ihopklippta på fel sätt",
         readme: "readme-sv.html",
         home: "Vem är Leif?",
+        auto: "Auto",
         // the 1996 data file stays byte-pristine; its English mirror
         // rides in a sidecar with the same groups and line order
         mirrorFile: "data/ORDSPRÅK-EN.TXT" },
@@ -239,17 +245,23 @@ const LANGS = {
         title: "COOKIE — mashed-up proverbs",
         tagline: "real proverbs, chopped and glued back wrong",
         readme: "readme-en.html",
-        home: "Who is Leif?" },
+        home: "Who is Leif?",
+        auto: "Auto",
+        // English is the only edition whose verbs conjugate for number, so
+        // it is the only one whose tails carry alternations to resolve
+        agree: true },
   th: { file: "data/สุภาษิต.txt",     cp437: false, period: false, more: "อีกอัน",
         title: "สุภาษิตมั่ว",
         tagline: "สุภาษิตจริง สับสลับผิดคู่",
         readme: "readme-th.html",
-        home: "เลย์ฟ คือใคร" },
+        home: "เลย์ฟ คือใคร",
+        auto: "อัตโนมัติ" },
   ru: { file: "data/ПОСЛОВИЦЫ.TXT",  cp437: false, period: true,  more: "Ещё одну",
         title: "ПОСЛОВИЦЫ — перемолотые пословицы",
         tagline: "настоящие пословицы, склеенные не с теми половинками",
         readme: "readme-ru.html",
-        home: "Кто такой Лейф?" },
+        home: "Кто такой Лейф?",
+        auto: "Авто" },
 };
 
 /* CP437 high half (0x80..0xFF) -> Unicode, hand-spelled for the third time:
@@ -265,20 +277,36 @@ function decodeCp437(bytes) {
 }
 
 /* The COOKIE.BAS reader: #/;/' comment, * next section, ** hard EOF
-   (the author's spares stay parked behind it, unreachable since 1996). */
+   (the author's spares stay parked behind it, unreachable since 1996).
+   Plus the one English-only addition: a leading + marks a PLURAL subject.
+   It rides as a property so the numeric slots stay free for the SV mirror. */
 function parse(text) {
   const sections = [[]];
   for (const raw of text.split(/\r?\n/)) {
-    const line = raw.trimEnd();
+    let line = raw.trimEnd();
     if (!line) continue;
     if ("#;'".includes(line[0])) continue;
     if (line === "*") { sections.push([]); continue; }
     if (line === "**") break;
+    const plural = line[0] === "+";
+    if (plural) line = line.slice(1);
     const parts = line.split("|");
     if (parts.length < 2) continue;
+    parts.plural = plural;
     sections[sections.length - 1].push(parts);   // [head, tail, enHead?, enTail?]
   }
   return sections.filter(s => s.length);
+}
+
+/* Number agreement, English only -- and this is the whole of it. A tail
+   carries BOTH forms: "(s)" is there in the singular and gone in the plural,
+   "(x/y)" is x then y. So "Empty vessels" + "never change(s) (its/their)
+   spots" is one substitution, with no verb table and no morphology anywhere.
+   Deriving the forms instead would need a dictionary -- "rises" cuts to
+   "rise" but "catches" cuts to "catch", same ending, different seam. */
+function agree(tail, plural) {
+  return tail.replace(/\(([^()/]*)(?:\/([^()]*))?\)/g,
+                      (_, sg, pl) => plural ? (pl || "") : sg);
 }
 
 /* Russian punctuation rides in the tail: a leading comma/colon glues on
@@ -303,7 +331,7 @@ if (seedParam) {
 }
 const randBelow = n => Math.floor(rng() * n);
 
-function cook(sections) {
+function cook(sections, agreeOn) {
   // clever bit #1: population-weighted section choice
   const grupp = [];
   sections.forEach((s, i) => s.forEach(() => grupp.push(i)));
@@ -314,8 +342,11 @@ function cook(sections) {
   let r2 = randBelow(pool.length);
   while (r2 === r1) r2 = randBelow(pool.length);
 
+  // the head decides the number; the tail resolves its alternations against it
+  const tail = agreeOn ? agree(pool[r2][1], pool[r1].plural) : pool[r2][1];
+
   // same index pair for the native line and the English mirror
-  const native = glue(pool[r1][0], pool[r2][1]);
+  const native = glue(pool[r1][0], tail);
   const mirror = pool[r1][2] !== undefined
     ? glue(pool[r1][2] || "", pool[r2][3] || "").trim() : "";
   return { native, mirror };
@@ -351,7 +382,7 @@ let typer = null;
 async function serve() {
   const cfg = LANGS[current];
   const sections = await loadLang(current);
-  const { native, mirror } = cook(sections);
+  const { native, mirror } = cook(sections, cfg.agree);
   const line = cfg.period ? native + "." : native;
 
   const textEl = document.getElementById("text");
@@ -377,7 +408,37 @@ async function serve() {
       }
     }, 14);
   }
+  scheduleAuto();
 }
+
+/* --- autocycle, so it can be left up on a monitor (Alex Hartman's idea).
+   [ ] and [X] are the same width in a monospace face, so the button never
+   jitters as it toggles -- the one place the fake-retro font earns its keep.
+   ?auto=1 arms it; ?auto=20 arms it AND sets the period in seconds, for a
+   display with no keyboard in front of it. */
+const AUTO_DEFAULT = 8;
+let autoOn = false, autoSecs = AUTO_DEFAULT, autoTimer = null;
+const autoBtn = document.getElementById("auto");
+
+function paintAuto() {
+  autoBtn.textContent = (autoOn ? "[X] " : "[ ] ") + LANGS[current].auto;
+  autoBtn.setAttribute("aria-pressed", autoOn ? "true" : "false");
+}
+
+/* Self-rescheduling from the end of serve() rather than a standing interval:
+   a manual "One more" (or space, or a language switch) therefore resets the
+   clock instead of stacking a second timer or cutting the new line short. */
+function scheduleAuto() {
+  clearTimeout(autoTimer);
+  if (autoOn) autoTimer = setTimeout(serve, autoSecs * 1000);
+}
+
+autoBtn.addEventListener("click", () => {
+  autoOn = !autoOn;
+  paintAuto();
+  try { localStorage.setItem("cookieAuto", autoOn ? "1" : "0"); } catch (e) {}
+  scheduleAuto();
+});
 
 function setLang(code, save = true) {
   current = code;
@@ -391,7 +452,8 @@ function setLang(code, save = true) {
   const home = document.getElementById("homeLink");
   home.textContent = cfg.home;
   // stamp lang so the Thai strings pick up the real Thai font (see CSS)
-  more.lang = tagline.lang = home.lang = code;
+  more.lang = tagline.lang = home.lang = autoBtn.lang = code;
+  paintAuto();
   document.getElementById("readmeLink").href = cfg.readme;
   document.querySelectorAll(".langs button").forEach(b =>
     b.classList.toggle("active", b.dataset.lang === code));
@@ -406,9 +468,21 @@ addEventListener("keydown", e => {
   if (e.code === "Space" && !e.repeat) { e.preventDefault(); serve(); }
 });
 
-/* pick a start language: ?lang= beats the saved choice beats the browser */
+/* pick a start language: ?lang= beats the saved choice beats the browser.
+   Same precedence for the autocycle, and it must settle BEFORE setLang --
+   setLang serves a line, and serving a line arms the next one. */
 (function () {
-  const q = new URLSearchParams(location.search).get("lang");
+  const params = new URLSearchParams(location.search);
+  const a = params.get("auto");
+  if (a !== null) {
+    autoOn = a !== "0";
+    const secs = parseFloat(a);
+    if (secs > 1) autoSecs = secs;      // ?auto=20 -> every 20 seconds
+  } else {
+    try { autoOn = localStorage.getItem("cookieAuto") === "1"; } catch (e) {}
+  }
+
+  const q = params.get("lang");
   let saved = null;
   try { saved = localStorage.getItem("cookieLang"); } catch (e) {}
   const nav = (navigator.languages || [navigator.language || "en"])

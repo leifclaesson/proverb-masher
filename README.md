@@ -9,6 +9,10 @@ the whole point.
 
 **Live:** https://leifclaesson.github.io/proverb-masher/
 
+Hit `[X] Auto` to leave it cycling on a monitor. `?auto=1` arms that from the
+URL and `?auto=20` also sets the period in seconds, for a screen with no
+keyboard in front of it.
+
 ## How it works
 
 Each proverb in the [data files](data/) is split by a pipe into a HEAD and a

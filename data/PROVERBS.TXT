@@ -6,138 +6,157 @@
 #       A lone * starts the next group. ** marks end of file -- the program
 #       ignores every line after it.
 #
+#       ENGLISH-ONLY ADDITION -- number agreement, so singular and plural
+#       subjects live in ONE group instead of being kept apart:
+#
+#         +      at the start of a line  = this subject is PLURAL
+#         (s)    in a tail = there when the head is singular, gone when plural
+#         (x/y)  in a tail = x when the head is singular, y when it is plural
+#
+#       The tail carries BOTH forms, so the program needs no grammar at all --
+#       one search-and-replace and the seam holds either way. This is the only
+#       direction that works: going the other way, deriving the base form from
+#       an inflected one, is ambiguous even here ("rises" -> rise, "catches"
+#       -> catch, same ending, different cut).
+#
+#       A tail whose verb doesn't inflect needs no mark at all: past tense
+#       ("killed the cat") and modals ("will clutch at a straw") already fit
+#       both. Two tails end in a plural NOUN and are deliberately left to
+#       clash -- "can't be choosers", "will be boys". A mismatched verb reads
+#       as a bug, a mismatched noun reads as the joke.
+#
 #       Group 1 is deliberately stuffed with fake "expensive" decoys planted
 #       next to their real partners (the original planted Swedish "dyr" the
 #       same way), and the weighted group pick makes them dominate the
 #       output. The decoys ARE the joke.
 #
-#       Group 1 : singular subject | predicate   (biggest group = picked most
-#       often -- Swedish verbs don't conjugate for number, so the original got
-#       away with one big group; English needs singular and plural kept apart
-#       or the agreement breaks, and the joke is wrong MEANING, right grammar)
-An expensive child|dreads the fire
-An expensive conscience|is the softest pillow
-The expensive bird|catches the worm
-An expensive stone|gathers no moss
-An expensive pot|never boils
-Even an expensive squirrel|finds a nut now and then
-An expensive swallow|does not make a summer
-An expensive apple a day|keeps the doctor away
-An expensive picture|is worth a thousand words
-An expensive leopard|never changes its spots
-An expensive workman|blames his tools
-An expensive stitch in time|saves nine
+#       Group 1 : subject | predicate   (biggest group = picked most often.
+#       Swedish verbs don't conjugate for number, so the original got away
+#       with one big group; this edition gets that one big group BACK by
+#       marking the tails instead of splitting singular from plural.)
+An expensive child|dread(s) the fire
+An expensive conscience|(is/are) the softest pillow
+The expensive bird|catch(es) the worm
+An expensive stone|gather(s) no moss
+An expensive pot|never boil(s)
+Even an expensive squirrel|find(s) a nut now and then
+An expensive swallow|(does/do) not make a summer
+An expensive apple a day|keep(s) the doctor away
+An expensive picture|(is/are) worth a thousand words
+An expensive leopard|never change(s) (its/their) spots
+An expensive workman|blame(s) (his/their) tools
+An expensive stitch in time|save(s) nine
 Expensive curiosity|killed the cat
-The expensive customer|is always right
-An expensive cloud|has a silver lining
-An expensive laugh|is the best medicine
-All the gold in the kingdom|is the finest headache
-A burnt child|dreads the fire
-A clear conscience|is the softest pillow
-The early bird|catches the worm
-A rolling stone|gathers no moss
-A watched pot|never boils
-Even a blind squirrel|finds a nut now and then
-One swallow|does not make a summer
-An apple a day|keeps the doctor away
-A picture|is worth a thousand words
-A leopard|never changes its spots
-A bad workman|blames his tools
-A stitch in time|saves nine
+The expensive customer|(is/are) always right
+An expensive cloud|ha(s/ve) a silver lining
+An expensive laugh|(is/are) the best medicine
+All the gold in the kingdom|(is/are) the finest headache
+A burnt child|dread(s) the fire
+A clear conscience|(is/are) the softest pillow
+The early bird|catch(es) the worm
+A rolling stone|gather(s) no moss
+A watched pot|never boil(s)
+Even a blind squirrel|find(s) a nut now and then
+One swallow|(does/do) not make a summer
+An apple a day|keep(s) the doctor away
+A picture|(is/are) worth a thousand words
+A leopard|never change(s) (its/their) spots
+A bad workman|blame(s) (his/their) tools
+A stitch in time|save(s) nine
 Curiosity|killed the cat
-The customer|is always right
-Every cloud|has a silver lining
-Laughter|is the best medicine
-A liar|needs a good memory
-Self-praise|is no recommendation
-The squeaky wheel|gets the grease
-He who grasps at too much|often loses the whole lot
-He who lives in a glass house|shouldn't count his chickens
-He who hesitates|is lost
-He who laughs last|laughs longest
-He who pays the piper|calls the tune
-He who chases two hares|catches neither
-Honesty|is the best policy
-The pen|is mightier than the sword
-Absence|makes the heart grow fonder
-Practice|makes perfect
-The apple|never falls far from the tree
-The grass|is always greener on the other side
-A chain|is only as strong as its weakest link
-Rome|wasn't built in a day
-Blood|is thicker than water
-Charity|begins at home
-The proof of the pudding|is in the eating
-Beauty|is in the eye of the beholder
-Beauty|is only skin deep
-Money|talks
-Money|doesn't grow on trees
-Time|heals all wounds
-Time|flies when you're having fun
-Lightning|never strikes twice
-The road to hell|is paved with good intentions
-A journey of a thousand miles|begins with a single step
-Every dog|has its day
-Every rose|has its thorn
-Familiarity|breeds contempt
-Ignorance|is bliss
-Knowledge|is power
-Silence|is golden
-Talk|is cheap
-Seeing|is believing
-Variety|is the spice of life
-Necessity|is the mother of invention
-Haste|makes waste
-Cleanliness|is next to godliness
-Imitation|is the sincerest form of flattery
-Revenge|is a dish best served cold
-The devil|is in the details
-Tomorrow|never comes
+The customer|(is/are) always right
+Every cloud|ha(s/ve) a silver lining
+Laughter|(is/are) the best medicine
+A liar|need(s) a good memory
+Self-praise|(is/are) no recommendation
+The squeaky wheel|get(s) the grease
+He who grasps at too much|often lose(s) the whole lot
+He who lives in a glass house|shouldn't count (his/their) chickens
+He who hesitates|(is/are) lost
+He who laughs last|laugh(s) longest
+He who pays the piper|call(s) the tune
+He who chases two hares|catch(es) neither
+Honesty|(is/are) the best policy
+The pen|(is/are) mightier than the sword
+Absence|make(s) the heart grow fonder
+Practice|make(s) perfect
+The apple|never fall(s) far from the tree
+The grass|(is/are) always greener on the other side
+A chain|(is/are) only as strong as (its/their) weakest link
+Rome|(wasn't/weren't) built in a day
+Blood|(is/are) thicker than water
+Charity|begin(s) at home
+The proof of the pudding|(is/are) in the eating
+Beauty|(is/are) in the eye of the beholder
+Beauty|(is/are) only skin deep
+Money|talk(s)
+Money|(doesn't/don't) grow on trees
+Time|heal(s) all wounds
+Time|fl(ies/y) when you're having fun
+Lightning|never strike(s) twice
+The road to hell|(is/are) paved with good intentions
+A journey of a thousand miles|begin(s) with a single step
+Every dog|ha(s/ve) (its/their) day
+Every rose|ha(s/ve) (its/their) thorn
+Familiarity|breed(s) contempt
+Ignorance|(is/are) bliss
+Knowledge|(is/are) power
+Silence|(is/are) golden
+Talk|(is/are) cheap
+Seeing|(is/are) believing
+Variety|(is/are) the spice of life
+Necessity|(is/are) the mother of invention
+Haste|make(s) waste
+Cleanliness|(is/are) next to godliness
+Imitation|(is/are) the sincerest form of flattery
+Revenge|(is/are) a dish best served cold
+The devil|(is/are) in the details
+Tomorrow|never come(s)
 A drowning man|will clutch at a straw
-A bird in the hand|is worth two in the bush
-All that glitters|is not gold
-An idle mind|is the devil's workshop
-A little knowledge|is a dangerous thing
-Cream|rises to the top
+A bird in the hand|(is/are) worth two in the bush
+All that glitters|(is/are) not gold
+An idle mind|(is/are) the devil's workshop
+A little knowledge|(is/are) a dangerous thing
+Cream|rise(s) to the top
+#       ...same group, plural subjects. The + is the whole difference; before
+#       the tails were marked these had to live in a group of their own.
++Expensive brooms|sweep(s) clean
++Expensive vessels|make(s) the most noise
++Expensive dogs|seldom bite(s)
++Expensive waters|run(s) deep
++Expensive birds of a feather|flock(s) together
++Expensive minds|think(s) alike
++Expensive habits|die(s) hard
++Expensive hands|make(s) light work
++Expensive fences|make(s) good neighbors
++The most expensive things in life|(is/are) free
++New brooms|sweep(s) clean
++Empty vessels|make(s) the most noise
++Barking dogs|seldom bite(s)
++Still waters|run(s) deep
++Birds of a feather|flock(s) together
++Great minds|think(s) alike
++Old habits|die(s) hard
++Many hands|make(s) light work
++Good fences|make(s) good neighbors
++The best things in life|(is/are) free
++Actions|speak(s) louder than words
++Two wrongs|(doesn't/don't) make a right
++Fools|rush(es) in where angels fear to tread
++Dead men|tell(s) no tales
++Beggars|can't be choosers
++All good things|come(s) to an end
++Walls|ha(s/ve) ears
++Opposites|attract(s)
++All roads|lead(s) to Rome
++Cheaters|never prosper(s)
++Desperate times|call(s) for desperate measures
++Clothes|make(s) the man
++A fool and his money|(is/are) soon parted
++Sticks and stones|may break my bones
++Boys|will be boys
 *
-#       Group 2 : plural subject | predicate
-Expensive brooms|sweep clean
-Expensive vessels|make the most noise
-Expensive dogs|seldom bite
-Expensive waters|run deep
-Expensive birds of a feather|flock together
-Expensive minds|think alike
-Expensive habits|die hard
-Expensive hands|make light work
-Expensive fences|make good neighbors
-The most expensive things in life|are free
-New brooms|sweep clean
-Empty vessels|make the most noise
-Barking dogs|seldom bite
-Still waters|run deep
-Birds of a feather|flock together
-Great minds|think alike
-Old habits|die hard
-Many hands|make light work
-Good fences|make good neighbors
-The best things in life|are free
-Actions|speak louder than words
-Two wrongs|don't make a right
-Fools|rush in where angels fear to tread
-Dead men|tell no tales
-Beggars|can't be choosers
-All good things|come to an end
-Walls|have ears
-Opposites|attract
-All roads|lead to Rome
-Cheaters|never prosper
-Desperate times|call for desperate measures
-Clothes|make the man
-A fool and his money|are soon parted
-Sticks and stones|may break my bones
-Boys|will be boys
-*
-#       Group 3 : condition | consequence
+#       Group 2 : condition | consequence
 When in Rome|do as the Romans do
 When the cat's away|the mice will play
 If you can't stand the heat|stay out of the kitchen
@@ -163,7 +182,7 @@ If you scratch my back|I'll scratch yours
 When in doubt|leave it out
 If you give him an inch|he'll take a mile
 *
-#       Group 4 : better this | than that
+#       Group 3 : better this | than that
 Better late|than never
 Better safe|than sorry
 Better the devil you know|than the devil you don't
@@ -178,7 +197,7 @@ Better a big fish in a small pond|than a small fish in the sea
 Better to be silent and thought a fool|than to speak and remove all doubt
 Better to ask the way|than go astray
 *
-#       Group 5 : don't do | the thing   (keep the tails adverbial -- a
+#       Group 4 : don't do | the thing   (keep the tails adverbial -- a
 #       relative-clause tail like "that feeds you" re-agrees with its new
 #       head and leaks the seam)
 Don't count your chickens|before they hatch
@@ -205,7 +224,7 @@ Don't put new wine|in old bottles
 Don't wear your heart|on your sleeve
 Don't throw stones|if you live in a glass house
 *
-#       Group 6 : imperative | continuation
+#       Group 5 : imperative | continuation
 Make hay|while the sun shines
 Look|before you leap
 Think|before you speak

@@ -77,15 +77,41 @@ and any swap stayed grammatical. <strong>English can't</strong>: "Expensive
 dogs catches the worm" leaks the seam, and the whole joke is <em>wrong
 meaning, right grammar</em>.</p>
 
-<p>So Group 1 is split by subject number:</p>
+<p>The first fix was to split Group 1 by subject number and keep singular and
+plural apart. It worked, and it cost 5880 jokes: "Empty vessels dread the
+fire" and "The early bird makes the most noise" were unreachable by
+construction. So the split is gone, and the tails carry their own agreement
+instead:</p>
 
-<ul>
-<li><strong>Group 1: singular subjects</strong> ("A watched pot", "The early
-bird", …) — still the biggest group, so the weighted pick still fires the
-decoys most.</li>
-<li><strong>Group 2: plural subjects</strong> ("Empty vessels", "Barking
-dogs", …) — with its own decoys.</li>
-</ul>
+<table>
+<tr><th>In the data file</th><th>Means</th></tr>
+<tr><td><code>+</code> at the start of a line</td><td>this subject is PLURAL</td></tr>
+<tr><td><code>(s)</code> in a tail</td><td>there when the head is singular, gone when it's plural</td></tr>
+<tr><td><code>(x/y)</code> in a tail</td><td>x when the head is singular, y when it's plural</td></tr>
+</table>
+
+<blockquote><p><code>The early bird|catch(es) the worm</code><br>
+<code>+Empty vessels|make(s) the most noise</code><br>
+<code>A leopard|never change(s) (its/their) spots</code></p></blockquote>
+
+<p>The tail carries <em>both</em> forms, so gluing a head onto it is one
+search-and-replace — no verb table, no morphology, nothing anywhere that knows
+any English. That direction is also the only one on offer: deriving a base form
+from an inflected one needs a dictionary, because "rise<strong>s</strong>" cuts
+back to <em>rise</em> while "catch<strong>es</strong>" cuts back to
+<em>catch</em> — same ending, different seam.</p>
+
+<p>Verbs that don't inflect need no marking and already fit both: past tense
+("killed the cat"), modals ("will clutch at a straw"). And two tails end in a
+plural <em>noun</em>, left deliberately to clash — a mismatched verb reads as a
+bug, but a mismatched noun reads as the joke:</p>
+
+<blockquote><p>A watched pot will be boys. · Curiosity can't be
+choosers.</p></blockquote>
+
+<p>So it's one group again — 119 lines, <strong>14042</strong> reachable pairs
+against 8162 before — and the decoys still dominate, because the weighted pick
+counts proverbs and merging two groups doesn't change how many there are.</p>
 
 <p>Same trap, subtler form: a TAIL that is a <em>relative clause</em>
 re-agrees with its new head. "Don't bite the hand <strong>that feeds
