@@ -60,9 +60,12 @@
     93%      { opacity: .82; }
     94%      { opacity: 1; }
   }
+  /* Only the full-screen scanline flicker yields to reduce-motion. The cursor
+     blink does NOT: people set that flag to kill window transitions, not to ask
+     a DOS terminal to stop being one, and a hardware cursor that doesn't blink
+     is just broken. Same reasoning as the type-on (see typeOn below). */
   @media (prefers-reduced-motion: reduce) {
     body::after { animation: none; }
-    #cursor { animation: none; }
   }
 
   /* --- top bar: controls pinned to the TOP so they never shift
@@ -477,14 +480,7 @@ async function serve() {
   const mirrorEl = document.getElementById("mirror");
   document.getElementById("proverb").classList.toggle("thai", current === "th");
 
-  /* The OS "reduce motion" setting suppresses the type-on entirely -- which is
-     what makes the line appear all at once. ?type=1 forces typing on and
-     ?type=0 off, and the choice sticks. */
-  const reduced = forceType === null
-    ? matchMedia("(prefers-reduced-motion: reduce)").matches
-    : !forceType;
-
-  if (reduced) {
+  if (!typeOn) {
     gen++;                          // retire any typing still in flight
     textEl.textContent = line;
     mirrorEl.textContent = mirror ? "(" + mirror + ")" : "";
@@ -508,7 +504,11 @@ async function serve() {
    short. For a display with no keyboard in front of it. */
 const AUTO_DEFAULT = 5;
 let autoOn = false, autoSecs = AUTO_DEFAULT, autoTimer = null;
-let forceType = null;   // null = follow the OS; true/false = ?type= override
+/* The type-on runs ALWAYS. It deliberately does not consult
+   prefers-reduced-motion: that flag is how you turn off window transitions and
+   other OS fidgeting, and it has no business deciding whether a terminal prints
+   its line. ?type=0 is the explicit off switch for anyone who wants one. */
+let typeOn = true;
 const autoBtn = document.getElementById("auto");
 
 function paintAuto() {
@@ -575,12 +575,12 @@ addEventListener("keydown", e => {
 
   const t = params.get("type");
   if (t !== null) {
-    forceType = t !== "0";
-    try { localStorage.setItem("cookieType", forceType ? "1" : "0"); } catch (e) {}
+    typeOn = t !== "0";
+    try { localStorage.setItem("cookieType", typeOn ? "1" : "0"); } catch (e) {}
   } else {
     try {
       const saved = localStorage.getItem("cookieType");
-      if (saved !== null) forceType = saved === "1";
+      if (saved !== null) typeOn = saved === "1";
     } catch (e) {}
   }
 
