@@ -1,56 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>COOKIE — the Ordspråk scrambler (the 1996 original)</title>
+<title>COOKIE — ordspråksmixern (originalet från 1996)</title>
 <link rel="stylesheet" href="readme.css">
 </head>
 <body>
 <article>
 <a class="back" href="./?lang=sv">← COOKIE</a>
 
-<h1>COOKIE — the Ordspråk scrambler (revived)</h1>
+<h1>COOKIE — ordspråksmixern (återupplivad)</h1>
 
 <blockquote>
-<p><strong>Provenance.</strong> <code>COOKIE.BAS</code> by <strong>Leif Claesson
-(Liket of Goto10)</strong>, ~1996, written in PowerBASIC for DOS. Recovered
-decades later from an archaeology dig through old disks, alongside its data
-file <code>ORDSPRÅK.TXT</code> (CP437) and a pile of tweak-mode VGA
-<code>.256</code> resolution tables from the same era. The original data file
-is served on this site <strong>byte-for-byte pristine</strong> — still CP437,
-decoded by a hand-spelled 128-entry table, because that's what DOS text
-actually was.</p>
+<p><strong>Ursprung.</strong> <code>COOKIE.BAS</code> av <strong>Leif Claesson
+(Liket of Goto10)</strong>, ca 1996, skriven i PowerBASIC för DOS. Återfunnen
+decennier senare vid en arkeologisk utgrävning bland gamla diskar, tillsammans
+med datafilen <code>ORDSPRÅK.TXT</code> (CP437) och en hög med
+upplösningstabeller för tweak-mode-VGA (<code>.256</code>) från samma tid.
+Originaldatafilen serveras på den här sajten <strong>byte för byte
+orörd</strong> — fortfarande CP437, avkodad med en handknackad tabell på 128
+poster, för det var vad DOS-text faktiskt var.</p>
 </blockquote>
 
-<p>It is a <strong>Swedish proverb scrambler</strong>. Each proverb is split by
-a pipe into a HEAD and a TAIL. The program prints one proverb's HEAD glued to
-a <em>different</em> proverb's TAIL, producing mangled folk wisdom:</p>
+<p>Det är en <strong>ordspråksmixer</strong>. Varje ordspråk delas av ett
+lodstreck i ett HUVUD och en SVANS. Programmet skriver ut ett ordspråks HUVUD
+ihopklistrat med ett <em>annat</em> ordspråks SVANS, och ut kommer förvriden
+folkvisdom:</p>
 
 <blockquote><p>En lögnare leka bäst. · Allt guld i kungariket förlänger livet.
 · Ett gott samvete skramlar mest.</p></blockquote>
 
-<h2>The data format</h2>
+<h2>Dataformatet</h2>
 
-<p><code>ORDSPRÅK.TXT</code> is dead simple, and the file <em>is</em> half the
-joke — the comedy is seeded into the data, not just the code.</p>
+<p><code>ORDSPRÅK.TXT</code> är löjligt enkel, och filen <em>är</em> halva
+skämtet: komiken är insådd i datan, inte bara i koden.</p>
 
 <table>
-<tr><th>Token</th><th>Meaning</th></tr>
-<tr><td><code>#</code> <code>;</code> <code>'</code> at line start</td><td>comment, ignored</td></tr>
-<tr><td><code>head|tail</code></td><td>a proverb, split at the pipe into interchangeable halves</td></tr>
-<tr><td><code>*</code> on its own line</td><td>end this section, start the next</td></tr>
-<tr><td><code>**</code> on its own line</td><td><strong>end of file</strong> — everything after is ignored</td></tr>
+<tr><th>Tecken</th><th>Betydelse</th></tr>
+<tr><td><code>#</code> <code>;</code> <code>'</code> först på raden</td><td>kommentar, hoppas över</td></tr>
+<tr><td><code>huvud|svans</code></td><td>ett ordspråk, delat vid lodstrecket i två utbytbara halvor</td></tr>
+<tr><td><code>*</code> ensamt på en rad</td><td>avsluta gruppen, börja nästa</td></tr>
+<tr><td><code>**</code> ensamt på en rad</td><td><strong>filslut</strong> — allt efter ignoreras</td></tr>
 </table>
 
-<p>Proverbs are bucketed into <strong>sections</strong> of
-grammatically-interchangeable halves, so any HEAD in a section fits any TAIL
-in the same section and still parses as Swedish. Section 1 is deliberately
-overstuffed with fake <em>dyr/dyrt/dyra</em> ("expensive") decoys planted next
-to the real <em>Bränt/Tomma/Lika/Gamla</em> ones — those decoys are the
-payload, and (see below) the engine is rigged to fire them often. The three
-proverbs parked <em>past</em> the <code>**</code> terminator are intentional
-spares the program can never reach.</p>
+<p>Ordspråken är fördelade i <strong>grupper</strong> av grammatiskt utbytbara
+halvor, så att vilket huvud som helst i en grupp passar vilken svans som helst
+i samma grupp och fortfarande går ihop på svenska. Grupp 1 är medvetet
+överfylld med falska <em>dyr/dyrt/dyra</em>-lockbeten inplanterade bredvid de
+äkta <em>Bränt/Tomma/Lika/Gamla</em> — lockbetena är själva nyttolasten, och
+(se nedan) motorn är riggad så att de avfyras ofta. De tre ordspråk som står
+parkerade <em>efter</em> <code>**</code>-markören är avsiktliga reserver som
+programmet aldrig kan nå.</p>
 
 <div class="chop">
 <span>Bränt barn | skyr elden</span>
@@ -58,43 +59,44 @@ spares the program can never reach.</p>
 <span class="out">→ Bränt barn skramlar mest.</span>
 </div>
 
-<h2>The engine, and why it's clever</h2>
+<h2>Motorn, och varför den är listig</h2>
 
 <blockquote>
-<p><strong>1. Population-weighted section choice.</strong> It does
-<strong>not</strong> pick a section uniformly. It builds a flat table
-<code>grupp[]</code> with <strong>one slot per proverb</strong>, each holding
-that proverb's section number, then picks a random slot. So a fat section is
-chosen in proportion to how many proverbs it holds — which is why the
-decoy-stuffed Section 1 dominates the output. The weighting is what makes the
-joke land reliably.</p>
+<p><strong>1. Viktat gruppval.</strong> Den väljer <strong>inte</strong> grupp
+likformigt. Den bygger en platt tabell <code>grupp[]</code> med <strong>en
+plats per ordspråk</strong>, där varje plats innehåller ordspråkets
+gruppnummer, och drar sedan en slumpad plats. En fet grupp väljs alltså i
+proportion till hur många ordspråk den rymmer, och det är därför den
+lockbetesfyllda grupp 1 dominerar utskriften. Viktningen är det som får
+skämtet att landa varje gång.</p>
 </blockquote>
 
 <blockquote>
-<p><strong>2. <code>fanheller:</code></strong> ("fan heller" — <em>hell
-no</em>) is the retry label that rejects two identical rolls. Because HEAD and
-TAIL must come from <strong>different</strong> lines, the program is
-structurally incapable of printing an intact line back at you. It can only
-ever be wrong, which is the entire point. Every later edition has translated
-the curse along with the proverbs: English swears in English, Thai in Thai
-(<span lang="th">เหี้ยเอ้ย</span>), Russian in Russian («чёрта с два»).</p>
+<p><strong>2. <code>fanheller:</code></strong> är etiketten som gör om
+dragningen när båda slumptalen pekar på samma rad. Eftersom huvud och svans
+måste komma från <strong>olika</strong> rader är programmet strukturellt
+oförmöget att skriva tillbaka en hel rad till dig. Det kan aldrig bli annat än
+fel, och det är hela poängen. Varje senare utgåva har översatt svordomen
+tillsammans med ordspråken: den engelska svär på engelska, den thailändska på
+thai (<span lang="th">เหี้ยเอ้ย</span>), den ryska på ryska («чёрта с
+два»).</p>
 </blockquote>
 
-<p>Note the deliberate pre-mashed proverb planted straight in the 1996
-<em>data</em> — stutter and all: <em>Den som gapar efter galen fågel ser inte
-ser inte skogen för alla ben.</em></p>
+<p>Notera det färdigmixade ordspråk som är inplanterat rakt i 1996 års
+<em>data</em>, stakningen och allt: <em>Den som gapar efter galen fågel ser
+inte ser inte skogen för alla ben.</em></p>
 
-<h2>This site</h2>
+<h2>Den här sajten</h2>
 
-<p>The web edition (2026) is the engine's fifth port — PowerBASIC → Python →
-Rust → JavaScript — and reads the very same data format the DOS original did.
-The English mirror shown under the Swedish output lives in a sidecar file, so
-the 1996 data file never had to be touched.</p>
+<p>Webbutgåvan (2026) är motorns femte portning — PowerBASIC → Python → Rust →
+JavaScript — och läser exakt samma dataformat som DOS-originalet gjorde. Den
+engelska spegeltexten under den svenska utskriften ligger i en egen sidofil, så
+1996 års datafil aldrig behövde röras.</p>
 
 </article>
-<footer>Liket of Goto10, ~1996 → revived 2026 ·
+<footer>Liket of Goto10, ~1996 → återupplivad 2026 ·
 <a href="https://github.com/leifclaesson/proverb-masher">source</a> ·
-README in <a href="readme-en.html">EN</a> · <a href="readme-th.html">TH</a> ·
+README: <a href="readme-en.html">EN</a> · <a href="readme-th.html">TH</a> ·
 <a href="readme-ru.html">RU</a></footer>
 </body>
 </html>
