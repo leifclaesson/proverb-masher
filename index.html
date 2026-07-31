@@ -94,7 +94,7 @@
      tagline whenever Thai is the active language (setLang stamps lang= on
      them). Scoped per element, because <html lang> gets rewritten to "th" on
      a language switch and must NOT re-font the whole latin UI. */
-  button[lang="th"], #tagline[lang="th"] { font-family: var(--thai); }
+  button[lang="th"], #tagline[lang="th"], #homeLink[lang="th"] { font-family: var(--thai); }
   button:hover { border-color: var(--accent); color: var(--accent); }
   button.active, #more:active {
     background: var(--accent);
@@ -210,7 +210,8 @@
   PowerBASIC 1996 → Python · Rust · JS 2026 —
   <span id="tagline">real proverbs, chopped and glued back wrong</span> ·
   <a id="readmeLink" href="readme-en.html">README</a> ·
-  <a href="https://github.com/leifclaesson/proverb-masher">source</a>
+  <a href="https://github.com/leifclaesson/proverb-masher">source</a> ·
+  <a id="homeLink" href="https://leifclaesson.github.io/">Who is Leif?</a>
 </footer>
 
 <noscript><p style="text-align:center;padding:2rem">This machine needs its BASIC interpreter (JavaScript) turned on.</p></noscript>
@@ -230,21 +231,25 @@ const LANGS = {
         title: "ORDSPRÅK — mixade ordspråk",
         tagline: "riktiga ordspråk, ihopklippta på fel sätt",
         readme: "readme-sv.html",
+        home: "Vem är Leif?",
         // the 1996 data file stays byte-pristine; its English mirror
         // rides in a sidecar with the same groups and line order
         mirrorFile: "data/ORDSPRÅK-EN.TXT" },
   en: { file: "data/PROVERBS.TXT",   cp437: false, period: true,  more: "One more",
         title: "COOKIE — mashed-up proverbs",
         tagline: "real proverbs, chopped and glued back wrong",
-        readme: "readme-en.html" },
+        readme: "readme-en.html",
+        home: "Who is Leif?" },
   th: { file: "data/สุภาษิต.txt",     cp437: false, period: false, more: "อีกอัน",
         title: "สุภาษิตมั่ว",
         tagline: "สุภาษิตจริง สับสลับผิดคู่",
-        readme: "readme-th.html" },
+        readme: "readme-th.html",
+        home: "เลย์ฟ คือใคร" },
   ru: { file: "data/ПОСЛОВИЦЫ.TXT",  cp437: false, period: true,  more: "Ещё одну",
         title: "ПОСЛОВИЦЫ — перемолотые пословицы",
         tagline: "настоящие пословицы, склеенные не с теми половинками",
-        readme: "readme-ru.html" },
+        readme: "readme-ru.html",
+        home: "Кто такой Лейф?" },
 };
 
 /* CP437 high half (0x80..0xFF) -> Unicode, hand-spelled for the third time:
@@ -383,8 +388,10 @@ function setLang(code, save = true) {
   const tagline = document.getElementById("tagline");
   more.textContent = cfg.more;
   tagline.textContent = cfg.tagline;
+  const home = document.getElementById("homeLink");
+  home.textContent = cfg.home;
   // stamp lang so the Thai strings pick up the real Thai font (see CSS)
-  more.lang = tagline.lang = code;
+  more.lang = tagline.lang = home.lang = code;
   document.getElementById("readmeLink").href = cfg.readme;
   document.querySelectorAll(".langs button").forEach(b =>
     b.classList.toggle("active", b.dataset.lang === code));
