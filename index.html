@@ -151,6 +151,13 @@
     font-family: var(--thai);
     line-height: 1.7;
   }
+  /* The cursor is WELDED to the last character: they share one nowrap span, so
+     the browser has no break opportunity between them and can never strand the
+     cursor alone on the line below. The cursor is an inline-block, which is
+     atomic -- without this, break-word would break in front of it and send it
+     down by itself, since it's the one thing on the line that cannot be split.
+     When the pair no longer fits, the character comes down WITH the cursor. */
+  #knot { white-space: nowrap; }
   /* the DOS hardware cursor: a thick blinking underscore at the bottom
      of the character cell, not a solid block */
   #cursor {
@@ -210,7 +217,7 @@
 <div id="banner">COOKIE v0.3 · Liket of Goto10 · ~1996</div>
 
 <main>
-  <div id="proverb" aria-live="polite"><span id="text"></span><span id="cursor"></span></div>
+  <div id="proverb" aria-live="polite"><span id="text"></span><span id="knot"><span id="tail"></span><span id="cursor"></span></span></div>
   <div id="mirror"></div>
 </main>
 
@@ -457,14 +464,41 @@ const jitter = ms => Math.max(8, Math.round(ms * (60 + rng() * 91) / 100));
    auto-timer id can be handed straight back to the next typing timer. */
 let gen = 0;
 
-function typeOut(el, line, done) {
+/* The line is written into TWO elements: everything but the final character in
+   #text, that last character in #tail, which rides in the nowrap #knot with the
+   cursor (see the CSS). Split by GRAPHEME, not by code point -- a Thai vowel or
+   tone mark has to stay welded to the consonant it sits on, and Array.from
+   would tear the cluster in half across an element boundary. */
+const textEl = document.getElementById("text");
+const tailEl = document.getElementById("tail");
+const segmenter = window.Intl && Intl.Segmenter
+  ? new Intl.Segmenter(undefined, { granularity: "grapheme" }) : null;
+
+function lastGraphemeStart(s) {
+  if (!s) return 0;
+  if (segmenter) {
+    let start = 0;
+    for (const g of segmenter.segment(s)) start = g.index;
+    return start;
+  }
+  const cp = Array.from(s);                 // code-point fallback
+  return s.length - cp[cp.length - 1].length;
+}
+
+function setLine(s) {
+  const cut = lastGraphemeStart(s);
+  textEl.textContent = s.slice(0, cut);
+  tailEl.textContent = s.slice(cut);
+}
+
+function typeOut(line, done) {
   const chars = Array.from(line);
   const mine = ++gen;
   let i = 0;
-  el.textContent = "";
+  setLine("");
   (function step() {
     if (mine !== gen) return;               // a newer line took over
-    el.textContent += chars[i++];
+    setLine(chars.slice(0, ++i).join(""));
     if (i >= chars.length) { setTimeout(() => { if (mine === gen) done(); }, ENTER_GAP); return; }
     setTimeout(step, jitter(gapMs(chars[i - 1], chars[i])));
   })();
@@ -476,20 +510,19 @@ async function serve() {
   const { native, mirror } = cook(sections, cfg.agree);
   const line = cfg.period ? native + "." : native;
 
-  const textEl = document.getElementById("text");
   const mirrorEl = document.getElementById("mirror");
   document.getElementById("proverb").classList.toggle("thai", current === "th");
 
   if (!typeOn) {
     gen++;                          // retire any typing still in flight
-    textEl.textContent = line;
+    setLine(line);
     mirrorEl.textContent = mirror ? "(" + mirror + ")" : "";
     scheduleAuto();
   } else {
     mirrorEl.textContent = "";
     // the autocycle dwell starts when the line FINISHES, not when it starts, so
     // a long line is never cut short on a monitor
-    typeOut(textEl, line, () => {
+    typeOut(line, () => {
       mirrorEl.textContent = mirror ? "(" + mirror + ")" : "";
       scheduleAuto();
     });
