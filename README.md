@@ -11,8 +11,8 @@ the whole point.
 
 Hit `[X] Auto` to leave it cycling on a monitor. `?auto=1` arms that from the
 URL and `?auto=20` also sets the dwell in seconds -- the pause after a line
-lands, so a long one is never cut short -- for a screen with no keyboard in
-front of it.
+lands, so a long one is never cut short. The default dwell is 10 seconds. For
+a screen with no keyboard in front of it.
 
 The line types itself on at Leif's own measured keyboard cadence, always --
 the OS reduced-motion flag is for window transitions and doesn't get a say in
