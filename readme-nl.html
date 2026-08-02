@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SPREEKWOORDEN — de Nederlandse uitgave</title>
+<link rel="stylesheet" href="readme.css">
+</head>
+<body>
+<article>
+<a class="back" href="./?lang=nl">← COOKIE</a>
+
+<h1>SPREEKWOORDEN — spreekwoorden door de gehaktmolen</h1>
+
+<blockquote>
+<p><strong>Herkomst.</strong> Nederlandse remaster van <code>COOKIE.BAS</code>
+van <strong>Leif Claesson (Liket of Goto10)</strong>, ca. 1996, geschreven in
+PowerBASIC voor DOS. Het Zweedse origineel en het hele verhaal over de motor
+staan hiernaast bij <a href="readme-sv.html">de Zweedse uitgave</a> — lees die
+eerst; deze pagina gaat alleen over wat het Nederlands anders maakte.
+Zusteruitgaven: <a href="readme-en.html">Engels</a>,
+<a href="readme-th.html">Thai</a>, <a href="readme-ru.html">Russisch</a>.
+<strong>Voor Rob en Wim.</strong></p>
+</blockquote>
+
+<p>Dezelfde motor, dezelfde grap: echte spreekwoorden worden met een verticale
+streep in een KOP en een STAART gehakt, per groep gesorteerd op wat
+grammaticaal uitwisselbaar is, en het programma plakt de kop van het ene aan de
+staart van een <em>ander</em>. Elke regel draagt ook een Engelse vertaling van
+zijn twee helften, die met hetzelfde indexpaar wordt gehusseld, dus onder elke
+Nederlandse onzin staat exact dezelfde onzin in het Engels.</p>
+
+<blockquote><p>De dure klant valt niet ver van de boom. · Vele handen roesten. ·
+Oost west, dansen de muizen op tafel.</p></blockquote>
+
+<div class="chop">
+<span>Holle vaten | klinken het hardst</span>
+<span>De appel | valt niet ver van de boom</span>
+<span class="out">→ Holle vaten vallen niet ver van de boom.</span>
+</div>
+
+<h2>Wat er is overgezet</h2>
+
+<table>
+<tr><th>Origineel (Zweeds, 1996)</th><th>Deze uitgave</th></tr>
+<tr><td><code>ORDSPRÅK.TXT</code>, CP437</td><td><code>SPREEKWOORDEN.TXT</code>, UTF-8, vier velden (<code>kop|staart|EN head|EN tail</code>)</td></tr>
+<tr><td>Zweedse spreekwoorden</td><td>Echte Nederlandse spreekwoorden — een flink deel met een rechtstreekse tegenhanger: <em>Bränt barn skyr elden</em> → <em>Een gebrand kind schuwt het vuur</em>, <em>En blind höna hittar också ett korn</em> → <em>Een blinde kip vindt ook wel eens een graankorrel</em></td></tr>
+<tr><td>Valse <em>dyr/dyrt/dyra</em>-lokkers in groep 1</td><td><strong>Valse <em>duur/dure</em>-lokkers</strong> — zie hieronder, want dat is niet zomaar een vertaling</td></tr>
+<tr><td><code>fanheller:</code>, het herhaallabel dat naar een Zweedse vloek is genoemd</td><td>Vloeken hoort erbij en wordt per uitgave meevertaald; deze vloekt in het Nederlands en dat blijft tussen de code en mij</td></tr>
+<tr><td>Drie reserves achter de <code>**</code>-markering geparkeerd</td><td><strong>Dezelfde drie</strong>, en het Nederlands heeft ze alle drie echt: <em>Men moet het ijzer smeden als het heet is</em>, <em>Als de wijn is in de man is de wijsheid in de kan</em>, <em>Te veel koks verzouten de brij</em></td></tr>
+</table>
+
+<h2>De lokkers zijn hetzelfde woord</h2>
+
+<p>De andere uitgaven moesten de lokkers <em>overzetten</em>. Het Nederlands
+hoefde ze alleen anders te <em>spellen</em>. Zweeds <em>dyr</em> en Nederlands
+<em>duur</em> zijn hetzelfde Germaanse woord — net als het Engelse <em>dear</em>
+in de betekenis "het kwam hem duur te staan" — en ze verbuigen ook nog eens
+volgens precies dezelfde logica:</p>
+
+<table>
+<tr><th>Zweeds 1996</th><th>Nederlands 2026</th><th>waarom</th></tr>
+<tr><td><code>Dyrt barn</code></td><td><code>Een duur kind</code></td><td>onzijdig / een <em>het</em>-woord krijgt de kale vorm</td></tr>
+<tr><td><code>Dyra kvastar</code></td><td><code>Dure bezems</code></td><td>meervoud krijgt <code>-e</code></td></tr>
+<tr><td><code>En dyr höna</code></td><td><code>Een dure kip</code></td><td>een <em>de</em>-woord krijgt <code>-e</code></td></tr>
+</table>
+
+<p>En dan is er nog het woord dat deze uitgave zijn sterregel geeft:
+<code>De dure klant|is koning</code>. Voor iedere Nederlandse lezer staat daar
+"de dure klant". Voor een Zweed staat er iets anders, want <strong>Zweeds
+<em>klant</em> betekent kluns</strong>. Eén woord dat in de twee talen twee
+kanten op leest — precies dezelfde truc als de Russische uitgave met
+«дорогой» (dat zowel <em>duur</em> als <em>dierbaar</em> betekent).</p>
+
+<h2>De geluidshoek</h2>
+
+<p>Het Nederlands blijkt buitengewoon rijk aan spreekwoorden over geluid,
+zingen en zwijgen, en die zijn met opzet allemaal opgenomen — <em>Elk vogeltje
+zingt zoals het gebekt is</em>, <em>Stille wateren hebben diepe gronden</em>,
+<em>Zoals de ouden zongen, piepen de jongen</em>, <em>Praatjes vullen geen
+gaatjes</em>, <em>De grootste schreeuwers zijn de beste moordenaars niet</em>,
+<em>Spreken is zilver, zwijgen is goud</em>, <em>een toontje lager zingen</em>,
+<em>naar andermans pijpen dansen</em>. Ze zitten in dezelfde groep als
+<em>Holle vaten klinken het hardst</em>, dus ze komen elkaar voortdurend tegen.
+De motor levert daardoor uit zichzelf regels als:</p>
+
+<blockquote><p>Stille wateren klinken het hardst. · Holle vaten zingen zoals het
+gebekt is. · Spreken roest.</p></blockquote>
+
+<h2>Het Nederlandse probleem: het werkwoord telt mee</h2>
+
+<p>Zweeds, Thai en Russisch vervoegen niet naar het getal van het onderwerp, dus
+die drie uitgaven hadden hier nooit last van. <strong>Het Nederlands wel</strong>
+— <em>valt</em> tegenover <em>vallen</em> — en dat is precies het probleem dat de
+Engelse uitgave al had opgelost. Dus krijgt het precies dezelfde oplossing: een
+<code>+</code> vooraan de regel betekent dat het onderwerp meervoud is, en de
+staart draagt <em>beide</em> vormen zelf mee.</p>
+
+<pre><code>De appel|val(t/len) niet ver van de boom
++Holle vaten|klink(t/en) het hardst
+Elk huisje|(heeft/hebben) (zijn/hun) kruisje</code></pre>
+
+<p>Geen werkwoordentabel, geen morfologie, één doorloop bij het plakken. Die
+vorm was gekozen omdat je in het Engels de ene vorm niet uit de andere kunt
+<em>afleiden</em>: <em>rises</em> snijdt terug naar <em>rise</em>, maar
+<em>catches</em> naar <em>catch</em> — zelfde uitgang, andere naad. Het
+Nederlands bewijst het punt nog een tweede keer, en harder: hier ligt de naad
+vaak <strong>midden in de stam</strong>, omdat een open lettergreep zijn dubbele
+klinker kwijtraakt.</p>
+
+<pre><code>ma(akt/ken)     maakt / maken
+ve(egt/gen)     veegt / vegen
+br(eekt/eken)   breekt / breken</code></pre>
+
+<p>Geen enkele uitgangsregel ter wereld haalt die naad. Een markering die beide
+vormen draagt hoeft niet te weten waar hij ligt.</p>
+
+<p>Wat blijft botsen is het <em>naamwoordelijk</em> deel: <em>Holle vaten zijn
+koning</em>. Dat blijft staan, met opzet. Een werkwoord dat niet klopt leest als
+een fout; een zelfstandig naamwoord dat niet klopt leest als de grap.</p>
+
+<h2>Twee kleinere verschillen</h2>
+
+<ul>
+<li><strong>De komma rijdt mee in de kop</strong>, precies andersom dan in de
+Russische uitgave. Het Nederlands wil zijn komma na een vooropgeplaatste bijzin
+— <code>Waar gehakt wordt,|vallen spaanders</code> — en die bijzin staat nu
+eenmaal in de kop.</li>
+<li><strong>De spiegel wordt meevervoegd.</strong> De andere gespiegelde
+uitgaven kennen geen meervoudsmarkering, dus daar viel aan de Engelse kant nooit
+iets op te lossen. Hier wel — en de spiegel is nu juist de helft die de
+schrijver van het origineel zelf leest, want hij leest geen Nederlands.</li>
+</ul>
+
+<h2>Het ingeplante exemplaar</h2>
+
+<p>In de data van 1996 staat één spreekwoord dat al door elkaar gehusseld <em>is</em>,
+stotter en al: <em>Den som gapar efter galen fågel <strong>ser inte ser
+inte</strong> skogen för alla <strong>ben</strong></em>. Het Nederlands houdt de
+vorm én de woordgrap — Zweeds <em>ben</em> en Nederlands <em>benen</em> zijn
+hetzelfde woord:</p>
+
+<blockquote><p>Wie het onderste uit de kan wil <strong>ziet ziet</strong> door de
+<strong>benen</strong> het bos niet.</p></blockquote>
+
+<h2>Deze site</h2>
+
+<p>De webuitgave (2026) is de vijfde port van de motor — PowerBASIC → Python →
+Rust → JavaScript — en leest exact hetzelfde dataformaat als het DOS-origineel.
+Het bestand <em>is</em> de halve grap, dus dat bleef zoals het was.</p>
+
+</article>
+<footer>Liket of Goto10, ~1996 → Nederlandse remaster 2026, voor Rob en Wim ·
+<a href="https://github.com/leifclaesson/proverb-masher">source</a> ·
+README: <a href="readme-sv.html">SV</a> · <a href="readme-en.html">EN</a> ·
+<a href="readme-th.html">TH</a> · <a href="readme-ru.html">RU</a> ·
+<a href="https://leifclaesson.github.io/">Wie is Leif?</a></footer>
+</body>
+</html>

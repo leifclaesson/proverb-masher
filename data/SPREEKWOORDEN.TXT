@@ -1,0 +1,131 @@
+#               Spreekwoorden 0.4  —  Nederlandse remaster van Ordsprak 0.1
+#               origineel: Leif Claesson (Liket of Goto10), ~1996
+#
+#       Voor Rob en Wim. Gewoon omdat het kan.
+#
+#       Het bestandsformaat is heel simpel. De spreekwoorden staan in groepen
+#       waarbinnen de helften grammaticaal uitwisselbaar zijn; de naad is een
+#       verticale streep (|). Een losse * begint de volgende groep.
+#       ** is het einde van het bestand: alles daarna leest het programma niet.
+#
+#       Elke regel heeft vier velden:  kop|staart|EN head|EN tail
+#       De Engelse vertaling wordt door hetzelfde indexpaar door elkaar
+#       gehusseld als het Nederlands, dus de Engelse onzin loopt precies
+#       gelijk met de Nederlandse.
+#
+#       NEDERLANDS VERVOEGT NAAR GETAL, net als het Engels en anders dan het
+#       Zweeds, Thai en Russisch. Daarom draait deze uitgave dezelfde truc als
+#       de Engelse: een + vooraan de regel betekent dat het ONDERWERP MEERVOUD
+#       is, en de staart draagt allebei de vormen zelf mee:
+#           (t/en)      enkelvoud t, meervoud en
+#           (is/zijn)   enkelvoud is, meervoud zijn
+#           (zijn/hun)  bezittelijk, enkelvoud zijn, meervoud hun
+#       De naad ligt in het Nederlands vaak MIDDEN IN DE STAM -- ma(akt/ken),
+#       ve(egt/gen), br(eekt/eken) -- want een open lettergreep verliest zijn
+#       dubbele klinker. Precies daarom draagt de markering beide vormen en
+#       leidt de motor er geen af: geen enkele uitgangsregel haalt die naad.
+#
+#       Groep 1 is expres volgestopt met valse "dure" spreekwoorden. In het
+#       Zweedse origineel stonden daar valse "dyr/dyrt/dyra" -- hetzelfde
+#       Germaanse woord, alleen anders gespeld, en het buigt ook nog eens
+#       hetzelfde: duur bij een het-woord, dure bij een de-woord en in het
+#       meervoud. De lokkers ZIJN de grap; de gewogen groepskeuze zorgt dat ze
+#       het vaakst vallen.
+#
+#       Interpunctie rijdt mee in de KOP (in het Russisch juist in de staart):
+#       Nederlands wil een komma na een vooropgeplaatste bijzin, en die bijzin
+#       staat in de kop. Zie groep 5.
+#
+#       Groep 1 : onderwerp | gezegde in de tegenwoordige tijd
+De dure appel|val(t/len) niet ver van de boom|The expensive apple|fall(s) not far from the tree
+Een duur kind|schuw(t/en) het vuur|An expensive child|shun(s) the fire
+Een dure zwaluw|ma(akt/ken) nog geen zomer|An expensive swallow|make(s) no summer yet
+Een dure kip|vind(t/en) ook wel eens een graankorrel|An expensive hen|also find(s) a grain now and then
+De dure morgenstond|(heeft/hebben) goud in de mond|The expensive morning hour|ha(s/ve) gold in (its/their) mouth
+Het dure bloed|kruip(t/en) waar het niet gaan kan|Expensive blood|creep(s) where it cannot walk
+De dure klant|(is/zijn) koning|The expensive customer|(is/are) king
+Al het goud van de wereld|he(elt/len) alle wonden|All the gold in the world|heal(s) all wounds
+Een duur vogeltje|zing(t/en) zoals het gebekt is|An expensive little bird|sing(s) the way (its/their) beak is shaped
++Dure bezems|ve(egt/gen) schoon|Expensive brooms|sweep(s) clean
++Dure vaten|klink(t/en) het hardst|Expensive barrels|ring(s) the loudest
++Dure stuurlui|sta(at/an) aan wal|Expensive helmsmen|stand(s) ashore
++Dure schreeuwers|(is/zijn) de beste moordenaars niet|Expensive shouters|(is/are) not the best killers
+De appel|val(t/len) niet ver van de boom|The apple|fall(s) not far from the tree
+Een gebrand kind|schuw(t/en) het vuur|A burnt child|shun(s) the fire
+Eén zwaluw|ma(akt/ken) nog geen zomer|One swallow|make(s) no summer yet
+Een blinde kip|vind(t/en) ook wel eens een graankorrel|A blind hen|also find(s) a grain now and then
+De morgenstond|(heeft/hebben) goud in de mond|The morning hour|ha(s/ve) gold in (its/their) mouth
+Het bloed|kruip(t/en) waar het niet gaan kan|Blood|creep(s) where it cannot walk
+De klant|(is/zijn) koning|The customer|(is/are) king
+De tijd|he(elt/len) alle wonden|Time|heal(s) all wounds
+De aanhouder|win(t/nen)|The one who keeps at it|win(s)
+Een goed begin|(is/zijn) het halve werk|A good beginning|(is/are) half the work
+Onbekend|ma(akt/ken) onbemind|The unknown|make(s) the unloved
+Nood|br(eekt/eken) wet|Need|break(s) the law
+De liefde|ga(at/an) door de maag|Love|go(es) through the stomach
+Elk huisje|(heeft/hebben) (zijn/hun) kruisje|Every little house|ha(s/ve) (its/their) little cross
+Rust|roes(t/ten)|Rest|rust(s)
+Een ezel|st(oot/oten) zich geen twee keer aan dezelfde steen|A donkey|do(es/) not bump into the same stone twice
+Het gras|(is/zijn) altijd groener aan de overkant|The grass|(is/are) always greener on the other side
+Eendracht|ma(akt/ken) macht|Unity|make(s) strength
+Goede wijn|behoe(ft/ven) geen krans|Good wine|need(s) no wreath
+Al wat blinkt|(is/zijn) geen goud|All that glitters|(is/are) not gold
+Elk vogeltje|zing(t/en) zoals het gebekt is|Every little bird|sing(s) the way (its/their) beak is shaped
+Spreken|(is/zijn) zilver, zwijgen is goud|Speech|(is/are) silver, silence is gold
+Een goed verstaander|(heeft/hebben) maar een half woord nodig|A good listener|need(s) only half a word
+Wie het onderste uit de kan wil|zi(et/en) zi(et/en) door de benen het bos niet|He who wants the last drop from the jug|(doesn't/don't) see (doesn't/don't) see the wood for all the legs
++Nieuwe bezems|ve(egt/gen) schoon|New brooms|sweep(s) clean
++Holle vaten|klink(t/en) het hardst|Empty barrels|ring(s) the loudest
++De beste stuurlui|sta(at/an) aan wal|The best helmsmen|stand(s) ashore
++Hoge bomen|vang(t/en) veel wind|Tall trees|catch(es) much wind
++Kleine potjes|(heeft/hebben) grote oren|Little pots|ha(s/ve) big ears
++Zachte heelmeesters|ma(akt/ken) stinkende wonden|Gentle healers|make(s) stinking wounds
++Vele handen|ma(akt/ken) licht werk|Many hands|make(s) light work
++Stille wateren|(heeft/hebben) diepe gronden|Still waters|ha(s/ve) deep grounds
++Praatjes|vul(t/len) geen gaatjes|Chatter|fill(s) no holes
++De grootste schreeuwers|(is/zijn) de beste moordenaars niet|The loudest shouters|(is/are) not the best killers
+*
+#       Groep 2 : wie ... | ...   (de kop is altijd enkelvoud, dus hier is
+#       geen enkele markering nodig)
+Wie het kleine niet eert|is het grote niet weerd|He who does not honour the small|is not worthy of the great
+Wie niet waagt|die niet wint|He who does not dare|does not win
+Wie kaatst|moet de bal verwachten|He who serves the ball|must expect it back
+Wie a zegt|moet ook b zeggen|He who says A|must also say B
+Wie zijn billen brandt|moet op de blaren zitten|He who burns his backside|must sit on the blisters
+Wie het laatst lacht|lacht het best|He who laughs last|laughs best
+Wie goed doet|goed ontmoet|He who does good|meets good
+Wie de schoen past|trekke hem aan|He whom the shoe fits|may put it on
+*
+#       Groep 3 : beter dit | dan dat
+Beter één vogel in de hand|dan tien in de lucht|Better one bird in the hand|than ten in the sky
+Beter laat|dan nooit|Better late|than never
+Beter hard geblazen|dan de mond gebrand|Better to blow too hard|than to burn your mouth
+Beter een goede buur|dan een verre vriend|Better a good neighbour|than a distant friend
+Beter een half ei|dan een lege dop|Better half an egg|than an empty shell
+*
+#       Groep 4 : dat moet je niet doen | ...
+Je moet geen slapende honden|wakker maken|Sleeping dogs|shouldn't be woken
+Je moet geen oude koeien|uit de sloot halen|Old cows|shouldn't be dragged out of the ditch
+Je moet een gegeven paard niet|in de bek kijken|A gift horse|shouldn't be looked in the mouth
+Je moet niet alle eieren|in één mand leggen|All your eggs|shouldn't be put in one basket
+Je moet een toontje lager|zingen|That tune|should be sung a tone lower
+Je moet niet naar andermans pijpen|dansen|Another man's pipes|shouldn't be danced to
+*
+#       Groep 5 : bijwoordelijke bepaling | zelfstandige zin
+#       (hier rijdt de komma mee in de KOP, want daar staat de bijzin)
+Oost west,|thuis best|East or west,|home is best
+Na regen|komt zonneschijn|After rain|comes sunshine
+Waar gehakt wordt,|vallen spaanders|Where there's chopping,|chips will fly
+Waar rook is,|is vuur|Where there's smoke,|there's fire
+Als de kat van huis is,|dansen de muizen op tafel|When the cat's away,|the mice dance on the table
+Zoals de ouden zongen,|piepen de jongen|As the old folk sang,|the young ones now chirp
+Zoals het klokje thuis tikt,|tikt het nergens|As the little clock ticks at home,|it ticks nowhere else
+In het land der blinden|is éénoog koning|In the land of the blind|the one-eyed is king
+**
+#       — de reserves, verstopt achter **, waar het programma niet bij kan.
+#       Dezelfde drie die de auteur in 1996 wegparkeerde, nu in het
+#       Nederlands. Alle drie hebben een exacte Nederlandse tegenhanger, en
+#       dat geldt voor geen enkele andere uitgave.
+Men moet het ijzer smeden|als het heet is|One must strike the iron|while it is hot
+Als de wijn is in de man|is de wijsheid in de kan|When the wine is in the man|the wisdom is in the jug
+Te veel koks|verzouten de brij|Too many cooks|oversalt the porridge

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>COOKIE — mashed-up proverbs</title>
-<meta name="description" content="A proverb masher from 1996: real proverbs chopped in half and glued back wrong, in Swedish, English, Thai and Russian. Grammar right, meaning mangled.">
+<meta name="description" content="A proverb masher from 1996: real proverbs chopped in half and glued back wrong, in Swedish, English, Thai, Russian and Dutch. Grammar right, meaning mangled.">
 <style>
   /* ============================================================
      COOKIE.BAS (Liket of Goto10, ~1996) -- the web port.
@@ -97,7 +97,8 @@
      tagline whenever Thai is the active language (setLang stamps lang= on
      them). Scoped per element, because <html lang> gets rewritten to "th" on
      a language switch and must NOT re-font the whole latin UI. */
-  button[lang="th"], #tagline[lang="th"], #homeLink[lang="th"] { font-family: var(--thai); }
+  button[lang="th"], #tagline[lang="th"],
+  #homeLink[lang="th"], #readmeLink[lang="th"] { font-family: var(--thai); }
   button:hover { border-color: var(--accent); color: var(--accent); }
   button.active, #more:active {
     background: var(--accent);
@@ -182,22 +183,53 @@
     text-shadow: 0 0 5px rgba(138,138,138,.4);
   }
 
+  /* --- footer: two tiers, because they get read differently.
+         The LINK ROW is amber and bracketed like a DOS menu item -- against the
+         grey provenance prose it is the one thing down here that reads as
+         clickable. It used to be three dim-grey words inside that prose, and
+         nobody ever found the story behind the program. --- */
   footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .3rem;
     text-align: center;
-    color: var(--dim);
-    font-size: clamp(.65rem, 2vmin, .85rem);
-    padding: .6rem 1rem .9rem;
+    padding: .4rem 1rem .8rem;
   }
-  footer a { color: var(--dim); }
-  footer a:hover { color: var(--accent); }
+  #flinks { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 1rem; }
+  #flinks a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: clamp(.8rem, 2.5vmin, 1.02rem);
+    padding: .3em .15em;
+    white-space: nowrap;
+    text-shadow: 0 0 7px rgba(255,176,0,.5);
+  }
+  /* brackets in CSS, not in the label -- the label is swapped per language and
+     shouldn't have to carry punctuation. NBSP so they never wrap off alone. */
+  #flinks a::before { content: "[\00a0"; }
+  #flinks a::after  { content: "\00a0]"; }
+  #flinks a:hover, #flinks a:focus-visible {
+    color: var(--bright);
+    text-shadow: 0 0 10px rgba(255,225,77,.75);
+  }
+  #provenance { color: var(--dim); font-size: clamp(.65rem, 2vmin, .85rem); }
 
-  /* short windows: shed decoration, keep proverb + controls */
+  /* Short windows, yielding in order (responsive-layout-standard: compact
+     before drop). The link row is the LAST thing in the footer to go, not the
+     first -- shedding the whole footer at 430px was what buried it on a phone
+     in landscape. */
   @media (max-height: 430px) {
-    #banner, footer { display: none; }
+    #banner, #provenance { display: none; }
+    footer { padding: .2rem 1rem .45rem; }
+    #flinks a { padding: .15em .15em; }
   }
   @media (max-height: 280px) {
     header { padding: .3rem; gap: .3rem; }
     button { min-height: 36px; padding: .3em .6em; }
+  }
+  @media (max-height: 250px) {
+    footer { display: none; }
   }
 </style>
 </head>
@@ -209,6 +241,7 @@
     <button data-lang="en">EN</button>
     <button data-lang="th" lang="th">ไทย</button>
     <button data-lang="ru">RU</button>
+    <button data-lang="nl">NL</button>
   </nav>
   <button id="more">One more</button>
   <button id="auto" aria-pressed="false">[ ] Auto</button>
@@ -222,11 +255,13 @@
 </main>
 
 <footer>
-  PowerBASIC 1996 → Python · Rust · JS 2026 —
-  <span id="tagline">real proverbs, chopped and glued back wrong</span> ·
-  <a id="readmeLink" href="readme-en.html">README</a> ·
-  <a href="https://github.com/leifclaesson/proverb-masher">source</a> ·
-  <a id="homeLink" href="https://leifclaesson.github.io/">Who is Leif?</a>
+  <nav id="flinks" aria-label="about">
+    <a id="readmeLink" href="readme-en.html">What is this?</a>
+    <a id="homeLink" href="https://leifclaesson.github.io/">Who is Leif?</a>
+    <a href="https://github.com/leifclaesson/proverb-masher">source</a>
+  </nav>
+  <div id="provenance">PowerBASIC 1996 → Python · Rust · JS 2026 —
+    <span id="tagline">real proverbs, chopped and glued back wrong</span></div>
 </footer>
 
 <noscript><p style="text-align:center;padding:2rem">This machine needs its BASIC interpreter (JavaScript) turned on.</p></noscript>
@@ -246,6 +281,7 @@ const LANGS = {
         title: "ORDSPRÅK — mixade ordspråk",
         tagline: "riktiga ordspråk, ihopklippta på fel sätt",
         readme: "readme-sv.html",
+        readmeLabel: "Vad är det här?",
         home: "Vem är Leif?",
         auto: "Auto",
         // the 1996 data file stays byte-pristine; its English mirror
@@ -255,6 +291,7 @@ const LANGS = {
         title: "COOKIE — mashed-up proverbs",
         tagline: "real proverbs, chopped and glued back wrong",
         readme: "readme-en.html",
+        readmeLabel: "What is this?",
         home: "Who is Leif?",
         auto: "Auto",
         // English is the only edition whose verbs conjugate for number, so
@@ -264,14 +301,27 @@ const LANGS = {
         title: "สุภาษิตมั่ว",
         tagline: "สุภาษิตจริง สับสลับผิดคู่",
         readme: "readme-th.html",
+        readmeLabel: "นี่คืออะไร",
         home: "เลย์ฟ คือใคร",
         auto: "อัตโนมัติ" },
   ru: { file: "data/ПОСЛОВИЦЫ.TXT",  cp437: false, period: true,  more: "Ещё одну",
         title: "ПОСЛОВИЦЫ — перемолотые пословицы",
         tagline: "настоящие пословицы, склеенные не с теми половинками",
         readme: "readme-ru.html",
+        readmeLabel: "Что это такое?",
         home: "Кто такой Лейф?",
         auto: "Авто" },
+  nl: { file: "data/SPREEKWOORDEN.TXT", cp437: false, period: true, more: "Nog eentje",
+        title: "SPREEKWOORDEN — door elkaar gehusselde spreekwoorden",
+        tagline: "echte spreekwoorden, verkeerd aan elkaar geplakt",
+        readme: "readme-nl.html",
+        readmeLabel: "Wat is dit?",
+        home: "Wie is Leif?",
+        auto: "Auto",
+        // Dutch conjugates for number too, so it runs the English edition's
+        // marker rule -- and it is the first edition to have BOTH that and an
+        // English mirror, so it is the first where the mirror needs it as well
+        agree: true },
 };
 
 /* CP437 high half (0x80..0xFF) -> Unicode, hand-spelled for the third time:
@@ -355,10 +405,15 @@ function cook(sections, agreeOn) {
   // the head decides the number; the tail resolves its alternations against it
   const tail = agreeOn ? agree(pool[r2][1], pool[r1].plural) : pool[r2][1];
 
-  // same index pair for the native line and the English mirror
+  // same index pair for the native line and the English mirror -- and the
+  // mirror resolves its own alternations against the same head. Only Dutch
+  // reaches this: it is the one edition that both conjugates for number and
+  // carries a mirror, and the mirror is the half the author can actually read.
   const native = glue(pool[r1][0], tail);
+  const mirrorTail = agreeOn ? agree(pool[r2][3] || "", pool[r1].plural)
+                             : (pool[r2][3] || "");
   const mirror = pool[r1][2] !== undefined
-    ? glue(pool[r1][2] || "", pool[r2][3] || "").trim() : "";
+    ? glue(pool[r1][2] || "", mirrorTail).trim() : "";
   return { native, mirror };
 }
 
@@ -574,11 +629,15 @@ function setLang(code, save = true) {
   more.textContent = cfg.more;
   tagline.textContent = cfg.tagline;
   const home = document.getElementById("homeLink");
+  const readme = document.getElementById("readmeLink");
   home.textContent = cfg.home;
+  // "README" is jargon -- a visitor doesn't know it's the story of a 1996 DOS
+  // program. Ask the question they'd actually ask, in their own language.
+  readme.textContent = cfg.readmeLabel;
+  readme.href = cfg.readme;
   // stamp lang so the Thai strings pick up the real Thai font (see CSS)
-  more.lang = tagline.lang = home.lang = autoBtn.lang = code;
+  more.lang = tagline.lang = home.lang = readme.lang = autoBtn.lang = code;
   paintAuto();
-  document.getElementById("readmeLink").href = cfg.readme;
   document.querySelectorAll(".langs button").forEach(b =>
     b.classList.toggle("active", b.dataset.lang === code));
   if (save) try { localStorage.setItem("cookieLang", code); } catch (e) {}

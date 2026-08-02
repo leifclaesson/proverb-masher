@@ -1,8 +1,8 @@
 # proverb-masher
 
 Real proverbs, chopped in half and glued back wrong -- in Swedish, English,
-Thai and Russian. The grammar stays right; the meaning gets mangled. That's
-the whole point.
+Thai, Russian and Dutch. The grammar stays right; the meaning gets mangled.
+That's the whole point.
 
 > A dear friend is better than two new ones. · Don't say "hop" -- then love
 > hauling the sled uphill too. · New brooms run deep.
@@ -38,7 +38,19 @@ details lift it above a dumb word-masher:
 
 The Russian edition's decoy word «дорогой» means both *expensive* and *dear*
 -- a pun the Swedish original (*dyr*) and English (*dear*, as in "it cost him
-dear") turn out to share, since they're the same Germanic word.
+dear") turn out to share, since they're the same Germanic word. The Dutch
+edition is the one where the decoys didn't need transposing at all, only
+respelling: *duur* **is** *dyr*, and it even inflects the same way (*duur*
+before a *het*-word, *dure* before a *de*-word or a plural, exactly as Swedish
+picks between *dyrt* and *dyra*).
+
+English and Dutch are also the only two editions whose verbs conjugate for the
+number of the subject, so they're the only two that carry inflection markers in
+the data -- `+Empty vessels|make(s) the most noise`, `+Holle vaten|klink(t/en)
+het hardst`. The marker holds **both** forms rather than deriving one from the
+other, and Dutch is why that's not over-engineering: an open syllable drops its
+doubled vowel, so the seam lands mid-stem -- `ma(akt/ken)`, `ve(egt/gen)`. No
+suffix rule reaches that.
 
 ## Provenance
 
@@ -48,4 +60,5 @@ PowerBASIC for DOS, where it mashed Swedish proverbs on every boot. Revived
 data format the DOS original did -- the Swedish data file is still CP437,
 decoded by a hand-spelled 128-entry table.
 
-No frameworks, no build step, no backend: one HTML file and four text files.
+No frameworks, no build step, no backend: one HTML file and a handful of text
+files.
