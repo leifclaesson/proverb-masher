@@ -89,6 +89,13 @@ pre {
 }
 pre code { background: none; padding: 0; }
 
+/* A table with enough columns can't shrink past the sum of its cells' minimum
+   widths -- at that point it stops obeying width:100% and pushes the whole page
+   sideways. Wrap one in .scroll and it scrolls inside its own box instead, the
+   same deal <pre> already gets. */
+.scroll { overflow-x: auto; margin-bottom: 1rem; }
+.scroll > table { margin-bottom: 0; }
+
 table {
   border-collapse: collapse;
   margin-bottom: 1rem;

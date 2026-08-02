@@ -242,6 +242,7 @@
     <button data-lang="th" lang="th">ไทย</button>
     <button data-lang="ru">RU</button>
     <button data-lang="nl">NL</button>
+    <button data-lang="el">ΕΛ</button>
   </nav>
   <button id="more">One more</button>
   <button id="auto" aria-pressed="false">[ ] Auto</button>
@@ -270,11 +271,15 @@
 /* COOKIE.BAS engine, fifth port. The two clever bits survive intact:
    1. Population-weighted section choice -- one slot per proverb, so fat
       sections (the decoy-stuffed Group 1) dominate the output.
-   2. The retry rule: both picks must come from different lines, so a real
-      proverb is (almost) never echoed. The 1996 label was the Swedish curse
-      `fanheller:`; per remaster tradition every edition swears in its own
-      language -- "like hell" / "เหี้ยเอ้ย" / "чёрта с два". This port hosts
-      all four, so it keeps the original's name in their honour. */
+   2. The retry rule: both picks must come from different lines. That makes an
+      intact proverb rare but NOT impossible, and the "(almost)" has now been
+      measured: every decoy shares its tail character-for-character with the
+      real proverb it shadows, so gluing the real head to the decoy's tail
+      reassembles the real line. The 1996 Swedish data does it about one roll
+      in 92. The 1996 label was the Swedish curse `fanheller:`; per remaster
+      tradition every edition swears in its own language -- "like hell" /
+      "เหี้ยเอ้ย" / "чёрта с два" / "γαμώτο". This port hosts all six, so it
+      keeps the original's name in their honour. */
 
 const LANGS = {
   sv: { file: "data/ORDSPRÅK.TXT",   cp437: true,  period: true,  more: "En till",
@@ -321,6 +326,19 @@ const LANGS = {
         // Dutch conjugates for number too, so it runs the English edition's
         // marker rule -- and it is the first edition to have BOTH that and an
         // English mirror, so it is the first where the mirror needs it as well
+        agree: true },
+  el: { file: "data/ΠΑΡΟΙΜΙΕΣ.TXT", cp437: false, period: true, more: "Άλλη μία",
+        title: "ΠΑΡΟΙΜΙΕΣ — ανακατεμένες παροιμίες",
+        tagline: "αληθινές παροιμίες, κολλημένες σε λάθος μισά",
+        readme: "readme-el.html",
+        readmeLabel: "Τι είναι αυτό;",
+        home: "Ποιος είναι ο Λέιφ;",
+        auto: "Αυτόματο",
+        // Greek conjugates for number as well, so it runs the same marker rule
+        // as English and Dutch -- with one twist the resolver never sees: the
+        // copula does NOT inflect (αυτός είναι / αυτοί είναι), so the verb that
+        // is (is/are) and (is/zijn) elsewhere carries no marker here at all.
+        // Needs no font exception either; Consolas has a full Greek face.
         agree: true },
 };
 

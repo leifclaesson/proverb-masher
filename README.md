@@ -1,8 +1,8 @@
 # proverb-masher
 
 Real proverbs, chopped in half and glued back wrong -- in Swedish, English,
-Thai, Russian and Dutch. The grammar stays right; the meaning gets mangled.
-That's the whole point.
+Thai, Russian, Dutch and Greek. The grammar stays right; the meaning gets
+mangled. That's the whole point.
 
 > A dear friend is better than two new ones. · Don't say "hop" -- then love
 > hauling the sled uphill too. · New brooms run deep.
@@ -36,6 +36,15 @@ details lift it above a dumb word-masher:
    (`fanheller:`), and every edition since has translated the swearing along
    with the data.
 
+*Biased*, not incapable, and building the Greek edition is what finally got it
+measured. The rule guarantees the two **indices** differ, not the two
+**strings** -- and each decoy shares its tail character-for-character with the
+real proverb it shadows, so gluing the real head onto the decoy's tail puts the
+real line back together. The 1996 Swedish data does exactly that about **one
+roll in 92**; Russian, with the tightest decoy set, manages one in 51. Thai is
+the only edition that never does it. Nothing worth fixing -- a masher that
+occasionally tells the truth by accident is funnier than one that can't.
+
 The Russian edition's decoy word «дорогой» means both *expensive* and *dear*
 -- a pun the Swedish original (*dyr*) and English (*dear*, as in "it cost him
 dear") turn out to share, since they're the same Germanic word. The Dutch
@@ -44,13 +53,25 @@ respelling: *duur* **is** *dyr*, and it even inflects the same way (*duur*
 before a *het*-word, *dure* before a *de*-word or a plural, exactly as Swedish
 picks between *dyrt* and *dyra*).
 
-English and Dutch are also the only two editions whose verbs conjugate for the
-number of the subject, so they're the only two that carry inflection markers in
+Greek needs the most decoy forms of any edition -- **six**, because `ακριβός`
+agrees in gender as well as number, and drags the article along with it (*ο
+ακριβός σκύλος*, *η ακριβή γλώσσα*, *το ακριβό μήλο*, and three more in the
+plural). It also shows that the 1996 "section" was quietly doing more work than
+it looked: Greek predicate adjectives agree with the subject's gender, and a
+section is precisely a gender-and-number equivalence class. That needed no new
+code in 2026 because it was already there in 1996.
+
+English, Dutch and Greek are the three editions whose verbs conjugate for the
+number of the subject, so they're the three that carry inflection markers in
 the data -- `+Empty vessels|make(s) the most noise`, `+Holle vaten|klink(t/en)
-het hardst`. The marker holds **both** forms rather than deriving one from the
-other, and Dutch is why that's not over-engineering: an open syllable drops its
-doubled vowel, so the seam lands mid-stem -- `ma(akt/ken)`, `ve(egt/gen)`. No
-suffix rule reaches that.
+het hardst`, `+Οι τοίχοι|έχ(ει/ουν) αυτιά`. The marker holds **both** forms
+rather than deriving one from the other, and Dutch is why that's not
+over-engineering: an open syllable drops its doubled vowel, so the seam lands
+mid-stem -- `ma(akt/ken)`, `ve(egt/gen)`. No suffix rule reaches that. Greek
+adds the opposite argument from the other end -- its copula does *not* inflect
+(*αυτός είναι* / *αυτοί είναι*), so the verb that is `(is/are)` and `(is/zijn)`
+everywhere else carries no marker there at all. A derive rule would have had to
+be taught that; a file carrying both forms simply never mentions it.
 
 ## Provenance
 
