@@ -551,6 +551,11 @@ const jitter = ms => Math.max(8, Math.round(ms * (60 + rng() * 91) / 100));
    the typers merely READ it, so neither can retire the other. */
 let gen = 0;
 
+/* Whether a line is currently being printed. The autocycle's dwell is defined
+   as the pause AFTER a line finishes, so nothing may arm it while one is still
+   going -- see the auto button. */
+let typing = false;
+
 /* ---------------- the typing surfaces ----------------
    A terminal does not shove the text it has already printed around, and this
    one used to: the block was centred and freely wrapped, so every keystroke
@@ -746,6 +751,7 @@ addEventListener("resize", () => {
 const MIRROR_LEAD = 5;                      // characters of head start
 
 async function serve() {
+  cancelAuto();                     // before the await: a pending dwell must not fire into this line
   const cfg = LANGS[current];
   const sections = await loadLang(current);
   const { native, mirror } = cook(sections, cfg.agree);
@@ -772,15 +778,17 @@ async function serve() {
     mir.i = mir.chars.length;
     nativeSurface.paint(nat.plan);
     mirrorSurface.paint(mir.plan);
+    typing = false;
     scheduleAuto();
   } else {
     nativeSurface.paint("");
     mirrorSurface.paint("");
+    typing = true;
     // the autocycle dwell starts when the LAST line finishes, not when the
     // native one does, so neither a long line nor a long mirror is ever cut
     // short on a monitor
     let pending = mirrorLine ? 2 : 1;
-    const finished = () => { if (--pending === 0) scheduleAuto(); };
+    const finished = () => { if (--pending === 0) { typing = false; scheduleAuto(); } };
     let started = false;
     const startMirror = () => {
       if (started || !mirrorLine) return;
@@ -799,7 +807,7 @@ async function serve() {
    after a line finishes typing, not a fixed period, so a long line is never cut
    short. For a display with no keyboard in front of it. */
 const AUTO_DEFAULT = 10;          // README quotes this number -- change both
-let autoOn = false, autoSecs = AUTO_DEFAULT, autoTimer = null;
+let autoOn = false, autoSecs = AUTO_DEFAULT, autoTimer = 0;
 /* The type-on runs ALWAYS. It deliberately does not consult
    prefers-reduced-motion: that flag is how you turn off window transitions and
    other OS fidgeting, and it has no business deciding whether a terminal prints
@@ -812,19 +820,34 @@ function paintAuto() {
   autoBtn.setAttribute("aria-pressed", autoOn ? "true" : "false");
 }
 
-/* Self-rescheduling from the end of serve() rather than a standing interval:
-   a manual "One more" (or space, or a language switch) therefore resets the
-   clock instead of stacking a second timer or cutting the new line short. */
+/* Self-rescheduling from the end of serve() rather than a standing interval, so
+   the dwell is a pause AFTER a line finishes and a long line is never cut
+   short. That only holds if the armed timer is disowned the moment anything
+   else serves a line -- a language switch, "One more", the spacebar -- because
+   otherwise the timer from the PREVIOUS line is still out there and fires
+   partway through the new one. Hence cancelAuto() at the top of serve() rather
+   than relying on the clear at the bottom, which doesn't come round until the
+   new line (and its mirror) have finished typing.
+
+   The id is zeroed whenever it's spent or dropped: setTimeout ids are recycled,
+   and clearing a stale one could take a typing timer down with it. */
+function cancelAuto() {
+  if (autoTimer) { clearTimeout(autoTimer); autoTimer = 0; }
+}
+
 function scheduleAuto() {
-  clearTimeout(autoTimer);
-  if (autoOn) autoTimer = setTimeout(serve, autoSecs * 1000);
+  cancelAuto();
+  if (autoOn) autoTimer = setTimeout(() => { autoTimer = 0; serve(); }, autoSecs * 1000);
 }
 
 autoBtn.addEventListener("click", () => {
   autoOn = !autoOn;
   paintAuto();
   try { localStorage.setItem("cookieAuto", autoOn ? "1" : "0"); } catch (e) {}
-  scheduleAuto();
+  // Arming it midway through a line must NOT start the dwell from here -- with
+  // a short dwell that timer would fire before the line was finished and cut it
+  // off. Drop any pending one; the line that's printing will arm the next.
+  if (typing) cancelAuto(); else scheduleAuto();
 });
 
 function setLang(code, save = true) {
