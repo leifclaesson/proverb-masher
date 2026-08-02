@@ -252,6 +252,7 @@
     <button data-lang="ru">RU</button>
     <button data-lang="nl">NL</button>
     <button data-lang="el">ΕΛ</button>
+    <button data-lang="pl">PL</button>
   </nav>
   <button id="more">One more</button>
   <button id="auto" aria-pressed="false">[ ] Auto</button>
@@ -287,8 +288,8 @@
       reassembles the real line. The 1996 Swedish data does it about one roll
       in 92. The 1996 label was the Swedish curse `fanheller:`; per remaster
       tradition every edition swears in its own language -- "like hell" /
-      "เหี้ยเอ้ย" / "чёрта с два" / "γαμώτο". This port hosts all six, so it
-      keeps the original's name in their honour. */
+      "เหี้ยเอ้ย" / "чёрта с два" / "γαμώτο" / "gówno prawda". This port hosts
+      all seven, so it keeps the original's name in their honour. */
 
 const LANGS = {
   sv: { file: "data/ORDSPRÅK.TXT",   cp437: true,  period: true,  more: "En till",
@@ -348,6 +349,21 @@ const LANGS = {
         // copula does NOT inflect (αυτός είναι / αυτοί είναι), so the verb that
         // is (is/are) and (is/zijn) elsewhere carries no marker here at all.
         // Needs no font exception either; Consolas has a full Greek face.
+        agree: true },
+  pl: { file: "data/PRZYSŁOWIA.TXT", cp437: false, period: true, more: "Jeszcze jedno",
+        title: "PRZYSŁOWIA — pomieszane przysłowia",
+        tagline: "prawdziwe przysłowia, sklejone nie tymi połówkami",
+        readme: "readme-pl.html",
+        readmeLabel: "Co to jest?",
+        home: "Kim jest Leif?",
+        auto: "Auto",
+        // Polish conjugates for number as well, so the same marker rule again --
+        // with the mirror image of the Greek twist: (jest/są) is not just marked
+        // but SUPPLETIVE, sharing no letter at all, which is the strongest case
+        // in seven editions for carrying both forms instead of deriving one.
+        // Polish also has a gender that exists only in the plural (virile
+        // "drodzy" vs non-virile "drogie") -- but the present tense collapses
+        // them, so the resolver below never has to know it exists.
         agree: true },
 };
 

@@ -1,7 +1,7 @@
 # proverb-masher
 
 Real proverbs, chopped in half and glued back wrong -- in Swedish, English,
-Thai, Russian, Dutch and Greek. The grammar stays right; the meaning gets
+Thai, Russian, Dutch, Greek and Polish. The grammar stays right; the meaning gets
 mangled. That's the whole point.
 
 > A dear friend is better than two new ones. · Don't say "hop" -- then love
@@ -41,13 +41,17 @@ measured. The rule guarantees the two **indices** differ, not the two
 **strings** -- and each decoy shares its tail character-for-character with the
 real proverb it shadows, so gluing the real head onto the decoy's tail puts the
 real line back together. The 1996 Swedish data does exactly that about **one
-roll in 92**; Russian, with the tightest decoy set, manages one in 51. Thai is
-the only edition that never does it. Nothing worth fixing -- a masher that
+roll in 92**; Russian, with the tightest decoy set, manages one in 51, and
+Polish one in 129. Thai is the only edition that never does it. Nothing worth fixing -- a masher that
 occasionally tells the truth by accident is funnier than one that can't.
 
 The Russian edition's decoy word «дорогой» means both *expensive* and *dear*
 -- a pun the Swedish original (*dyr*) and English (*dear*, as in "it cost him
-dear") turn out to share, since they're the same Germanic word. The Dutch
+dear") turn out to share, since they're the same Germanic word. Polish
+*drogi* has it too and takes it furthest: it is the word you open a letter
+with, so the masculine-personal plural decoy lands exactly on **Drodzy
+przyjaciele**, *Dear Friends*. Its feminine *droga* is also the noun *road*,
+which puts the path back inside a word game about proverbs. The Dutch
 edition is the one where the decoys didn't need transposing at all, only
 respelling: *duur* **is** *dyr*, and it even inflects the same way (*duur*
 before a *het*-word, *dure* before a *de*-word or a plural, exactly as Swedish
@@ -61,8 +65,18 @@ it looked: Greek predicate adjectives agree with the subject's gender, and a
 section is precisely a gender-and-number equivalence class. That needed no new
 code in 2026 because it was already there in 1996.
 
-English, Dutch and Greek are the three editions whose verbs conjugate for the
-number of the subject, so they're the three that carry inflection markers in
+Polish takes five agreement slots but only four distinct shapes, since neuter
+singular and non-virile plural are the same word (*drogie*) -- and it has no
+article at all, so the adjective carries the whole agreement alone. One of its
+forms isn't a suffix swap: *drog-i* becomes *dro**dz**y*, a stem alternation.
+Polish also has a gender that exists only in the plural (virile *drodzy
+przyjaciele* against non-virile *drogie ściany*), and the present tense
+collapses it -- so the distinction is fully visible in the head, where it's
+baked in, and fully invisible in the tail, where the engine would have to
+resolve it. The 1996 `+` marker needed no change.
+
+English, Dutch, Greek and Polish are the editions whose verbs conjugate for
+the number of the subject, so they're the ones that carry inflection markers in
 the data -- `+Empty vessels|make(s) the most noise`, `+Holle vaten|klink(t/en)
 het hardst`, `+Οι τοίχοι|έχ(ει/ουν) αυτιά`. The marker holds **both** forms
 rather than deriving one from the other, and Dutch is why that's not
@@ -71,7 +85,9 @@ mid-stem -- `ma(akt/ken)`, `ve(egt/gen)`. No suffix rule reaches that. Greek
 adds the opposite argument from the other end -- its copula does *not* inflect
 (*αυτός είναι* / *αυτοί είναι*), so the verb that is `(is/are)` and `(is/zijn)`
 everywhere else carries no marker there at all. A derive rule would have had to
-be taught that; a file carrying both forms simply never mentions it.
+be taught that; a file carrying both forms simply never mentions it. Polish
+closes the argument from the other side: `(jest/są)` is **suppletive** -- the
+two forms share no letter at all, so there is nothing to derive from.
 
 ## Provenance
 

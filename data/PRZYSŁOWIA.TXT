@@ -1,0 +1,169 @@
+#               Przysłowia 0.5  --  polska przeróbka Ordsprak 0.1-i-coś
+#               oryginał: Leif Claesson (Liket of Goto10), ~1996
+#
+#       Dla Mateusza, gdzieś w świętokrzyskiem. Osiem lat rozmawiamy o tym,
+#       jak rozciąć dźwięk i skleić go z powrotem tak, żeby brzmiał lepiej.
+#       To jest ten sam pomysł, tylko dla przysłów -- i skleja je źle,
+#       celowo. Nigdy się nie spotkaliśmy. Zaproszenie jest nadal aktualne,
+#       a Orban wciąż siada ludziom na kolanach.
+#
+#       (I tak, wiadomo, kto znalazł tego buga, którego nie dało się
+#       powtórzyć. Port serwera wewnętrznego. Sześć tygodni. Dzięki.)
+#
+#       Pułapka dla Szweda -- a Szwed to napisał: polskie TAK brzmi
+#       dokładnie jak szwedzkie TACK, czyli "dziękuję". Polak, który
+#       gorąco się z tobą zgadza, dla szwedzkiego ucha dziękuje bez końca.
+#       A samo szwedzkie "tak" to sufit, więc równie dobrze może krzyczeć
+#       "sufit, sufit, sufit". I jeszcze "Sto lat!", które po szwedzku
+#       słychać jako "sto leniwych" (lat = leniwy).
+#
+#       DROGI ZNACZY DWIE RZECZY, i o to tu chodzi. W szwedzkim oryginale
+#       wabikiem było "dyr" -- drogi wyłącznie w sensie ceny. Po polsku to
+#       samo słowo otwiera list. Każde podrobione przysłowie w grupie 1
+#       mówi więc do ciebie "drogi", a wabik w liczbie mnogiej
+#       męskoosobowej trafia prosto w "Drodzy przyjaciele". No i "droga"
+#       to jeszcze droga: greckie "paroimia" znaczy "przy drodze", a tu ta
+#       droga siedzi w samym wabiku.
+#
+#       Format pliku jest bardzo prosty. Przysłowia siedzą w grupach, w
+#       których połówki są gramatycznie wymienne, a szew to pionowa
+#       kreska (|). Samotna * otwiera następną grupę. ** to koniec pliku:
+#       tego, co dalej, program już nie czyta.
+#
+#       Każdy wiersz ma cztery pola:  głowa|ogon|EN head|EN tail
+#       Angielskie tłumaczenie miesza się TĄ SAMĄ parą losowań, więc
+#       angielskie bzdury lecą dokładnie równolegle do polskich.
+#
+#       POLSKIE CZASOWNIKI ODMIENIAJĄ SIĘ PRZEZ LICZBĘ, tak jak angielskie,
+#       niderlandzkie i greckie, a inaczej niż szwedzkie, tajskie i
+#       rosyjskie. Dlatego ta wersja robi to samo co angielska: + na
+#       początku wiersza znaczy PODMIOT W LICZBIE MNOGIEJ, a ogon niesie
+#       oba tryby sam ze sobą:
+#           (a/ają)      pada / padają
+#           (i/ą)        myli / mylą
+#           (zie/zą)     gryzie / gryzą
+#       I szew nie zawsze pada na końcówkę: ro(śnie/sną) przesuwa go w
+#       głąb tematu i zabiera ze sobą spółgłoskę (ś/s), id(zie/ą) tnie w
+#       środku zbitki, a (jest/są) nie ma ze sobą wspólnej ANI JEDNEJ
+#       litery. Dlatego sygnatura niesie OBA tryby, zamiast wyprowadzać
+#       jeden z drugiego.
+#
+#       DWIE KOPULE, JEDNA OBOK DRUGIEJ. "Jest/są" odmienia się dokładnie
+#       odwrotnie niż greckie "είναι", które w obu liczbach brzmi tak
+#       samo. A polskie "to" (Ciekawość to pierwszy stopień do piekła) nie
+#       odmienia się wcale -- za to angielskie lustro i tak musi tam
+#       postawić (is/are).
+#
+#       GRUPA TO ZGODA RODZAJU. Polski czas przeszły ma rodzaj (był, była,
+#       było, byli, były), więc w grupie 1 ogonem może być WYŁĄCZNIE
+#       fraza w czasie teraźniejszym: żadnego orzecznika przymiotnikowego
+#       i żadnego czasu przeszłego. Grecka wersja doszła do tej samej
+#       zasady od strony przymiotnika; polska dochodzi od strony
+#       czasownika. ("Nadzieja umiera ostatnia" wypadło właśnie przez to.)
+#       Nowego kodu to nie wymagało. Grupa z 1996 BYŁA już klasą
+#       równoważności rodzaju i liczby -- szwedzki po prostu nigdy jej
+#       tak nie przycisnął.
+#
+#       Grupa 1 jest celowo przeładowana podrobionymi "drogimi"
+#       przysłowiami. W szwedzkim oryginale były trzy formy dyr/dyrt/dyra.
+#       Polski ma PIĘĆ MIEJSC, ale tylko CZTERY KSZTAŁTY, bo rodzaj nijaki
+#       w liczbie pojedynczej i niemęskoosobowy w mnogiej to to samo
+#       słowo:
+#           drogi pies      droga ryba      drogie jabłko
+#           drodzy ludzie   drogie ściany
+#       Rodzajnika nie ma żadnego, więc cała zgoda siedzi w samym
+#       przymiotniku -- a "drodzy" to już nie wymiana końcówki, tylko
+#       przestawienie tematu (g -> dz). Wabik JEST żartem, a ważona
+#       wielkością grupy losowanie dba, żeby wypadał najczęściej.
+#
+#       INTERPUNKCJA JEDZIE W GŁOWIE (w rosyjskiej wersji odwrotnie, w
+#       ogonie): polski chce przecinka przed "ten/tam/to", a to wypada
+#       dokładnie na szwie. Patrz grupa 5.
+#
+#       Grupa 1 : podmiot | orzeczenie
+Drogi pies, który szczeka|nie gry(zie/zą)|The expensive dog that barks|(doesn't/don't) bite
+Drogie jabłko|nie pad(a/ają) daleko od jabłoni|The expensive apple|(doesn't/don't) fall far from the tree
+Droga ryba|psu(je/ją) się od głowy|The expensive fish|rot(s) from the head
+Jedna droga jaskółka|nie czyn(i/ą) wiosny|One expensive swallow|(doesn't/don't) make a spring
+Drogi czas|lecz(y/ą) rany|Expensive time|heal(s) wounds
+Droga prawda|w oczy kol(e/ą)|The expensive truth|prick(s) the eyes
+Droga kropla|drąż(y/ą) skałę|An expensive drop|wear(s) away the rock
+Drogie kłamstwo|m(a/ają) krótkie nogi|An expensive lie|ha(s/ve) short legs
++Drogie ściany|m(a/ają) uszy|Expensive walls|ha(s/ve) ears
++Drodzy przyjaciele|pozna(je/ją) się w biedzie|Dear friends|(is/are) known in hard times
++Drogie pozory|myl(i/ą)|Expensive appearances|deceive(s)
++Drogie pieniądze|szczęścia nie da(je/ją)|Expensive money|(doesn't/don't) give happiness
++Drodzy ludzie|ucz(y/ą) się na cudzych błędach|Dear people|learn(s) from the mistakes of others
+Pies, który szczeka|nie gry(zie/zą)|The dog that barks|(doesn't/don't) bite
+Jabłko|nie pad(a/ają) daleko od jabłoni|The apple|(doesn't/don't) fall far from the tree
+Ryba|psu(je/ją) się od głowy|The fish|rot(s) from the head
+Jedna jaskółka|nie czyn(i/ą) wiosny|One swallow|(doesn't/don't) make a spring
+Czas|lecz(y/ą) rany|Time|heal(s) wounds
+Prawda|w oczy kol(e/ą)|The truth|prick(s) the eyes
+Kropla|drąż(y/ą) skałę|A drop|wear(s) away the rock
+Kłamstwo|m(a/ają) krótkie nogi|A lie|ha(s/ve) short legs
++Ściany|m(a/ają) uszy|Walls|ha(s/ve) ears
++Przyjaciele|pozna(je/ją) się w biedzie|Friends|(is/are) known in hard times
++Pozory|myl(i/ą)|Appearances|deceive(s)
++Pieniądze|szczęścia nie da(je/ją)|Money|(doesn't/don't) give happiness
++Mądrzy ludzie|ucz(y/ą) się na cudzych błędach|Wise people|learn(s) from the mistakes of others
+Apetyt|ro(śnie/sną) w miarę jedzenia|Appetite|grow(s) with the eating
+Okazja|czyn(i/ą) złodzieja|Opportunity|make(s) the thief
+Nauka|nie id(zie/ą) w las|Learning|(doesn't/don't) go into the forest
+Głupota|nie bol(i/ą)|Stupidity|(doesn't/don't) hurt
+Zgoda|buduj(e/ą)|Harmony|build(s)
+Cierpliwość|popłac(a/ają)|Patience|pay(s) off
+Historia|lub(i/ą) się powtarzać|History|like(s) to repeat itself
+Fortuna|kołem się tocz(y/ą)|Fortune|turn(s) like a wheel
+Krew|nie (jest/są) wodą|Blood|(is/are) not water
+Milczenie|(jest/są) złotem|Silence|(is/are) golden
++Oczy|(jest/są) zwierciadłem duszy|The eyes|(is/are) the mirror of the soul
+Ciekawość|to pierwszy stopień do piekła|Curiosity|(is/are) the first step to hell
+Kto się na gorącym sparzył|nie wid(zi/zą) nie wid(zi/zą) lasu zza drzwi|He who was burnt by something hot|(doesn't/don't) see (doesn't/don't) see the forest for the doors
+*
+#       Grupa 2 : kto ... | ...   (głowa jest zawsze w liczbie
+#       pojedynczej, więc tu nie trzeba absolutnie żadnej sygnatury)
+Kto pod kim dołki kopie|ten sam w nie wpada|He who digs a pit under another|falls into it himself
+Kto rano wstaje|temu Pan Bóg daje|He who rises early|is given to by the Lord
+Kto nie ryzykuje|ten nie pije szampana|He who takes no risk|drinks no champagne
+Kto pyta|nie błądzi|He who asks|does not go astray
+Kto sieje wiatr|zbiera burzę|He who sows the wind|reaps the storm
+Kto mieczem wojuje|ten od miecza ginie|He who lives by the sword|dies by the sword
+Kto się śmieje ostatni|ten się śmieje najlepiej|He who laughs last|laughs best
+Kto z kim przestaje|takim się staje|He who keeps company with someone|becomes like him
+Kto się raz sparzył|ten dmucha na zimne|He who was burnt once|blows on cold food
+*
+#       Grupa 3 : lepiej to | niż tamto
+Lepiej późno|niż wcale|Better late|than never
+Lepszy wróbel w garści|niż gołąb na dachu|Better a sparrow in the hand|than a pigeon on the roof
+Lepszy rydz|niż nic|Better a saffron milkcap|than nothing
+Lepiej dmuchać na zimne|niż się poparzyć|Better to blow on the cold|than to get burnt
+Lepiej z mądrym zgubić|niż z głupim znaleźć|Better to lose with a wise man|than to find with a fool
+*
+#       Grupa 4 : nie rób tego | ...
+Nie chwal dnia|przed zachodem słońca|Don't praise the day|before sunset
+Nie wkładaj wszystkich jajek|do jednego koszyka|Don't put all the eggs|in one basket
+Nie dziel skóry|na niedźwiedziu|Don't divide the hide|while it is still on the bear
+Nie kupuj kota|w worku|Don't buy a cat|in a sack
+Nie zaglądaj darowanemu koniowi|w zęby|Don't look a gift horse|in the teeth
+Nie odkładaj na jutro|tego, co możesz zrobić dziś|Don't leave for tomorrow|what you can do today
+*
+#       Grupa 5 : okolicznik | zdanie główne
+#       (tu przecinek jedzie w GŁOWIE, bo to tam siedzi zdanie podrzędne,
+#       które go wymaga)
+Gdy kota nie ma,|myszy harcują|When the cat is away,|the mice make merry
+Gdzie drwa rąbią,|tam wióry lecą|Where they chop wood,|the chips fly
+Gdzie diabeł nie może,|tam babę pośle|Where the devil cannot go,|he sends a woman
+W krainie ślepych|jednooki jest królem|In the land of the blind|the one-eyed man is king
+Jak sobie pościelesz,|tak się wyśpisz|As you make your bed,|so you will sleep
+Czym skorupka za młodu nasiąknie,|tym na starość trąci|What the shell soaks up when young,|it smells of in old age
+Po burzy|zawsze wychodzi słońce|After the storm|the sun always comes out
+Ziarnko do ziarnka,|a zbierze się miarka|Grain by grain,|and a measure is gathered
+Wszędzie dobrze,|ale w domu najlepiej|Everywhere is good,|but home is best
+**
+#       -- rezerwy, schowane za **, tam gdzie program już nie sięga. Te
+#       same trzy, które autor odłożył na bok w 1996, teraz po polsku.
+#       Wszystkie trzy mają dokładny polski odpowiednik.
+Kuj żelazo,|póki gorące|Strike the iron|while it is hot
+Co trzeźwy ma na myśli,|to pijany ma na języku|What the sober man has in mind,|the drunk has on his tongue
+Gdzie kucharek sześć,|tam nie ma co jeść|Where there are six cooks,|there is nothing to eat
