@@ -1,8 +1,8 @@
 # proverb-masher
 
 Real proverbs, chopped in half and glued back wrong -- in Swedish, English,
-Thai, Russian, Dutch, Greek and Polish. The grammar stays right; the meaning gets
-mangled. That's the whole point.
+Thai, Russian, Dutch, Greek, Polish and French. The grammar stays right; the
+meaning gets mangled. That's the whole point.
 
 > A dear friend is better than two new ones. · Don't say "hop" -- then love
 > hauling the sled uphill too. · New brooms run deep.
@@ -41,9 +41,10 @@ measured. The rule guarantees the two **indices** differ, not the two
 **strings** -- and each decoy shares its tail character-for-character with the
 real proverb it shadows, so gluing the real head onto the decoy's tail puts the
 real line back together. The 1996 Swedish data does exactly that about **one
-roll in 92**; Russian, with the tightest decoy set, manages one in 51, and
-Polish one in 129. Thai is the only edition that never does it. Nothing worth fixing -- a masher that
-occasionally tells the truth by accident is funnier than one that can't.
+roll in 92**; Russian, with the tightest decoy set, manages one in 51, Polish
+one in 129 and French one in 199. Thai is the only edition that never does it.
+Nothing worth fixing -- a masher that occasionally tells the truth by accident
+is funnier than one that can't.
 
 The Russian edition's decoy word «дорогой» means both *expensive* and *dear*
 -- a pun the Swedish original (*dyr*) and English (*dear*, as in "it cost him
@@ -56,6 +57,15 @@ edition is the one where the decoys didn't need transposing at all, only
 respelling: *duur* **is** *dyr*, and it even inflects the same way (*duur*
 before a *het*-word, *dure* before a *de*-word or a plural, exactly as Swedish
 picks between *dyrt* and *dyra*).
+
+French carries the same *dear/expensive* pun and is the only edition where the
+language itself keeps the two apart: **`cher` means one or the other depending
+on which side of the noun it stands.** *Un cher ami* is a dear friend, *un ami
+cher* is an expensive one. Every other edition puts its decoy adjective in
+front of the noun; French had to move it behind, or the fake proverbs would
+have read as declarations of friendship. Its four forms -- *cher, chère, chers,
+chères* -- are also four spellings of **one sound**, so this is the first
+edition whose agreement is invisible the moment you read it aloud.
 
 Greek needs the most decoy forms of any edition -- **six**, because `ακριβός`
 agrees in gender as well as number, and drags the article along with it (*ο
@@ -88,6 +98,14 @@ everywhere else carries no marker there at all. A derive rule would have had to
 be taught that; a file carrying both forms simply never mentions it. Polish
 closes the argument from the other side: `(jest/są)` is **suppletive** -- the
 two forms share no letter at all, so there is nothing to derive from.
+
+French settles it. Five verb classes in one file put the seam in five different
+places -- `tomb(e/ent)`, `pourri(t/ssent)`, `crai(nt/gnent)`, `va(ut/lent)`,
+`sui(t/vent)` -- and `faire` has no seam to find, since *fait* and *font* share
+nothing. It also inverts the Greek finding exactly: there the copula was the
+one silent verb in a language you could otherwise hear, while in French the
+copula is the loudest thing in the file and the entire first conjugation, most
+of the language, is marked on the page and inaudible in the ear.
 
 ## Provenance
 

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>COOKIE — mashed-up proverbs</title>
-<meta name="description" content="A proverb masher from 1996: real proverbs chopped in half and glued back wrong, in Swedish, English, Thai, Russian, Dutch, Greek and Polish. Grammar right, meaning mangled.">
+<meta name="description" content="A proverb masher from 1996: real proverbs chopped in half and glued back wrong, in Swedish, English, Thai, Russian, Dutch, Greek, Polish and French. Grammar right, meaning mangled.">
 <style>
   /* ============================================================
      COOKIE.BAS (Liket of Goto10, ~1996) -- the web port.
@@ -253,6 +253,7 @@
     <button data-lang="nl">NL</button>
     <button data-lang="el">ΕΛ</button>
     <button data-lang="pl">PL</button>
+    <button data-lang="fr">FR</button>
   </nav>
   <button id="more">One more</button>
   <button id="auto" aria-pressed="false">[ ] Auto</button>
@@ -288,8 +289,8 @@
       reassembles the real line. The 1996 Swedish data does it about one roll
       in 92. The 1996 label was the Swedish curse `fanheller:`; per remaster
       tradition every edition swears in its own language -- "like hell" /
-      "เหี้ยเอ้ย" / "чёрта с два" / "γαμώτο" / "gówno prawda". This port hosts
-      all seven, so it keeps the original's name in their honour. */
+      "เหี้ยเอ้ย" / "чёрта с два" / "γαμώτο" / "gówno prawda" / "putain". This
+      port hosts all eight, so it keeps the original's name in their honour. */
 
 const LANGS = {
   sv: { file: "data/ORDSPRÅK.TXT",   cp437: true,  period: true,  more: "En till",
@@ -364,6 +365,25 @@ const LANGS = {
         // Polish also has a gender that exists only in the plural (virile
         // "drodzy" vs non-virile "drogie") -- but the present tense collapses
         // them, so the resolver below never has to know it exists.
+        agree: true },
+  fr: { file: "data/PROVERBES.TXT", cp437: false, period: true, more: "Encore un",
+        title: "PROVERBES — des proverbes mélangés",
+        tagline: "de vrais proverbes, recollés dans le mauvais ordre",
+        readme: "readme-fr.html",
+        readmeLabel: "C'est quoi, ça ?",
+        home: "Qui est Leif ?",
+        auto: "Auto",
+        // French conjugates for number as well, so the same marker rule again --
+        // and it is the loudest argument yet for a file that carries both forms
+        // rather than deriving one. The seam falls somewhere different for every
+        // verb class -- tomb(e/ent), pourri(t/ssent), crai(nt/gnent),
+        // va(ut/lent), sui(t/vent) -- and for `faire` there is no seam at all:
+        // fait / font share not one letter. It is also the first edition whose
+        // agreement is INAUDIBLE: the whole first conjugation, which is most of
+        // the language, sounds identical in both numbers, and so do all four
+        // written forms of the decoy adjective (cher/chère/chers/chères, /ʃɛʁ/).
+        // Note the space before ? in the two UI strings above -- that is correct
+        // French typography, not a stray character.
         agree: true },
 };
 

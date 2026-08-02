@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PROVERBES — l'édition française</title>
+<link rel="stylesheet" href="readme.css">
+</head>
+<body>
+<article>
+<a class="back" href="./?lang=fr">← COOKIE</a>
+
+<h1>PROVERBES — des proverbes passés à la moulinette</h1>
+
+<blockquote>
+<p><strong>D'où ça vient.</strong> Adaptation française de <code>COOKIE.BAS</code>,
+écrit par <strong>Leif Claesson (Liket of Goto10)</strong> vers 1996, en
+PowerBASIC sous DOS. L'original suédois et toute l'histoire du moteur sont à
+côté, dans l'<a href="readme-sv.html">édition suédoise</a> — lisez celle-là
+d'abord ; cette page ne parle que de ce que le français a changé. Éditions
+sœurs : <a href="readme-en.html">anglaise</a>, <a href="readme-th.html">thaïe</a>,
+<a href="readme-ru.html">russe</a>, <a href="readme-nl.html">néerlandaise</a>,
+<a href="readme-el.html">grecque</a>, <a href="readme-pl.html">polonaise</a>.
+<strong>Pour Dan et pour Seb.</strong></p>
+</blockquote>
+
+<p>Même moteur, même blague : de vrais proverbes sont coupés en deux par une
+barre verticale, en TÊTE et en QUEUE, rangés dans des groupes où les moitiés
+sont grammaticalement interchangeables, et le programme colle la tête de l'un
+sur la queue d'un <em>autre</em>. Chaque ligne porte aussi la traduction
+anglaise de ses deux moitiés, mélangée avec exactement le même couple
+d'indices — donc sous chaque bêtise française se trouve précisément la même
+bêtise en anglais.</p>
+
+<p>Ici cette traduction n'est pas une politesse faite au lecteur.
+<strong>C'est comme ça que l'auteur relit son propre cadeau</strong> : il ne
+parle pas français. C'est la première édition dont il ne peut pas lire le
+fichier.</p>
+
+<h2>« Cher » change de camp</h2>
+
+<p>Dans le suédois de 1996, le groupe 1 est volontairement bourré de
+<strong>faux</strong> proverbes où le vrai mot est remplacé par
+<code>dyr</code>, « cher » au sens du prix. L'appât <strong>est</strong> la
+blague, et le tirage pondéré par la taille du groupe fait qu'il tombe plus
+souvent que tout le reste.</p>
+
+<p>Toutes les autres éditions mettent l'adjectif-appât <em>devant</em> le nom,
+parce que le suédois, le néerlandais, le grec, le polonais et l'anglais le
+mettent là. Le français, non — et <code>cher</code> fait partie des adjectifs
+dont le <strong>sens change avec la place</strong> :</p>
+
+<div class="scroll">
+<table>
+<tr><th>placé</th><th>exemple</th><th>veut dire</th></tr>
+<tr><td>devant</td><td><code>un cher ami</code></td><td>aimé</td></tr>
+<tr><td>derrière</td><td><code>un ami cher</code></td><td>coûteux</td></tr>
+</table>
+</div>
+
+<p>Le programme le met donc toujours <strong>derrière</strong>. De l'autre côté
+du nom, les faux proverbes ne seraient plus des faux proverbes : ce seraient des
+déclarations d'amitié.</p>
+
+<h2>Quatre orthographes, un seul son</h2>
+
+<div class="scroll">
+<table>
+<tr><th>édition</th><th>appât</th><th>formes</th></tr>
+<tr><td>suédoise 1996</td><td><code>dyr / dyrt / dyra</code></td><td>3</td></tr>
+<tr><td>néerlandaise 2026</td><td><code>duur / dure</code></td><td>2</td></tr>
+<tr><td>grecque 2026</td><td><code>ακριβός</code>…</td><td>6 — et l'article bouge avec</td></tr>
+<tr><td>polonaise 2026</td><td><code>drogi / droga / drogie / drodzy</code></td><td>5 cases, 4 formes, aucun article</td></tr>
+<tr><td><strong>française 2026</strong></td><td><code>cher / chère / chers / chères</code></td><td><strong>4 orthographes — et un seul son</strong></td></tr>
+</table>
+</div>
+
+<p>Les quatre se prononcent <strong>/ʃɛʁ/</strong>. Le <em>-s</em> final est
+muet, et <em>-er</em> dans un monosyllabe fermé se dit exactement comme
+<em>-ère</em>. Les six formes grecques, on les entendait toutes les six. Ici
+l'accord existe sur le papier et nulle part ailleurs : lisez le fichier à voix
+haute et la grammaire disparaît complètement.</p>
+
+<h2>Et au pluriel, l'article cache le genre</h2>
+
+<p>En grec, l'article se déplaçait avec l'adjectif — ο, η, το, οι, οι, τα — et
+c'est lui qui annonçait le genre avant même qu'on arrive au mot suivant. Le
+français a <strong>trois</strong> formes d'article pour quatre cases :</p>
+
+<pre>le poisson cher          la nuit chère
+les murs chers           les apparences chères</pre>
+
+<p><code>les</code> sert aux deux genres. Au pluriel, c'est donc
+<strong>l'appât tout seul</strong> qui porte l'accord : rien d'autre dans la
+phrase ne viendrait contredire « les murs chères ». La discipline des groupes
+compte plus ici qu'en grec, pas moins — précisément parce que la langue donne
+moins de quoi rattraper l'erreur.</p>
+
+<h2>La copule est le verbe le plus bruyant du fichier</h2>
+
+<p>Les verbes français s'accordent en nombre, comme l'anglais, le néerlandais,
+le grec et le polonais, et contrairement au suédois, au thaï et au russe. Un
+<code>+</code> en début de ligne veut dire SUJET AU PLURIEL, et la queue porte
+elle-même les deux formes : <code>port(e/ent)</code>,
+<code>pourri(t/ssent)</code>, <code>(est/sont)</code>.</p>
+
+<p>La grande trouvaille de l'édition grecque, c'était que <code>είναι</code> se
+dit pareil aux deux nombres et ne prend donc aucune signature, alors que tout le
+reste s'entend. <strong>Le français est l'exact inverse.</strong></p>
+
+<div class="scroll">
+<table>
+<tr><th></th><th>à l'écrit</th><th>à l'oreille</th></tr>
+<tr><td>grec <code>είναι</code></td><td>pas de marque</td><td>—</td></tr>
+<tr><td>grec <code>πέφτ(ει/ουν)</code></td><td>marqué</td><td><strong>on entend</strong></td></tr>
+<tr><td>français <code>tomb(e/ent)</code></td><td>marqué</td><td><strong>on n'entend rien</strong></td></tr>
+<tr><td>français <code>(est/sont)</code></td><td>marqué</td><td>on entend, et ça ne se ressemble pas</td></tr>
+</table>
+</div>
+
+<p>Les neuf dixièmes des verbes français sont du premier groupe : marqués à
+l'écrit, muets à l'oreille. Et la copule, elle, ne partage aucune lettre entre
+ses deux nombres — exactement le problème du polonais <code>jest/są</code>.</p>
+
+<h2>La couture ne tombe jamais deux fois au même endroit</h2>
+
+<p>L'édition anglaise avait déjà conclu qu'aucune règle de terminaison ne peut
+retrouver le radical : <em>rise</em>+s et <em>catch</em>+es se terminent pareil
+et se coupent ailleurs. Le français ne se contente pas de le confirmer, il le
+démontre quatre fois dans le même fichier :</p>
+
+<div class="scroll">
+<table>
+<tr><th>verbe</th><th>singulier</th><th>pluriel</th><th>ce qui reste en commun</th></tr>
+<tr><td>tomber</td><td>tomb<strong>e</strong></td><td>tomb<strong>ent</strong></td><td><code>tomb-</code></td></tr>
+<tr><td>pourrir</td><td>pourri<strong>t</strong></td><td>pourri<strong>ssent</strong></td><td><code>pourri-</code></td></tr>
+<tr><td>craindre</td><td>crai<strong>nt</strong></td><td>crai<strong>gnent</strong></td><td><code>crai-</code></td></tr>
+<tr><td>valoir</td><td>va<strong>ut</strong></td><td>va<strong>lent</strong></td><td><code>va-</code></td></tr>
+<tr><td>suivre</td><td>sui<strong>t</strong></td><td>sui<strong>vent</strong></td><td><code>sui-</code></td></tr>
+<tr><td>faire</td><td><strong>fait</strong></td><td><strong>font</strong></td><td>rien du tout</td></tr>
+</table>
+</div>
+
+<p>Six verbes, six coutures différentes, et <em>faire</em> n'en a aucune. Un
+programme qui fabriquerait une forme à partir de l'autre aurait besoin d'une
+table de verbes ; un fichier qui porte les deux n'a besoin de rien.</p>
+
+<h2>Le possessif est gratuit</h2>
+
+<p>En anglais il a fallu marquer <code>(its/their)</code>, parce qu'un possessif
+anglais regarde <strong>en arrière</strong>, vers le sujet. Le possessif français
+s'accorde avec la <strong>chose possédée</strong> :
+« <em>chacun voit midi à <strong>sa</strong> porte</em> » garde
+<code>sa</code> quel que soit le sujet, parce que c'est <em>porte</em> qui
+décide, et pas <em>chacun</em>. Seul le nombre change,
+<code>(sa/leur)</code>. Première édition où le genre n'entre jamais dans la
+queue.</p>
+
+<h2>Deux règles que le français ajoute, et zéro ligne de code</h2>
+
+<p><strong>L'élision voyage dans la parenthèse.</strong> <code>ne</code> s'élide
+devant une voyelle mais pas devant une consonne, donc la marque doit s'écrire
+<code>(n'est/ne sont)</code> et jamais <code>ne (est/sont)</code>. Dans le même
+esprit, aucune tête ne se termine par un mot qui s'élide ou se contracte
+(<em>de</em>, <em>le</em>, <em>à</em>) : la couture doit rester un blanc
+ordinaire.</p>
+
+<p><strong>Et aucune queue ne commence par deux points.</strong> Le français
+demande une espace <em>avant</em> les deux-points — mais le moteur colle sans
+espace toute queue qui commence par une ponctuation, parce que c'est ce dont le
+russe avait besoin. Une virgule ne pose pas de problème ; les deux-points, si.
+Alors il n'y en a pas.</p>
+
+<p>Les deux sont des règles de <em>fichier</em>, pas de programme. Comme en
+grec : le « groupe » de 1996 était déjà une classe d'équivalence de genre et de
+nombre, on ne s'en était simplement jamais servi aussi fort.</p>
+
+<h2>Le proverbe déjà mâché</h2>
+
+<p>En 1996, l'auteur avait planté dans les données un proverbe
+<strong>déjà passé à la moulinette</strong>, bégaiement compris. Chaque
+adaptation lui cherche son propre calembour. L'édition grecque avait trouvé
+<code>φύλλα</code>, qui veut dire à la fois <em>feuilles</em> et
+<em>pâte filo</em>. Le français a exactement la même feuille, et il la fait
+cuire : on ne voit plus la forêt à cause du
+<strong>mille-feuille</strong>.</p>
+
+<h2>Est-ce qu'un vrai proverbe peut sortir ?</h2>
+
+<p>Pendant trente ans, tous les textes de présentation ont affirmé que le
+programme était structurellement incapable d'imprimer un vrai proverbe. C'est
+faux. La règle garantit que les deux <strong>indices</strong> diffèrent, pas les
+deux <strong>chaînes</strong> — et chaque appât porte, caractère pour caractère,
+la queue du vrai proverbe qu'il double. Dans cette édition :
+<strong>14 vrais proverbes sont reconstructibles, à peu près un tirage sur
+199</strong> (et à peu près autant de tirages ressortent un appât intact).</p>
+
+<p>Ce n'est pas un bug à corriger. Les appâts jumeaux <strong>sont</strong> la
+blague, et une machine à mélanger qui dit la vérité par accident de temps en
+temps est plus drôle qu'une machine qui en serait incapable.</p>
+
+<h2>Cette page</h2>
+
+<p>La version web (2026) est le cinquième portage du moteur — PowerBASIC →
+Python → Rust → JavaScript — et elle lit exactement le même format de données
+que l'original DOS. Le fichier <em>est</em> la moitié de la blague, alors il
+n'a pas bougé.</p>
+
+</article>
+<footer>Liket of Goto10, ~1996 → adaptation française 2026, pour Dan et Seb ·
+<a href="https://github.com/leifclaesson/proverb-masher">source</a> ·
+README : <a href="readme-sv.html">SV</a> · <a href="readme-en.html">EN</a> ·
+<a href="readme-th.html">TH</a> · <a href="readme-ru.html">RU</a> ·
+<a href="readme-nl.html">NL</a> · <a href="readme-el.html">EL</a> ·
+<a href="readme-pl.html">PL</a> ·
+<a href="https://leifclaesson.github.io/">Qui est Leif ?</a></footer>
+</body>
+</html>

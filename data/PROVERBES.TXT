@@ -1,0 +1,198 @@
+#               Proverbes 0.5  —  version française d'Ordsprak 0.1-et-quelques
+#               original : Leif Claesson (Liket of Goto10), ~1996
+#
+#       Pour Dan et pour Seb. Deux amis qui ne se connaissent pas, une
+#       seule langue -- et c'est celle que je ne parle pas. Dan, on se
+#       parle anglais depuis 2017 : ton anglais te demande un effort, mon
+#       français en demanderait bien davantage. Voici donc un programme
+#       qui écrit le français plus mal que nous deux réunis. Seb, ça fait
+#       cinq ans que tu écrivais dans le vide sans que je le voie ;
+#       celui-ci arrive avec cinq ans de retard, mais il arrive.
+#
+#       LE MOT « CHER » EST TOUTE LA BLAGUE. Devant le nom il veut dire
+#       aimé, derrière le nom il veut dire coûteux, et le programme le met
+#       toujours derrière. Un cher ami, un ami cher : même mot, deux sens,
+#       et c'est la place qui décide. Dans les autres versions -- suédois,
+#       néerlandais, grec, polonais -- l'adjectif-appât se met devant le
+#       nom. En français il a fallu le faire passer de l'autre côté, sinon
+#       les faux proverbes devenaient des déclarations d'amitié.
+#
+#       ET LES QUATRE FORMES SE PRONONCENT PAREIL. cher, chère, chers,
+#       chères : quatre orthographes, un seul son. La version grecque avait
+#       six formes et on les entendait toutes les six. Ici l'accord existe
+#       sur le papier et nulle part ailleurs -- lisez le fichier à voix
+#       haute et la grammaire disparaît.
+#
+#       Le format est très simple. Les proverbes sont rangés en groupes à
+#       l'intérieur desquels les moitiés sont grammaticalement
+#       interchangeables, et la couture est une barre verticale (|). Une
+#       étoile seule (*) ouvre le groupe suivant. Deux étoiles (**), c'est
+#       la fin du fichier : le programme ne lit rien au-delà.
+#
+#       Chaque ligne a quatre champs :  tête|queue|EN head|EN tail
+#       La traduction anglaise est mélangée avec le MÊME couple d'indices,
+#       donc les bêtises anglaises suivent exactement les françaises. Ici
+#       ce n'est pas une politesse faite au lecteur : c'est comme ça que
+#       l'auteur relit son propre cadeau.
+#
+#       LES VERBES FRANÇAIS S'ACCORDENT EN NOMBRE, comme en anglais, en
+#       néerlandais, en grec et en polonais, et contrairement au suédois,
+#       au thaï et au russe. Un + en début de ligne veut dire SUJET AU
+#       PLURIEL, et la queue porte elle-même les deux formes :
+#           (e/ent)        premier groupe -- et on n'entend rien du tout
+#           (t/ssent)      deuxième groupe -- là, on entend
+#           (est/sont)     le verbe être, qui ne ressemble à rien
+#       C'est exactement l'inverse du grec : là-bas le seul verbe non
+#       marqué était la copule et tout le reste s'entendait. Ici la copule
+#       est le verbe le plus bruyant du fichier, et les neuf dixièmes des
+#       verbes français sont marqués à l'écrit et muets à l'oreille.
+#
+#       LA NÉGATION VOYAGE DANS LA PARENTHÈSE. « ne » s'élide devant une
+#       voyelle mais pas devant une consonne, donc (n'est/ne sont) et
+#       jamais ne (est/sont). C'est la seule règle qu'il a fallu ajouter
+#       pour le français, et c'est une règle de fichier, pas de programme.
+#
+#       LE POSSESSIF EST GRATUIT. En français il s'accorde avec la chose
+#       possédée, pas avec le possesseur : « chacun voit midi à sa porte »
+#       garde « sa » quel que soit le sujet, parce que c'est « porte » qui
+#       décide. Seul le nombre change, (sa/leur). En anglais il fallait
+#       (its/their) ; ici le genre n'entre jamais dans la queue.
+#
+#       LE GROUPE, C'EST L'ACCORD EN GENRE. Les adjectifs attributs
+#       s'accordent (bon, bonne, bons, bonnes), donc les queues du groupe 1
+#       sont UNIQUEMENT des groupes verbaux : pas d'attribut, pas de
+#       participe passé avec être, qui s'accorderait lui aussi. Aucun code
+#       nouveau n'a été nécessaire pour ça. Le « groupe » de 1996 était
+#       déjà une classe d'équivalence de genre et de nombre -- le suédois
+#       ne l'avait simplement jamais poussé aussi loin.
+#
+#       ET LE PLURIEL CACHE LE GENRE. « les » sert aux deux genres, donc
+#       au pluriel c'est l'appât tout seul qui porte l'accord : rien
+#       d'autre dans la phrase ne viendrait contredire « les murs chères ».
+#
+#       LA PONCTUATION VOYAGE DANS LA TÊTE (en russe, c'est l'inverse) :
+#       le français veut une virgule après une subordonnée placée en tête,
+#       et cette subordonnée est justement la tête. Voir le groupe 5.
+#
+#       Le groupe 1 est volontairement bourré de faux proverbes « chers ».
+#       Dans l'original suédois c'étaient de faux dyr/dyrt/dyra, trois
+#       formes ; le grec en demandait six ; le français en demande quatre.
+#       L'appât EST la blague, et le tirage pondéré par groupe fait qu'il
+#       tombe plus souvent que tout le reste.
+#
+#       Enfin, le proverbe déjà mâché que l'auteur avait planté dans le
+#       fichier en 1996, bégaiement compris, est resté. En grec il jouait
+#       sur φύλλα, qui veut dire feuilles ET pâte filo. Le français a la
+#       même feuille : on ne voit plus la forêt à cause du mille-feuille.
+#
+#       Groupe 1 : sujet | prédicat
+Le poisson cher|pourri(t/ssent) par la tête|The expensive fish|rot(s) from the head
+L'habit cher|ne (fait/font) pas le moine|The expensive habit|(doesn't/don't) make the monk
+Le temps cher|guéri(t/ssent) toutes les blessures|Expensive time|heal(s) all wounds
+L'appétit cher|vien(t/nent) en mangeant|The expensive appetite|come(s) with the eating
+La nuit chère|port(e/ent) conseil|The expensive night|bring(s) counsel
+Une hirondelle chère|ne (fait/font) pas le printemps|One expensive swallow|(doesn't/don't) make the spring
+La faim chère|chass(e/ent) le loup hors du bois|Expensive hunger|drive(s) the wolf out of the wood
+La pomme chère|ne tomb(e/ent) jamais loin de l'arbre|The expensive apple|never fall(s) far from the tree
++Les murs chers|(a/ont) des oreilles|Expensive walls|ha(s/ve) ears
++Les comptes chers|(fait/font) les bons amis|Expensive accounts|make(s) good friends
++Les ruisseaux chers|(fait/font) les grandes rivières|Expensive streams|make(s) the great rivers
++Les apparences chères|tromp(e/ent)|Expensive appearances|deceive(s)
++Les paroles chères|s'envol(e/ent)|Expensive spoken words|fl(ies/y) away
++Les habitudes chères|(a/ont) la vie dure|Expensive habits|ha(s/ve) a hard life
+Le poisson|pourri(t/ssent) par la tête|The fish|rot(s) from the head
+L'habit|ne (fait/font) pas le moine|The habit|(doesn't/don't) make the monk
+Le temps|guéri(t/ssent) toutes les blessures|Time|heal(s) all wounds
+L'appétit|vien(t/nent) en mangeant|Appetite|come(s) with the eating
+La nuit|port(e/ent) conseil|The night|bring(s) counsel
+Une hirondelle|ne (fait/font) pas le printemps|One swallow|(doesn't/don't) make the spring
+La faim|chass(e/ent) le loup hors du bois|Hunger|drive(s) the wolf out of the wood
+La pomme|ne tomb(e/ent) jamais loin de l'arbre|The apple|never fall(s) far from the tree
++Les murs|(a/ont) des oreilles|Walls|ha(s/ve) ears
++Les bons comptes|(fait/font) les bons amis|Good accounts|make(s) good friends
++Les petits ruisseaux|(fait/font) les grandes rivières|Little streams|make(s) the great rivers
++Les apparences|tromp(e/ent)|Appearances|deceive(s)
++Les paroles|s'envol(e/ent)|Spoken words|fl(ies/y) away
++Les vieilles habitudes|(a/ont) la vie dure|Old habits|ha(s/ve) a hard life
+L'argent|ne (fait/font) pas le bonheur|Money|(doesn't/don't) make happiness
+Le mieux|(est/sont) l'ennemi du bien|The better|(is/are) the enemy of the good
+Le chien qui aboie|ne mor(d/dent) pas|The dog that barks|(doesn't/don't) bite
+L'occasion|(fait/font) le larron|Opportunity|make(s) the thief
+L'exception|confirm(e/ent) la règle|The exception|confirm(s) the rule
+La fin|justifi(e/ent) les moyens|The end|justif(ies/y) the means
+La vérité|sor(t/tent) de la bouche des enfants|Truth|come(s) out of the mouth of children
+L'union|(fait/font) la force|Union|make(s) strength
+Le silence|(est/sont) d'or|Silence|(is/are) golden
+La parole|(est/sont) d'argent|Speech|(is/are) silver
+L'habitude|(est/sont) une seconde nature|Habit|(is/are) a second nature
+Le malheur des uns|(fait/font) le bonheur des autres|The misfortune of some|make(s) the happiness of others
+Le chat échaudé|crai(nt/gnent) l'eau froide|The scalded cat|fear(s) cold water
+La curiosité|(est/sont) un vilain défaut|Curiosity|(is/are) an ugly flaw
+Le jeu|n'en va(ut/lent) pas la chandelle|The game|(isn't/aren't) worth the candle
+Le monde|appartien(t/nent) à ceux qui se lèvent tôt|The world|belong(s) to those who rise early
+La vengeance|(est/sont) un plat qui se mange froid|Revenge|(is/are) a dish that is eaten cold
+Le cœur|(a/ont) (ses/leurs) raisons|The heart|ha(s/ve) (its/their) reasons
+Toute peine|mérit(e/ent) salaire|Every effort|deserve(s) (its/their) wages
+Chacun|voi(t/ent) midi à (sa/leur) porte|Everyone|see(s) noon at (his/their) own door
++Les chiens|ne (fait/font) pas des chats|Dogs|(doesn't/don't) make cats
++Les grands esprits|se rencontr(e/ent)|Great minds|meet(s)
++Les jours|se sui(t/vent) sans se ressembler|The days|follow(s) one another without resembling one another
++Les bonnes clôtures|(fait/font) les bons voisins|Good fences|make(s) good neighbours
++Les conseilleurs|(n'est/ne sont) pas les payeurs|The advisers|(isn't/aren't) the payers
+L'appétit|ne voi(t/ent) ne voi(t/ent) pas la forêt à cause du mille-feuille|Appetite|(doesn't/don't) see (doesn't/don't) see the forest for the mille-feuille
+*
+#       Groupe 2 : qui ... | ...   (la tête est toujours au singulier,
+#       donc ici pas une seule ligne n'a besoin d'être marquée)
+Qui vole un œuf|vole un bœuf|He who steals an egg|steals an ox
+Qui sème le vent|récolte la tempête|He who sows the wind|reaps the storm
+Qui va à la chasse|perd sa place|He who goes hunting|loses his place
+Qui dort|dîne|He who sleeps|dines
+Qui rit vendredi|dimanche pleurera|He who laughs on Friday|will weep on Sunday
+Qui trop embrasse|mal étreint|He who embraces too much|holds badly
+Qui se ressemble|s'assemble|He who resembles|assembles
+Qui ne dit mot|consent|He who says not a word|consents
+Qui aime bien|châtie bien|He who loves well|punishes well
+Qui vivra|verra|He who lives|will see
+Qui paie ses dettes|s'enrichit|He who pays his debts|grows rich
+Qui n'avance pas|recule|He who does not go forward|goes backward
+*
+#       Groupe 3 : mieux vaut ceci | que cela
+Mieux vaut tard|que jamais|Better late|than never
+Mieux vaut prévenir|que guérir|Better to prevent|than to cure
+Mieux vaut être seul|que mal accompagné|Better to be alone|than badly accompanied
+Mieux vaut plier|que rompre|Better to bend|than to break
+Mieux vaut un tiens|que deux tu l'auras|Better one in the hand|than two you shall have
+Mieux vaut peu|que rien|Better a little|than nothing
+Mieux vaut s'adresser à Dieu|qu'à ses saints|Better to address God|than his saints
+*
+#       Groupe 4 : il ne faut pas faire ceci | ...
+Il ne faut pas vendre la peau de l'ours|avant de l'avoir tué|Don't sell the bear's skin|before you have killed it
+Il ne faut pas mettre tous ses œufs|dans le même panier|Don't put all your eggs|in the same basket
+Il ne faut pas réveiller le chat|qui dort|Don't wake the cat|that is sleeping
+Il ne faut pas remettre au lendemain|ce qu'on peut faire le jour même|Don't put off until tomorrow|what you can do the same day
+Il ne faut pas jeter le bébé|avec l'eau du bain|Don't throw out the baby|with the bathwater
+Il ne faut pas courir deux lièvres|à la fois|Don't chase two hares|at the same time
+Il ne faut pas juger l'arbre|à son écorce|Don't judge the tree|by its bark
+*
+#       Groupe 5 : complément placé en tête | proposition principale
+#       (ici la virgule voyage dans la TÊTE, parce que c'est là que se
+#       trouve la subordonnée qui la réclame)
+Quand le chat n'est pas là,|les souris dansent|When the cat is away,|the mice dance
+Il n'y a pas de fumée|sans feu|There is no smoke|without fire
+Au royaume des aveugles,|les borgnes sont rois|In the kingdom of the blind,|the one-eyed are kings
+Après la pluie,|le beau temps|After the rain,|the fine weather
+Petit à petit,|l'oiseau fait son nid|Little by little,|the bird builds its nest
+Loin des yeux,|loin du cœur|Far from the eyes,|far from the heart
+Tel père,|tel fils|Like father,|like son
+Chose promise,|chose due|A thing promised,|a thing owed
+Ventre affamé|n'a point d'oreilles|An empty belly|has no ears
+À bon chat,|bon rat|To a good cat,|a good rat
+À l'impossible,|nul n'est tenu|To the impossible,|no one is held
+**
+#       — les réserves, cachées derrière le **, là où le programme ne va
+#       pas. Les trois mêmes que l'auteur avait mises de côté en 1996,
+#       maintenant en français. Toutes les trois ont un jumeau français
+#       exact, il n'y a rien eu à inventer.
+Il faut battre le fer|pendant qu'il est chaud|One must strike the iron|while it is hot
+Quand le vin entre,|la raison sort|When the wine goes in,|reason goes out
+Trop de cuisiniers|gâtent la sauce|Too many cooks|spoil the sauce
