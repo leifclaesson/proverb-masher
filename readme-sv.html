@@ -18,9 +18,11 @@
 decennier senare vid en arkeologisk utgrävning bland gamla diskar, tillsammans
 med datafilen <code>ORDSPRÅK.TXT</code> (CP437) och en hög med
 upplösningstabeller för tweak-mode-VGA (<code>.256</code>) från samma tid.
-Originaldatafilen serveras på den här sajten <strong>byte för byte
-orörd</strong> — fortfarande CP437, avkodad med en handknackad tabell på 128
-poster, för det var vad DOS-text faktiskt var.</p>
+Filen är fortfarande CP437, avkodad med en handknackad tabell på 128 poster,
+för det var vad DOS-text faktiskt var. Den låg dessutom <strong>byte för byte
+orörd</strong> ända fram till <strong>2026-08-03</strong>, då den fick växa —
+se <a href="#utokningen">Utökningen 2026</a> längre ner. 1996 års artefakt
+ligger kvar orörd i arkivet.</p>
 </blockquote>
 
 <p>Det är en <strong>ordspråksmixer</strong>. Varje ordspråk delas av ett
@@ -83,9 +85,9 @@ svär på engelska, den thailändska på thai
 
 <p>Fast inte riktigt. Lockbetena delar svans med sina äkta motsvarigheter
 (<code>Dyrt barn|skyr elden</code> står granne med <code>Bränt barn|skyr
-elden</code>), så ungefär var nittionde gång ramlar <em>Bränt barn skyr
+elden</code>), så ungefär var hundrafemte gång ramlar <em>Bränt barn skyr
 elden</em> ut helt korrekt, ihopsatt av två skilda rader och helt enligt
-reglerna.</p>
+reglerna. (I 1996 års mindre fil hände det var nittionde gång.)</p>
 
 <p>Notera det färdigmixade ordspråk som är inplanterat rakt i 1996 års
 <em>data</em>, stakningen och allt: <em>Den som gapar efter galen fågel ser
@@ -95,11 +97,53 @@ inte ser inte skogen för alla ben.</em></p>
 
 <p>Webbutgåvan (2026) är motorns femte portning — PowerBASIC → Python → Rust →
 JavaScript — och läser exakt samma dataformat som DOS-originalet gjorde. Den
-engelska spegeltexten under den svenska utskriften ligger i en egen sidofil, så
-1996 års datafil behövde aldrig röras.</p>
+engelska spegeltexten under den svenska utskriften ligger i en egen sidofil,
+rad för rad bredvid den svenska.</p>
+
+<h2 id="utokningen">Utökningen 2026 — Ordspråk 1.0</h2>
+
+<p>Datafilen låg orörd från 1996 till <strong>2026-08-03</strong>. Då bestämde
+Leif att den inte skulle fortsätta göra det, och skälet är hans eget:</p>
+
+<blockquote><p>”Efter 30 år förtjänar svenskan också lite kärlek. För
+museiföremålet är att den finns över huvud taget. Vi behöver inte begränsa oss
+till vad jag kom på 1996 nu när vi har språkmodeller som hjälper oss med just
+språk. Så vi gör den bättre.”</p></blockquote>
+
+<p>Poängen som gör det möjligt: <strong>museiföremålet är att programmet finns,
+inte att datafilen är fryst.</strong> Innehållet från 1996 var en
+sjuttonårings ordförråd och en kvälls hågkomst — en begränsning, inte ett
+designbeslut. Själva artefakten ligger kvar orörd i arkivet oavsett.</p>
+
+<p>Så filen gick från <strong>0.1ß till 1.0</strong> — trettio år till en jämn
+siffra.</p>
+
+<div class="scroll">
+<table>
+<tr><th></th><th>1996</th><th>2026</th></tr>
+<tr><td>grupper</td><td>4</td><td><strong>5</strong></td></tr>
+<tr><td>ordspråk</td><td>35</td><td><strong>103</strong></td></tr>
+<tr><td>dyra lockbeten</td><td>8</td><td><strong>18</strong></td></tr>
+<tr><td>möjliga kombinationer</td><td>516</td><td><strong>3 780</strong></td></tr>
+</table>
+</div>
+
+<p><strong>Ingenting från 1996 är ändrat, omflyttat eller borttaget.</strong>
+Varje grupp har kvar sitt ursprungliga block först, under en kommentar
+<code>-- 1996 --</code>, och det nya under <code>-- 2026 --</code>. Tar man bort
+2026-blocken får man tillbaka originalfilen precis som den var. Det gäller även
+<em>Gamla kvastar sopar bäst</em>, där det egentligen heter <em>nya</em>
+kvastar. Så skrev han, och så får det stå.</p>
+
+<p><strong>Grupp 5 är ny</strong> — framförställd bisats, sedan huvudsats med
+omvänd ordföljd (<code>När katten är borta,|dansar råttorna på bordet</code>).
+Svenskan är V2, så efter en framförställd bisats kommer det finita verbet
+först. Det blir en hård regel för datan: <strong>varje svans i grupp 5 måste
+börja på ett finit verb</strong>, annars blir varenda kombination i gruppen
+ordsallad.</p>
 
 </article>
-<footer>Liket of Goto10, ~1996 → återupplivad 2026 ·
+<footer>Liket of Goto10, ~1996 → återupplivad 2026 → utökad 2026-08-03 ·
 <a href="https://github.com/leifclaesson/proverb-masher">source</a> ·
 README: <a href="readme-en.html">EN</a> · <a href="readme-th.html">TH</a> ·
 <a href="readme-ru.html">RU</a> · <a href="readme-nl.html">NL</a> ·

@@ -1,4 +1,22 @@
-#  สุภาษิตมั่ว ๐.๒  --  รีมาสเตอร์ไทยของ Ordspråk โดย Leif (Liket of Goto10)
+#  สุภาษิตมั่ว ๐.๕  --  รีมาสเตอร์ไทยของ Ordspråk ๐.๑ กว่า ๆ
+#  ต้นฉบับ: Leif Claesson (Liket of Goto10), ~๑๙๙๖ (พ.ศ. ๒๕๓๙)
+#
+#  สำหรับคนที่ทำงานกับเลย์ฟ. เจ้าของโปรแกรมนี้เขียนมันตอนเป็นวัยรุ่น
+#  เมื่อสามสิบปีก่อน แล้วสามสิบปีต่อมาก็ยังมานั่งแก้มันอยู่ -- ซึ่งบอก
+#  อะไรเกี่ยวกับเขาได้เยอะกว่าตัวโปรแกรมเสียอีก.
+#
+#  ชื่อไทยของเขาคือ เลย์ฟ กลอซน. ท้ายนามสกุลเป็น "ซน" เพราะเขาเลือกเอง
+#  โปรแกรมที่จงใจทำสุภาษิตให้พัง เขียนโดยคนที่ชื่อในภาษาไทยแปลว่าซน
+#  ก็ถือว่าตรงกันดี.
+#
+#  กับดักสำหรับคนสวีเดน -- และคนสวีเดนเป็นคนเขียนไฟล์นี้: คำว่า "ฝัน"
+#  ในภาษาไทย ออกเสียงเกือบเหมือนคำว่า fan ในภาษาสวีเดน ซึ่งแปลว่าผี
+#  ซาตาน และเป็นคำหยาบที่ต้นฉบับปี ๑๙๙๖ ใช้ตั้งชื่อลูปวนซ้ำในโปรแกรม
+#  (fanheller). ลูปที่ด่าในภาษาสวีเดน กลับฝันในภาษาไทย.
+#
+#  และคำว่า "ขัน" ในไฟล์นี้มีสามความหมายพร้อมกัน: ภาชนะตักน้ำ, เสียงไก่,
+#  และตลก. ไฟล์ที่มีหน้าที่ทำให้คนขำ เขียนในภาษาที่เสียงไก่กับเสียงหัวเราะ
+#  เป็นคำเดียวกัน.
 #
 #  รูปแบบไฟล์:  ท่อนหน้า|ท่อนหลัง|EN head|EN tail
 #  จับสุภาษิตที่เข้ากันได้ทางไวยากรณ์ไว้กลุ่มเดียวกัน แล้วใส่ | ตรงรอยต่อ
@@ -6,7 +24,67 @@
 #  แล้วยังถูกไวยากรณ์อังกฤษด้วย เวลาสับ ภาษาอังกฤษเลยมั่วตามไทยเป๊ะ
 #  * ขึ้นต้นบรรทัด = ขึ้นกลุ่มใหม่   ** = จบไฟล์ (บรรทัดถัดไปถูกข้าม)
 #
-#  กลุ่ม ๑ : สถานการณ์ | คำสอน   (กลุ่มใหญ่สุด = ออกบ่อยสุด = ฮาสุด)
+#  ภาษาไทยไม่ผันคำกริยา ไม่มีเพศ ไม่มีพจน์ ไม่มีคำนำหน้านาม เพราะฉะนั้น
+#  ไฟล์นี้ไม่มีเครื่องหมาย (s) หรือ (x/y) แบบฉบับอังกฤษ ดัตช์ กรีก โปแลนด์
+#  และฝรั่งเศสเลยสักตัวเดียว -- เหมือนฉบับสวีเดนกับรัสเซีย.
+#
+#  คำล่อในไฟล์นี้คือ "แพง". ต้นฉบับปี ๑๙๙๖ แอบใส่สุภาษิตปลอมที่มีคำว่า
+#  dyr/dyrt/dyra (แพง) ปนไว้ในกลุ่มที่ ๑ และคำล่านี่แหละคือมุกหลักของ
+#  โปรแกรม. ทุกฉบับต้องผันคำนี้ตามไวยากรณ์ของตัวเอง: สวีเดน ๓ รูป,
+#  ดัตช์ ๒, กรีก ๖, ฝรั่งเศส ๔. ภาษาไทยใช้รูปเดียว เพราะไม่มีอะไรให้ผัน.
+#
+#  และคำล่าไทยวางไว้ "หลัง" คำนาม เหมือนฝรั่งเศส -- แต่ฝรั่งเศสต้องย้าย
+#  มันไปไว้ข้างหลังเอง ส่วนภาษาไทยไม่มีข้างหน้าให้เลือกตั้งแต่แรก.
+#
+#  ที่แปลกกว่านั้น: คำวิเศษณ์ไทยเป็นคำกริยาในตัวเอง แปลว่า "หมาแพง"
+#  อ่านได้สองแบบพร้อมกัน -- "หมาที่แพง" (ยังไม่จบประโยค) กับ "หมานั้นแพง"
+#  (จบประโยคแล้ว). ฉบับอื่นคำล่าเป็นแค่คำนามที่รอภาคแสดง ของไทยเป็น
+#  ประโยคเต็มไปแล้วก่อนที่ท่อนหลังจะมาต่อ.
+#
+#  บังเอิญคำว่า "กำแพง" มีคำว่า "แพง" ซ่อนอยู่ในตัวมันเอง.
+#
+#  ช่องว่างในภาษาไทยไม่ได้คั่นคำ แต่คั่นวลี ตรงรอยต่อโปรแกรมจึงเติม
+#  ช่องว่างให้ถูกที่พอดี -- แต่แปลว่าท่อนหน้าทุกท่อนต้องยืนเป็นวลีได้เอง
+#  และห้ามขึ้นต้นท่อนหลังด้วย ๆ เพราะไม้ยมกซ้ำคำที่อยู่ "ข้างหน้า" มัน
+#  ซึ่งจะกลายเป็นซ้ำคำสุดท้ายของท่อนหน้าข้ามรอยต่อไปทุกคู่.
+#
+#  กลุ่ม ๑ : ประธาน | ภาคแสดง   (กลุ่มใหญ่สุด = ออกบ่อยสุด = ฮาสุด)
+#            กลุ่มนี้คือที่อยู่ของคำล่อ "แพง"
+หมาแพง|หวงก้าง|The expensive dog|guards the fishbone
+เสือแพง|ซ่อนเล็บ|The expensive tiger|hides its claws
+ไก่แพง|ได้พลอย|The expensive chicken|gets the gemstone
+กำแพงแพง|มีหู|The expensive wall|has ears
+ปลาใหญ่แพง|กินปลาเล็ก|The expensive big fish|eats the small fish
+เงาแพง|ตามตัว|An expensive shadow|follows the body
+วัวแพง|ชอบกินหญ้าอ่อน|The expensive ox|likes to eat young grass
+เวลาแพง|เป็นเงินเป็นทอง|Expensive time|is silver and gold
+ลูกไม้แพง|หล่นไม่ไกลต้น|The expensive fruit|falls not far from the tree
+ผักชีแพง|โรยหน้า|Expensive coriander|is sprinkled on top
+หมา|หวงก้าง|The dog|guards the fishbone
+เสือ|ซ่อนเล็บ|The tiger|hides its claws
+ไก่|ได้พลอย|The chicken|gets the gemstone
+กำแพง|มีหู|The wall|has ears
+ปลาใหญ่|กินปลาเล็ก|The big fish|eats the small fish
+เงา|ตามตัว|The shadow|follows the body
+วัวแก่|ชอบกินหญ้าอ่อน|The old ox|likes to eat young grass
+เวลา|เป็นเงินเป็นทอง|Time|is silver and gold
+ลูกไม้|หล่นไม่ไกลต้น|The fruit|falls not far from the tree
+ผักชี|โรยหน้า|Coriander|is sprinkled on top
+น้ำนิ่ง|ไหลลึก|Still water|flows deep
+น้ำน้อย|ย่อมแพ้ไฟ|Little water|must lose to fire
+ปลาหมอ|ตายเพราะปาก|The climbing perch|dies because of its mouth
+กระต่าย|หมายจันทร์|The rabbit|aims for the moon
+ช้างตายทั้งตัว|เอาใบบัวปิดไม่มิด|A whole dead elephant|cannot be hidden under a lotus leaf
+ความรู้ท่วมหัว|เอาตัวไม่รอด|Knowledge over one's head|cannot save itself
+กิ้งก่า|ได้ทอง|The chameleon|comes into gold
+ดิน|พอกหางหมู|Earth|cakes on the pig's tail
+ชาติเสือ|ต้องไว้ลาย|A tiger's breed|must show its stripes
+ปลาตัวเดียว|เน่าทั้งข้อง|One single fish|rots the whole basket
+สี่เท้า|ยังรู้พลาด|Even a four-legged beast|still knows a stumble
+นักปราชญ์|ยังรู้พลั้ง|Even a sage|still knows a slip
+ไก่งาม|ขันไม่ออก ขันไม่ออก เพราะขันแตก|The fine rooster|can't crow can't crow because the bowl is cracked
+*
+#  กลุ่ม ๒ : สถานการณ์ | คำสอน
 น้ำขึ้น|ให้รีบตัก|When the water rises,|hurry and scoop it up
 รักวัว|ให้ผูก|If you love your cow,|tie it up
 รักลูก|ให้ตี|If you love your child,|give it a beating
@@ -16,8 +94,22 @@
 น้ำเชี่ยว|อย่าขวางเรือ|In a fierce current,|don't row across
 ตักบาตร|อย่าถามพระ|When you give alms,|don't question the monk
 ช้าๆ|ได้พร้าเล่มงาม|Slow and steady,|you'll get a fine blade
+เข้าเถื่อน|อย่าลืมพร้า|Going into the wild,|don't forget your machete
+น้ำลด|ตอผุด|When the water drops,|the stumps show
+รักพี่|เสียดายน้อง|Loving the elder,|you pity the younger
+หนีเสือ|ปะจระเข้|Fleeing the tiger,|you meet the crocodile
+ชี้โพรง|ให้กระรอก|Pointing out the hollow,|you hand it to the squirrel
+เห็นช้างขี้|ขี้ตามช้าง|Seeing the elephant drop dung,|you drop dung after it
+ได้ที|ขี่แพะไล่|Getting the upper hand,|you ride a goat in pursuit
+ฝนตก|ขี้หมูไหล|When the rain falls,|the pig dung floats
+ขว้างงู|ไม่พ้นคอ|Throwing the snake,|you don't clear your own neck
+กว่าถั่วจะสุก|งาก็ไหม้|By the time the beans are cooked,|the sesame has burnt
+ตาบอด|ได้แว่น|Being blind,|you come by spectacles
+หัวล้าน|ได้หวี|Being bald,|you come by a comb
+ชักใบ|ให้เรือเสีย|Hoisting the sail,|you wreck the boat
+รู้ไว้ใช่ว่า|ใส่บ่าแบกหาม|Knowing a thing,|you carry no load on your shoulders
 *
-#  กลุ่ม ๒ : ลงมือทำ | เป้าหมาย/วิธี
+#  กลุ่ม ๓ : ลงมือทำ | เป้าหมาย/วิธี
 ขี่ช้าง|จับตั๊กแตน|Ride an elephant|to catch a grasshopper
 เข็นครก|ขึ้นภูเขา|Push a mortar|up the mountain
 สีซอ|ให้ควายฟัง|Play the fiddle|for the buffalo to hear
@@ -25,15 +117,62 @@
 ปิดทอง|หลังพระ|Lay gold leaf|on the back of the Buddha
 ตีงู|ให้กากิน|Beat the snake|to feed the crows
 ตำน้ำพริก|ละลายแม่น้ำ|Pound chili paste|and stir it into the river
+จับปลา|สองมือ|Catch fish|with two hands at once
+สอนจระเข้|ให้ว่ายน้ำ|Teach a crocodile|to swim
+งมเข็ม|ในมหาสมุทร|Grope for a needle|in the ocean
+ขายผ้า|เอาหน้ารอด|Sell the shirt off your back|to save face
+ตักน้ำใส่กะโหลก|ชะโงกดูเงา|Scoop water into a skull|and stoop to see your reflection
+ขนทราย|เข้าวัด|Haul sand|into the temple
+ฆ่าช้าง|เอางา|Kill an elephant|to take the tusks
+เอามะพร้าวห้าว|ไปขายสวน|Take ripe coconuts|to sell in the orchard
+ตำข้าวสาร|กรอกหม้อ|Pound the rice|to fill one pot
+ยืมจมูกคนอื่น|หายใจ|Borrow another man's nose|to breathe with
+เอาพิมเสน|ไปแลกกับเกลือ|Trade away camphor|for common salt
+ทำนา|บนหลังคน|Farm the paddy|on other people's backs
+จุดไต้|ตำตอ|Light the torch|and walk into the stump
+กินบนเรือน|ขี้รดบนหลังคา|Eat inside the house|and foul the roof
+เลี้ยงช้าง|กินขี้ช้าง|Keep an elephant|and live off its dung
+หว่านพืช|หวังผล|Sow the seed|and hope for the fruit
 *
-#  กลุ่ม ๓ : สำนวนคู่ขนาน (ท่อนหน้า/ท่อนหลังเป็นประโยคเต็มทั้งคู่)
+#  กลุ่ม ๔ : ข้อห้าม -- อย่า...
+อย่าตีตน|ไปก่อนไข้|Don't beat yourself|before the fever comes
+อย่าหักด้ามพร้า|ด้วยเข่า|Don't break the machete handle|with your knee
+อย่าฟื้นฝอย|หาตะเข็บ|Don't rake the litter|looking for centipedes
+อย่ารีดเลือด|กับปู|Don't squeeze blood|out of a crab
+อย่าหาเหา|ใส่หัว|Don't go hunting lice|to put in your own hair
+อย่าเอาไม้สั้น|ไปรันขี้|Don't take a short stick|to poke the dung
+อย่าสอนหนังสือ|สังฆราช|Don't teach reading|to the Supreme Patriarch
+อย่าชักน้ำเข้าลึก|ชักศึกเข้าบ้าน|Don't draw the water in deep|and the war into your house
+อย่าเห็นขี้|ดีกว่าไส้|Don't hold the dung|dearer than the gut
+อย่าเอาลูกเขามาเลี้ยง|เอาเมี่ยงเขามาอม|Don't take another's child to raise|and another's snack to chew
+อย่าจับปลา|ทีเดียวสองมือ|Don't catch fish|with two hands at once
+*
+#  กลุ่ม ๕ : สำนวนคู่ขนาน (ท่อนหน้า/ท่อนหลังเป็นวลีสมดุลกันทั้งคู่)
 ไก่งามเพราะขน|คนงามเพราะแต่ง|A rooster is fine for its feathers,|a person for their clothes
 น้ำพึ่งเรือ|เสือพึ่งป่า|Water leans on the boat,|the tiger leans on the forest
 น้ำร้อนปลาเป็น|น้ำเย็นปลาตาย|In hot water the fish lives,|in cold water it dies
 เข้าหูซ้าย|ทะลุหูขวา|In the left ear,|out the right
 ปากว่า|ตาขยิบ|The mouth says one thing,|the eye winks another
-น้ำนิ่ง|ไหลลึก|Still waters,|run deep
+เอาหูไปนา|เอาตาไปไร่|Send your ears to the paddy,|send your eyes to the field
+ไก่เห็นตีนงู|งูเห็นนมไก่|The chicken sees the snake's feet,|the snake sees the chicken's breasts
+ปากปราศรัย|น้ำใจเชือดคอ|The mouth makes a speech,|the heart cuts your throat
+น้ำขุ่นไว้ใน|น้ำใสไว้นอก|Keep the muddy water inside,|the clear water outside
+อย่าไว้ใจทาง|อย่าวางใจคน|Don't trust the road,|don't trust people
+มือไม่พาย|เอาเท้าราน้ำ|The hands don't paddle,|the feet drag in the water
+เข้าตามตรอก|ออกตามประตู|Come in by the lane,|go out by the door
+ไม้อ่อนดัดง่าย|ไม้แก่ดัดยาก|Young wood bends easily,|old wood bends hard
+ไปลา|มาไหว้|Take your leave going,|pay respect coming
+ตกน้ำไม่ไหล|ตกไฟไม่ไหม้|Fallen in water it won't float away,|fallen in fire it won't burn
+ปากหวาน|ก้นเปรี้ยว|The mouth is sweet,|the backside is sour
+หน้าเนื้อ|ใจเสือ|The face of a deer,|the heart of a tiger
+ชั่วเจ็ดที|ดีเจ็ดหน|Seven turns of bad,|seven turns of good
+สิบปากว่า|ไม่เท่าตาเห็น|Ten mouths telling|are not worth one eye seeing
+คบคนพาล|พาลพาไปหาผิด|Keep company with a fool,|the fool leads you to ruin
+คบบัณฑิต|บัณฑิตพาไปหาผล|Keep company with a sage,|the sage leads you to fruit
+ตบมือข้างเดียว|ไม่ดัง|One hand clapping|makes no sound
 **
 #  -- ตัวสำรอง อยู่หลัง ** โปรแกรมไม่อ่าน (จงใจให้เหมือนต้นฉบับเป๊ะ) --
+#  สามบรรทัดที่ต้นฉบับปี ๑๙๙๖ เก็บไว้หลัง ** เหมือนกัน แต่เป็นภาษาไทย
 รักยาวให้บั่น|รักสั้นให้ต่อ|If love is long, trim it short,|if short, splice it on
 ช้าๆ|ได้พร้าสองเล่มงาม|Slow and steady,|you'll get two fine blades
+ตน|เป็นที่พึ่งแห่งตน|Oneself|is one's own refuge

@@ -1,10 +1,40 @@
-#               Ordspr†k 0.1á av Leif Claesson (Liket of Goto10)
+#               Ordspr†k 1.0 av Leif Claesson (Liket of Goto10)
+#               original ~1996, ut”kad 2026-08-03
 #
 #       Filformatet „r v„ldigt enkelt. Dela upp ordspr†k i grupper som passar
 #       ihop med varandra, och s„tt pipe-tecknet (|) p† r„tt st„lle.
 #       ** i b”rjan av raden indikerar filslut - programmet ignorerar
 #       efterf”ljande rader.
 #
+#       DEN HR FILEN LG OR™RD I TRETTIO R. Att den inte l„ngre g”r det „r
+#       ett beslut jag tog 2026-08-03, och sk„let st†r h„r s† att ingen tror
+#       att den r†kat bli s”nderredigerad:
+#
+#           "Efter 30 †r f”rtj„nar svenskan ocks† lite k„rlek. F”r
+#           museif”rem†let „r att den finns ”ver huvud taget. Vi beh”ver inte
+#           begr„nsa oss till vad jag kom p† 1996 nu n„r vi har spr†kmodeller
+#           som hj„lper oss med just spr†k. S† vi g”r den b„ttre."
+#
+#       Museif”rem†let „r allts† programmet, inte datafilen. 1996 †rs rader
+#       ligger kvar ord f”r ord, i sin ursprungliga ordning, under -- 1996 --
+#       i varje grupp; allt nytt ligger under -- 2026 --. Tar man bort
+#       2026-blocken f†r man tillbaka originalfilen precis som den var.
+#       Ingen gammal rad „r „ndrad, inte heller "Gamla kvastar sopar b„st"
+#       d„r det egentligen heter nya. S† skrev jag, och s† f†r det st†.
+#
+#       Grupp 5 „r ny. Svenskan „r V2, s† efter en framf”rst„lld bisats
+#       kommer det finita verbet f”rst -- varje svans i den gruppen m†ste
+#       d„rf”r b”rja p† ett verb, annars blir varje kombination ordsallad.
+#
+#       Filen „r fortfarande CP437, precis som 1996. Avkodningstabellen p†
+#       128 tecken som varje port har f†tt skriva f”r hand „r halva sk„mtet.
+#
+#       Engelskan bor i ORDSPRK-EN.TXT bredvid, rad f”r rad. B†da filerna
+#       genereras ur samma tabell (misc/scripts/cookie-swedish-build.py) s†
+#       att de inte kan glida is„r.
+#
+#       Grupp 1: subjekt | predikat -- och hem †t de dyra lockbetena
+#       -- 1996 --
 Dyra barn|leka b„st
 Dyrt barn|skyr elden
 Dyra kvastar|sopar b„st
@@ -27,7 +57,46 @@ Ett gott skratt|f”rl„nger livet
 Liten tuva|stj„lper ofta stora lass
 En l”gnare|m†ste ha bra minne
 Den som gapar efter galen f†gel|ser inte ser inte skogen f”r alla ben
+#       -- 2026 --
+En dyr morgonstund|har guld i mund
+Dyr ”vning|ger f„rdighet
+Dyrt krut|f”rg†s inte s† l„tt
+Dyrt blod|„r tjockare „n vatten
+Dyra b„ckar sm†|g”r en stor †
+Alla dyra ting|„r tre
+En dyr svala|g”r ingen sommar
+Dyra v„ggar|har ”ron
+Dyr skam|g†r p† torra land
+En dyr olycka|kommer s„llan ensam
+Morgonstund|har guld i mund
+™vning|ger f„rdighet
+Ont krut|f”rg†s inte s† l„tt
+Blod|„r tjockare „n vatten
+M†nga b„ckar sm†|g”r en stor †
+Alla goda ting|„r tre
+V„ggarna|har ”ron
+Skam|g†r p† torra land
+En olycka|kommer s„llan ensam
+Skenet|bedrar
+Tiden|l„ker alla s†r
+Hungern|„r den b„sta kryddan
+N”den|har ingen lag
+Lyckan|st†r den dj„rve bi
+Girigheten|bedrar visheten
+Sm† grytor|har ocks† ”ron
+Den enes d”d|„r den andres br”d
+Rom|byggdes inte p† en dag
+Surt|sa r„ven om r”nnb„ren
+Borta bra|men hemma b„st
+Den som lever|f†r se
+Den som s”ker|finner
+Den som tiger|samtycker
+Den som v„ntar p† n†got gott|v„ntar aldrig f”r l„nge
+Den som ger sig in i leken|f†r leken t†la
+Man|l„r s† l„nge man lever
 *
+#       Grupp 2: villkor/liknelse | "f†r man ..."
+#       -- 1996 --
 D„r det finns hj„rterum|finns det stj„rterum
 Av barn och d†rar|f†r man h”ra sanningen
 Vill man vara fin|f†r man lida pin
@@ -35,16 +104,59 @@ Har man sagt a|f†r man s„ga b
 Som man b„ddar|f†r man ligga
 Som man ropar i skogen|f†r man svar
 Vill man ha n†gonting gjort|f†r man g”ra det sj„lv
+#       -- 2026 --
+Som man s†r|f†r man sk”rda
+Som man „r kl„dd|blir man h„dd
+Har man tagit fan i b†ten|f†r man ro honom i land
+Vill man ha fisk|f†r man bl”ta rumpan
+Vill man dansa|f†r man betala spelmannen
+Av skadan|blir man vis
+D„r viljan finns|finns det en v„g
 *
+#       Grupp 3: b„ttre det h„r | „n det d„r
+#       -- 1996 --
 B„ttre pissa i stupr„nna|„n stupa i pissr„nna
 B„ttre en f†gel i handen|„n tio i skogen
 B„ttre fly|„n illa f„kta
+#       -- 2026 --
+B„ttre sent|„n aldrig
+B„ttre st„mma i b„cken|„n i †n
+B„ttre br”dl”s|„n r†dl”s
+B„ttre ensam|„n i d†ligt s„llskap
+B„ttre lite|„n inget alls
+B„ttre b”jd|„n bruten
+B„ttre tiga|„n illa tala
+B„ttre f”rekomma|„n f”rekommas
 *
+#       Grupp 4: det man inte ska g”ra | med vad
+#       -- 1996 --
 Allt „r inte|guld som glimmar
 Man ska inte k”pa|grisen i s„cken
 Man ska inte kasta ut|barnet med badvattnet
+#       -- 2026 --
+Man ska inte ropa hej|f”rr„n man „r ”ver b„cken
+Man ska inte gr†ta|”ver spilld mj”lk
+Man ska inte sk†da given h„st|i munnen
+Man ska inte s„lja skinnet|f”rr„n bj”rnen „r skjuten
+Man ska inte d”ma hunden|efter h†ren
+Man ska inte s„tta bocken|till tr„dg†rdsm„stare
+Man ska inte tala om rep|i h„ngd mans hus
+Man ska inte l„gga alla „gg|i samma korg
+*
+#       Grupp 5: framf”rst„lld bisats, | huvudsats med omv„nd ordf”ljd
+#       (svenskan „r V2 -- varje svans h„r MSTE b”rja p† ett finit verb)
+#       -- 2026 --
+N„r katten „r borta,|dansar r†ttorna p† bordet
+N„r n”den „r som st”rst,|„r hj„lpen som n„rmast
+N„r man talar om trollen,|st†r de i farstun
+Efter regn,|kommer solsken
+S† l„nge det finns liv,|finns det hopp
+F”rst till kvarn,|f†r f”rst mala
+I n”den,|pr”vas v„nnen
+L†ngt borta,|syns bergen bl†
+Om natten,|„r alla katter gr†
 **
+#       -- 1996 -- reserverna, dit programmet aldrig l„ser
 Man ska smida medan|j„rnet „r varmt
 D„r ”len g†r in|g†r vettet ut
 Ju fler kockar|desto s„mre soppa
-

@@ -300,8 +300,11 @@ const LANGS = {
         readmeLabel: "Vad är det här?",
         home: "Vem är Leif?",
         auto: "Auto",
-        // the 1996 data file stays byte-pristine; its English mirror
-        // rides in a sidecar with the same groups and line order
+        // The English mirror rides in a sidecar with the same groups and line
+        // order, zipped in positionally at load. That was originally so the
+        // 1996 file could stay byte-pristine; it grew on 2026-08-03 (Ordsprak
+        // 1.0) and the sidecar shape stayed, because both files are now
+        // generated together from one table by cookie-swedish-build.py.
         mirrorFile: "data/ORDSPRÅK-EN.TXT" },
   en: { file: "data/PROVERBS.TXT",   cp437: false, period: true,  more: "One more",
         title: "COOKIE — mashed-up proverbs",

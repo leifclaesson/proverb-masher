@@ -1,16 +1,24 @@
 #               ORDSPRÅK-EN.TXT -- English mirror sidecar for ORDSPRÅK.TXT
 #
-#       The 1996 Swedish data file stays byte-for-byte pristine (still CP437),
-#       so its English translations live here instead: same groups, same line
-#       order, one EN head|EN tail per proverb. The site zips the two files
-#       together and scrambles both with the same index pair, so the English
-#       nonsense matches the Swedish one-to-one.
+#       Same groups, same line order, one EN head|EN tail per proverb. The
+#       site zips the two files together and scrambles both with the same
+#       index pair, so the English nonsense matches the Swedish one-to-one.
 #
 #       Swedish verbs don't conjugate for number, which is how the original
 #       got away with one giant Group 1. English isn't so lucky, so these
 #       tails are phrased agreement-neutrally (will/must/dashes) to survive
 #       any head they get glued to.
 #
+#       The 1996 file stopped being byte-pristine on 2026-08-03, by Leif's
+#       decision -- see the Swedish file's header for his reasoning. 1996
+#       lines sit under -- 1996 --, the additions under -- 2026 --.
+#
+#       Both files are generated from one table by
+#       misc/scripts/cookie-swedish-build.py. Do not hand-edit either: a line
+#       added here and not there shifts every translation after it.
+#
+#       Grupp 1: subjekt | predikat -- och hem åt de dyra lockbetena
+#       -- 1996 --
 Expensive children|will play together best
 An expensive child|will shun the fire
 Expensive brooms|will sweep the cleanest
@@ -33,7 +41,46 @@ A good laugh|will lengthen your life
 A little tussock|will often tip a heavy load
 A liar|must have a good memory
 He who gapes after a crazy bird|won't see won't see the forest for all the bones
+#       -- 2026 --
+An expensive morning hour|-- gold in the mouth
+Expensive practice|will make perfect
+Expensive powder|will not perish so easily
+Expensive blood|-- thicker than water
+Expensive little brooks|will make a great river
+All expensive things|-- three of them
+An expensive swallow|will make no summer
+Expensive walls|will have ears
+Expensive shame|will walk on dry land
+An expensive misfortune|will seldom come alone
+The morning hour|-- gold in the mouth
+Practice|will make perfect
+Ill weeds|will not perish so easily
+Blood|-- thicker than water
+Many little brooks|will make a great river
+All good things|-- three of them
+The walls|will have ears
+Shame|will walk on dry land
+A misfortune|will seldom come alone
+Appearances|will deceive
+Time|will heal all wounds
+Hunger|-- the best spice there is
+Necessity|will know no law
+Fortune|will favour the bold
+Greed|will deceive wisdom
+Small pots|will have ears too
+One man's death|-- another man's bread
+Rome|was not built in a day
+Sour,|said the fox of the rowanberries
+Away is good|but home is best
+He who lives|will see
+He who seeks|will find
+He who stays silent|will consent
+He who waits for something good|will never wait too long
+He who joins the game|must bear the game
+One|will learn as long as one lives
 *
+#       Grupp 2: villkor/liknelse | "får man ..."
+#       -- 1996 --
 Where there's room in the heart|there's room for the rear
 From children and fools|you'll get to hear the truth
 If you want to be fancy|you must suffer the pinch
@@ -41,15 +88,59 @@ Once you've said A|you must say B
 As you make your bed|so you must lie
 As you shout into the forest|so you get your answer
 If you want something done|you must do it yourself
+#       -- 2026 --
+As you sow|so you must reap
+As you are dressed|so you will be addressed
+Once you've taken the devil aboard|you must row him ashore
+If you want fish|you must wet your backside
+If you want to dance|you must pay the fiddler
+From the injury|you will grow wise
+Where the will is|there is a way
 *
+#       Grupp 3: bättre det här | än det där
+#       -- 1996 --
 Better to piss in the drainpipe|than to drop in the piss-drain
 Better one bird in the hand|than ten in the forest
 Better to flee|than to fence badly
+#       -- 2026 --
+Better late|than never
+Better to dam the brook|than the river
+Better without bread|than without counsel
+Better alone|than in bad company
+Better a little|than nothing at all
+Better bent|than broken
+Better to keep silent|than to speak ill
+Better to forestall|than to be forestalled
 *
+#       Grupp 4: det man inte ska göra | med vad
+#       -- 1996 --
 All is not|gold that glitters
 You shouldn't buy|the pig in the sack
 You shouldn't throw out|the baby with the bathwater
+#       -- 2026 --
+You shouldn't shout hurrah|before you're across the brook
+You shouldn't cry|over spilled milk
+You shouldn't look a given horse|in the mouth
+You shouldn't sell the hide|before the bear is shot
+You shouldn't judge the dog|by its coat
+You shouldn't appoint the goat|as gardener
+You shouldn't speak of rope|in a hanged man's house
+You shouldn't put all the eggs|in the same basket
+*
+#       Grupp 5: framförställd bisats, | huvudsats med omvänd ordföljd
+#       (svenskan är V2 -- varje svans här MÅSTE börja på ett finit verb)
+#       -- 2026 --
+When the cat is away,|the rats dance on the table
+When the need is greatest,|help is nearest
+Speak of the trolls,|and they stand in the hallway
+After rain,|comes sunshine
+As long as there is life,|there is hope
+First to the mill,|grinds first
+In need,|the friend is tested
+Far away,|the mountains look blue
+At night,|all cats are grey
 **
+#       -- 1996 -- the spares, behind the ** where the program never reads
 Strike while|the iron is warm
 Where the ale goes in|the wits go out
 The more cooks|the worse the soup
