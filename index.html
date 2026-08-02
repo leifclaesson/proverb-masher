@@ -138,27 +138,38 @@
     overflow-y: auto;
     min-height: 0;
   }
+  /* Both text blocks are FIXED-WIDTH boxes rather than shrink-to-fit ones: the
+     typing code measures against their width before a character exists, so that
+     width may not depend on what's currently in them. position:relative anchors
+     the hidden probe each one measures with. */
+  #proverb, #mirror { position: relative; width: 100%; }
   #proverb {
     max-width: 21ch;
-    min-width: min(100%, 21ch);
-    text-align: center;
     font-size: clamp(1.25rem, 5.5vmin, 2.6rem);
     line-height: 1.45;
     color: var(--bright);
     text-shadow: 0 0 10px rgba(255,225,77,.5), 0 0 2px rgba(255,225,77,.9);
-    overflow-wrap: break-word;
   }
   #proverb.thai {
     font-family: var(--thai);
     line-height: 1.7;
   }
-  /* The cursor is WELDED to the last character: they share one nowrap span, so
-     the browser has no break opportunity between them and can never strand the
-     cursor alone on the line below. The cursor is an inline-block, which is
-     atomic -- without this, break-word would break in front of it and send it
-     down by itself, since it's the one thing on the line that cannot be split.
-     When the pair no longer fits, the character comes down WITH the cursor. */
-  #knot { white-space: nowrap; }
+  /* One .ln per line of the FINISHED text, all of them in place before the
+     first keystroke -- see the surface comment in the script. white-space:pre
+     because the breaks are already decided; nothing here may re-wrap. The line
+     is placed by its own left padding, NOT by text-align:center, which would
+     re-centre it on every keystroke and slide the words leftwards as they're
+     typed. An empty div generates no line box at all, hence the zero-width
+     inline-block: it summons the strut, so the block stands at its full final
+     height while its lines are still empty and nothing moves down the page. */
+  .ln { white-space: pre; }
+  .ln::before { content: ""; display: inline-block; width: 0; }
+  .probe {
+    position: absolute; top: 0; left: 0;
+    visibility: hidden;          /* still has layout -- display:none would not */
+    pointer-events: none;
+    overflow-wrap: break-word;
+  }
   /* the DOS hardware cursor: a thick blinking underscore at the bottom
      of the character cell, not a solid block */
   #cursor {
@@ -174,12 +185,10 @@
   @keyframes blink { 50% { opacity: 0; } }
   #mirror {
     max-width: 60ch;
-    text-align: center;
     color: var(--dim);
     font-style: italic;
     font-size: clamp(.85rem, 3vmin, 1.15rem);
     line-height: 1.5;
-    min-height: 1.5em;      /* reserve one line so the layout never jumps */
     text-shadow: 0 0 5px rgba(138,138,138,.4);
   }
 
@@ -251,7 +260,7 @@
 <div id="banner">COOKIE v0.3 · Liket of Goto10 · ~1996</div>
 
 <main>
-  <div id="proverb" aria-live="polite"><span id="text"></span><span id="knot"><span id="tail"></span><span id="cursor"></span></span></div>
+  <div id="proverb" aria-live="polite"><span id="cursor"></span></div>
   <div id="mirror"></div>
 </main>
 
@@ -510,6 +519,9 @@ const HIS_BIGRAMS = {
 };
 
 function gapMs(from, to) {
+  // the planned break is a real keystroke: his measured pause before Enter,
+  // and the same again on the way back out to the first letter of the new line
+  if (from === "\n" || to === "\n") return ENTER_GAP;
   const lo = from.toLowerCase(), hi = to.toLowerCase();
   const measured = HIS_BIGRAMS[lo + hi];
   if (measured !== undefined) return measured;
@@ -532,73 +544,251 @@ function gapMs(from, to) {
    the page rng so ?seed= still gives a reproducible stream. */
 const jitter = ms => Math.max(8, Math.round(ms * (60 + rng() * 91) / 100));
 
-/* A generation token retires every in-flight timer at once. Cheaper and safer
-   than juggling ids: setTimeout and setInterval share ONE id pool, so a cleared
-   auto-timer id can be handed straight back to the next typing timer. */
+/* A generation token retires every in-flight timer at once -- and there are two
+   of them now, the native line and its mirror. Cheaper and safer than juggling
+   ids: setTimeout and setInterval share ONE id pool, so a cleared auto-timer id
+   can be handed straight back to the next typing timer. Only serve() bumps it;
+   the typers merely READ it, so neither can retire the other. */
 let gen = 0;
 
-/* The line is written into TWO elements: everything but the final character in
-   #text, that last character in #tail, which rides in the nowrap #knot with the
-   cursor (see the CSS). Split by GRAPHEME, not by code point -- a Thai vowel or
-   tone mark has to stay welded to the consonant it sits on, and Array.from
-   would tear the cluster in half across an element boundary. */
-const textEl = document.getElementById("text");
-const tailEl = document.getElementById("tail");
+/* ---------------- the typing surfaces ----------------
+   A terminal does not shove the text it has already printed around, and this
+   one used to: the block was centred and freely wrapped, so every keystroke
+   nudged the line left by half a character, a word that stopped fitting jumped
+   down AFTER it was half typed, and the new line pushed everything above it up
+   the screen. Three different kinds of movement, all from the same cause --
+   letting the browser lay out text that isn't finished yet.
+
+   So each block is laid out ONCE, from the finished string, before a single
+   character is typed:
+
+     - the breaks are worked out in advance, and typed as an Enter BEFORE the
+       word that wouldn't fit rather than happening under it afterwards;
+     - one .ln per line exists from the start, so the block already stands at
+       its final height and the centred layout never shifts vertically;
+     - each .ln is indented by half its own FINISHED width, so its characters
+       land where they will finally sit and never slide.
+
+   Measuring happens in a hidden probe inside the box itself, so it inherits the
+   real font -- including the Thai swap -- at the real size. It measures twice:
+   once with the text wrapping at the available width, which is how the break
+   points are found (the browser's own line breaking, so Thai still breaks where
+   ICU says it may), then once per line with wrapping off, for the exact width
+   the indent needs. Both happen inside one synchronous block, so nothing is
+   ever painted mid-measurement.
+
+   The cursor is simply moved into whichever line is being typed. The nowrap
+   knot that used to weld it to the last character is gone along with the
+   wrapping it was defending against: nothing can re-wrap here any more, and the
+   width the cursor needs is subtracted before the breaks are chosen, so it
+   always has room at the end of its line. */
+
+const cursorEl = document.getElementById("cursor");
+const proverbEl = document.getElementById("proverb");
+const mirrorEl = document.getElementById("mirror");
 const segmenter = window.Intl && Intl.Segmenter
   ? new Intl.Segmenter(undefined, { granularity: "grapheme" }) : null;
 
-function lastGraphemeStart(s) {
-  if (!s) return 0;
+/* Cluster boundaries, not code points: a Thai vowel or tone mark has to stay
+   welded to the consonant it sits on -- measuring one half of a cluster on its
+   own would report a rect for something that isn't a character. */
+function clusters(s) {
+  const out = [];
   if (segmenter) {
-    let start = 0;
-    for (const g of segmenter.segment(s)) start = g.index;
-    return start;
+    for (const g of segmenter.segment(s)) out.push([g.index, g.index + g.segment.length]);
+  } else {
+    let o = 0;
+    for (const cp of Array.from(s)) { out.push([o, o + cp.length]); o += cp.length; }
   }
-  const cp = Array.from(s);                 // code-point fallback
-  return s.length - cp[cp.length - 1].length;
+  return out;
 }
 
-function setLine(s) {
-  const cut = lastGraphemeStart(s);
-  textEl.textContent = s.slice(0, cut);
-  tailEl.textContent = s.slice(cut);
+/* Where the browser broke the probe's text, read back off the glyphs: a cluster
+   whose rect sits lower than the one before it is the first on a new line. */
+function readLines(node, text) {
+  const range = document.createRange();
+  const cuts = [];
+  let last = null;
+  for (const [s, e] of clusters(text)) {
+    if (!text.slice(s, e).trim()) continue;   // a space AT a break has no honest rect
+    range.setStart(node, s);
+    range.setEnd(node, e);
+    const r = range.getClientRects()[0];
+    if (!r) continue;
+    const top = Math.round(r.top);
+    if (last !== null && top > last + 1) cuts.push(s);
+    last = top;
+  }
+  const out = [];
+  let prev = 0;
+  for (const c of cuts) {
+    let w = c;
+    while (w > prev && /\s/.test(text[w - 1])) w--;   // drop the space that WAS the break
+    out.push(text.slice(prev, w));
+    prev = c;
+  }
+  out.push(text.slice(prev));
+  return out;
 }
 
-function typeOut(line, done) {
-  const chars = Array.from(line);
-  const mine = ++gen;
-  let i = 0;
-  setLine("");
+function makeSurface(box, withCursor) {
+  const probe = document.createElement("span");
+  probe.className = "probe";
+  box.appendChild(probe);
+  let divs = [];
+
+  /* The cursor has to fit at the end of every line, so its advance comes off
+     the width the breaks are chosen against -- otherwise the last character of
+     a full line and its cursor would be exactly the pair that doesn't fit, and
+     the jump would be back. */
+  function reserve() {
+    if (!withCursor) return 0;
+    const cs = getComputedStyle(cursorEl);
+    return cursorEl.offsetWidth + (parseFloat(cs.marginLeft) || 0);
+  }
+
+  function layout(text) {
+    const full = box.clientWidth;
+    probe.style.width = Math.max(1, full - reserve()) + "px";
+    probe.style.whiteSpace = "normal";
+    probe.textContent = text;
+    const lines = probe.firstChild ? readLines(probe.firstChild, text) : [""];
+
+    probe.style.width = "auto";
+    probe.style.whiteSpace = "pre";
+    const widths = lines.map(l => {
+      probe.textContent = l;
+      return probe.getBoundingClientRect().width;
+    });
+    probe.textContent = "";
+
+    divs.forEach(d => d.remove());
+    divs = lines.map((l, k) => {
+      const d = document.createElement("div");
+      d.className = "ln";
+      d.style.paddingLeft = Math.max(0, Math.round((full - widths[k]) / 2)) + "px";
+      box.appendChild(d);
+      return d;
+    });
+    return lines.join("\n");
+  }
+
+  /* textContent on a div holding the cursor evicts it from the DOM, which is
+     why every line is written first and the cursor re-homed after. */
+  function paint(prefix) {
+    const parts = prefix.split("\n");
+    divs.forEach((d, k) => { d.textContent = parts[k] === undefined ? "" : parts[k]; });
+    if (withCursor && divs.length) {
+      divs[Math.min(parts.length - 1, divs.length - 1)].appendChild(cursorEl);
+    }
+  }
+
+  return { layout, paint };
+}
+
+const nativeSurface = makeSurface(proverbEl, true);
+const mirrorSurface = makeSurface(mirrorEl, false);
+
+/* One typewriter, driving whichever surface it's handed. Its position lives on
+   the state object rather than in the closure so a window resize can re-cut the
+   plan underneath a line that is still being typed (see relayout). */
+function typeInto(st, onStep, done) {
+  const mine = gen;
+  st.chars = Array.from(st.plan);
+  st.i = 0;
+  st.surface.paint("");
   (function step() {
     if (mine !== gen) return;               // a newer line took over
-    setLine(chars.slice(0, ++i).join(""));
-    if (i >= chars.length) { setTimeout(() => { if (mine === gen) done(); }, ENTER_GAP); return; }
-    setTimeout(step, jitter(gapMs(chars[i - 1], chars[i])));
+    const c = st.chars;
+    st.surface.paint(c.slice(0, ++st.i).join(""));
+    if (onStep) onStep(st.i);
+    if (st.i >= c.length) { setTimeout(() => { if (mine === gen) done(); }, ENTER_GAP); return; }
+    setTimeout(step, jitter(gapMs(c[st.i - 1], c[st.i])));
   })();
 }
+
+/* The plan's newlines are decided in advance but only VALID for the width they
+   were measured at, so a resize (or a phone rotating) has to re-cut both lines.
+   The position is carried across as a count of real characters -- newlines
+   don't count, they aren't part of the text -- and any break that now falls
+   exactly at the cut is stepped over, so the cursor lands on the new line
+   rather than waiting at the end of the old one. */
+let live = [];
+
+function relayout() {
+  for (const st of live) {
+    const typed = st.chars.slice(0, st.i).filter(c => c !== "\n").length;
+    st.plan = st.surface.layout(st.text);
+    st.chars = Array.from(st.plan);
+    let n = 0, j = 0;
+    while (j < st.chars.length && n < typed) { if (st.chars[j] !== "\n") n++; j++; }
+    while (j < st.chars.length && st.chars[j] === "\n") j++;
+    st.i = j;
+    st.surface.paint(st.chars.slice(0, j).join(""));
+  }
+}
+
+/* Its own timer id, nulled on fire: setTimeout ids are recycled, and clearing a
+   stale one could take a typing timer down with it. */
+let resizeTimer = 0;
+addEventListener("resize", () => {
+  if (resizeTimer) clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => { resizeTimer = 0; relayout(); }, 120);
+});
+
+/* The mirror types ALONGSIDE the line it translates instead of landing
+   finished the moment that line ends -- two people at two keyboards, the
+   translator a few characters behind like a live captioner. It obeys the same
+   cadence RULES (same gapMs, same jitter, its own draw from the stream), not
+   the same timings: the two lines are different lengths in different scripts,
+   so welding them character-to-character would mean stretching one of them
+   into a rhythm no hand types. They drift, and the drift is the point. */
+const MIRROR_LEAD = 5;                      // characters of head start
 
 async function serve() {
   const cfg = LANGS[current];
   const sections = await loadLang(current);
   const { native, mirror } = cook(sections, cfg.agree);
   const line = cfg.period ? native + "." : native;
+  const mirrorLine = mirror ? "(" + mirror + ")" : "";
 
-  const mirrorEl = document.getElementById("mirror");
-  document.getElementById("proverb").classList.toggle("thai", current === "th");
+  proverbEl.classList.toggle("thai", current === "th");   // before measuring: the font decides the breaks
+
+  gen++;                            // retire any typing in flight; everything below rides THIS generation
+
+  /* Both surfaces are laid out before either starts typing -- that is what
+     holds the mirror still while the line above it fills in, instead of having
+     it shoved down the moment that line takes a second row. */
+  const nat = { surface: nativeSurface, text: line, plan: "", chars: [], i: 0 };
+  const mir = { surface: mirrorSurface, text: mirrorLine, plan: "", chars: [], i: 0 };
+  nat.plan = nativeSurface.layout(line);
+  mir.plan = mirrorSurface.layout(mirrorLine);
+  nat.chars = Array.from(nat.plan);
+  mir.chars = Array.from(mir.plan);
+  live = [nat, mir];
 
   if (!typeOn) {
-    gen++;                          // retire any typing still in flight
-    setLine(line);
-    mirrorEl.textContent = mirror ? "(" + mirror + ")" : "";
+    nat.i = nat.chars.length;
+    mir.i = mir.chars.length;
+    nativeSurface.paint(nat.plan);
+    mirrorSurface.paint(mir.plan);
     scheduleAuto();
   } else {
-    mirrorEl.textContent = "";
-    // the autocycle dwell starts when the line FINISHES, not when it starts, so
-    // a long line is never cut short on a monitor
-    typeOut(line, () => {
-      mirrorEl.textContent = mirror ? "(" + mirror + ")" : "";
-      scheduleAuto();
-    });
+    nativeSurface.paint("");
+    mirrorSurface.paint("");
+    // the autocycle dwell starts when the LAST line finishes, not when the
+    // native one does, so neither a long line nor a long mirror is ever cut
+    // short on a monitor
+    let pending = mirrorLine ? 2 : 1;
+    const finished = () => { if (--pending === 0) scheduleAuto(); };
+    let started = false;
+    const startMirror = () => {
+      if (started || !mirrorLine) return;
+      started = true;
+      typeInto(mir, null, finished);
+    };
+    typeInto(nat, i => { if (i >= MIRROR_LEAD) startMirror(); },
+             () => { startMirror(); finished(); });   // a line shorter than the lead still gets its mirror
   }
 }
 
