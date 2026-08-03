@@ -262,9 +262,11 @@
 <!-- This version numbers THE SITE, not any one edition. Each edition carries
      its own version in its data file's header (Swedish is 1.0, Thai 0.5, Greek
      and French and Polish 0.5, Dutch 0.4, English and Russian 0.3) and those
-     move independently. Bump this one whenever the site itself ships a change:
-     a new edition, an engine change, or a data file growing. -->
-<div id="banner">COOKIE v0.4 · Liket of Goto10 · ~1996</div>
+     move independently. Bump SITE_VERSION in the script below whenever the site
+     ships a change: a new edition, an engine change, or a data file growing.
+     The text here is only a no-JS fallback; the script overwrites it, so
+     SITE_VERSION is the single source of truth and these cannot drift. -->
+<div id="banner">COOKIE · Liket of Goto10 · ~1996</div>
 
 <main>
   <div id="proverb" aria-live="polite"><span id="cursor"></span></div>
@@ -296,6 +298,26 @@
       tradition every edition swears in its own language -- "like hell" /
       "เหี้ยเอ้ย" / "чёрта с два" / "γαμώτο" / "gówno prawda" / "putain". This
       port hosts all eight, so it keeps the original's name in their honour. */
+
+/* The site's own version -- NOT any edition's; each data file carries its own
+   in its header. This string does two jobs, and the second one is why it must
+   be bumped on every deploy that changes a data file:
+
+   1. it fills the banner, and
+   2. it is the cache key on every data fetch below.
+
+   GitHub Pages serves data/*.TXT with Cache-Control: max-age=600 from a CDN
+   whose edges cache independently. With plain unversioned URLs a deploy is NOT
+   atomic: for up to ten minutes some visitors get the NEW index.html and the
+   OLD data file from whichever edge they land on. That is not theoretical --
+   it shipped on 2026-08-03. Thai grew from 22 proverbs to 112, and Leif opened
+   the site on a machine that had never loaded it before and still watched the
+   old 22-line file cycle, repeating itself within a minute. Nothing was wrong
+   with the data or the engine; an edge was simply still serving the old bytes.
+
+   Appending ?v=<SITE_VERSION> makes every deploy a new URL, so no cache at any
+   layer can pair new HTML with old data. */
+const SITE_VERSION = "0.5";
 
 const LANGS = {
   sv: { file: "data/ORDSPRÅK.TXT",   cp437: true,  period: true,  more: "En till",
@@ -489,11 +511,17 @@ function cook(sections, agreeOn) {
 }
 
 /* ---------------- UI ---------------- */
+
+/* Data URL + the site version as a cache key. See SITE_VERSION above: without
+   it a deploy is not atomic and a CDN edge can hand a visitor new HTML with an
+   old data file. */
+function bust(path) { return encodeURI(path) + "?v=" + SITE_VERSION; }
+
 const cache = {};
 async function loadLang(code) {
   if (cache[code]) return cache[code];
   const cfg = LANGS[code];
-  const res = await fetch(encodeURI(cfg.file));
+  const res = await fetch(bust(cfg.file));
   const text = cfg.cp437
     ? decodeCp437(new Uint8Array(await res.arrayBuffer()))
     : await res.text();
@@ -502,7 +530,7 @@ async function loadLang(code) {
     // zip the sidecar's EN halves onto the pristine main data, position
     // by position; on any shape mismatch just skip the mirror
     try {
-      const mirror = parse(await (await fetch(encodeURI(cfg.mirrorFile))).text());
+      const mirror = parse(await (await fetch(bust(cfg.mirrorFile))).text());
       sections.forEach((sec, s) => sec.forEach((p, i) => {
         const m = mirror[s] && mirror[s][i];
         if (m) { p[2] = m[0]; p[3] = m[1]; }
@@ -956,6 +984,10 @@ addEventListener("keydown", e => {
   try { saved = localStorage.getItem("cookieLang"); } catch (e) {}
   const nav = (navigator.languages || [navigator.language || "en"])
     .map(l => l.slice(0, 2).toLowerCase()).find(l => LANGS[l]);
+  // one source of truth for the version: the HTML carries a no-JS fallback
+  // without a number, and SITE_VERSION fills it in here
+  const bn = document.getElementById("banner");
+  if (bn) bn.textContent = "COOKIE v" + SITE_VERSION + " · Liket of Goto10 · ~1996";
   setLang(LANGS[q] ? q : LANGS[saved] ? saved : nav || "en", false);
 })();
 
