@@ -14,6 +14,21 @@ URL and `?auto=20` also sets the dwell in seconds -- the pause after a line
 lands, so a long one is never cut short. The default dwell is 10 seconds. For
 a screen with no keyboard in front of it.
 
+The `☼` button beside it opens the autocycle's settings. A switch decides
+whether the cycle stays in one language or changes language as well, and a bar
+per language sets how often each one comes up -- so a screen can run mostly
+Swedish with the occasional Thai line, or an even eight-way shuffle. The
+weights are **relative, not percentages**: all eight at 50 is the same even
+shuffle as all eight at 100, and a language at zero simply never comes up.
+`?autolang=1` arms language-changing from the URL, and the weights are
+remembered per browser. Only the timer ever changes language -- `One more` and
+the spacebar stay in the language you are reading.
+
+Those bars are Leif's own **ProgressAdjust** slider, the same control his audio
+software uses: no handle, drag anywhere on it, and it accelerates as you move
+so one gesture covers both the coarse and the fine end. Double-click undoes a
+drag, right-click cancels one, and the tick at 50 marks the default.
+
 The line types itself on at Leif's own measured keyboard cadence, always --
 the OS reduced-motion flag is for window transitions and doesn't get a say in
 whether a terminal prints its line. `?type=0` turns it off for anyone who wants

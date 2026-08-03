@@ -117,6 +117,122 @@
      read as "this is the current thing" on a toggle sitting next to it */
   #auto[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
 
+  /* --- the settings flyout -------------------------------------------------
+     Everything about the autocycle that isn't its on/off switch. The glyph is
+     CP437 0x0F -- the character DOS actually drew for a gear -- so the one
+     piece of new chrome is period-correct. Consolas is asked first and Segoe UI
+     Symbol stands behind it, because a monospace face that lacks the codepoint
+     would otherwise stop the cascade dead at `monospace` and draw tofu.
+
+     The panel is fixed and anchored under the header when it opens (the header
+     WRAPS, so its height is not a constant and can't be a magic number). It
+     caps its own height against the viewport and scrolls inside, which is the
+     whole yield ladder it needs: on a short window it covers the line it is
+     configuring, and that is the right trade for a panel you are actively
+     using. Nothing in it ever clips. --- */
+  #cog {
+    font-family: Consolas, "Segoe UI Symbol", "Cascadia Mono", monospace;
+    font-size: clamp(.95rem, 2.9vmin, 1.2rem);
+    line-height: 1;
+  }
+  #cog[aria-expanded="true"] { color: var(--accent); border-color: var(--accent); }
+
+  #settings[hidden] { display: none; }
+  #settings {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 6;                      /* above the scanlines, like the header */
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+    width: min(93vw, 25rem);
+    max-height: calc(100dvh - 3rem);   /* floor only; positionPanel() computes the real one */
+    overflow-y: auto;
+    padding: .85rem;
+    background: var(--bg);
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 24px rgba(255,176,0,.22);
+  }
+  #setHead { display: flex; align-items: center; justify-content: space-between; gap: .6rem; }
+  #setTitle {
+    color: var(--accent);
+    font-size: clamp(.9rem, 2.6vmin, 1.05rem);
+    font-weight: bold;
+    letter-spacing: .06em;
+  }
+  #setClose { min-height: 32px; padding: .25em .5em; }
+
+  /* The mode switch shows BOTH names with the live one lit, so it never has to
+     be read as "on = which of the two?" -- the question every bare toggle asks. */
+  #modeRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: .45rem .7rem;
+    font-size: clamp(.75rem, 2.3vmin, .92rem);
+  }
+  #modeRow span { color: var(--dim); transition: color .15s; }
+  #modeRow span.on { color: var(--bright); text-shadow: 0 0 7px rgba(255,225,77,.5); }
+  #langMode {
+    position: relative;
+    flex: none;
+    width: 3.4rem;
+    height: 1.5rem;
+    min-height: 1.5rem;
+    padding: 0;
+    background: #0a0a0a;
+  }
+  #langMode .knob {
+    position: absolute;
+    top: 2px; bottom: 2px; left: 2px;
+    width: calc(50% - 3px);
+    background: var(--dim);
+    transition: left .14s ease, background .14s;
+  }
+  #langMode[aria-checked="true"] { border-color: var(--accent); }
+  #langMode[aria-checked="true"] .knob { left: calc(50% + 1px); background: var(--accent); }
+
+  #weightsHead {
+    color: var(--dim);
+    font-size: clamp(.7rem, 2.1vmin, .85rem);
+    text-align: center;
+    letter-spacing: .05em;
+  }
+  #weights { display: flex; flex-direction: column; gap: .35rem; transition: opacity .15s; }
+  /* Single-language mode: the bars stay readable, they just aren't live. The
+     `inert` property takes the pointer and the focus with it, so this rule is
+     only the look -- it is not what disables them. */
+  #weights.off { opacity: .38; }
+
+  /* Same hard rule as the rest of the chrome: Thai gets a real Thai font, never
+     the fake-retro mono. The buttons need naming separately -- they carry their
+     own font-family, and a directly-matched rule beats anything inherited. */
+  #settings[lang="th"], #settings[lang="th"] button { font-family: var(--thai); }
+
+  /* Leif's own ProgressAdjust slider, skinned amber-on-black: square corners
+     (DOS had no radius) and the page's own palette through the control's skin
+     tokens. It inherits font-family through the shadow boundary, so the Thai
+     caption needs the real Thai font on its host, exactly like the buttons. */
+  #settings progress-adjust {
+    display: block;
+    font-family: var(--mono);
+    --pa-height: 24px;
+    --pa-radius: 0;
+    --pa-track-bg: #0b0b0b;
+    --pa-fill: linear-gradient(180deg, #ffc133 0%, #d18f00 100%);
+    --pa-fill-text: #050505;
+    --pa-marker: #8a8a8a;
+    --pa-armed: #ffe14d;
+    --pa-focus: #ffe14d;
+    --line: #6a6a6a;
+    --text: #d8d8d8;
+    --text-dim: #8a8a8a;
+  }
+  #settings progress-adjust[data-lang="th"] { font-family: var(--thai); }
+  #setReset { align-self: center; min-height: 34px; }
+
   /* --- banner: first to shed on short windows --- */
   #banner {
     text-align: center;
@@ -257,7 +373,28 @@
   </nav>
   <button id="more">One more</button>
   <button id="auto" aria-pressed="false">[ ] Auto</button>
+  <button id="cog" aria-expanded="false" aria-controls="settings" aria-label="Settings" title="Settings">☼</button>
 </header>
+
+<!-- The autocycle's settings. Empty of bars on purpose: one is built per entry
+     in LANGS below, so a ninth edition needs no markup here. -->
+<div id="settings" hidden role="dialog" aria-labelledby="setTitle">
+  <div id="setHead">
+    <span id="setTitle">Settings</span>
+    <button id="setClose" aria-label="Close">[X]</button>
+  </div>
+
+  <div id="modeRow">
+    <span id="modeOne">One language</span>
+    <button id="langMode" role="switch" aria-checked="false"><span class="knob"></span></button>
+    <span id="modeAuto">Change language</span>
+  </div>
+
+  <div id="weightsHead">Probability</div>
+  <div id="weights"></div>
+
+  <button id="setReset">Reset</button>
+</div>
 
 <!-- This version numbers THE SITE, not any one edition. Each edition carries
      its own version in its data file's header (Swedish is 1.0, Thai 0.5, Greek
@@ -284,6 +421,7 @@
 </footer>
 
 <noscript><p style="text-align:center;padding:2rem">This machine needs its BASIC interpreter (JavaScript) turned on.</p></noscript>
+
 
 <script>
 /* COOKIE.BAS engine, fifth port. The two clever bits survive intact:
@@ -317,7 +455,7 @@
 
    Appending ?v=<SITE_VERSION> makes every deploy a new URL, so no cache at any
    layer can pair new HTML with old data. */
-const SITE_VERSION = "0.5";
+const SITE_VERSION = "0.6";
 
 const LANGS = {
   sv: { file: "data/ORDSPRÅK.TXT",   cp437: true,  period: true,  more: "En till",
@@ -327,6 +465,8 @@ const LANGS = {
         readmeLabel: "Vad är det här?",
         home: "Vem är Leif?",
         auto: "Auto",
+        settings: "Inställningar", close: "Stäng", reset: "Återställ",
+        oneLang: "Ett språk", changeLang: "Byt språk", probability: "Sannolikhet",
         // The English mirror rides in a sidecar with the same groups and line
         // order, zipped in positionally at load. That was originally so the
         // 1996 file could stay byte-pristine; it grew on 2026-08-03 (Ordsprak
@@ -340,6 +480,8 @@ const LANGS = {
         readmeLabel: "What is this?",
         home: "Who is Leif?",
         auto: "Auto",
+        settings: "Settings", close: "Close", reset: "Reset",
+        oneLang: "One language", changeLang: "Change language", probability: "Probability",
         // English is the only edition whose verbs conjugate for number, so
         // it is the only one whose tails carry alternations to resolve
         agree: true },
@@ -349,14 +491,18 @@ const LANGS = {
         readme: "readme-th.html",
         readmeLabel: "นี่คืออะไร",
         home: "เลย์ฟ คือใคร",
-        auto: "อัตโนมัติ" },
+        auto: "อัตโนมัติ",
+        settings: "ตั้งค่า", close: "ปิด", reset: "รีเซ็ต",
+        oneLang: "ภาษาเดียว", changeLang: "สลับภาษา", probability: "ความน่าจะเป็น" },
   ru: { file: "data/ПОСЛОВИЦЫ.TXT",  cp437: false, period: true,  more: "Ещё одну",
         title: "ПОСЛОВИЦЫ — перемолотые пословицы",
         tagline: "настоящие пословицы, склеенные не с теми половинками",
         readme: "readme-ru.html",
         readmeLabel: "Что это такое?",
         home: "Кто такой Лейф?",
-        auto: "Авто" },
+        auto: "Авто",
+        settings: "Настройки", close: "Закрыть", reset: "Сброс",
+        oneLang: "Один язык", changeLang: "Менять язык", probability: "Вероятность" },
   nl: { file: "data/SPREEKWOORDEN.TXT", cp437: false, period: true, more: "Nog eentje",
         title: "SPREEKWOORDEN — door elkaar gehusselde spreekwoorden",
         tagline: "echte spreekwoorden, verkeerd aan elkaar geplakt",
@@ -364,6 +510,8 @@ const LANGS = {
         readmeLabel: "Wat is dit?",
         home: "Wie is Leif?",
         auto: "Auto",
+        settings: "Instellingen", close: "Sluiten", reset: "Herstellen",
+        oneLang: "Eén taal", changeLang: "Wissel van taal", probability: "Kans",
         // Dutch conjugates for number too, so it runs the English edition's
         // marker rule -- and it is the first edition to have BOTH that and an
         // English mirror, so it is the first where the mirror needs it as well
@@ -375,6 +523,8 @@ const LANGS = {
         readmeLabel: "Τι είναι αυτό;",
         home: "Ποιος είναι ο Λέιφ;",
         auto: "Αυτόματο",
+        settings: "Ρυθμίσεις", close: "Κλείσιμο", reset: "Επαναφορά",
+        oneLang: "Μία γλώσσα", changeLang: "Αλλαγή γλώσσας", probability: "Πιθανότητα",
         // Greek conjugates for number as well, so it runs the same marker rule
         // as English and Dutch -- with one twist the resolver never sees: the
         // copula does NOT inflect (αυτός είναι / αυτοί είναι), so the verb that
@@ -388,6 +538,8 @@ const LANGS = {
         readmeLabel: "Co to jest?",
         home: "Kim jest Leif?",
         auto: "Auto",
+        settings: "Ustawienia", close: "Zamknij", reset: "Reset",
+        oneLang: "Jeden język", changeLang: "Zmieniaj język", probability: "Prawdopodobieństwo",
         // Polish conjugates for number as well, so the same marker rule again --
         // with the mirror image of the Greek twist: (jest/są) is not just marked
         // but SUPPLETIVE, sharing no letter at all, which is the strongest case
@@ -403,6 +555,8 @@ const LANGS = {
         readmeLabel: "C'est quoi, ça ?",
         home: "Qui est Leif ?",
         auto: "Auto",
+        settings: "Réglages", close: "Fermer", reset: "Réinitialiser",
+        oneLang: "Une seule langue", changeLang: "Changer de langue", probability: "Probabilité",
         // French conjugates for number as well, so the same marker rule again --
         // and it is the loudest argument yet for a file that carries both forms
         // rather than deriving one. The seam falls somewhere different for every
@@ -909,7 +1063,19 @@ function cancelAuto() {
 
 function scheduleAuto() {
   cancelAuto();
-  if (autoOn) autoTimer = setTimeout(() => { autoTimer = 0; serve(); }, autoSecs * 1000);
+  if (autoOn) autoTimer = setTimeout(() => { autoTimer = 0; autoServe(); }, autoSecs * 1000);
+}
+
+/* The autocycle's own serve, which may roll a new language first. setLang
+   serves the line itself, so this returns rather than serving twice -- and it
+   passes save=false deliberately: a language the timer rolled at 3am must not
+   quietly replace the one you chose by hand. */
+function autoServe() {
+  if (autoLang) {
+    const next = rollLang();
+    if (next !== current) { setLang(next, false); return; }
+  }
+  serve();
 }
 
 autoBtn.addEventListener("click", () => {
@@ -920,6 +1086,161 @@ autoBtn.addEventListener("click", () => {
   // a short dwell that timer would fire before the line was finished and cut it
   // off. Drop any pending one; the line that's printing will arm the next.
   if (typing) cancelAuto(); else scheduleAuto();
+});
+
+/* --- language weighting (Peter's idea) ------------------------------------
+   The autocycle can change LANGUAGE between lines as well as proverb, with a
+   per-language weight -- so a screen can run mostly Swedish with the odd Thai
+   line, or an even eight-way shuffle.
+
+   The weights are RELATIVE, not percentages: all eight at 50 is exactly the
+   same uniform shuffle as all eight at 100. That is why 50 is the default
+   rather than 100 -- it starts every language in the middle of its travel, so
+   the first thing you can do to any of them is push it UP as readily as down.
+   Nothing has to add up to anything.
+
+   Only the AUTO timer rolls a language. "One more" and the spacebar stay in
+   the language you are looking at: those are you asking for another line, not
+   the display moving on by itself. */
+const DEFAULT_WEIGHT = 50;
+let autoLang = false;
+const weights = {};
+Object.keys(LANGS).forEach(c => { weights[c] = DEFAULT_WEIGHT; });
+
+/* Weighted pick, drawn from the page rng so ?seed= still gives a reproducible
+   stream -- language included. Every bar at zero means "no language qualifies",
+   which is a request to stay put, not an error: it is the one setting that has
+   no valid answer, and freezing beats picking a language nobody asked for. */
+function rollLang() {
+  const codes = Object.keys(LANGS);
+  let total = 0;
+  for (const c of codes) total += weights[c];
+  if (total <= 0) return current;
+  let r = rng() * total;
+  for (const c of codes) { r -= weights[c]; if (r < 0) return c; }
+  return codes[codes.length - 1];   // float dust at the very top of the range
+}
+
+/* --- the settings flyout --- */
+const panel = document.getElementById("settings");
+const cogBtn = document.getElementById("cog");
+const modeBtn = document.getElementById("langMode");
+const weightsEl = document.getElementById("weights");
+const bars = {};
+
+/* The short labels are read back off the language buttons rather than written
+   out again here, so SV/EN/ไทย/RU/... have exactly one definition on the page. */
+const LANG_LABEL = {};
+document.querySelectorAll(".langs button").forEach(b => { LANG_LABEL[b.dataset.lang] = b.textContent; });
+
+/* One bar per entry in LANGS, so a ninth edition needs no work here.
+   backup=50 puts a tick at the default AND lights the control's own "modified"
+   state, so which languages you have actually moved is visible at a glance.
+
+   These are created BEFORE the module below defines <progress-adjust>; custom
+   elements upgrade in place, and the element reads its `value` attribute when
+   it upgrades, so setting attributes on a not-yet-defined element is fine. */
+Object.keys(LANGS).forEach(code => {
+  const bar = document.createElement("progress-adjust");
+  bar.setAttribute("min", "0");
+  bar.setAttribute("max", "100");
+  bar.setAttribute("step", "1");
+  bar.setAttribute("backup", String(DEFAULT_WEIGHT));
+  bar.setAttribute("value", String(weights[code]));
+  bar.setAttribute("label", LANG_LABEL[code] || code.toUpperCase());
+  bar.dataset.lang = code;
+  // `input` fires per frame during the drag, `change` once on release after the
+  // sticky commit resolves -- so the live value tracks the drag and only the
+  // settled one is written to storage.
+  bar.addEventListener("input", e => { weights[code] = e.detail.value; });
+  bar.addEventListener("change", e => { weights[code] = e.detail.value; saveWeights(); });
+  weightsEl.appendChild(bar);
+  bars[code] = bar;
+});
+
+function saveWeights() {
+  try { localStorage.setItem("cookieWeights", JSON.stringify(weights)); } catch (e) {}
+}
+
+function paintMode() {
+  modeBtn.setAttribute("aria-checked", autoLang ? "true" : "false");
+  document.getElementById("modeOne").classList.toggle("on", !autoLang);
+  document.getElementById("modeAuto").classList.toggle("on", autoLang);
+  weightsEl.classList.toggle("off", !autoLang);
+  // inert, not a CSS pointer-events rule: it takes the KEYBOARD out too, so a
+  // Tab can't land on a bar that does nothing.
+  weightsEl.inert = !autoLang;
+}
+
+modeBtn.addEventListener("click", () => {
+  autoLang = !autoLang;
+  paintMode();
+  try { localStorage.setItem("cookieAutoLang", autoLang ? "1" : "0"); } catch (e) {}
+});
+
+/* The header WRAPS, so its height is not a constant -- measure it rather than
+   guessing at a magic number.
+
+   Watched with a ResizeObserver rather than a window resize listener, because
+   the header changes height without the window doing anything: every button in
+   it is relabelled on a language switch ("One more" -> "Jeszcze jedno"), and at
+   a narrow width that alone can push the row onto an extra line. A resize
+   listener sees none of that and would leave the panel overlapping the header
+   it is supposed to hang below. */
+function positionPanel() {
+  /* The height has to be computed here, not left to a CSS max-height: the panel
+     hangs BELOW the header, and a CSS `calc(100dvh - 3rem)` knows the viewport
+     but not how far down the panel starts. On a 300px-tall window under a
+     wrapped 3-row header that let the panel run 72px past the bottom edge --
+     its own last rows unreachable, inner scrolling notwithstanding, because it
+     was the PANEL overflowing rather than its content.
+
+     The top is clamped as well, so a header tall enough to leave no room still
+     yields a usable panel rather than a sliver: the header is the thing that
+     gives way, not the panel you are trying to read. */
+  const room = window.innerHeight;
+  const top = Math.min(Math.round(headerEl.getBoundingClientRect().bottom + 6),
+                       Math.max(8, room - 140));
+  panel.style.top = top + "px";
+  panel.style.maxHeight = Math.max(80, room - top - 8) + "px";
+}
+
+const headerEl = document.querySelector("header");
+new ResizeObserver(() => { if (!panel.hidden) positionPanel(); }).observe(headerEl);
+
+function openPanel() {
+  panel.hidden = false;
+  positionPanel();
+  cogBtn.setAttribute("aria-expanded", "true");
+}
+
+function closePanel() {
+  panel.hidden = true;
+  cogBtn.setAttribute("aria-expanded", "false");
+}
+
+cogBtn.addEventListener("click", () => { panel.hidden ? openPanel() : closePanel(); });
+document.getElementById("setClose").addEventListener("click", closePanel);
+document.getElementById("setReset").addEventListener("click", () => {
+  Object.keys(LANGS).forEach(c => {
+    weights[c] = DEFAULT_WEIGHT;
+    bars[c].setAttribute("value", String(DEFAULT_WEIGHT));
+  });
+  saveWeights();
+});
+
+/* Escape closes the panel -- UNLESS a bar is mid-drag, where Escape is the
+   slider's own cancel gesture and must not take the panel down with it. */
+addEventListener("keydown", e => {
+  if (e.key !== "Escape" || panel.hidden) return;
+  if (panel.querySelector("progress-adjust[data-dragging]")) return;
+  closePanel();
+});
+
+addEventListener("pointerdown", e => {
+  if (panel.hidden) return;
+  if (panel.contains(e.target) || cogBtn.contains(e.target)) return;
+  closePanel();
 });
 
 function setLang(code, save = true) {
@@ -938,8 +1259,19 @@ function setLang(code, save = true) {
   // program. Ask the question they'd actually ask, in their own language.
   readme.textContent = cfg.readmeLabel;
   readme.href = cfg.readme;
-  // stamp lang so the Thai strings pick up the real Thai font (see CSS)
-  more.lang = tagline.lang = home.lang = readme.lang = autoBtn.lang = code;
+  // the settings panel's own chrome, translated like everything else
+  document.getElementById("setTitle").textContent = cfg.settings;
+  document.getElementById("modeOne").textContent = cfg.oneLang;
+  document.getElementById("modeAuto").textContent = cfg.changeLang;
+  document.getElementById("weightsHead").textContent = cfg.probability;
+  document.getElementById("setReset").textContent = cfg.reset;
+  document.getElementById("setClose").setAttribute("aria-label", cfg.close);
+  cogBtn.setAttribute("aria-label", cfg.settings);
+  cogBtn.title = cfg.settings;
+  // stamp lang so the Thai strings pick up the real Thai font (see CSS).
+  // The panel gets it too -- its bars don't, they set their own font, and only
+  // the Thai bar's caption wants the Thai face.
+  more.lang = tagline.lang = home.lang = readme.lang = autoBtn.lang = panel.lang = code;
   paintAuto();
   document.querySelectorAll(".langs button").forEach(b =>
     b.classList.toggle("active", b.dataset.lang === code));
@@ -951,7 +1283,10 @@ document.querySelectorAll(".langs button").forEach(b =>
   b.addEventListener("click", () => setLang(b.dataset.lang)));
 document.getElementById("more").addEventListener("click", serve);
 addEventListener("keydown", e => {
-  if (e.code === "Space" && !e.repeat) { e.preventDefault(); serve(); }
+  // Space inside the settings panel belongs to whatever is focused there -- a
+  // button, a bar -- not to the proverb underneath it. Without this the
+  // preventDefault below would swallow the button press AND serve a line.
+  if (e.code === "Space" && !e.repeat && !panel.contains(e.target)) { e.preventDefault(); serve(); }
 });
 
 /* pick a start language: ?lang= beats the saved choice beats the browser.
@@ -978,6 +1313,47 @@ addEventListener("keydown", e => {
       if (saved !== null) typeOn = saved === "1";
     } catch (e) {}
   }
+
+  /* Same precedence as the autocycle: ?autolang= beats the saved choice. The
+     weights have no URL form -- they are eight numbers, and a display left
+     cycling is exactly the machine whose localStorage survives. */
+  const al = params.get("autolang");
+  if (al !== null) {
+    autoLang = al !== "0";
+  } else {
+    try { autoLang = localStorage.getItem("cookieAutoLang") === "1"; } catch (e) {}
+  }
+
+  /* Restored defensively: a hand-edited or half-written entry must not take the
+     page down, and an unknown language code in there is simply ignored -- the
+     keys that matter are the ones LANGS defines, not the ones storage holds. */
+  try {
+    const raw = localStorage.getItem("cookieWeights");
+    if (raw) {
+      const savedW = JSON.parse(raw);
+      Object.keys(LANGS).forEach(c => {
+        const v = Math.round(Number(savedW[c]));
+        if (Number.isFinite(v)) weights[c] = Math.max(0, Math.min(100, v));
+      });
+    }
+  } catch (e) {}
+  Object.keys(LANGS).forEach(c => bars[c].setAttribute("value", String(weights[c])));
+  paintMode();
+
+  /* The slider is a module, so it can't be a plain <script src> here without a
+     hardcoded ?v= that would drift from SITE_VERSION -- and a stale CDN edge
+     serving an old bundle is the same trap the data files hit on 2026-08-03.
+     A dynamic import runs it through bust() instead, so there is still exactly
+     one version string on the page. It lands after the bars are already in the
+     DOM; custom elements upgrade in place, so that ordering is fine.
+     The file is generated -- regenerate it with
+     misc\scripts\build-proverb-masher-slider.ps1, never hand-edit it. */
+  // The leading ./ is load-bearing: a dynamic import resolves its argument as a
+  // MODULE SPECIFIER, not as a plain URL, so "nfwebkit/..." is a bare specifier
+  // and throws "Failed to resolve" with no import map. The data fetches above
+  // are fetch() calls, which have no such rule -- hence the difference.
+  import(bust("./nfwebkit/progress-adjust.min.js")).catch(e =>
+    console.warn("slider unavailable:", e));
 
   const q = params.get("lang");
   let saved = null;
