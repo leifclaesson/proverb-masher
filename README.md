@@ -1,8 +1,8 @@
 # proverb-masher
 
 Real proverbs, chopped in half and glued back wrong -- in Swedish, English,
-Thai, Russian, Dutch, Greek, Polish and French. The grammar stays right; the
-meaning gets mangled. That's the whole point.
+Thai, Russian, Dutch, Greek, Polish, French, German and Portuguese. The grammar
+stays right; the meaning gets mangled. That's the whole point.
 
 > A dear friend is better than two new ones. · Don't say "hop" -- then love
 > hauling the sled uphill too. · New brooms run deep.
@@ -20,9 +20,9 @@ The `☼` button beside it opens the autocycle's settings. **Interval** sets the
 dwell from 5 to 30 seconds. A switch decides
 whether the cycle stays in one language or changes language as well, and a bar
 per language sets how often each one comes up -- so a screen can run mostly
-Swedish with the occasional Thai line, or an even eight-way shuffle. The
-weights are **relative, not percentages**: all eight at 50 is the same even
-shuffle as all eight at 100, and a language at zero simply never comes up.
+Swedish with the occasional Thai line, or an even shuffle across the lot. The
+weights are **relative, not percentages**: every edition at 50 is the same even
+shuffle as every edition at 100, and a language at zero simply never comes up.
 `?autolang=1` arms language-changing from the URL, and the weights are
 remembered per browser. Only the timer ever changes language -- `One more` and
 the spacebar stay in the language you are reading.
@@ -124,6 +124,82 @@ nothing. It also inverts the Greek finding exactly: there the copula was the
 one silent verb in a language you could otherwise hear, while in French the
 copula is the loudest thing in the file and the entire first conjugation, most
 of the language, is marked on the page and inaudible in the ear.
+
+German is the only edition whose decoy needed neither transposing nor
+respelling *and* carries both meanings. *dyr*, *duur* and *teuer* are one
+Germanic word in three spellings, but the first two mean only costly, while
+*teuer* also means beloved -- *mein teurer Freund* -- the way `дорогой`,
+*drogi* and *cher* do. English *dear* is the same word a fourth time with the
+same two senses, so this is the one edition whose English mirror keeps the
+decoy word untranslated: it says **dear**, not *expensive*, because there is
+nothing to choose between. Its four nominative shapes also expose an axis no
+earlier edition could show, since none of them had articles -- the ending
+depends on the **determiner**, not just the noun: *der teure Apfel* against
+*ein teurer Krug*, same word, same case, different ending. And *teuer* drops
+its own *e* the moment an ending arrives.
+
+German also runs every seam the marker was invented for, in one file: an
+ending (`mach(t/en)`), a stem umlaut (`f(ällt/allen)`), an *e*→*i* raising
+(`br(icht/echen)` -- the same verb in the same proverb as Dutch
+`br(eekt/eken)`, cut in a different place for a different reason), and two
+verbs with no shared letter to cut at (`(ist/sind)`, `(isst/essen)`).
+
+Two things are new with German, and both are about **where the seam may
+fall** rather than what the marker holds. First, the verb bracket: German puts
+its finite verb second and shoves the rest of the verb to the end of the
+clause, so a cut anywhere in the middle strands half a verb. The seam
+therefore has exactly two legal positions -- a clause boundary, or immediately
+after the one constituent before the finite verb. That is why its "don't do
+this" group fronts the object (`Den Tag|soll man nicht vor dem Abend loben`)
+instead of splitting the modal from its infinitive. Second, **case crosses the
+seam**: the verb in the tail governs the case of the head, and the `+` marker
+holds only number. No marker could fix it either -- the head would have to
+ship in four cases, article and adjective included, which is a declension
+table rather than a bracket. So the fix is the 1996 section itself: **every
+group is a case class.** German's data file has six groups where every other
+edition has five, and the sixth is shape-identical to the fifth -- it exists
+only because those verbs take the dative.
+
+And German is the first edition to hit something the machinery genuinely
+**cannot** express, which its data file says out loud rather than
+half-shipping. A German possessive stem agrees with the gender of the
+*possessor*, and the possessor is in the head: *Jedes Ding hat **seine**
+Zeit*, but *Die Hoffnung hat **ihre** Zeit*. `(seine/ihre)` carries number
+only, so a glued line would be wrong half the time. English `(its/their)`,
+Dutch `(zijn/hun)` and French all escape this, French for free -- there the
+possessive agrees with the thing possessed. German doesn't escape, so no
+German tail carries a possessive at all and the English mirror drops its
+`(its/their)` to match. Two proverbs were cut for it. A gender axis was
+possible and not worth a resolver change for two lines.
+
+Portuguese shares French's decoy outright -- *caro* is *cher*, the same Latin
+word under the same rule of position, so a *caro amigo* is dear and an *amigo
+caro* is expensive, and its decoys stand behind the noun for the same reason
+French's do. What it adds is the exact mirror of the French finding: *caro,
+cara, caros, caras* are four different **sounds**, so this is the edition
+where the agreement French writes and never says is finally audible. Two of
+those four are also nouns, in the same spelling and in two different groups --
+*Quem vê caras não vê corações* is faces, *As paredes caras têm ouvidos* is
+the price. French has nothing like it; *chères* is not a word for anything.
+
+It is written in the Portuguese of Portugal, and that is structural rather
+than a matter of taste. The file is full of pronouns hung on the back of the
+verb -- *acrescenta-lhe*, *avia-se*, *diz-me* -- which is not where Brazil
+puts them. Negation drags the pronoun back in front (*não te rias*, never
+*não ris-te*), and that needed no teaching: the 1996 groups are grammatical
+equivalence classes, so the two placements sorted themselves into different
+groups. Group 5 goes further and puts a pronoun *inside* a verb --
+*dir-te-ei*, that is *dizer* + *te* + the future ending. Mesoclisis exists in
+no other language on the site.
+
+And Portuguese makes the strongest case in the whole project for a marker that
+carries both forms rather than deriving one from the other, because **its seam
+chases an accent** -- the Dutch doubled-vowel problem in a shape none of the
+other eight editions has. What changes with the number is the *diacritic*, and
+no suffix rule in the world reaches a diacritic: `d(á/ão)`, `v(ai/ão)`,
+`v(ê/eem)`, `sa(i/em)`, and then `t(em/êm)` and `v(em/êm)`, where the two
+forms differ by a circumflex and nothing else and are still pronounced
+differently.
 
 ## Provenance
 

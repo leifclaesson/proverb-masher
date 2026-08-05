@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PROVÉRBIOS — a edição portuguesa</title>
+<link rel="stylesheet" href="readme.css">
+</head>
+<body>
+<article>
+<a class="back" href="./?lang=pt">← COOKIE</a>
+
+<h1>PROVÉRBIOS — provérbios passados pela picadora</h1>
+
+<blockquote>
+<p><strong>De onde vem.</strong> Edição portuguesa do <code>COOKIE.BAS</code>,
+escrito por <strong>Leif Claesson (Liket of Goto10)</strong> por volta de 1996,
+em PowerBASIC para DOS. O original sueco e a história toda do motor estão ao
+lado, na <a href="readme-sv.html">edição sueca</a> — leia essa primeiro; esta
+página só fala do que o português mudou. Edições irmãs:
+<a href="readme-en.html">inglesa</a>, <a href="readme-th.html">tailandesa</a>,
+<a href="readme-ru.html">russa</a>, <a href="readme-nl.html">neerlandesa</a>,
+<a href="readme-el.html">grega</a>, <a href="readme-pl.html">polaca</a>,
+<a href="readme-fr.html">francesa</a>, <a href="readme-de.html">alemã</a>.
+<strong>Para quem espera a outra metade.</strong></p>
+</blockquote>
+
+<p>O mesmo motor, a mesma piada: provérbios a sério são cortados ao meio por
+uma barra vertical, em CABEÇA e CAUDA, arrumados em grupos onde as metades são
+gramaticalmente permutáveis, e o programa cola a cabeça de um à cauda de
+<em>outro</em>. Cada linha traz também a tradução inglesa das suas duas
+metades, baralhada pelo mesmo par de índices — por baixo de cada disparate
+português está exatamente o mesmo disparate em inglês.</p>
+
+<blockquote><p>O hábito caro tem ouvidos. · Quem não arrisca não vê corações. ·
+Abril, espeto de pau.</p></blockquote>
+
+<div class="chop">
+<span>As paredes caras | têm ouvidos</span>
+<span>O cão que ladra | não morde</span>
+<span class="out">→ As paredes caras não mordem.</span>
+</div>
+
+<p>Repare-se no <em>mordem</em>. A cauda veio de uma linha no singular e chegou
+aqui no plural, porque quem manda no número é a cabeça. É a máquina que o resto
+desta página explica.</p>
+
+<h2>O que foi transposto</h2>
+
+<div class="scroll">
+<table>
+<tr><th>Original (sueco, 1996)</th><th>Esta edição</th></tr>
+<tr><td><code>ORDSPRÅK.TXT</code>, CP437</td><td><code>PROVÉRBIOS.TXT</code>, UTF-8, quatro campos (<code>cabeça|cauda|EN head|EN tail</code>)</td></tr>
+<tr><td>Provérbios suecos</td><td>Provérbios portugueses a sério, recolhidos para esta edição — nenhum é tradução de outra edição do sítio</td></tr>
+<tr><td>Falsos <em>dyr/dyrt/dyra</em> no grupo 1</td><td><strong>Falsos <em>caro/cara/caros/caras</em></strong> — e há aqui uma dívida ao francês, ver já a seguir</td></tr>
+<tr><td><code>fanheller:</code>, a etiqueta de repetição com o nome de um palavrão sueco</td><td>Praguejar faz parte e traduz-se a cada edição; esta pragueja com <strong>uma ova</strong></td></tr>
+<tr><td>Três reservas estacionadas atrás do <code>**</code></td><td><strong>As mesmas três</strong>, e o português tem-nas todas: <em>Malha-se no ferro enquanto está quente</em>, <em>Onde entra o beber, sai o saber</em>, <em>Panela em que muitos mexem, ou sai insossa ou sai salgada</em></td></tr>
+</table>
+</div>
+
+<h2>O engodo é emprestado, e diz-se</h2>
+
+<p>Convém dizê-lo à cabeça: <strong>este truque é do francês</strong>. A edição
+francesa descobriu que <code>cher</code> muda de sentido conforme o lugar e
+passou o engodo para trás do nome por causa disso. <code>Caro</code> é a mesma
+palavra latina e obedece à mesma regra, portanto o português não descobriu nada
+— limitou-se a herdar.</p>
+
+<div class="scroll">
+<table>
+<tr><th>posição</th><th>exemplo</th><th>quer dizer</th></tr>
+<tr><td>antes do nome</td><td><code>um caro amigo</code></td><td>estimado</td></tr>
+<tr><td>depois do nome</td><td><code>um amigo caro</code></td><td>dispendioso</td></tr>
+</table>
+</div>
+
+<p>O programa põe-no sempre <strong>depois</strong>. Do outro lado do nome os
+falsos provérbios deixavam de ser falsos provérbios e passavam a declarações de
+amizade.</p>
+
+<h2>Quatro formas — e desta vez ouvem-se as quatro</h2>
+
+<p>É aqui que a edição portuguesa devolve alguma coisa. O cabeçalho francês
+queixa-se, com razão, de que <em>cher</em>, <em>chère</em>, <em>chers</em> e
+<em>chères</em> são quatro maneiras de escrever um único som <strong>/ʃɛʁ/</strong>:
+a concordância existe no papel e em mais lado nenhum, e quem lê o ficheiro em
+voz alta perde a gramática toda. Em português passa-se exatamente o
+contrário.</p>
+
+<div class="scroll">
+<table>
+<tr><th>edição</th><th>engodo</th><th>formas</th><th>à orelha</th></tr>
+<tr><td>sueca 1996</td><td><code>dyr / dyrt / dyra</code></td><td>3</td><td>ouvem-se</td></tr>
+<tr><td>neerlandesa 2026</td><td><code>duur / dure</code></td><td>2</td><td>ouvem-se</td></tr>
+<tr><td>grega 2026</td><td><code>ακριβός</code>…</td><td>6 — e o artigo vai atrás</td><td>ouvem-se as seis</td></tr>
+<tr><td>polaca 2026</td><td><code>drogi / droga / drogie / drodzy</code></td><td>4</td><td>ouvem-se</td></tr>
+<tr><td>francesa 2026</td><td><code>cher / chère / chers / chères</code></td><td>4</td><td><strong>nenhuma</strong></td></tr>
+<tr><td><strong>portuguesa 2026</strong></td><td><code>caro / cara / caros / caras</code></td><td>4</td><td><strong>quatro sons diferentes</strong></td></tr>
+</table>
+</div>
+
+<p>Mesma língua-mãe, mesmo adjetivo, mesmo número de casas — e o resultado
+oposto. Leia-se o ficheiro português em voz alta e a gramática não desaparece:
+fica lá toda.</p>
+
+<h2>E «caras» já era uma palavra</h2>
+
+<p>Isto o francês não tem, porque <em>chères</em> não é coisa nenhuma. A forma
+feminina plural do engodo português é, por acaso, um substantivo corrente. O
+ficheiro traz as duas, à distância de um grupo uma da outra:</p>
+
+<pre><code>grupo 1   As paredes caras|têm ouvidos       ← caras = o preço
+grupo 2   Quem vê caras|não vê corações      ← caras = os rostos</code></pre>
+
+<p>São as mesmas cinco letras nos dois sítios. Os grupos nunca se misturam, por
+isso o motor não faz nada com esta coincidência — ela está no ficheiro para
+quem a lê, e não para quem a executa. É o mesmo tipo de achado que a edição
+neerlandesa tem com <em>klant</em> (cliente em neerlandês, palerma em sueco) e
+a russa com «дорогой».</p>
+
+<h2>O problema português: a costura anda atrás do acento</h2>
+
+<p>Os verbos portugueses concordam em número, como o inglês, o neerlandês, o
+grego, o polaco e o francês, e ao contrário do sueco, do tailandês e do russo.
+A solução é a que a edição inglesa inventou e todas as outras herdaram: um
+<code>+</code> no início da linha quer dizer SUJEITO NO PLURAL, e é a cauda que
+carrega as <em>duas</em> formas.</p>
+
+<pre><code>Uma mão|lav(a/am) a outra
++As paredes|t(em/êm) ouvidos
+O segredo|(é/são) a alma do negócio</code></pre>
+
+<p>O neerlandês já tinha mostrado que a costura pode cair <strong>a meio do
+radical</strong>, porque uma sílaba aberta perde a vogal dobrada —
+<code>ma(akt/ken)</code>, <code>br(eekt/eken)</code>. O português mostra a mesma
+coisa por outra razão, e é uma razão que nenhuma das outras oito edições tem:
+<strong>o que muda com o número é o diacrítico</strong>. O acento pertence a uma
+das formas e não à outra, portanto a alternância tem de abrir à esquerda
+dele.</p>
+
+<div class="scroll">
+<table>
+<tr><th>marca</th><th>singular</th><th>plural</th><th>o que se passa</th></tr>
+<tr><td><code>d(á/ão)</code></td><td>dá</td><td>dão</td><td>o acento agudo é só do singular</td></tr>
+<tr><td><code>v(ai/ão)</code></td><td>vai</td><td>vão</td><td>não sobra letra nenhuma à direita</td></tr>
+<tr><td><code>v(ê/eem)</code></td><td>vê</td><td>veem</td><td>o circunflexo cai e a vogal duplica</td></tr>
+<tr><td><code>sa(i/em)</code></td><td>sai</td><td>saem</td><td>costura a meio do radical</td></tr>
+<tr><td><code>t(em/êm)</code></td><td>tem</td><td>têm</td><td><strong>um acento, e mais nada</strong></td></tr>
+<tr><td><code>v(em/êm)</code></td><td>vem</td><td>vêm</td><td><strong>idem</strong></td></tr>
+</table>
+</div>
+
+<p>As duas últimas linhas são o argumento mais forte que este ficheiro alguma
+vez teve para trazer as duas formas em vez de deduzir uma da outra.
+<em>Tem</em> e <em>têm</em> distinguem-se por um circunflexo — e ainda assim
+dizem-se de maneira diferente, portanto a distinção é a sério e não uma
+convenção ortográfica. <strong>Nenhuma regra de terminação no mundo produz um
+acento.</strong> Uma marca que carrega as duas formas não precisa de saber onde
+é que a costura fica.</p>
+
+<p>O resíduo de que as outras edições se queixam — <em>Holle vaten zijn
+koning</em>, um sujeito no plural preso a um nome predicativo no singular —
+aqui não chega a aparecer, e não por mérito de ninguém. O português deixa um
+sujeito plural levar um nome de papel no singular sem estranhar
+(<em>eles são a alma da festa</em>), portanto <code>(é/são) a alma do
+negócio</code> e <code>(é/são) ouro</code> sobrevivem inteiros aos dois
+números. Foi sorte da língua, não desenho do ficheiro.</p>
+
+<h2>Porquê o português europeu</h2>
+
+<p>Não foi uma questão de gosto, foi uma questão de onde ficam os pronomes.
+Em português europeu o pronome vai atrás do verbo, e os provérbios estão
+cheios deles:</p>
+
+<pre><code>Quem conta um conto|acrescenta-lhe um ponto
+Quem vai ao mar|avia-se em terra</code></pre>
+
+<p>No Brasil esses pronomes vão à frente. A ortografia, essa, já não separa
+grande coisa — desde o Acordo de 1990 escreve-se quase igual dos dois lados —
+por isso o que aqui se escolheu foi uma <em>sintaxe</em> e um <em>corpus</em>,
+não uma grafia. (É também por causa do Acordo que <em>abril</em> e
+<em>primavera</em> aparecem em minúscula.)</p>
+
+<p>E depois há a negação, que puxa o pronome para diante do verbo — o que
+significa que o grupo 4 inteiro tem os pronomes do lado contrário ao do grupo
+2:</p>
+
+<pre><code>Não te rias da caveira|que um dia nela te vais tornar</code></pre>
+
+<p>Não foi preciso ensinar isto ao programa. Os «grupos» de 1996 já eram
+classes de equivalência gramatical, e as duas colocações caíram em grupos
+diferentes sozinhas — exatamente como a edição francesa descobriu que o género
+já estava tratado antes de alguém pensar nele.</p>
+
+<h2>E um pronome que vai dentro do verbo</h2>
+
+<p>No grupo 5 está o provérbio que decide tudo o que está escrito acima:</p>
+
+<blockquote><p>Diz-me com quem andas, <strong>dir-te-ei</strong> quem és.</p></blockquote>
+
+<p><code>dir-te-ei</code> é <em>dizer</em> + <em>te</em> + <em>ei</em>, com o
+pronome enfiado entre o radical e a terminação do futuro. Chama-se
+<strong>mesóclise</strong>, não existe em mais nenhuma língua deste sítio, e no
+Brasil desapareceu há muito. O resolvedor nunca lhe toca — essa
+linha não leva marca de plural, e o grupo 5 não tem uma única marca — mas é a
+razão de fundo por que a costura é posta à mão e não calculada. Se houvesse um
+verbo assim a concordar em número, a alternância teria de abrir e fechar à
+volta de um pronome.</p>
+
+<p>É o mesmo tipo de nota que a edição grega deixou sobre <code>είναι</code> e
+a polaca sobre o género que só existe no plural: uma coisa que a língua faz, e
+que o motor tem a sorte de nunca encontrar.</p>
+
+<h2>O género trata-se sozinho</h2>
+
+<p>Os adjetivos predicativos concordam — bom, boa, bons, boas — portanto as
+caudas do grupo 1 são <strong>apenas</strong> grupos verbais: nada de
+predicativos, nada de particípios com <em>ser</em>. A regra veio inteira da
+edição francesa e não custou uma linha de código.</p>
+
+<p>Custou um provérbio, isso sim. <em>O prometido é devido</em> era o candidato
+mais óbvio do ficheiro e ficou de fora, porque <em>devido</em> concorda em
+género e teria produzido <em>As paredes caras é devido</em> — que não é a
+piada, é uma gralha.</p>
+
+<h2>O exemplar plantado</h2>
+
+<p>Nos dados de 1996 há um provérbio que já vem baralhado, gaguez e tudo:
+<em>Den som gapar efter galen fågel <strong>ser inte ser inte</strong> skogen
+för alla <strong>ben</strong></em>. Cada edição mantém a forma e traduz o
+trocadilho. Em grego jogava com <em>φύλλα</em>, que são folhas e massa filo ao
+mesmo tempo; em francês com o <em>mille-feuille</em>. O português tem a mesma
+folha, e tem-na duas vezes — <em>mil-folhas</em> é o bolo <em>e</em> é o nome da
+planta:</p>
+
+<blockquote><p>As árvores <strong>não deixam não deixam</strong> ver a floresta
+por causa do <strong>mil-folhas</strong>.</p></blockquote>
+
+<h2>Este sítio</h2>
+
+<p>A edição web (2026) é o quinto porte do motor — PowerBASIC → Python → Rust →
+JavaScript — e lê exatamente o mesmo formato de ficheiro que o original de DOS.
+O ficheiro <em>é</em> metade da piada, portanto ficou como estava.</p>
+
+</article>
+<footer>Liket of Goto10, ~1996 → edição portuguesa 2026 ·
+<a href="https://github.com/leifclaesson/proverb-masher">source</a> ·
+README: <a href="readme-sv.html">SV</a> · <a href="readme-en.html">EN</a> ·
+<a href="readme-th.html">TH</a> · <a href="readme-ru.html">RU</a> ·
+<a href="readme-nl.html">NL</a> · <a href="readme-el.html">EL</a> ·
+<a href="readme-pl.html">PL</a> · <a href="readme-fr.html">FR</a> ·
+<a href="readme-de.html">DE</a> ·
+<a href="https://leifclaesson.github.io/">Quem é o Leif?</a></footer>
+</body>
+</html>

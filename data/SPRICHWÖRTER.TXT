@@ -1,0 +1,295 @@
+#               Sprichwörter 0.5  —  deutsche Fassung von Ordsprak 0.1-und-etwas
+#               Original: Leif Claesson (Liket of Goto10), ~1996
+#
+#       Für Peter und für Torsten. Der eine grüßt mit "Servus", der
+#       andere kommt aus Regensburg, wo man das genauso sagt — und diese
+#       Fassung ist trotzdem in Hochdeutsch, also in der Sprache, die
+#       keiner von euch beiden zu Hause spricht. Geschrieben hat sie am
+#       Ende sowieso ein Schwede.
+#
+#       Peter, die Sprachwürfelei war deine Idee — dass das Ding von
+#       allein weiterzieht statt bei einer Sprache stehenzubleiben. Hier
+#       ist die neunte, auf die es jetzt fallen kann. Sie ist von allen
+#       neun die störrischste, und das ist die Pointe.
+#
+#       Torsten, deine Mails fangen mit der Warnung an, dass es lang
+#       wird, und dann liegt das ganze Durcheinander sauber sortiert da,
+#       mit genau einer Frage am Ende. Dieses Programm nimmt dasselbe
+#       Deutsch auseinander und legt es in der falschen Reihenfolge
+#       wieder hin.
+#
+#       TEUER IST DER GANZE WITZ, und Deutsch ist die einzige Fassung, in
+#       der der Köder gar nicht erst übersetzt werden musste. Schwedisch
+#       "dyr", niederländisch "duur", deutsch "teuer" — ein einziges
+#       germanisches Wort in drei Schreibweisen. Aber "dyr" und "duur"
+#       heißen nur teuer im Sinne des Preises; "teuer" heißt daneben auch
+#       lieb ("mein teurer Freund", "die teure Heimat"), genau wie
+#       russisch "дорогой", polnisch "drogi" und französisch "cher". Das
+#       Deutsche steht also in beiden Lagern gleichzeitig: dasselbe Wort
+#       wie 1996 UND beide Bedeutungen. Und das englische "dear" ist
+#       dasselbe Wort noch einmal, mit denselben zwei Bedeutungen — daher
+#       steht im englischen Spiegel dieser Fassung "dear" und nicht
+#       "expensive". Die anderen Fassungen mussten sich entscheiden.
+#
+#       Das Dateiformat ist sehr einfach. Die Sprichwörter stehen in
+#       Gruppen, innerhalb derer die Hälften grammatisch austauschbar
+#       sind; die Naht ist ein senkrechter Strich (|). Ein einzelner *
+#       eröffnet die nächste Gruppe. ** ist das Dateiende: was danach
+#       kommt, liest das Programm nicht mehr.
+#
+#       Jede Zeile hat vier Felder:  Kopf|Schwanz|EN head|EN tail
+#       Die englische Übersetzung wird mit DEMSELBEN Indexpaar gemischt
+#       wie das Deutsche, der englische Unsinn läuft also exakt parallel.
+#
+#       DEUTSCHE VERBEN RICHTEN SICH NACH DER ZAHL, wie die englischen,
+#       niederländischen, griechischen, polnischen und französischen und
+#       anders als die schwedischen, thailändischen und russischen. Also
+#       macht diese Fassung dasselbe wie die englische: ein + am
+#       Zeilenanfang heißt SUBJEKT IM PLURAL, und der Schwanz trägt beide
+#       Formen selbst mit sich:
+#           mach(t/en)        Endung — die Naht sitzt hinten
+#           f(ällt/allen)     Umlaut — die Naht rutscht in den Stamm
+#           br(icht/echen)    e wird i — dasselbe Verb wie im
+#                             niederländischen br(eekt/eken), anderer
+#                             Mechanismus: dort ein offener Vokal, hier
+#                             eine Hebung
+#           (ist/sind)        gar keine Naht, kein gemeinsamer Buchstabe
+#           (isst/essen)      dasselbe noch einmal, und diesmal ist es
+#                             nicht einmal ein unregelmäßiges Verb
+#       Vier Nahtsorten in einer Datei — das hat keine der acht Fassungen
+#       vorher zusammen gehabt. Deshalb trägt die Markierung beide Formen,
+#       statt eine aus der anderen abzuleiten: keine Endungsregel der Welt
+#       kommt an die Naht von f(ällt/allen) heran.
+#
+#       DIE NAHT DARF IM DEUTSCHEN NUR AN ZWEI STELLEN LIEGEN, und das ist
+#       der eigentliche Unterschied zu allen bisherigen Fassungen:
+#           1. an einer Satzgrenze, oder
+#           2. unmittelbar hinter dem Vorfeld, also hinter dem EINEN Glied,
+#              das vor dem finiten Verb steht.
+#       Alles andere zerschneidet die Satzklammer. "Man soll den Tag nicht
+#       vor dem Abend loben" hat sein finites Verb vorn und seinen
+#       Infinitiv ganz hinten; wer irgendwo in der Mitte schneidet, lässt
+#       ein Verb ohne seinen Partner zurück. Deshalb steht in Gruppe 4
+#       nicht "Man soll den Tag|nicht vor dem Abend loben", sondern das
+#       Objekt im Vorfeld: "Den Tag|soll man nicht vor dem Abend loben".
+#       Dasselbe von der anderen Seite: im Nebensatz steht das Verb ganz
+#       hinten, also ist ein Nebensatz immer ganz Kopf und nie halb
+#       (Gruppen 2 und 6).
+#
+#       DER KASUS LÄUFT ÜBER DIE NAHT, und dafür gibt es keine Markierung.
+#       Das + kennt nur die Zahl. Welchen Fall der Kopf trägt, bestimmt
+#       aber das Verb im Schwanz: "Einem geschenkten Gaul schaut man nicht
+#       ins Maul" verlangt Dativ, "Schlafende Hunde soll man nicht wecken"
+#       Akkusativ, und geklebt wird beides gleich wahrscheinlich. Eine
+#       Markierung könnte das nicht retten — der Kopf müsste in vier
+#       Fällen mitgeliefert werden, mit Artikel und Adjektiv, und das ist
+#       keine Klammerform mehr, sondern eine Deklinationstabelle.
+#       Die Lösung ist deshalb keine neue Maschinerie, sondern die
+#       Gruppierung: JEDE GRUPPE IST EINE KASUSKLASSE. Gruppe 4 ist
+#       durchgehend Akkusativ, Gruppe 5 durchgehend Dativ, und deswegen
+#       gibt es Gruppe 5 überhaupt. Das ist derselbe Griff, mit dem die
+#       polnische Fassung das Genus des Präteritums erledigt hat, nur eine
+#       Etage tiefer: die Gruppe von 1996 WAR schon eine Äquivalenzklasse,
+#       das Schwedische hat sie bloß nie so hart angefasst.
+#
+#       WAS DIE MASCHINERIE NICHT KANN, offen gesagt: das Possessivum.
+#       Sein Stamm richtet sich nach dem Genus des BESITZERS, und der
+#       steht im Kopf — "Jedes Ding hat seine Zeit", aber "Die Hoffnung hat
+#       IHRE Zeit". (seine/ihre) trägt nur die Zahl, das Genus fehlt, und
+#       eine geklebte Zeile wäre in der Hälfte der Fälle schlicht falsch.
+#       Englisch (its/their), niederländisch (zijn/hun) und die
+#       französische Fassung kommen alle davon, weil ihr Possessivum kein
+#       Genus des Besitzers kennt. Diese Fassung kommt nicht davon, also
+#       steht in KEINEM deutschen Schwanz ein Possessivum, und im
+#       englischen Spiegel dann auch keins. "Jedes Ding hat seine Zeit"
+#       und "Jeder Topf findet seinen Deckel" sind genau daran
+#       gescheitert. Eine Markierung mit drei Genera plus Plural wäre
+#       machbar, aber sie wäre eine Motoränderung für zwei Sprichwörter,
+#       und dafür ist sie zu teuer.
+#       Aus demselben Grund fehlt "Den Ast soll man nicht absägen, auf dem
+#       man sitzt": das Relativpronomen im Schwanz richtet sich nach dem
+#       Genus des Kopfes. Und "Aller guten Dinge sind drei" fehlt in
+#       Gruppe 1, weil sein Kopf im Genitiv steht.
+#
+#       DIE ENDUNG HÄNGT AM ARTIKEL, nicht nur am Substantiv. Gruppe 1 ist
+#       absichtlich mit falschen "teuren" Sprichwörtern vollgestopft. Im
+#       schwedischen Original waren es drei Formen dyr/dyrt/dyra, im
+#       Polnischen vier Gestalten auf fünf Plätzen. Das Deutsche hat im
+#       Nominativ allein auch vier Gestalten — teure, teurer, teures,
+#       teuren — aber sie verteilen sich nach einer Achse, die keine
+#       frühere Fassung zeigen konnte, weil ihr die Artikel fehlten:
+#           der teure Apfel     ein teurer Apfel      (dasselbe Wort,
+#           die teure Zeit      eine teure Schwalbe    derselbe Fall,
+#           das teure Blut      ein teures Kind        andere Endung —
+#           die teuren Wände    teure Kleider          der Artikel
+#                                                      entscheidet)
+#       Und "teuer" verliert sein e, sobald eine Endung kommt: teuer ->
+#       teur-. Die Köder SIND der Witz, und die nach Gruppengröße
+#       gewichtete Auswahl sorgt dafür, dass sie am häufigsten fallen.
+#
+#       DIE INTERPUNKTION FÄHRT IM KOPF MIT (im Russischen umgekehrt, dort
+#       im Schwanz): das Deutsche will sein Komma hinter dem vorangestellten
+#       Nebensatz, und der Nebensatz steht nun einmal im Kopf. Siehe
+#       Gruppen 2 und 6. Ein Kopf ohne Nebensatz hat schlicht kein Komma.
+#
+#       Gruppe 1 : Subjekt | Prädikat im Präsens
+Der teure Apfel|f(ällt/allen) nicht weit vom Stamm|The dear apple|fall(s) not far from the trunk
+Ein teures Kind|scheu(t/en) das Feuer|A dear child|shun(s) the fire
+Eine teure Schwalbe|mach(t/en) noch keinen Sommer|A dear swallow|make(s) no summer yet
+Ein teures Huhn|find(et/en) auch mal ein Korn|A dear hen|also find(s) a grain now and then
+Ein teurer Krug|geh(t/en) so lange zum Brunnen, bis er bricht|A dear jug|go(es) to the well until it breaks
+Der teure Kunde|(ist/sind) König|The dear customer|(is/are) king
+Die teure Zeit|heil(t/en) alle Wunden|Dear time|heal(s) all wounds
+Das teure Blut|(ist/sind) dicker als Wasser|Dear blood|(is/are) thicker than water
+Die teure Liebe|geh(t/en) durch den Magen|Dear love|go(es) through the stomach
+Ein teurer Prophet|g(ilt/elten) nichts im eigenen Land|A dear prophet|count(s) for nothing at home
+Der teure Schein|trüg(t/en)|The dear appearance|deceive(s)
+Die teure Hoffnung|st(irbt/erben) zuletzt|Dear hope|die(s) last
++Teure Kleider|mach(t/en) Leute|Dear clothes|make(s) people
++Teure Lügen|h(at/aben) kurze Beine|Dear lies|ha(s/ve) short legs
++Die teuren Wände|h(at/aben) Ohren|The dear walls|ha(s/ve) ears
++Teure Besen|kehr(t/en) gut|Dear brooms|sweep(s) well
++Die teuren Ratten|verl(ässt/assen) das sinkende Schiff|The dear rats|leave(s) the sinking ship
++Teure Gegensätze|zieh(t/en) sich an|Dear opposites|attract(s)
+Der Apfel|f(ällt/allen) nicht weit vom Stamm|The apple|fall(s) not far from the trunk
+Ein gebranntes Kind|scheu(t/en) das Feuer|A burnt child|shun(s) the fire
+Eine Schwalbe|mach(t/en) noch keinen Sommer|One swallow|make(s) no summer yet
+Ein blindes Huhn|find(et/en) auch mal ein Korn|A blind hen|also find(s) a grain now and then
+Der Krug|geh(t/en) so lange zum Brunnen, bis er bricht|The jug|go(es) to the well until it breaks
+Der Kunde|(ist/sind) König|The customer|(is/are) king
+Die Zeit|heil(t/en) alle Wunden|Time|heal(s) all wounds
+Das Blut|(ist/sind) dicker als Wasser|Blood|(is/are) thicker than water
+Die Liebe|geh(t/en) durch den Magen|Love|go(es) through the stomach
+Der Prophet|g(ilt/elten) nichts im eigenen Land|The prophet|count(s) for nothing at home
+Der Schein|trüg(t/en)|The appearance|deceive(s)
+Die Hoffnung|st(irbt/erben) zuletzt|Hope|die(s) last
+Morgenstund|h(at/aben) Gold im Mund|The morning hour|ha(s/ve) gold in the mouth
+Die Not|br(icht/echen) Eisen|Need|break(s) iron
+Der Ton|mach(t/en) die Musik|The tone|make(s) the music
+Die Übung|mach(t/en) den Meister|Practice|make(s) the master
+Alte Liebe|rost(et/en) nicht|Old love|rust(s) not
+Ein Unglück|komm(t/en) selten allein|A misfortune|come(s) rarely alone
+Der Fisch|stink(t/en) vom Kopf her|The fish|stink(s) from the head
+Der Zweck|heilig(t/en) die Mittel|The end|sanctif(ies/y) the means
+Aller Anfang|(ist/sind) schwer|Every beginning|(is/are) hard
+Der Teufel|steck(t/en) im Detail|The devil|(is/are) in the detail
+Der frühe Vogel|f(ängt/angen) den Wurm|The early bird|catch(es) the worm
+Das Unkraut|vergeh(t/en) nicht|The weed|perish(es) not
+Der Klügere|g(ibt/eben) nach|The cleverer one|give(s) way
+Das Eigenlob|stink(t/en)|Self-praise|stink(s)
+Die Vorsicht|(ist/sind) die Mutter der Porzellankiste|Caution|(is/are) the mother of the china box
+Das Papier|(ist/sind) geduldig|Paper|(is/are) patient
+Das Auge|(isst/essen) mit|The eye|eat(s) along
+Der stete Tropfen|höhl(t/en) den Stein|The steady drop|hollow(s) out the stone
+Der Hochmut|komm(t/en) vor dem Fall|Pride|come(s) before the fall
+Die Rache|(ist/sind) süß|Revenge|(is/are) sweet
+Geteiltes Leid|(ist/sind) halbes Leid|Shared sorrow|(is/are) half the sorrow
+Die Katze|l(ässt/assen) das Mausen nicht|The cat|(doesn't/don't) give up mousing
+Die Gelegenheit|mach(t/en) Diebe|Opportunity|make(s) thieves
+Der Appetit|komm(t/en) beim Essen|Appetite|come(s) with the eating
+Das Reden|(ist/sind) Silber, Schweigen ist Gold|Speech|(is/are) silver, silence is gold
+Die Selbsterkenntnis|(ist/sind) der erste Schritt zur Besserung|Self-knowledge|(is/are) the first step to improvement
+Das Glück|(ist/sind) mit den Dummen|Luck|(is/are) with the foolish
+Kleinvieh|mach(t/en) auch Mist|Small livestock|also make(s) manure
+Der Undank|(ist/sind) der Welten Lohn|Ingratitude|(is/are) the world's reward
++Kleider|mach(t/en) Leute|Clothes|make(s) people
++Lügen|h(at/aben) kurze Beine|Lies|ha(s/ve) short legs
++Die Wände|h(at/aben) Ohren|The walls|ha(s/ve) ears
++Neue Besen|kehr(t/en) gut|New brooms|sweep(s) well
++Die Ratten|verl(ässt/assen) das sinkende Schiff|The rats|leave(s) the sinking ship
++Gegensätze|zieh(t/en) sich an|Opposites|attract(s)
++Stille Wasser|(ist/sind) tief|Still waters|(is/are) deep
++Scherben|bring(t/en) Glück|Broken shards|bring(s) luck
++Ausnahmen|bestätig(t/en) die Regel|Exceptions|confirm(s) the rule
++Kleine Geschenke|erh(ält/alten) die Freundschaft|Small gifts|keep(s) the friendship alive
++Hunde, die bellen,|beiß(t/en) nicht|Dogs that bark|(doesn't/don't) bite
++Viele Hände|mach(t/en) der Arbeit schnell ein Ende|Many hands|make(s) short work
+Wer den Hals nicht voll kriegen kann,|s(ieht/ehen) s(ieht/ehen) den Wald vor lauter Beinen nicht|He who cannot get enough|(doesn't/don't) see (doesn't/don't) see the wood for all the legs
+*
+#       Gruppe 2 : Wer ..., | ...   (der Kopf ist immer Singular, hier
+#       braucht es also nicht eine einzige Markierung. Der Kopf ist ein
+#       ganzer Nebensatz mit Verb am Ende, der Schwanz ein Hauptsatz, der
+#       mit seinem finiten Verb oder einem aufnehmenden Pronomen anfängt —
+#       so bleibt die Satzklammer in einer Hälfte.)
+Wer wagt,|gewinnt|He who dares|wins
+Wer zuletzt lacht,|lacht am besten|He who laughs last|laughs best
+Wer A sagt,|muss auch B sagen|He who says A|must also say B
+Wer rastet,|rostet|He who rests|rusts
+Wer den Pfennig nicht ehrt,|ist des Talers nicht wert|He who does not honour the penny|is not worth the dollar
+Wer anderen eine Grube gräbt,|fällt selbst hinein|He who digs a pit for others|falls into it himself
+Wer Wind sät,|wird Sturm ernten|He who sows the wind|will reap the storm
+Wer im Glashaus sitzt,|soll nicht mit Steinen werfen|He who sits in a glass house|should not throw stones
+Wer nicht hören will,|muss fühlen|He who will not listen|must feel
+Wer zu spät kommt,|den bestraft das Leben|He who comes too late|is punished by life
+Wer sich in Gefahr begibt,|kommt darin um|He who walks into danger|perishes in it
+Wer schön sein will,|muss leiden|He who wants to be beautiful|must suffer
+Wer die Wahl hat,|hat die Qual|He who has the choice|has the agony
+Wer einmal lügt,|dem glaubt man nicht|He who lies once|is believed no more
+*
+#       Gruppe 3 : besser dies | als das
+#       (beide Hälften stehen im Nominativ — "als" verlangt denselben Fall
+#       wie das, womit verglichen wird, und der steht im Kopf)
+Besser spät|als nie|Better late|than never
+Besser der Spatz in der Hand|als die Taube auf dem Dach|Better the sparrow in the hand|than the pigeon on the roof
+Besser ein Ende mit Schrecken|als ein Schrecken ohne Ende|Better an end with horror|than a horror without end
+Besser ein magerer Vergleich|als ein fetter Prozess|Better a lean settlement|than a fat lawsuit
+Besser arm und gesund|als reich und krank|Better poor and healthy|than rich and sick
+Besser ein kleiner Herr|als ein großer Knecht|Better a small master|than a great servant
+*
+#       Gruppe 4 : Akkusativobjekt im Vorfeld | soll man ...
+#       (die Naht sitzt hinter dem Vorfeld, damit die ganze Satzklammer —
+#       "soll ... wecken" — im Schwanz bleibt. JEDER Kopf hier steht im
+#       AKKUSATIV; das ist keine Stilfrage, sondern die Bedingung dafür,
+#       dass die Köpfe überhaupt tauschbar sind.)
+Schlafende Hunde|soll man nicht wecken|Sleeping dogs|shouldn't be woken
+Den Tag|soll man nicht vor dem Abend loben|The day|shouldn't be praised before the evening
+Die Katze|soll man nicht im Sack kaufen|The cat|shouldn't be bought in a sack
+Das Fell des Bären|soll man nicht verteilen, bevor der Bär erlegt ist|The bear's hide|shouldn't be divided before the bear is shot
+Alle Eier|soll man nicht in einen Korb legen|All the eggs|shouldn't be put in one basket
+Das Kind|soll man nicht mit dem Bade ausschütten|The child|shouldn't be thrown out with the bathwater
+Alte Bäume|soll man nicht verpflanzen|Old trees|shouldn't be transplanted
+Den Teufel|soll man nicht an die Wand malen|The devil|shouldn't be painted on the wall
+Die Rechnung|soll man nicht ohne den Wirt machen|The bill|shouldn't be made without the innkeeper
+Das Pferd|soll man nicht von hinten aufzäumen|The horse|shouldn't be bridled from behind
+*
+#       Gruppe 5 : Dativobjekt im Vorfeld | Hauptsatz mit Verb zuerst
+#       DIESE GRUPPE EXISTIERT NUR WEGEN DES KASUS. Der Form nach gehört
+#       sie zu Gruppe 4 — ein Glied im Vorfeld, dahinter der Rest —, aber
+#       diese Verben verlangen den Dativ, und ein Dativkopf an einem
+#       Akkusativschwanz ist kein Witz, sondern ein Fehler. Also stehen
+#       sie getrennt, und innerhalb der Gruppe passt alles auf alles.
+Einem geschenkten Gaul|schaut man nicht ins Maul|To a gift horse|one does not look in the mouth
+Dem Glücklichen|schlägt keine Stunde|To the happy|no hour strikes
+Dem Mutigen|gehört die Welt|To the brave|belongs the world
+Dem Reinen|ist alles rein|To the pure|all is pure
+Den Seinen|gibt's der Herr im Schlaf|To his own|the Lord gives in sleep
+*
+#       Gruppe 6 : Nebensatz oder adverbiale Bestimmung | Hauptsatz
+#       (das Vorfeld ist besetzt, also fängt JEDER Schwanz mit seinem
+#       finiten Verb an — Verbzweitstellung, streng durchgehalten. Das
+#       Komma fährt im Kopf mit, weil dort der Nebensatz steht; die
+#       adverbialen Köpfe haben keins. Korrelate wie "so schallt es
+#       heraus" fehlen bewusst: ein "so" im Schwanz verlangt einen
+#       Nebensatz im Kopf und würde an den adverbialen Köpfen scheitern.)
+Wenn die Katze aus dem Haus ist,|tanzen die Mäuse auf dem Tisch|When the cat is out of the house,|the mice dance on the table
+Wo gehobelt wird,|fallen Späne|Where there is planing,|shavings fall
+Wo Rauch ist,|ist auch Feuer|Where there is smoke,|there is fire too
+Wo ein Wille ist,|ist auch ein Weg|Where there is a will,|there is a way too
+Wenn zwei sich streiten,|freut sich der Dritte|When two are quarrelling,|the third one rejoices
+Wenn der Berg nicht zum Propheten kommt,|muss der Prophet zum Berg kommen|When the mountain will not come to the prophet,|the prophet must go to the mountain
+Wie die Alten sungen,|zwitschern die Jungen|As the old ones sang,|the young ones chirp
+Was du heute kannst besorgen,|verschiebe nicht auf morgen|What you can see to today,|do not put off until tomorrow
+Nach Regen|kommt Sonnenschein|After rain|comes sunshine
+Im Lande der Blinden|ist der Einäugige König|In the land of the blind|the one-eyed man is king
+Bei Nacht|sind alle Katzen grau|By night|all cats are grey
+In der Not|frisst der Teufel Fliegen|In need|the devil eats flies
+Am Abend|wird der Faule fleißig|In the evening|the lazy man turns diligent
+**
+#       — die Reserven, hinter ** versteckt, wo das Programm nicht mehr
+#       hinkommt. Dieselben drei, die der Autor 1996 beiseitegelegt hat,
+#       jetzt auf Deutsch. Alle drei hat das Deutsche genau, und die
+#       mittlere sogar mit dem Reim: Manne / Kanne, wie schwedisch
+#       mannen / kannen.
+Man muss das Eisen schmieden,|solange es heiß ist|One must strike the iron|while it is hot
+Ist der Wein im Manne,|ist der Verstand in der Kanne|When the wine is in the man|the wit is in the can
+Viele Köche|verderben den Brei|Too many cooks|spoil the porridge

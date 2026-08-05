@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>COOKIE — mashed-up proverbs</title>
-<meta name="description" content="A proverb masher from 1996: real proverbs chopped in half and glued back wrong, in Swedish, English, Thai, Russian, Dutch, Greek, Polish and French. Grammar right, meaning mangled.">
+<meta name="description" content="A proverb masher from 1996: real proverbs chopped in half and glued back wrong, in Swedish, English, Thai, Russian, Dutch, Greek, Polish, French and German. Grammar right, meaning mangled.">
 <style>
   /* ============================================================
      COOKIE.BAS (Liket of Goto10, ~1996) -- the web port.
@@ -367,6 +367,11 @@
 <body>
 
 <header>
+  <!-- These buttons are HAND-WRITTEN, unlike the settings bars below: a new
+       edition must add one here or it ships invisible. The script reads this
+       markup (LANG_LABEL is built from it) rather than the other way round, so
+       the button's own text is also where the label in the settings panel comes
+       from. Two sessions have now assumed LANGS generated this row; it does not. -->
   <nav class="langs" aria-label="language">
     <button data-lang="sv">SV</button>
     <button data-lang="en">EN</button>
@@ -376,6 +381,8 @@
     <button data-lang="el">ΕΛ</button>
     <button data-lang="pl">PL</button>
     <button data-lang="fr">FR</button>
+    <button data-lang="de">DE</button>
+    <button data-lang="pt">PT</button>
   </nav>
   <button id="more">One more</button>
   <button id="auto" aria-pressed="false">[ ] Auto</button>
@@ -383,7 +390,7 @@
 </header>
 
 <!-- The autocycle's settings. Empty of bars on purpose: one is built per entry
-     in LANGS below, so a ninth edition needs no markup here. -->
+     in LANGS below, so a new edition needs no markup here. -->
 <div id="settings" hidden role="dialog" aria-labelledby="setTitle">
   <div id="setHead">
     <span id="setTitle">Settings</span>
@@ -408,8 +415,9 @@
 
 <!-- This version numbers THE SITE, not any one edition. Each edition carries
      its own version in its data file's header (Swedish is 1.0, Thai 0.5, Greek
-     and French and Polish 0.5, Dutch 0.4, English and Russian 0.3) and those
-     move independently. Bump SITE_VERSION in the script below whenever the site
+     and French and Polish and German and Portuguese 0.5, Dutch 0.4, English and
+     Russian 0.3) and those move independently. Bump SITE_VERSION in the script
+     below whenever the site
      ships a change: a new edition, an engine change, or a data file growing.
      The text here is only a no-JS fallback; the script overwrites it, so
      SITE_VERSION is the single source of truth and these cannot drift. -->
@@ -444,8 +452,11 @@
       reassembles the real line. The 1996 Swedish data does it about one roll
       in 92. The 1996 label was the Swedish curse `fanheller:`; per remaster
       tradition every edition swears in its own language -- "like hell" /
-      "เหี้ยเอ้ย" / "чёрта с два" / "γαμώτο" / "gówno prawda" / "putain". This
-      port hosts all eight, so it keeps the original's name in their honour. */
+      "เหี้ยเอ้ย" / "чёрта с два" / "γαμώτο" / "gówno prawda" / "putain" /
+      "von wegen" / "uma ova". This port hosts every one of them, so it keeps
+      the original's name in their honour. (The count used to be spelled out
+      here; it went stale every time an edition landed, so it is deliberately
+      gone.) */
 
 /* The site's own version -- NOT any edition's; each data file carries its own
    in its header. This string does two jobs, and the second one is why it must
@@ -465,7 +476,7 @@
 
    Appending ?v=<SITE_VERSION> makes every deploy a new URL, so no cache at any
    layer can pair new HTML with old data. */
-const SITE_VERSION = "0.9";
+const SITE_VERSION = "1.0";
 
 const LANGS = {
   sv: { file: "data/ORDSPRÅK.TXT",   cp437: true,  period: true,  more: "En till",
@@ -588,6 +599,74 @@ const LANGS = {
         // written forms of the decoy adjective (cher/chère/chers/chères, /ʃɛʁ/).
         // Note the space before ? in the two UI strings above -- that is correct
         // French typography, not a stray character.
+        agree: true },
+  de: { file: "data/SPRICHWÖRTER.TXT", cp437: false, period: true, more: "Noch eins",
+        title: "SPRICHWÖRTER — durcheinandergewürfelte Sprichwörter",
+        tagline: "echte Sprichwörter, falsch wieder zusammengeklebt",
+        readme: "readme-de.html",
+        readmeLabel: "Was ist das hier?",
+        home: "Wer ist Leif?",
+        auto: "Auto",
+        settings: "Einstellungen", close: "Schließen", reset: "Zurücksetzen",
+        oneLang: "Eine Sprache", changeLang: "Zufällige Sprache", probability: "Wahrscheinlichkeit",
+        interval: "Intervall", secs: "s",
+        // German conjugates for number as well, so the marker rule again -- and
+        // it runs the whole range of seams in one file, which no earlier edition
+        // did: an ending (mach(t/en)), a stem umlaut (f(ällt/allen)), an e->i
+        // raising (br(icht/echen) -- the same verb and the same proverb as the
+        // Dutch br(eekt/eken), by a different mechanism), and two verbs with no
+        // shared letter to cut at ((ist/sind), (isst/essen)).
+        //
+        // It is also the first edition to hit something the marker CANNOT carry,
+        // and the data file says so rather than half-shipping it. A German
+        // possessive stem agrees with the possessor's GENDER, which lives in the
+        // head -- "Jedes Ding hat SEINE Zeit" but "Die Hoffnung hat IHRE Zeit" --
+        // and (seine/ihre) holds only number. So no German tail carries a
+        // possessive at all, and the English mirror drops its (its/their) to
+        // match. Two proverbs were cut for it; a gender axis would have been a
+        // resolver change for those two.
+        //
+        // Case gets the same treatment, by grouping instead of marking: the verb
+        // in the tail governs the case of the head, so EVERY GROUP IS A CASE
+        // CLASS. That is why this file has six groups where every other edition
+        // has five -- group 5 is shape-identical to group 4 and exists purely
+        // because those verbs take the dative. Same move the Greek edition made
+        // for gender and the Polish one for the past tense: the 1996 "section"
+        // was already an equivalence class, and German just leans on it hardest.
+        agree: true },
+  pt: { file: "data/PROVÉRBIOS.TXT", cp437: false, period: true, more: "Mais um",
+        title: "PROVÉRBIOS — provérbios baralhados",
+        tagline: "provérbios verdadeiros, colados nas metades erradas",
+        readme: "readme-pt.html",
+        readmeLabel: "O que é isto?",
+        home: "Quem é o Leif?",
+        auto: "Auto",
+        settings: "Definições", close: "Fechar", reset: "Repor",
+        oneLang: "Uma só língua", changeLang: "Língua aleatória", probability: "Probabilidade",
+        interval: "Intervalo", secs: "s",
+        // EUROPEAN Portuguese, and the UI strings pick the side too: Definições
+        // and Repor are Portugal's words where Brazil says Configurações and
+        // Redefinir. The data file commits harder -- it is full of pronouns
+        // hung off the BACK of the verb (acrescenta-lhe, avia-se, diz-me),
+        // which is where Brazil puts them in front, and one (dir-te-ei) with
+        // the pronoun buried inside the verb, which Brazil no longer has at all.
+        //
+        // Portuguese conjugates for number, so the same marker rule again --
+        // and its seam is the one that chases a DIACRITIC. What changes with
+        // the number is the accent itself, so the alternation has to open to
+        // the left of it: d(á/ão), v(ai/ão), v(ê/eem), sa(i/em). Two verbs go
+        // further and differ by nothing BUT the accent -- t(em/êm) and
+        // v(em/êm), still two different sounds -- which no suffix rule can
+        // reach, because no suffix rule has ever produced a circumflex.
+        //
+        // The decoy is `caro`: the same Latin word as the French `cher` and
+        // the same position rule -- dear in front of the noun, expensive
+        // behind it, and the program always puts it behind. Two things are
+        // Portugal's own. All four forms SOUND different here, which is the
+        // French header's complaint exactly inverted. And cara/caras are also
+        // nouns meaning face/faces, so "As paredes caras" (group 1, the price)
+        // and "Quem vê caras" (group 2, the faces) are the same letters twice
+        // over -- where `chères` is not a word at all.
         agree: true },
 };
 
@@ -1117,10 +1196,10 @@ autoBtn.addEventListener("click", () => {
 /* --- language weighting (Peter's idea) ------------------------------------
    The autocycle can change LANGUAGE between lines as well as proverb, with a
    per-language weight -- so a screen can run mostly Swedish with the odd Thai
-   line, or an even eight-way shuffle.
+   line, or an even shuffle across the lot.
 
-   The weights are RELATIVE, not percentages: all eight at 50 is exactly the
-   same uniform shuffle as all eight at 100. That is why 50 is the default
+   The weights are RELATIVE, not percentages: every edition at 50 is exactly the
+   same uniform shuffle as every edition at 100. That is why 50 is the default
    rather than 100 -- it starts every language in the middle of its travel, so
    the first thing you can do to any of them is push it UP as readily as down.
    Nothing has to add up to anything.
@@ -1159,7 +1238,7 @@ const bars = {};
 const LANG_LABEL = {};
 document.querySelectorAll(".langs button").forEach(b => { LANG_LABEL[b.dataset.lang] = b.textContent; });
 
-/* One bar per entry in LANGS, so a ninth edition needs no work here.
+/* One bar per entry in LANGS, so a new edition needs no work here.
    backup=50 puts a tick at the default AND lights the control's own "modified"
    state, so which languages you have actually moved is visible at a glance.
 
@@ -1398,7 +1477,7 @@ addEventListener("keydown", e => {
   }
 
   /* Same precedence as the autocycle: ?autolang= beats the saved choice. The
-     weights have no URL form -- they are eight numbers, and a display left
+     weights have no URL form -- they are one number per edition, and a display left
      cycling is exactly the machine whose localStorage survives. */
   const al = params.get("autolang");
   if (al !== null) {

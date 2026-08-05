@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SPRICHWÖRTER — die deutsche Fassung</title>
+<link rel="stylesheet" href="readme.css">
+</head>
+<body>
+<article>
+<a class="back" href="./?lang=de">← COOKIE</a>
+
+<h1>SPRICHWÖRTER — Sprichwörter durch den Fleischwolf</h1>
+
+<blockquote>
+<p><strong>Herkunft.</strong> Deutsche Fassung von <code>COOKIE.BAS</code> von
+<strong>Leif Claesson (Liket of Goto10)</strong>, ca. 1996, in PowerBASIC für DOS
+geschrieben. Das schwedische Original und die ganze Geschichte des Motors stehen
+nebenan bei <a href="readme-sv.html">der schwedischen Fassung</a> — lies die
+zuerst; diese Seite handelt nur davon, was am Deutschen anders war.
+Schwesterfassungen: <a href="readme-en.html">Englisch</a>,
+<a href="readme-th.html">Thai</a>, <a href="readme-ru.html">Russisch</a>,
+<a href="readme-nl.html">Niederländisch</a>, <a href="readme-el.html">Griechisch</a>,
+<a href="readme-pl.html">Polnisch</a>, <a href="readme-fr.html">Französisch</a>,
+<a href="readme-pt.html">Portugiesisch</a>.
+<strong>Für Peter und für Torsten.</strong></p>
+</blockquote>
+
+<p>Derselbe Motor, derselbe Witz: echte Sprichwörter werden mit einem senkrechten
+Strich in einen KOPF und einen SCHWANZ zerhackt, gruppiert nach dem, was
+grammatisch austauschbar ist, und das Programm klebt den Kopf des einen an den
+Schwanz eines <em>anderen</em>. Jede Zeile trägt außerdem eine englische
+Übersetzung ihrer beiden Hälften, die mit demselben Indexpaar gemischt wird —
+unter jedem deutschen Unsinn steht also exakt derselbe Unsinn auf Englisch.</p>
+
+<blockquote><p>Der teure Kunde fällt nicht weit vom Stamm. · Viele Hände stinken
+vom Kopf her. · Wer im Glashaus sitzt, muss auch B sagen.</p></blockquote>
+
+<div class="chop">
+<span>Stille Wasser | sind tief</span>
+<span>Der Apfel | fällt nicht weit vom Stamm</span>
+<span class="out">→ Stille Wasser fallen nicht weit vom Stamm.</span>
+</div>
+
+<h2>Was übernommen wurde</h2>
+
+<div class="scroll">
+<table>
+<tr><th>Original (Schwedisch, 1996)</th><th>Diese Fassung</th></tr>
+<tr><td><code>ORDSPRÅK.TXT</code>, CP437</td><td><code>SPRICHWÖRTER.TXT</code>, UTF-8, vier Felder (<code>Kopf|Schwanz|EN head|EN tail</code>)</td></tr>
+<tr><td>Schwedische Sprichwörter</td><td>Echte deutsche Sprichwörter — viele mit einer direkten Entsprechung: <em>Bränt barn skyr elden</em> → <em>Ein gebranntes Kind scheut das Feuer</em>, <em>En blind höna hittar också ett korn</em> → <em>Ein blindes Huhn findet auch mal ein Korn</em></td></tr>
+<tr><td>Falsche <em>dyr/dyrt/dyra</em>-Köder in Gruppe 1</td><td><strong>Falsche <em>teuer</em>-Köder</strong> — und das ist nicht einmal eine Übersetzung, siehe unten</td></tr>
+<tr><td>Fünf Gruppen</td><td><strong>Sechs</strong> — Gruppe 5 gibt es nur, weil ihre Verben den Dativ verlangen. Siehe „Der Kasus läuft über die Naht“</td></tr>
+<tr><td><code>fanheller:</code>, das Wiederholungslabel, benannt nach einem schwedischen Fluch</td><td>Geflucht wird pro Fassung in der eigenen Sprache; diese flucht auf Deutsch, und das bleibt zwischen dem Code und mir</td></tr>
+<tr><td>Drei Reserven hinter der <code>**</code>-Marke geparkt</td><td><strong>Dieselben drei</strong>, und das Deutsche hat alle drei genau — bei der mittleren sogar mit dem Reim des Originals: <em>Ist der Wein im Manne, ist der Verstand in der Kanne</em></td></tr>
+</table>
+</div>
+
+<h2>Der Köder musste nicht übersetzt werden</h2>
+
+<p>Schwedisch <em>dyr</em>, niederländisch <em>duur</em>, deutsch <em>teuer</em> —
+ein einziges germanisches Wort in drei Schreibweisen. So weit wie im
+Niederländischen. Aber <em>dyr</em> und <em>duur</em> heißen nur teuer im Sinne
+des Preises, und <strong><em>teuer</em> heißt daneben auch lieb</strong>: <em>mein
+teurer Freund</em>, <em>die teure Heimat</em>. Damit steht diese Fassung in beiden
+Lagern gleichzeitig — dasselbe Wort wie 1996 <em>und</em> beide Bedeutungen, wie
+russisch «дорогой», polnisch <em>drogi</em> und französisch <em>cher</em>. Keine
+andere Fassung hat beides.</p>
+
+<p>Und das englische <em>dear</em> ist dasselbe Wort noch einmal, mit denselben
+zwei Bedeutungen. Deshalb steht im englischen Spiegel dieser Fassung
+<strong><em>dear</em> und nicht <em>expensive</em></strong>: die anderen
+Fassungen mussten sich für eine Seite entscheiden, diese nicht.</p>
+
+<h2>Die Endung hängt am Artikel</h2>
+
+<p>Im schwedischen Original waren es drei Formen, im Polnischen vier Gestalten
+auf fünf Plätzen. Das Deutsche hat im Nominativ allein ebenfalls vier Gestalten —
+aber sie verteilen sich nach einer Achse, die keine frühere Fassung zeigen
+konnte, weil ihr die Artikel fehlten: <strong>dasselbe Wort im selben Fall
+bekommt eine andere Endung, je nachdem welcher Artikel davorsteht.</strong></p>
+
+<table>
+<tr><th>mit Artikel</th><th>mit unbestimmtem Artikel</th><th>Genus / Zahl</th></tr>
+<tr><td><code>der teure Apfel</code></td><td><code>ein teurer Krug</code></td><td>maskulin</td></tr>
+<tr><td><code>die teure Zeit</code></td><td><code>eine teure Schwalbe</code></td><td>feminin</td></tr>
+<tr><td><code>das teure Blut</code></td><td><code>ein teures Kind</code></td><td>neutrum</td></tr>
+<tr><td><code>die teuren Wände</code></td><td><code>teure Kleider</code></td><td>Plural</td></tr>
+</table>
+
+<p>Und <em>teuer</em> verliert sein <em>e</em>, sobald eine Endung kommt:
+<em>teuer</em> → <em>teur-</em>. Die Köder <em>sind</em> der Witz, und die nach
+Gruppengröße gewichtete Auswahl sorgt dafür, dass sie am häufigsten fallen.</p>
+
+<h2>Das deutsche Problem I: das Verb zählt mit</h2>
+
+<p>Schwedisch, Thai und Russisch richten sich nicht nach der Zahl des Subjekts,
+diese drei Fassungen hatten damit also nie zu tun. <strong>Das Deutsche
+schon</strong> — <em>fällt</em> gegen <em>fallen</em> — und das ist genau das
+Problem, das die englische Fassung schon gelöst hatte. Also bekommt es dieselbe
+Lösung: ein <code>+</code> am Zeilenanfang heißt, das Subjekt steht im Plural,
+und der Schwanz trägt <em>beide</em> Formen selbst mit sich.</p>
+
+<pre><code>Der Apfel|f(ällt/allen) nicht weit vom Stamm
++Die Wände|h(at/aben) Ohren
++Stille Wasser|(ist/sind) tief</code></pre>
+
+<p>Diese Form wurde gewählt, weil man im Englischen die eine Form nicht aus der
+anderen <em>ableiten</em> kann: <em>rises</em> schneidet zurück auf <em>rise</em>,
+<em>catches</em> aber auf <em>catch</em> — gleiche Endung, andere Naht. Das
+Niederländische hat den Punkt ein zweites Mal bewiesen, weil dort die Naht mitten
+im Stamm liegt. <strong>Das Deutsche läuft in einer einzigen Datei durch alle
+vier Nahtsorten, die es gibt</strong>, und das hatte vorher keine Fassung:</p>
+
+<div class="scroll">
+<table>
+<tr><th>Naht</th><th>Beispiel</th><th>was passiert</th></tr>
+<tr><td>an der Endung</td><td><code>mach(t/en)</code></td><td>der Normalfall</td></tr>
+<tr><td>im Stamm, Umlaut</td><td><code>f(ällt/allen)</code></td><td><em>a</em> wird <em>ä</em>, nur im Singular</td></tr>
+<tr><td>im Stamm, Hebung</td><td><code>br(icht/echen)</code></td><td><em>e</em> wird <em>i</em></td></tr>
+<tr><td>gar keine</td><td><code>(ist/sind)</code>, <code>(isst/essen)</code></td><td>kein gemeinsamer Buchstabe</td></tr>
+</table>
+</div>
+
+<p><code>br(icht/echen)</code> ist dabei das schönste Stück: es ist dasselbe Verb
+im selben Sprichwort wie das niederländische <code>br(eekt/eken)</code> — <em>Not
+bricht Eisen</em> / <em>Nood breekt wet</em> —, nur bricht es an einer anderen
+Stelle und aus einem anderen Grund. Keine Endungsregel der Welt kommt an eine
+dieser Nähte heran. Eine Markierung, die beide Formen trägt, muss nicht wissen,
+wo die Naht liegt.</p>
+
+<h2>Das deutsche Problem II: die Naht darf nur an zwei Stellen liegen</h2>
+
+<p>Das ist der eigentliche Unterschied zu allen bisherigen Fassungen. Das
+Deutsche stellt sein finites Verb an die zweite Stelle und schiebt alles, was
+sonst noch zum Verb gehört, ans Satzende — die <strong>Satzklammer</strong>. Wer
+irgendwo in der Mitte schneidet, lässt ein Verb ohne seinen Partner zurück:</p>
+
+<pre><code>Man soll den Tag | nicht vor dem Abend loben   ← Klammer zerschnitten</code></pre>
+
+<p>Also liegt die Naht entweder an einer Satzgrenze oder <strong>unmittelbar
+hinter dem Vorfeld</strong> — hinter dem einen Glied, das vor dem finiten Verb
+steht. In Gruppe 4 steht deshalb das Objekt vorn und die ganze Klammer bleibt im
+Schwanz:</p>
+
+<pre><code>Den Tag|soll man nicht vor dem Abend loben
+Schlafende Hunde|soll man nicht wecken</code></pre>
+
+<p>Von der anderen Seite dasselbe: im Nebensatz steht das Verb ganz hinten, ein
+Nebensatz ist also immer <em>ganz</em> Kopf und nie halb. Das gilt für die
+<em>Wer</em>-Gruppe und für die Gruppe der vorangestellten Nebensätze, und dort
+fängt jeder Schwanz mit seinem finiten Verb an, weil das Vorfeld schon besetzt
+ist.</p>
+
+<h2>Das deutsche Problem III: der Kasus läuft über die Naht</h2>
+
+<p>Dafür gibt es keine Markierung, und es kann auch keine geben. Das
+<code>+</code> kennt nur die Zahl. Welchen Fall der Kopf trägt, bestimmt aber das
+Verb im <em>Schwanz</em>: <em>Einem geschenkten Gaul schaut man nicht ins Maul</em>
+verlangt Dativ, <em>Schlafende Hunde soll man nicht wecken</em> Akkusativ, und
+geklebt wird beides gleich wahrscheinlich. Ein Kopf im falschen Fall ist kein
+Witz, sondern ein Fehler.</p>
+
+<p>Eine Markierung könnte das nicht retten: der Kopf müsste in vier Fällen
+mitgeliefert werden, mit Artikel und Adjektiv, und das ist keine Klammerform
+mehr, sondern eine Deklinationstabelle. <strong>Die Lösung ist deshalb keine neue
+Maschinerie, sondern die Gruppierung: jede Gruppe ist eine Kasusklasse.</strong>
+Gruppe 4 ist durchgehend Akkusativ, Gruppe 5 durchgehend Dativ — und darum gibt
+es Gruppe 5 überhaupt. Der Form nach gehört sie zu Gruppe 4; nur der Fall trennt
+sie.</p>
+
+<p>Das ist derselbe Griff, mit dem die griechische Fassung das Genus des
+Prädikatsadjektivs erledigt hat und die polnische das Genus des Präteritums, nur
+eine Etage tiefer. <strong>Die Gruppe von 1996 war schon eine
+Äquivalenzklasse</strong> — das Schwedische hat sie bloß nie so hart angefasst.
+Neuen Code hat das auch hier nicht gebraucht.</p>
+
+<h2>Was die Maschinerie nicht kann</h2>
+
+<p>Offen gesagt: das Possessivum. Sein Stamm richtet sich nach dem Genus des
+<em>Besitzers</em>, und der steht im Kopf.</p>
+
+<pre><code>Jedes Ding hat SEINE Zeit
+Die Hoffnung hat IHRE Zeit</code></pre>
+
+<p><code>(seine/ihre)</code> trägt nur die Zahl; das Genus fehlt, und eine
+geklebte Zeile wäre in der Hälfte der Fälle schlicht falsch. Englisch
+<code>(its/their)</code>, niederländisch <code>(zijn/hun)</code> und die
+französische Fassung kommen alle davon, weil ihr Possessivum kein Genus des
+Besitzers kennt — das Französische sogar gratis, weil es sich dort nach dem
+Besessenen richtet. <strong>Diese Fassung kommt nicht davon.</strong> Also steht
+in keinem deutschen Schwanz ein Possessivum, und im englischen Spiegel dann auch
+keins. <em>Jedes Ding hat seine Zeit</em> und <em>Jeder Topf findet seinen
+Deckel</em> sind genau daran gescheitert und fehlen.</p>
+
+<p>Aus demselben Grund fehlt <em>Den Ast soll man nicht absägen, auf dem man
+sitzt</em>: das Relativpronomen im Schwanz richtet sich nach dem Genus des
+Kopfes. Und <em>Aller guten Dinge sind drei</em> fehlt, weil sein Kopf im Genitiv
+steht und sonst nirgends einer.</p>
+
+<p>Eine Markierung mit drei Genera plus Plural wäre machbar — aber sie wäre eine
+Änderung am Motor für zwei Sprichwörter, und dafür ist sie zu teuer. Ein
+Verb, das nicht stimmt, liest sich als Fehler; ein Substantiv, das nicht stimmt,
+liest sich als der Witz. <em>Stille Wasser sind König</em> bleibt deshalb stehen,
+mit Absicht.</p>
+
+<h2>Das eingepflanzte Exemplar</h2>
+
+<p>In den Daten von 1996 steht ein Sprichwort, das schon durcheinander
+<em>ist</em>, Stottern inklusive: <em>Den som gapar efter galen fågel <strong>ser
+inte ser inte</strong> skogen för alla <strong>ben</strong></em>. Das Deutsche
+behält die Form und das Wortspiel — und kann dabei mehr zeigen als das
+Niederländische, denn schwedisch <em>ben</em> heißt <em>Bein</em> und
+<em>Knochen</em>, und das deutsche <em>Bein</em> trägt die zweite Bedeutung noch
+immer mit sich, nur eingemauert in Wörtern wie <em>Gebein</em> und
+<em>Elfenbein</em>:</p>
+
+<blockquote><p>Wer den Hals nicht voll kriegen kann, <strong>sieht sieht</strong>
+den Wald vor lauter <strong>Beinen</strong> nicht.</p></blockquote>
+
+<h2>Diese Seite</h2>
+
+<p>Die Webfassung (2026) ist die fünfte Portierung des Motors — PowerBASIC →
+Python → Rust → JavaScript — und liest exakt dasselbe Datenformat wie das
+DOS-Original. Die Datei <em>ist</em> der halbe Witz, also blieb sie, wie sie
+war.</p>
+
+</article>
+<footer>Liket of Goto10, ~1996 → deutsche Fassung 2026, für Peter und Torsten ·
+<a href="https://github.com/leifclaesson/proverb-masher">source</a> ·
+README: <a href="readme-sv.html">SV</a> · <a href="readme-en.html">EN</a> ·
+<a href="readme-th.html">TH</a> · <a href="readme-ru.html">RU</a> ·
+<a href="readme-nl.html">NL</a> · <a href="readme-el.html">EL</a> ·
+<a href="readme-pl.html">PL</a> ·
+<a href="readme-fr.html">FR</a> · <a href="readme-pt.html">PT</a> ·
+<a href="https://leifclaesson.github.io/">Wer ist Leif?</a></footer>
+</body>
+</html>

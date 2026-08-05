@@ -1,0 +1,237 @@
+#               Provérbios 0.5  —  edição portuguesa do Ordsprak 0.1
+#               original: Leif Claesson (Liket of Goto10), ~1996
+#
+#       Para quem espera a outra metade.
+#
+#       Todas as outras edições foram feitas para alguém. Esta ainda espera
+#       o seu nome — e talvez seja por isso que fala de saudade: a metade
+#       que falta não deixa de existir por faltar. O nome cabe nesta linha.
+#
+#       PORTUGUÊS EUROPEU, e não é uma questão de gosto. O ficheiro está
+#       cheio de pronomes colados atrás do verbo — acrescenta-lhe, avia-se,
+#       diz-me — e de um que vai colado DENTRO dele. No Brasil esses
+#       pronomes vão à frente e o de dentro desapareceu há muito. Ortografia
+#       do Acordo de 1990, tal como se escreve em Portugal, que é porque os
+#       meses e as estações aqui se escrevem com minúscula.
+#
+#       O formato é simples. Os provérbios estão arrumados em grupos dentro
+#       dos quais as metades são gramaticalmente permutáveis; a costura é
+#       uma barra vertical (|). Um asterisco sozinho (*) abre o grupo
+#       seguinte. Dois asteriscos (**) são o fim do ficheiro: o programa não
+#       lê nada para lá disso.
+#
+#       Cada linha tem quatro campos:  cabeça|cauda|EN head|EN tail
+#       A tradução inglesa é baralhada pelo MESMO par de índices, portanto
+#       o disparate inglês acompanha o português linha por linha. Aqui isso
+#       não é uma cortesia ao leitor: é assim que o autor consegue ler a
+#       prenda que lhe estão a dar.
+#
+#       O ENGODO É «CARO», E É O MESMO ENGODO DO FRANCÊS. Antes do nome
+#       quer dizer estimado, depois do nome quer dizer dispendioso, e o
+#       programa põe-no sempre depois. Um caro amigo, um amigo caro: mesma
+#       palavra, dois sentidos, e quem decide é o lugar. A edição francesa
+#       chegou primeiro a este truque com «cher» — é a mesma palavra latina
+#       e a mesma regra de posição, e não vale a pena fingir o contrário.
+#
+#       O QUE O PORTUGUÊS ACRESCENTA SÃO DUAS COISAS QUE O FRANCÊS NÃO TEM.
+#       A primeira é que aqui OUVEM-SE as quatro formas: caro, cara, caros,
+#       caras são quatro sons diferentes, e o cabeçalho francês queixa-se
+#       precisamente do contrário, que cher/chère/chers/chères se escrevem
+#       de quatro maneiras e se dizem de uma só. Ali a concordância existe
+#       no papel e em mais lado nenhum; aqui lê-se em voz alta e continua lá.
+#
+#       A segunda é que «cara» e «caras» também são substantivos. No grupo 2
+#       está «Quem vê caras não vê corações», onde caras são rostos; no
+#       grupo 1 está «As paredes caras têm ouvidos», onde caras são o preço.
+#       A mesma palavra, escrita da mesma maneira, nos dois sítios. O
+#       francês não tem nada parecido: «chères» não é coisa nenhuma.
+#
+#       OS VERBOS PORTUGUESES CONCORDAM EM NÚMERO, como em inglês,
+#       neerlandês, grego, polaco e francês, e ao contrário do sueco, do
+#       tailandês e do russo. Um + no início da linha quer dizer SUJEITO NO
+#       PLURAL, e é a própria cauda que carrega as duas formas:
+#           (a/am)      primeira conjugação — lava / lavam
+#           (e/em)      segunda e terceira — morde / mordem
+#           (é/são)     o verbo ser, que não se parece consigo próprio
+#
+#       E A COSTURA ANDA ATRÁS DO ACENTO. É esta a versão portuguesa do
+#       problema que o neerlandês tem com a vogal dobrada: aqui o que muda
+#       com o número é o DIACRÍTICO, e um diacrítico não se apanha por
+#       sufixo nenhum.
+#           d(á/ão)     dá / dão      — o acento agudo é só do singular
+#           v(ai/ão)    vai / vão     — não sobra letra nenhuma à direita
+#           v(ê/eem)    vê / veem
+#           t(em/êm)    tem / têm     — distinguem-se por um circunflexo
+#           v(em/êm)    vem / vêm     — e mais nada
+#           sa(i/em)    sai / saem    — costura a meio do radical
+#       Repare-se em t(em/êm). As duas formas diferem num único acento, e
+#       ainda assim dizem-se de maneira diferente. Nenhuma regra de
+#       terminação no mundo produz um circunflexo. É o argumento mais forte
+#       de todas as edições para o ficheiro trazer as duas formas em vez de
+#       o motor deduzir uma da outra — e o motor, de facto, não deduz nada.
+#
+#       O PRONOME MUDA DE LADO SOZINHO. Em português europeu o pronome vai
+#       atrás do verbo — acrescenta-lhe um ponto, avia-se em terra — mas a
+#       negação puxa-o para a frente, e por isso o grupo 4 diz «não te rias»
+#       e nunca «não ris-te». Não foi preciso ensinar isto ao programa: os
+#       grupos são classes de equivalência gramatical desde 1996, e as duas
+#       colocações caíram em grupos diferentes por si mesmas.
+#
+#       E HÁ UM PRONOME QUE VAI DENTRO DO VERBO. No grupo 5 está «dir-te-ei»
+#       — dizer + te + ei, com o pronome enfiado entre o radical e a
+#       terminação do futuro. Chama-se mesóclise e não existe em mais
+#       nenhuma língua deste sítio. O resolvedor nunca lhe toca,
+#       porque essa linha não leva marca de plural, mas é a razão de fundo
+#       para a costura ser posta à mão e não calculada: se houvesse um verbo
+#       assim a concordar em número, a alternância teria de abrir e fechar à
+#       volta de um pronome.
+#
+#       O GRUPO É QUE TRATA DO GÉNERO. Os adjetivos predicativos concordam
+#       — bom, boa, bons, boas — portanto as caudas do grupo 1 são APENAS
+#       grupos verbais: nada de predicativos, nada de particípios com ser.
+#       A regra veio da edição francesa e não custou uma linha de código,
+#       porque o «grupo» de 1996 já era uma classe de equivalência de género
+#       e de número. Foi por causa dela que «O prometido é devido» ficou de
+#       fora: era o candidato mais óbvio do ficheiro e concorda em género.
+#
+#       A PONTUAÇÃO VIAJA NA CABEÇA (em russo é ao contrário): o português
+#       quer vírgula depois de uma subordinada anteposta, e a subordinada
+#       está justamente na cabeça. Ver o grupo 5.
+#
+#       O grupo 1 está de propósito atafulhado de falsos provérbios «caros».
+#       No original sueco eram falsos dyr/dyrt/dyra, três formas; o grego
+#       pedia seis; o francês e o português pedem quatro. O engodo É a
+#       piada, e o sorteio ponderado por grupo faz com que caia mais vezes
+#       do que tudo o resto. Cada engodo partilha a cauda, letra por letra,
+#       com o provérbio verdadeiro que imita — é por isso que de vez em
+#       quando sai um provérbio inteiro e certo.
+#
+#       Por fim, o provérbio já mastigado que o autor plantou no ficheiro em
+#       1996, gaguez incluída, ficou. Em grego jogava com φύλλα, que são
+#       folhas e massa filo ao mesmo tempo. O português tem a mesma folha e
+#       tem-na duas vezes: mil-folhas é o bolo e é também a planta.
+#
+#       Grupo 1 : sujeito | predicado no presente
+O hábito caro|não faz(/em) o monge|The expensive habit|(doesn't/don't) make the monk
+A ocasião cara|faz(/em) o ladrão|The expensive occasion|make(s) the thief
+A união cara|faz(/em) a força|Expensive union|make(s) strength
+A necessidade cara|aguç(a/am) o engenho|Expensive necessity|sharpen(s) the wits
+A mão cara|lav(a/am) a outra|The expensive hand|wash(es) the other
+A panela cara|t(em/êm) a sua tampa|The expensive pot|ha(s/ve) its own lid
+A andorinha cara|não faz(/em) a primavera|The expensive swallow|(doesn't/don't) make the spring
+A desgraça cara|nunca v(em/êm) s(ó/ós)|The expensive misfortune|never come(s) alone
+O peixe caro|não pux(a/am) carroça|The expensive fish|(doesn't/don't) pull a cart
+O segredo caro|(é/são) a alma do negócio|The expensive secret|(is/are) the soul of the business
+O gato caro|de água fria t(em/êm) medo|The expensive cat|(is/are) afraid of cold water
+O homem caro|val(e/em) por dois|The expensive man|(is/are) worth two
+O cão caro|não mord(e/em)|The expensive dog|(doesn't/don't) bite
++As paredes caras|t(em/êm) ouvidos|Expensive walls|ha(s/ve) ears
++As aparências caras|ilud(e/em)|Expensive appearances|deceive(s)
++As águas caras|não mov(e/em) moinhos|Expensive waters|(doesn't/don't) turn mills
+O hábito|não faz(/em) o monge|The habit|(doesn't/don't) make the monk
+A ocasião|faz(/em) o ladrão|Opportunity|make(s) the thief
+A união|faz(/em) a força|Union|make(s) strength
+A necessidade|aguç(a/am) o engenho|Necessity|sharpen(s) the wits
+Uma mão|lav(a/am) a outra|One hand|wash(es) the other
+Cada panela|t(em/êm) a sua tampa|Every pot|ha(s/ve) its own lid
+Uma andorinha|não faz(/em) a primavera|One swallow|(doesn't/don't) make the spring
+Uma desgraça|nunca v(em/êm) s(ó/ós)|A misfortune|never come(s) alone
+O peixe|não pux(a/am) carroça|A fish|(doesn't/don't) pull a cart
+O segredo|(é/são) a alma do negócio|The secret|(is/are) the soul of the business
+Gato escaldado|de água fria t(em/êm) medo|A scalded cat|(is/are) afraid of cold water
+Homem prevenido|val(e/em) por dois|A forewarned man|(is/are) worth two
+O cão que ladra|não mord(e/em)|The dog that barks|(doesn't/don't) bite
++As paredes|t(em/êm) ouvidos|Walls|ha(s/ve) ears
++As aparências|ilud(e/em)|Appearances|deceive(s)
++Águas passadas|não mov(e/em) moinhos|Water under the bridge|(doesn't/don't) turn mills
+O barato|sa(i/em) caro|The cheap thing|come(s) out expensive
+Deus|escrev(e/em) direito por linhas tortas|God|write(s) straight with crooked lines
+Filho de peixe|sab(e/em) nadar|A fish's child|know(s) how to swim
+O sol|nasc(e/em) para todos|The sun|rise(s) for everyone
+Querer|(é/são) poder|To want|(is/are) to be able
+Falar|(é/são) prata, calar é ouro|Speech|(is/are) silver, silence is gold
+Nem tudo o que reluz|(é/são) ouro|Not all that glitters|(is/are) gold
+Amigo|não empat(a/am) amigo|A friend|(doesn't/don't) get in a friend's way
++Os amigos|(é/são) para as ocasiões|Friends|(is/are) there for the occasions
++As árvores|não deix(a/am) não deix(a/am) ver a floresta por causa do mil-folhas|The trees|(doesn't/don't) let (doesn't/don't) let you see the forest for the mille-feuille
+*
+#       Grupo 2 : quem ... | ...   (a cabeça está sempre no singular, por
+#       isso aqui não há uma única linha que precise de marca)
+Quem não arrisca|não petisca|He who does not risk|does not nibble
+Quem semeia ventos|colhe tempestades|He who sows winds|reaps storms
+Quem espera|sempre alcança|He who waits|always gets there
+Quem corre por gosto|não cansa|He who runs for pleasure|does not tire
+Quem tudo quer|tudo perde|He who wants everything|loses everything
+Quem vê caras|não vê corações|He who sees faces|does not see hearts
+Quem avisa|amigo é|He who gives warning|is a friend
+Quem casa|quer casa|He who marries|wants a house
+Quem não trabuca|não manduca|He who does not toil|does not eat
+Quem dá aos pobres|empresta a Deus|He who gives to the poor|lends to God
+Quem conta um conto|acrescenta-lhe um ponto|He who tells a tale|adds a stitch to it
+Quem muito fala|pouco acerta|He who talks a lot|gets little right
+Quem não deve|não teme|He who owes nothing|fears nothing
+Quem diz o que quer|ouve o que não quer|He who says what he likes|hears what he does not
+Quem tem telhados de vidro|não atira pedras|He who has glass roofs|does not throw stones
+Quem vai ao mar|avia-se em terra|He who goes to sea|gets himself ready on land
+Quem paga adiantado|é mal servido|He who pays in advance|is badly served
+Quem feio ama|bonito lhe parece|He who loves the ugly|finds it beautiful
+Quem boa cama fizer|nela se deitará|He who makes a good bed|will lie in it
+*
+#       Grupo 3 : mais vale isto | do que aquilo
+Mais vale prevenir|do que remediar|Better to prevent|than to cure
+Mais vale um pássaro na mão|do que dois a voar|Better one bird in the hand|than two in flight
+Mais vale um gosto|do que seis vinténs|Better one small pleasure|than six pennies
+Mais vale um mau acordo|do que uma boa sentença|Better a bad settlement|than a good verdict
+Mais vale perder um minuto na vida|do que a vida num minuto|Better to lose a minute of your life|than your life in a minute
+Antes só|do que mal acompanhado|Better alone|than in bad company
+Antes tarde|do que nunca|Better late|than never
+*
+#       Grupo 4 : não faças isto | ...   (é aqui que a negação puxa o
+#       pronome para diante do verbo — não te rias, e nunca não ris-te)
+Não acordes o gato|que dorme|Don't wake the cat|that is sleeping
+Não deixes para amanhã|o que podes fazer hoje|Don't put off until tomorrow|what you can do today
+Não ponhas o carro|à frente dos bois|Don't put the cart|before the oxen
+Não contes os pintos|senão depois de nascidos|Don't count the chicks|until after they have hatched
+Não deites foguetes|antes da festa|Don't set off the fireworks|before the feast
+Não vendas a pele do urso|antes de o matar|Don't sell the bear's skin|before you have killed it
+Não mates mais|do que podes salgar|Don't kill more|than you can salt
+Não faças nada|antes de consultar a almofada|Don't do anything|before you consult the pillow
+Não desejes mal a ninguém|que o teu mal pelo caminho vem|Don't wish harm on anyone|for your own harm is already on its way
+Não te rias da caveira|que um dia nela te vais tornar|Don't laugh at the skull|for one day you will become one
+*
+#       Grupo 5 : complemento anteposto | oração principal
+#       (aqui a vírgula viaja na CABEÇA, porque é lá que está a
+#       subordinada que a pede)
+Água mole em pedra dura,|tanto bate até que fura|Soft water on hard stone,|strikes until it bores through
+Em casa de ferreiro,|espeto de pau|In the blacksmith's house,|a wooden spit
+De grão em grão,|enche a galinha o papo|Grain by grain,|the hen fills her crop
+Depois da tempestade,|vem a bonança|After the storm,|comes the calm
+Longe da vista,|longe do coração|Far from sight,|far from the heart
+Cada cabeça,|sua sentença|Every head,|its own verdict
+Em terra de cegos,|quem tem um olho é rei|In the land of the blind,|the one-eyed man is king
+Enquanto há vida,|há esperança|While there is life,|there is hope
+Não há fumo|sem fogo|There is no smoke|without fire
+Devagar|se vai ao longe|Slowly|is how you get far
+De pequenino|se torce o pepino|While it is small|is when the cucumber is bent
+Depressa e bem|não há quem|Quickly and well|there is nobody who can
+Amigos, amigos,|negócios à parte|Friends are friends,|business is business
+Amigos dos meus amigos,|meus amigos são|Friends of my friends,|are friends of mine
+Gaivotas em terra,|tempestade no mar|Gulls inland,|a storm at sea
+Por morrer uma andorinha,|não acaba a primavera|Because one swallow dies,|the spring does not end
+Rei morto,|rei posto|A king dead,|a king put in his place
+Para grandes males,|grandes remédios|For great ills,|great remedies
+Nem tanto ao mar|nem tanto à terra|Neither so far out to sea|nor so far up the beach
+Por fora bela viola,|por dentro pão bolorento|A fine guitar on the outside,|mouldy bread on the inside
+No poupar|é que está o ganho|In the saving|is where the gain is
+O que não tem remédio,|remediado está|What has no remedy,|is remedied already
+Em casa onde não há pão,|todos ralham e ninguém tem razão|In a house with no bread,|everybody quarrels and nobody is right
+Diz-me com quem andas,|dir-te-ei quem és|Tell me who you walk with,|and I will tell you who you are
+Abril,|águas mil|April,|a thousand waters
+**
+#       — as reservas, escondidas atrás do **, onde o programa não chega.
+#       As mesmas três que o autor arrumou em 1996, agora em português.
+#       Todas as três têm gémeo português exato e não foi preciso inventar
+#       nada. A do meio ainda rima, o que o original não faz.
+Malha-se no ferro|enquanto está quente|One strikes the iron|while it is hot
+Onde entra o beber,|sai o saber|Where the drinking goes in,|the knowing goes out
+Panela em que muitos mexem,|ou sai insossa ou sai salgada|A pot that many hands stir,|comes out either bland or oversalted
