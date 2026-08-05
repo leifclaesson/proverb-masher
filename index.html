@@ -384,6 +384,10 @@
     <button id="setClose" aria-label="Close">[X]</button>
   </div>
 
+  <!-- The dwell applies in BOTH modes, so it sits above the language switch
+       rather than inside the weighting block that greys out with it. -->
+  <progress-adjust id="intervalBar" min="5" max="30" step="1" value="10" backup="10" label="Interval"></progress-adjust>
+
   <div id="modeRow">
     <span id="modeOne">One language</span>
     <button id="langMode" role="switch" aria-checked="false"><span class="knob"></span></button>
@@ -455,7 +459,7 @@
 
    Appending ?v=<SITE_VERSION> makes every deploy a new URL, so no cache at any
    layer can pair new HTML with old data. */
-const SITE_VERSION = "0.6";
+const SITE_VERSION = "0.7";
 
 const LANGS = {
   sv: { file: "data/ORDSPRÅK.TXT",   cp437: true,  period: true,  more: "En till",
@@ -467,6 +471,7 @@ const LANGS = {
         auto: "Auto",
         settings: "Inställningar", close: "Stäng", reset: "Återställ",
         oneLang: "Ett språk", changeLang: "Byt språk", probability: "Sannolikhet",
+        interval: "Intervall",
         // The English mirror rides in a sidecar with the same groups and line
         // order, zipped in positionally at load. That was originally so the
         // 1996 file could stay byte-pristine; it grew on 2026-08-03 (Ordsprak
@@ -482,6 +487,7 @@ const LANGS = {
         auto: "Auto",
         settings: "Settings", close: "Close", reset: "Reset",
         oneLang: "One language", changeLang: "Change language", probability: "Probability",
+        interval: "Interval",
         // English is the only edition whose verbs conjugate for number, so
         // it is the only one whose tails carry alternations to resolve
         agree: true },
@@ -493,7 +499,8 @@ const LANGS = {
         home: "เลย์ฟ คือใคร",
         auto: "อัตโนมัติ",
         settings: "ตั้งค่า", close: "ปิด", reset: "รีเซ็ต",
-        oneLang: "ภาษาเดียว", changeLang: "สลับภาษา", probability: "ความน่าจะเป็น" },
+        oneLang: "ภาษาเดียว", changeLang: "สลับภาษา", probability: "ความน่าจะเป็น",
+        interval: "ช่วงเวลา" },
   ru: { file: "data/ПОСЛОВИЦЫ.TXT",  cp437: false, period: true,  more: "Ещё одну",
         title: "ПОСЛОВИЦЫ — перемолотые пословицы",
         tagline: "настоящие пословицы, склеенные не с теми половинками",
@@ -502,7 +509,8 @@ const LANGS = {
         home: "Кто такой Лейф?",
         auto: "Авто",
         settings: "Настройки", close: "Закрыть", reset: "Сброс",
-        oneLang: "Один язык", changeLang: "Менять язык", probability: "Вероятность" },
+        oneLang: "Один язык", changeLang: "Менять язык", probability: "Вероятность",
+        interval: "Интервал" },
   nl: { file: "data/SPREEKWOORDEN.TXT", cp437: false, period: true, more: "Nog eentje",
         title: "SPREEKWOORDEN — door elkaar gehusselde spreekwoorden",
         tagline: "echte spreekwoorden, verkeerd aan elkaar geplakt",
@@ -512,6 +520,7 @@ const LANGS = {
         auto: "Auto",
         settings: "Instellingen", close: "Sluiten", reset: "Herstellen",
         oneLang: "Eén taal", changeLang: "Wissel van taal", probability: "Kans",
+        interval: "Interval",
         // Dutch conjugates for number too, so it runs the English edition's
         // marker rule -- and it is the first edition to have BOTH that and an
         // English mirror, so it is the first where the mirror needs it as well
@@ -525,6 +534,7 @@ const LANGS = {
         auto: "Αυτόματο",
         settings: "Ρυθμίσεις", close: "Κλείσιμο", reset: "Επαναφορά",
         oneLang: "Μία γλώσσα", changeLang: "Αλλαγή γλώσσας", probability: "Πιθανότητα",
+        interval: "Διάστημα",
         // Greek conjugates for number as well, so it runs the same marker rule
         // as English and Dutch -- with one twist the resolver never sees: the
         // copula does NOT inflect (αυτός είναι / αυτοί είναι), so the verb that
@@ -540,6 +550,7 @@ const LANGS = {
         auto: "Auto",
         settings: "Ustawienia", close: "Zamknij", reset: "Reset",
         oneLang: "Jeden język", changeLang: "Zmieniaj język", probability: "Prawdopodobieństwo",
+        interval: "Odstęp",
         // Polish conjugates for number as well, so the same marker rule again --
         // with the mirror image of the Greek twist: (jest/są) is not just marked
         // but SUPPLETIVE, sharing no letter at all, which is the strongest case
@@ -557,6 +568,7 @@ const LANGS = {
         auto: "Auto",
         settings: "Réglages", close: "Fermer", reset: "Réinitialiser",
         oneLang: "Une seule langue", changeLang: "Changer de langue", probability: "Probabilité",
+        interval: "Intervalle",
         // French conjugates for number as well, so the same marker rule again --
         // and it is the loudest argument yet for a file that carries both forms
         // rather than deriving one. The seam falls somewhere different for every
@@ -1033,6 +1045,12 @@ async function serve() {
    after a line finishes typing, not a fixed period, so a long line is never cut
    short. For a display with no keyboard in front of it. */
 const AUTO_DEFAULT = 10;          // README quotes this number -- change both
+/* The dwell bar's travel. NOT a hard clamp on autoSecs: ?auto=N is the
+   power-user escape hatch and is allowed outside this range, in which case the
+   bar's own min/max open up to fit it (see the boot block). A bar reading 30
+   while the timer actually runs 60 would be a lying control, and this page
+   doesn't have any of those. */
+const INTERVAL_MIN = 5, INTERVAL_MAX = 30;
 let autoOn = false, autoSecs = AUTO_DEFAULT, autoTimer = 0;
 /* The type-on runs ALWAYS. It deliberately does not consult
    prefers-reduced-motion: that flag is how you turn off window transitions and
@@ -1172,6 +1190,18 @@ function paintMode() {
   weightsEl.inert = !autoLang;
 }
 
+/* The dwell bar. Only `change` is acted on, not `input`: rescheduling on every
+   frame of a drag would restart the timer continuously and the dwell would
+   never actually elapse. Committing it re-arms immediately rather than waiting
+   out the old dwell -- but not mid-line, which is the same rule the Auto button
+   follows, because a dwell is defined as the pause AFTER a line finishes. */
+const intervalBar = document.getElementById("intervalBar");
+intervalBar.addEventListener("change", e => {
+  autoSecs = e.detail.value;
+  try { localStorage.setItem("cookieAutoSecs", String(autoSecs)); } catch (err) {}
+  if (autoOn && !typing) scheduleAuto();
+});
+
 modeBtn.addEventListener("click", () => {
   autoLang = !autoLang;
   paintMode();
@@ -1221,12 +1251,19 @@ function closePanel() {
 
 cogBtn.addEventListener("click", () => { panel.hidden ? openPanel() : closePanel(); });
 document.getElementById("setClose").addEventListener("click", closePanel);
+/* Resets everything the PANEL owns, dwell included -- it sits at the bottom of
+   the panel, not under the weights, and a Reset that quietly skipped one of the
+   controls above it would be the surprising reading. */
 document.getElementById("setReset").addEventListener("click", () => {
   Object.keys(LANGS).forEach(c => {
     weights[c] = DEFAULT_WEIGHT;
     bars[c].setAttribute("value", String(DEFAULT_WEIGHT));
   });
   saveWeights();
+  autoSecs = AUTO_DEFAULT;
+  intervalBar.setAttribute("value", String(AUTO_DEFAULT));
+  try { localStorage.setItem("cookieAutoSecs", String(AUTO_DEFAULT)); } catch (e) {}
+  if (autoOn && !typing) scheduleAuto();
 });
 
 /* Escape closes the panel -- UNLESS a bar is mid-drag, where Escape is the
@@ -1264,6 +1301,7 @@ function setLang(code, save = true) {
   document.getElementById("modeOne").textContent = cfg.oneLang;
   document.getElementById("modeAuto").textContent = cfg.changeLang;
   document.getElementById("weightsHead").textContent = cfg.probability;
+  intervalBar.setAttribute("label", cfg.interval);
   document.getElementById("setReset").textContent = cfg.reset;
   document.getElementById("setClose").setAttribute("aria-label", cfg.close);
   cogBtn.setAttribute("aria-label", cfg.settings);
@@ -1294,14 +1332,40 @@ addEventListener("keydown", e => {
    setLang serves a line, and serving a line arms the next one. */
 (function () {
   const params = new URLSearchParams(location.search);
+  let dwellFromUrl = false;
   const a = params.get("auto");
   if (a !== null) {
     autoOn = a !== "0";
     const secs = parseFloat(a);
-    if (secs > 1) autoSecs = secs;      // ?auto=20 -> dwell 20s on each line
+    if (secs > 1) { autoSecs = secs; dwellFromUrl = true; }   // ?auto=20 -> 20s dwell
   } else {
     try { autoOn = localStorage.getItem("cookieAuto") === "1"; } catch (e) {}
   }
+  // saved dwell, only when the URL didn't already name one
+  if (!dwellFromUrl) {
+    try {
+      const s = parseFloat(localStorage.getItem("cookieAutoSecs"));
+      if (Number.isFinite(s) && s > 0) autoSecs = s;
+    } catch (e) {}
+  }
+  /* Fit the bar to the value rather than the value to the bar. ?auto=60 is a
+     legitimate thing to want on a wall display and predates this control, so
+     it still wins -- the bar just grows to show it honestly instead of pinning
+     at 30 and misreporting the timer. */
+  if (autoSecs < INTERVAL_MIN) intervalBar.setAttribute("min", String(Math.floor(autoSecs)));
+  if (autoSecs > INTERVAL_MAX) intervalBar.setAttribute("max", String(Math.ceil(autoSecs)));
+  intervalBar.setAttribute("value", String(autoSecs));
+
+  /* `format` is a PROPERTY, and the element's constructor assigns it null when
+     it upgrades -- so setting it before the definition lands would be wiped.
+     whenDefined is the honest hook for that, and re-stamping `value` afterwards
+     forces the readout to repaint through the new formatter.
+     The unit is the SI symbol in every edition on purpose: inventing a
+     second-abbreviation per language is guesswork this page can do without. */
+  customElements.whenDefined("progress-adjust").then(() => {
+    intervalBar.format = v => v + " s";
+    intervalBar.setAttribute("value", String(autoSecs));
+  });
 
   const t = params.get("type");
   if (t !== null) {

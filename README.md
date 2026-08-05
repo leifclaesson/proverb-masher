@@ -12,9 +12,12 @@ meaning gets mangled. That's the whole point.
 Hit `[X] Auto` to leave it cycling on a monitor. `?auto=1` arms that from the
 URL and `?auto=20` also sets the dwell in seconds -- the pause after a line
 lands, so a long one is never cut short. The default dwell is 10 seconds. For
-a screen with no keyboard in front of it.
+a screen with no keyboard in front of it. `?auto=` is not limited to the
+Interval bar's 5-30 range: ask for `?auto=60` and the bar simply grows to show
+it, rather than pinning at 30 while the timer runs a minute.
 
-The `☼` button beside it opens the autocycle's settings. A switch decides
+The `☼` button beside it opens the autocycle's settings. **Interval** sets the
+dwell from 5 to 30 seconds. A switch decides
 whether the cycle stays in one language or changes language as well, and a bar
 per language sets how often each one comes up -- so a screen can run mostly
 Swedish with the occasional Thai line, or an even eight-way shuffle. The
