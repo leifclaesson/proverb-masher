@@ -397,7 +397,7 @@
   <div id="modeRow">
     <span id="modeOne">One language</span>
     <button id="langMode" role="switch" aria-checked="false"><span class="knob"></span></button>
-    <span id="modeAuto">Change language</span>
+    <span id="modeAuto">Random language</span>
   </div>
 
   <div id="weightsHead">Probability</div>
@@ -465,7 +465,7 @@
 
    Appending ?v=<SITE_VERSION> makes every deploy a new URL, so no cache at any
    layer can pair new HTML with old data. */
-const SITE_VERSION = "0.8";
+const SITE_VERSION = "0.9";
 
 const LANGS = {
   sv: { file: "data/ORDSPRÅK.TXT",   cp437: true,  period: true,  more: "En till",
@@ -476,7 +476,7 @@ const LANGS = {
         home: "Vem är Leif?",
         auto: "Auto",
         settings: "Inställningar", close: "Stäng", reset: "Återställ",
-        oneLang: "Ett språk", changeLang: "Byt språk", probability: "Sannolikhet",
+        oneLang: "Ett språk", changeLang: "Slumpa", probability: "Sannolikhet",
         interval: "Intervall", secs: "s",
         // The English mirror rides in a sidecar with the same groups and line
         // order, zipped in positionally at load. That was originally so the
@@ -492,7 +492,7 @@ const LANGS = {
         home: "Who is Leif?",
         auto: "Auto",
         settings: "Settings", close: "Close", reset: "Reset",
-        oneLang: "One language", changeLang: "Change language", probability: "Probability",
+        oneLang: "One language", changeLang: "Random language", probability: "Probability",
         interval: "Interval", secs: "s",
         // English is the only edition whose verbs conjugate for number, so
         // it is the only one whose tails carry alternations to resolve
@@ -515,7 +515,7 @@ const LANGS = {
         home: "Кто такой Лейф?",
         auto: "Авто",
         settings: "Настройки", close: "Закрыть", reset: "Сброс",
-        oneLang: "Один язык", changeLang: "Менять язык", probability: "Вероятность",
+        oneLang: "Один язык", changeLang: "Случайный язык", probability: "Вероятность",
         // "с" is CYRILLIC es (U+0441), not a Latin c -- the SI symbol for
         // секунда. They look identical and only one of them is right.
         interval: "Интервал", secs: "с" },
@@ -527,7 +527,7 @@ const LANGS = {
         home: "Wie is Leif?",
         auto: "Auto",
         settings: "Instellingen", close: "Sluiten", reset: "Herstellen",
-        oneLang: "Eén taal", changeLang: "Wissel van taal", probability: "Kans",
+        oneLang: "Eén taal", changeLang: "Willekeurige taal", probability: "Kans",
         interval: "Interval", secs: "s",
         // Dutch conjugates for number too, so it runs the English edition's
         // marker rule -- and it is the first edition to have BOTH that and an
@@ -541,7 +541,7 @@ const LANGS = {
         home: "Ποιος είναι ο Λέιφ;",
         auto: "Αυτόματο",
         settings: "Ρυθμίσεις", close: "Κλείσιμο", reset: "Επαναφορά",
-        oneLang: "Μία γλώσσα", changeLang: "Αλλαγή γλώσσας", probability: "Πιθανότητα",
+        oneLang: "Μία γλώσσα", changeLang: "Τυχαία γλώσσα", probability: "Πιθανότητα",
         interval: "Διάστημα", secs: "δευτ.",
         // Greek conjugates for number as well, so it runs the same marker rule
         // as English and Dutch -- with one twist the resolver never sees: the
@@ -557,7 +557,7 @@ const LANGS = {
         home: "Kim jest Leif?",
         auto: "Auto",
         settings: "Ustawienia", close: "Zamknij", reset: "Reset",
-        oneLang: "Jeden język", changeLang: "Zmieniaj język", probability: "Prawdopodobieństwo",
+        oneLang: "Jeden język", changeLang: "Losowy język", probability: "Prawdopodobieństwo",
         interval: "Odstęp", secs: "s",
         // Polish conjugates for number as well, so the same marker rule again --
         // with the mirror image of the Greek twist: (jest/są) is not just marked
@@ -575,7 +575,7 @@ const LANGS = {
         home: "Qui est Leif ?",
         auto: "Auto",
         settings: "Réglages", close: "Fermer", reset: "Réinitialiser",
-        oneLang: "Une seule langue", changeLang: "Changer de langue", probability: "Probabilité",
+        oneLang: "Une seule langue", changeLang: "Langue aléatoire", probability: "Probabilité",
         interval: "Intervalle", secs: "s",
         // French conjugates for number as well, so the same marker rule again --
         // and it is the loudest argument yet for a file that carries both forms
