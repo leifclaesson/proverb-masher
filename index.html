@@ -154,6 +154,12 @@
     border: 1px solid var(--accent);
     box-shadow: 0 0 24px rgba(255,176,0,.22);
   }
+  /* A flex column with a max-height SHRINKS its children before it agrees to
+     scroll, and a <progress-adjust> squashed to height 0 still reports its
+     --pa-height as 24px, so it looks like a styling bug and isn't one. Every
+     row keeps its natural height; the panel does the scrolling. */
+  #settings > * { flex: none; }
+
   #setHead { display: flex; align-items: center; justify-content: space-between; gap: .6rem; }
   #setTitle {
     color: var(--accent);
@@ -459,7 +465,7 @@
 
    Appending ?v=<SITE_VERSION> makes every deploy a new URL, so no cache at any
    layer can pair new HTML with old data. */
-const SITE_VERSION = "0.7";
+const SITE_VERSION = "0.8";
 
 const LANGS = {
   sv: { file: "data/ORDSPRÅK.TXT",   cp437: true,  period: true,  more: "En till",
@@ -471,7 +477,7 @@ const LANGS = {
         auto: "Auto",
         settings: "Inställningar", close: "Stäng", reset: "Återställ",
         oneLang: "Ett språk", changeLang: "Byt språk", probability: "Sannolikhet",
-        interval: "Intervall",
+        interval: "Intervall", secs: "s",
         // The English mirror rides in a sidecar with the same groups and line
         // order, zipped in positionally at load. That was originally so the
         // 1996 file could stay byte-pristine; it grew on 2026-08-03 (Ordsprak
@@ -487,7 +493,7 @@ const LANGS = {
         auto: "Auto",
         settings: "Settings", close: "Close", reset: "Reset",
         oneLang: "One language", changeLang: "Change language", probability: "Probability",
-        interval: "Interval",
+        interval: "Interval", secs: "s",
         // English is the only edition whose verbs conjugate for number, so
         // it is the only one whose tails carry alternations to resolve
         agree: true },
@@ -500,7 +506,7 @@ const LANGS = {
         auto: "อัตโนมัติ",
         settings: "ตั้งค่า", close: "ปิด", reset: "รีเซ็ต",
         oneLang: "ภาษาเดียว", changeLang: "สลับภาษา", probability: "ความน่าจะเป็น",
-        interval: "ช่วงเวลา" },
+        interval: "ช่วงเวลา", secs: "วิ" },
   ru: { file: "data/ПОСЛОВИЦЫ.TXT",  cp437: false, period: true,  more: "Ещё одну",
         title: "ПОСЛОВИЦЫ — перемолотые пословицы",
         tagline: "настоящие пословицы, склеенные не с теми половинками",
@@ -510,7 +516,9 @@ const LANGS = {
         auto: "Авто",
         settings: "Настройки", close: "Закрыть", reset: "Сброс",
         oneLang: "Один язык", changeLang: "Менять язык", probability: "Вероятность",
-        interval: "Интервал" },
+        // "с" is CYRILLIC es (U+0441), not a Latin c -- the SI symbol for
+        // секунда. They look identical and only one of them is right.
+        interval: "Интервал", secs: "с" },
   nl: { file: "data/SPREEKWOORDEN.TXT", cp437: false, period: true, more: "Nog eentje",
         title: "SPREEKWOORDEN — door elkaar gehusselde spreekwoorden",
         tagline: "echte spreekwoorden, verkeerd aan elkaar geplakt",
@@ -520,7 +528,7 @@ const LANGS = {
         auto: "Auto",
         settings: "Instellingen", close: "Sluiten", reset: "Herstellen",
         oneLang: "Eén taal", changeLang: "Wissel van taal", probability: "Kans",
-        interval: "Interval",
+        interval: "Interval", secs: "s",
         // Dutch conjugates for number too, so it runs the English edition's
         // marker rule -- and it is the first edition to have BOTH that and an
         // English mirror, so it is the first where the mirror needs it as well
@@ -534,7 +542,7 @@ const LANGS = {
         auto: "Αυτόματο",
         settings: "Ρυθμίσεις", close: "Κλείσιμο", reset: "Επαναφορά",
         oneLang: "Μία γλώσσα", changeLang: "Αλλαγή γλώσσας", probability: "Πιθανότητα",
-        interval: "Διάστημα",
+        interval: "Διάστημα", secs: "δευτ.",
         // Greek conjugates for number as well, so it runs the same marker rule
         // as English and Dutch -- with one twist the resolver never sees: the
         // copula does NOT inflect (αυτός είναι / αυτοί είναι), so the verb that
@@ -550,7 +558,7 @@ const LANGS = {
         auto: "Auto",
         settings: "Ustawienia", close: "Zamknij", reset: "Reset",
         oneLang: "Jeden język", changeLang: "Zmieniaj język", probability: "Prawdopodobieństwo",
-        interval: "Odstęp",
+        interval: "Odstęp", secs: "s",
         // Polish conjugates for number as well, so the same marker rule again --
         // with the mirror image of the Greek twist: (jest/są) is not just marked
         // but SUPPLETIVE, sharing no letter at all, which is the strongest case
@@ -568,7 +576,7 @@ const LANGS = {
         auto: "Auto",
         settings: "Réglages", close: "Fermer", reset: "Réinitialiser",
         oneLang: "Une seule langue", changeLang: "Changer de langue", probability: "Probabilité",
-        interval: "Intervalle",
+        interval: "Intervalle", secs: "s",
         // French conjugates for number as well, so the same marker rule again --
         // and it is the loudest argument yet for a file that carries both forms
         // rather than deriving one. The seam falls somewhere different for every
@@ -1196,6 +1204,21 @@ function paintMode() {
    out the old dwell -- but not mid-line, which is the same rule the Auto button
    follows, because a dwell is defined as the pause AFTER a line finishes. */
 const intervalBar = document.getElementById("intervalBar");
+
+/* The unit rides with the language: every edition names its own second, and
+   they are not all the SI symbol -- Thai shortens วินาที to วิ, Russian's "с"
+   is CYRILLIC, Greek abbreviates the word rather than symbolising it.
+
+   Re-stamping `value` is what repaints the readout through the new formatter.
+   Setting an attribute to the string it already holds still fires
+   attributeChangedCallback, which is the only reason this needs no private
+   render call. */
+function paintInterval() {
+  const unit = LANGS[current].secs;
+  intervalBar.format = v => v + " " + unit;
+  intervalBar.setAttribute("value", String(autoSecs));
+}
+
 intervalBar.addEventListener("change", e => {
   autoSecs = e.detail.value;
   try { localStorage.setItem("cookieAutoSecs", String(autoSecs)); } catch (err) {}
@@ -1302,6 +1325,7 @@ function setLang(code, save = true) {
   document.getElementById("modeAuto").textContent = cfg.changeLang;
   document.getElementById("weightsHead").textContent = cfg.probability;
   intervalBar.setAttribute("label", cfg.interval);
+  paintInterval();                      // the unit is per-language too
   document.getElementById("setReset").textContent = cfg.reset;
   document.getElementById("setClose").setAttribute("aria-label", cfg.close);
   cogBtn.setAttribute("aria-label", cfg.settings);
@@ -1356,16 +1380,11 @@ addEventListener("keydown", e => {
   if (autoSecs > INTERVAL_MAX) intervalBar.setAttribute("max", String(Math.ceil(autoSecs)));
   intervalBar.setAttribute("value", String(autoSecs));
 
-  /* `format` is a PROPERTY, and the element's constructor assigns it null when
-     it upgrades -- so setting it before the definition lands would be wiped.
-     whenDefined is the honest hook for that, and re-stamping `value` afterwards
-     forces the readout to repaint through the new formatter.
-     The unit is the SI symbol in every edition on purpose: inventing a
-     second-abbreviation per language is guesswork this page can do without. */
-  customElements.whenDefined("progress-adjust").then(() => {
-    intervalBar.format = v => v + " s";
-    intervalBar.setAttribute("value", String(autoSecs));
-  });
+  /* setLang has already run by now and set the formatter -- but if it ran
+     BEFORE the element upgraded, the constructor's `this.format = null` wiped
+     it, because format is a PROPERTY and not an attribute. So re-apply it once
+     the definition lands. */
+  customElements.whenDefined("progress-adjust").then(paintInterval);
 
   const t = params.get("type");
   if (t !== null) {
