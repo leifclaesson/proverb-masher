@@ -99,7 +99,7 @@
 รักพี่|เสียดายน้อง|Loving the elder,|you pity the younger
 หนีเสือ|ปะจระเข้|Fleeing the tiger,|you meet the crocodile
 ชี้โพรง|ให้กระรอก|Pointing out the hollow,|you hand it to the squirrel
-เห็นช้างขี้|ขี้ตามช้าง|Seeing the elephant drop dung,|you drop dung after it
+เห็นช้างขี้|ขี้ตามช้าง|Seeing the elephant drop dung,|you drop dung after the elephant
 ได้ที|ขี่แพะไล่|Getting the upper hand,|you ride a goat in pursuit
 ฝนตก|ขี้หมูไหล|When the rain falls,|the pig dung floats
 ขว้างงู|ไม่พ้นคอ|Throwing the snake,|you don't clear your own neck
@@ -131,7 +131,7 @@
 ทำนา|บนหลังคน|Farm the paddy|on other people's backs
 จุดไต้|ตำตอ|Light the torch|and walk into the stump
 กินบนเรือน|ขี้รดบนหลังคา|Eat inside the house|and foul the roof
-เลี้ยงช้าง|กินขี้ช้าง|Keep an elephant|and live off its dung
+เลี้ยงช้าง|กินขี้ช้าง|Keep an elephant|and live off elephant dung
 หว่านพืช|หวังผล|Sow the seed|and hope for the fruit
 *
 #  กลุ่ม ๔ : ข้อห้าม -- อย่า...
@@ -141,35 +141,65 @@
 อย่ารีดเลือด|กับปู|Don't squeeze blood|out of a crab
 อย่าหาเหา|ใส่หัว|Don't go hunting lice|to put in your own hair
 อย่าเอาไม้สั้น|ไปรันขี้|Don't take a short stick|to poke the dung
-อย่าสอนหนังสือ|สังฆราช|Don't teach reading|to the Supreme Patriarch
+^อย่าสอนหนังสือ|สังฆราช|Don't teach reading|to the Supreme Patriarch
 อย่าชักน้ำเข้าลึก|ชักศึกเข้าบ้าน|Don't draw the water in deep|and the war into your house
-อย่าเห็นขี้|ดีกว่าไส้|Don't hold the dung|dearer than the gut
+^อย่าเห็นขี้|ดีกว่าไส้|Don't hold the dung|dearer than the gut
 อย่าเอาลูกเขามาเลี้ยง|เอาเมี่ยงเขามาอม|Don't take another's child to raise|and another's snack to chew
 อย่าจับปลา|ทีเดียวสองมือ|Don't catch fish|with two hands at once
 *
-#  กลุ่ม ๕ : สำนวนคู่ขนาน (ท่อนหน้า/ท่อนหลังเป็นวลีสมดุลกันทั้งคู่)
-ไก่งามเพราะขน|คนงามเพราะแต่ง|A rooster is fine for its feathers,|a person for their clothes
-น้ำพึ่งเรือ|เสือพึ่งป่า|Water leans on the boat,|the tiger leans on the forest
-น้ำร้อนปลาเป็น|น้ำเย็นปลาตาย|In hot water the fish lives,|in cold water it dies
-เข้าหูซ้าย|ทะลุหูขวา|In the left ear,|out the right
-ปากว่า|ตาขยิบ|The mouth says one thing,|the eye winks another
-เอาหูไปนา|เอาตาไปไร่|Send your ears to the paddy,|send your eyes to the field
-ไก่เห็นตีนงู|งูเห็นนมไก่|The chicken sees the snake's feet,|the snake sees the chicken's breasts
-ปากปราศรัย|น้ำใจเชือดคอ|The mouth makes a speech,|the heart cuts your throat
-น้ำขุ่นไว้ใน|น้ำใสไว้นอก|Keep the muddy water inside,|the clear water outside
-อย่าไว้ใจทาง|อย่าวางใจคน|Don't trust the road,|don't trust people
-มือไม่พาย|เอาเท้าราน้ำ|The hands don't paddle,|the feet drag in the water
-เข้าตามตรอก|ออกตามประตู|Come in by the lane,|go out by the door
-ไม้อ่อนดัดง่าย|ไม้แก่ดัดยาก|Young wood bends easily,|old wood bends hard
-ไปลา|มาไหว้|Take your leave going,|pay respect coming
-ตกน้ำไม่ไหล|ตกไฟไม่ไหม้|Fallen in water it won't float away,|fallen in fire it won't burn
-ปากหวาน|ก้นเปรี้ยว|The mouth is sweet,|the backside is sour
-หน้าเนื้อ|ใจเสือ|The face of a deer,|the heart of a tiger
-ชั่วเจ็ดที|ดีเจ็ดหน|Seven turns of bad,|seven turns of good
-สิบปากว่า|ไม่เท่าตาเห็น|Ten mouths telling|are not worth one eye seeing
-คบคนพาล|พาลพาไปหาผิด|Keep company with a fool,|the fool leads you to ruin
-คบบัณฑิต|บัณฑิตพาไปหาผล|Keep company with a sage,|the sage leads you to fruit
-ตบมือข้างเดียว|ไม่ดัง|One hand clapping|makes no sound
+#  กลุ่ม ๕ : สำนวนคู่ขนาน -- ทุกบรรทัดขึ้นต้นด้วย ^ (ใช้ได้แต่ท่อนหน้า)
+#
+#  ๒๕๖๙-๐๘-๐๖: กลุ่มนี้คือต้นเหตุของความ "ไม่เป็นเรื่อง" เกือบทั้งหมด. ท่อนหลัง
+#  ของสำนวนคู่ขนานไม่ใช่อะไหล่ -- มันชี้ไปที่คู่ของมันเองเสมอ ไม่ว่าจะเอาท่อนหน้า
+#  ไหนมาต่อ แม้แต่ท่อนหน้าจากกลุ่มเดียวกัน. น้ำใสไว้นอก ต้องมี น้ำขุ่นไว้ใน;
+#  งูเห็นนมไก่ ต้องมี ไก่เห็นตีนงู เพราะมุกคือการเห็นความลับของกันและกัน.
+#  จัดกลุ่มใหม่แก้ไม่ได้ ต้องกันท่อนหลังออกจากกองทั้งกลุ่ม -- นั่นคือ ^.
+^ไก่งามเพราะขน|คนงามเพราะแต่ง|A rooster is fine for its feathers,|a person for their clothes
+^น้ำพึ่งเรือ|เสือพึ่งป่า|Water leans on the boat,|the tiger leans on the forest
+^น้ำร้อนปลาเป็น|น้ำเย็นปลาตาย|In hot water the fish lives,|in cold water it dies
+^เข้าหูซ้าย|ทะลุหูขวา|In the left ear,|out the right
+^ปากว่า|ตาขยิบ|The mouth says one thing,|the eye winks another
+^เอาหูไปนา|เอาตาไปไร่|Send your ears to the paddy,|send your eyes to the field
+^ไก่เห็นตีนงู|งูเห็นนมไก่|The chicken sees the snake's feet,|the snake sees the chicken's breasts
+^ปากปราศรัย|น้ำใจเชือดคอ|The mouth makes a speech,|the heart cuts your throat
+^น้ำขุ่นไว้ใน|น้ำใสไว้นอก|Keep the muddy water inside,|the clear water outside
+^อย่าไว้ใจทาง|อย่าวางใจคน|Don't trust the road,|don't trust people
+^มือไม่พาย|เอาเท้าราน้ำ|The hands don't paddle,|the feet drag in the water
+^เข้าตามตรอก|ออกตามประตู|Come in by the lane,|go out by the door
+^ไม้อ่อนดัดง่าย|ไม้แก่ดัดยาก|Young wood bends easily,|old wood bends hard
+^ไปลา|มาไหว้|Take your leave going,|pay respect coming
+^ตกน้ำไม่ไหล|ตกไฟไม่ไหม้|Fallen in water it won't float away,|fallen in fire it won't burn
+^ปากหวาน|ก้นเปรี้ยว|The mouth is sweet,|the backside is sour
+^หน้าเนื้อ|ใจเสือ|The face of a deer,|the heart of a tiger
+^ชั่วเจ็ดที|ดีเจ็ดหน|Seven turns of bad,|seven turns of good
+^สิบปากว่า|ไม่เท่าตาเห็น|Ten mouths telling|are not as good as seeing it yourself
+^คบคนพาล|พาลพาไปหาผิด|Keep company with a fool,|the fool leads you to ruin
+^คบบัณฑิต|บัณฑิตพาไปหาผล|Keep company with a sage,|the sage leads you to fruit
+^ตบมือข้างเดียว|ไม่ดัง|One hand clapping|makes no sound
+*
+#  กลุ่ม ๖ : เปรียบเทียบ -- การกระทำ | ดีกว่า.../ไม่เท่า...
+#
+#  กลุ่มนี้เกิดจากข้อสังเกตของเลย์ฟ ๒๕๖๙-๐๘-๐๖ บนคู่ อย่าตีตน|ดีกว่าไส้:
+#  "ห้ามทำอย่างหนึ่ง แล้วบอกว่ามันดีกว่า" -- สองท่อนขัดกันเอง เลยไม่เป็นเรื่อง.
+#  เพราะท่อนหลังแบบเปรียบเทียบไม่จบในตัวเอง: สิ่งที่ถูกเปรียบอยู่ในท่อนหน้า.
+#  ฉบับสวีเดนมีกลุ่มนี้มาตั้งแต่ ๑๙๙๖ (Bättre ... | än ...) ไทยไม่มี ท่อนหลัง
+#  เปรียบเทียบเลยไปค้างอยู่กลุ่ม ๔ กับ ๕ ปนกับท่อนหน้าที่รับมันไม่ได้.
+#
+#  ตัวแก้คือของเลย์ฟเองเหมือนกัน: ตัด "อย่า" ทิ้ง แล้วท่อนหน้ากลายเป็นนาม
+#  ที่เอามาเปรียบได้ -- ตีตนดีกว่าไส้ ใช้ได้เลย. ท่อนหน้า ^ ข้างล่างคือ
+#  ท่อนหน้ากลุ่ม ๔ ที่ตัด อย่า ออกแล้ว: เพิ่มคู่ ไม่ได้ตัดของเดิมทิ้ง.
+เห็นขี้|ดีกว่าไส้|Seeing the dung|is better than the gut
+สิบปากว่า|ไม่เท่าตาเห็น|Ten mouths telling|is not as good as seeing it yourself
+^ตีตน|ไปก่อนไข้|Beating yourself|before the fever comes
+^หักด้ามพร้า|ด้วยเข่า|Breaking the machete handle|with your knee
+^ฟื้นฝอย|หาตะเข็บ|Raking the litter|looking for centipedes
+^รีดเลือด|กับปู|Squeezing blood|out of a crab
+^หาเหา|ใส่หัว|Hunting lice|to put in your own hair
+^เอาไม้สั้น|ไปรันขี้|Taking a short stick|to poke the dung
+^สอนหนังสือ|สังฆราช|Teaching reading|to the Supreme Patriarch
+^ชักน้ำเข้าลึก|ชักศึกเข้าบ้าน|Drawing the water in deep|and the war into your house
+^เอาลูกเขามาเลี้ยง|เอาเมี่ยงเขามาอม|Taking another's child to raise|and another's snack to chew
+^จับปลา|ทีเดียวสองมือ|Catching fish|with two hands at once
 **
 #  -- ตัวสำรอง อยู่หลัง ** โปรแกรมไม่อ่าน (จงใจให้เหมือนต้นฉบับเป๊ะ) --
 #  สามบรรทัดที่ต้นฉบับปี ๑๙๙๖ เก็บไว้หลัง ** เหมือนกัน แต่เป็นภาษาไทย
