@@ -82,6 +82,10 @@
     z-index: 5;
   }
   .langs { display: flex; gap: .45rem; flex-wrap: wrap; justify-content: center; }
+  /* The two icon buttons wrap as a pair. Separately they are small enough
+     that the header breaks BETWEEN them, and a lone cog on a row of its own
+     reads as a layout bug rather than as a reflow. */
+  .tools { display: flex; gap: .45rem; flex-wrap: nowrap; }
   button {
     font-family: var(--mono);
     font-size: clamp(.85rem, 2.6vmin, 1.05rem);
@@ -137,6 +141,42 @@
     line-height: 1;
   }
   #cog[aria-expanded="true"] { color: var(--accent); border-color: var(--accent); }
+
+  /* --- fullscreen ----------------------------------------------------------
+     //Leif, 2026-08-10: "I'm okay with a modern fullscreen symbol. back in the
+     day _everything_ was fullscreen so there was no such symbol then." -- so
+     this is the one piece of chrome that is deliberately NOT period-correct.
+     There is no CP437 glyph to be correct about.
+
+     Drawn as inline SVG rather than set as a character, which is the same
+     lesson the cog gets taught in the script below: the Android 4.4 tablets
+     have no font on the box carrying the sun (or a fullscreen arrow), and a
+     missing glyph draws tofu. A shape depends on no font at all. currentColor
+     makes it inherit hover and active for free.
+
+     [hidden] needs saying explicitly: the UA rule that hides it is weaker than
+     this element's own display, so without it a browser with no fullscreen API
+     would still show the button it can't use. */
+  #full {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(.95rem, 2.9vmin, 1.2rem);
+  }
+  #full[hidden] { display: none; }
+  #full svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.1;
+    stroke-linecap: square;
+  }
+  #full .fsExit { display: none; }
+  #full[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
+  #full[aria-pressed="true"] .fsEnter { display: none; }
+  #full[aria-pressed="true"] .fsExit { display: block; }
 
   #settings[hidden] { display: none; }
   #settings {
@@ -389,7 +429,17 @@
   </nav>
   <button id="more">One more</button>
   <button id="auto" aria-pressed="false">[ ] Auto</button>
+  <div class="tools">
+  <!-- Corners out = go fullscreen, corners in = come back; the script swaps
+       them off aria-pressed. Hidden outright where the API doesn't exist. -->
+  <button id="full" aria-pressed="false" aria-label="Fullscreen" title="Fullscreen">
+    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <g class="fsEnter"><path d="M6 1.6H1.6V6M10 1.6H14.4V6M6 14.4H1.6V10M10 14.4H14.4V10"/></g>
+      <g class="fsExit"><path d="M1.6 6H6V1.6M14.4 6H10V1.6M1.6 10H6V14.4M14.4 10H10V14.4"/></g>
+    </svg>
+  </button>
   <button id="cog" aria-expanded="false" aria-controls="settings" aria-label="Settings" title="Settings">☼</button>
+  </div>
 </header>
 
 <!-- The autocycle's settings. Empty of bars on purpose: one is built per entry
@@ -479,7 +529,7 @@
 
    Appending ?v=<SITE_VERSION> makes every deploy a new URL, so no cache at any
    layer can pair new HTML with old data. */
-const SITE_VERSION = "1.0";
+const SITE_VERSION = "1.1";
 
 const LANGS = {
   sv: { file: "data/ORDSPRÅK.TXT",   cp437: true,  period: true,  more: "En till",
@@ -489,6 +539,7 @@ const LANGS = {
         readmeLabel: "Vad är det här?",
         home: "Vem är Leif?",
         auto: "Auto",
+        fullscreen: "Helskärm",
         settings: "Inställningar", close: "Stäng", reset: "Återställ",
         oneLang: "Ett språk", changeLang: "Slumpa", probability: "Sannolikhet",
         interval: "Intervall", secs: "s",
@@ -505,6 +556,7 @@ const LANGS = {
         readmeLabel: "What is this?",
         home: "Who is Leif?",
         auto: "Auto",
+        fullscreen: "Fullscreen",
         settings: "Settings", close: "Close", reset: "Reset",
         oneLang: "One language", changeLang: "Random language", probability: "Probability",
         interval: "Interval", secs: "s",
@@ -518,6 +570,7 @@ const LANGS = {
         readmeLabel: "นี่คืออะไร",
         home: "เลย์ฟ คือใคร",
         auto: "อัตโนมัติ",
+        fullscreen: "เต็มจอ",
         settings: "ตั้งค่า", close: "ปิด", reset: "รีเซ็ต",
         oneLang: "ภาษาเดียว", changeLang: "สลับภาษา", probability: "ความน่าจะเป็น",
         interval: "ช่วงเวลา", secs: "วิ" },
@@ -528,6 +581,7 @@ const LANGS = {
         readmeLabel: "Что это такое?",
         home: "Кто такой Лейф?",
         auto: "Авто",
+        fullscreen: "Полный экран",
         settings: "Настройки", close: "Закрыть", reset: "Сброс",
         oneLang: "Один язык", changeLang: "Случайный язык", probability: "Вероятность",
         // "с" is CYRILLIC es (U+0441), not a Latin c -- the SI symbol for
@@ -540,6 +594,7 @@ const LANGS = {
         readmeLabel: "Wat is dit?",
         home: "Wie is Leif?",
         auto: "Auto",
+        fullscreen: "Volledig scherm",
         settings: "Instellingen", close: "Sluiten", reset: "Herstellen",
         oneLang: "Eén taal", changeLang: "Willekeurige taal", probability: "Kans",
         interval: "Interval", secs: "s",
@@ -554,6 +609,7 @@ const LANGS = {
         readmeLabel: "Τι είναι αυτό;",
         home: "Ποιος είναι ο Λέιφ;",
         auto: "Αυτόματο",
+        fullscreen: "Πλήρης οθόνη",
         settings: "Ρυθμίσεις", close: "Κλείσιμο", reset: "Επαναφορά",
         oneLang: "Μία γλώσσα", changeLang: "Τυχαία γλώσσα", probability: "Πιθανότητα",
         interval: "Διάστημα", secs: "δευτ.",
@@ -570,6 +626,7 @@ const LANGS = {
         readmeLabel: "Co to jest?",
         home: "Kim jest Leif?",
         auto: "Auto",
+        fullscreen: "Pełny ekran",
         settings: "Ustawienia", close: "Zamknij", reset: "Reset",
         oneLang: "Jeden język", changeLang: "Losowy język", probability: "Prawdopodobieństwo",
         interval: "Odstęp", secs: "s",
@@ -588,6 +645,7 @@ const LANGS = {
         readmeLabel: "C'est quoi, ça ?",
         home: "Qui est Leif ?",
         auto: "Auto",
+        fullscreen: "Plein écran",
         settings: "Réglages", close: "Fermer", reset: "Réinitialiser",
         oneLang: "Une seule langue", changeLang: "Langue aléatoire", probability: "Probabilité",
         interval: "Intervalle", secs: "s",
@@ -610,6 +668,7 @@ const LANGS = {
         readmeLabel: "Was ist das hier?",
         home: "Wer ist Leif?",
         auto: "Auto",
+        fullscreen: "Vollbild",
         settings: "Einstellungen", close: "Schließen", reset: "Zurücksetzen",
         oneLang: "Eine Sprache", changeLang: "Zufällige Sprache", probability: "Wahrscheinlichkeit",
         interval: "Intervall", secs: "s",
@@ -644,6 +703,7 @@ const LANGS = {
         readmeLabel: "O que é isto?",
         home: "Quem é o Leif?",
         auto: "Auto",
+        fullscreen: "Ecrã inteiro",
         settings: "Definições", close: "Fechar", reset: "Repor",
         oneLang: "Uma só língua", changeLang: "Língua aleatória", probability: "Probabilidade",
         interval: "Intervalo", secs: "s",
@@ -681,6 +741,7 @@ const LANGS = {
         // edition where the loanword every other language took went somewhere
         // different. Automaatti is the machine sense.
         auto: "Automaatti",
+        fullscreen: "Koko näyttö",
         settings: "Asetukset", close: "Sulje", reset: "Palauta",
         oneLang: "Yksi kieli", changeLang: "Satunnainen kieli", probability: "Todennäköisyys",
         interval: "Väli", secs: "s",
@@ -1457,6 +1518,102 @@ addEventListener("pointerdown", e => {
   closePanel();
 });
 
+/* --- fullscreen, and the glyph that isn't there ---------------------------
+   Two unrelated-looking fixes that are the same fix: a character is only a
+   picture if some font on the device happens to carry it.
+
+   //Leif, 2026-08-10, about his Android 4.4.2 / Chrome 81 tablet: "the settings
+   button renders as a square, invalid character". The cog is CP437 0x0F drawn
+   as U+263C, and that tablet has no font carrying it -- Consolas and Segoe UI
+   Symbol are Windows faces, and Roboto stops well short of it. CSS cannot ask
+   "did that render?", so measure it: draw the character and two private-use
+   codepoints on a canvas. PUA has no glyph in any font we would meet, so if the
+   two PUA probes look identical they are both notdef -- and a candidate that
+   looks the same as they do is notdef too. Two probes rather than one because a
+   font that DOES ship a private-use glyph would otherwise make every character
+   look present.
+
+   The fallback is ASCII on purpose. [*] sits in the same idiom as [ ] Auto and
+   [X], so the one device that cannot draw the sun still gets a button that
+   reads as this page's own furniture rather than as a broken icon.
+
+   The baseline must be PERMANENTLY UNASSIGNED codepoints, not private-use ones.
+   Measured here 2026-08-10, and it killed the first version of this function:
+   Windows maps E000-F8FF to Segoe MDL2 Assets icons, so U+E000, U+E001 and
+   U+F8FF each drew a DIFFERENT real glyph and the probe cheerfully reported
+   that every character on the page was present. Three unassigned codepoints --
+   the Hebrew, Kangxi-radical and Kannada block gaps -- draw the same notdef box
+   as each other, and that agreement is also the guard: if they ever disagree,
+   this platform has no stable notdef to compare against and the honest answer
+   is "can't tell", which leaves the glyph exactly as the author wrote it. */
+function glyphMissing(ch, font) {
+  try {
+    const c = document.createElement("canvas");
+    c.width = c.height = 28;
+    const g = c.getContext("2d");
+    if (!g) return false;                       // can't tell -> leave it alone
+    g.font = "20px " + font;
+    const sig = s => {
+      g.clearRect(0, 0, 28, 28);
+      g.fillText(s, 3, 22);
+      return c.toDataURL();
+    };
+    const notdef = sig("\u05EB");
+    if (notdef !== sig("\u2FE1") || notdef !== sig("\u0CF3")) return false;
+    return sig(ch) === notdef;
+  } catch (e) { return false; }
+}
+
+if (glyphMissing(cogBtn.textContent.trim(), getComputedStyle(cogBtn).fontFamily)) {
+  cogBtn.textContent = "[*]";
+}
+
+/* The fullscreen button. Its icon is SVG rather than a character precisely
+   because of the above -- U+26F6 would have tofu'd on the same tablet, and a
+   fullscreen control that shows an empty square on the wall display is the one
+   place this could not be allowed to happen. */
+const fullBtn = document.getElementById("full");
+const fsRoot = document.documentElement;
+const fsEnter = fsRoot.requestFullscreen || fsRoot.webkitRequestFullscreen ||
+                fsRoot.webkitRequestFullScreen || fsRoot.mozRequestFullScreen ||
+                fsRoot.msRequestFullscreen;
+const fsLeave = document.exitFullscreen || document.webkitExitFullscreen ||
+                document.webkitCancelFullScreen || document.mozCancelFullScreen ||
+                document.msExitFullscreen;
+/* No API at all -- iOS Safari on the phone still has none for an arbitrary
+   element -- so no button. A control that cannot do its one job is worse than
+   an absent one. */
+if (!fsEnter) fullBtn.hidden = true;
+
+function fsOn() {
+  return !!(document.fullscreenElement || document.webkitFullscreenElement ||
+            document.webkitCurrentFullScreenElement ||
+            document.mozFullScreenElement || document.msFullscreenElement);
+}
+
+function paintFull() {
+  fullBtn.setAttribute("aria-pressed", fsOn() ? "true" : "false");
+}
+
+fullBtn.addEventListener("click", () => {
+  const leaving = fsOn();
+  const fn = leaving ? fsLeave : fsEnter;
+  if (!fn) return;
+  try {
+    const r = fn.call(leaving ? document : fsRoot);
+    /* Modern Chrome returns a promise and rejects when the gesture is stale or
+       the embedder forbids it; the old WebView returns undefined. Swallow
+       either way -- a refused fullscreen is a no, not a fault. */
+    if (r && r.catch) r.catch(() => {});
+  } catch (e) {}
+  /* The prefixed builds do fire their own change event, but not all of them do
+     it reliably on exit, and the state is cheap to re-read. */
+  setTimeout(paintFull, 80);
+});
+
+["fullscreenchange", "webkitfullscreenchange", "mozfullscreenchange",
+ "MSFullscreenChange"].forEach(ev => document.addEventListener(ev, paintFull));
+
 function setLang(code, save = true) {
   current = code;
   const cfg = LANGS[code];
@@ -1484,6 +1641,8 @@ function setLang(code, save = true) {
   document.getElementById("setClose").setAttribute("aria-label", cfg.close);
   cogBtn.setAttribute("aria-label", cfg.settings);
   cogBtn.title = cfg.settings;
+  fullBtn.setAttribute("aria-label", cfg.fullscreen);
+  fullBtn.title = cfg.fullscreen;
   // stamp lang so the Thai strings pick up the real Thai font (see CSS).
   // The panel gets it too -- its bars don't, they set their own font, and only
   // the Thai bar's caption wants the Thai face.
