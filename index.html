@@ -123,11 +123,20 @@
   #auto[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
 
   /* --- the settings flyout -------------------------------------------------
-     Everything about the autocycle that isn't its on/off switch. The glyph is
-     CP437 0x0F -- the character DOS actually drew for a gear -- so the one
-     piece of new chrome is period-correct. Consolas is asked first and Segoe UI
-     Symbol stands behind it, because a monospace face that lacks the codepoint
-     would otherwise stop the cascade dead at `monospace` and draw tofu.
+     Everything about the autocycle that isn't its on/off switch.
+
+     The button was CP437 0x0F (U+263C), the character DOS actually drew for a
+     gear, and it is now an ordinary drawn gear instead. Two reasons, both
+     Leif's, 2026-08-10: it rendered as an empty square on his Android 4.4.2 /
+     Chrome 81 tablet because no font on that device carries the codepoint --
+     and then, once a canvas probe had detected that and swapped in an ASCII
+     fallback, "honestly, I'd prefer a modern settings button because nobody
+     will know what it does". Period-correct lost to legible, on his call. A
+     shape depends on no font at all, so the probe went with it.
+
+     Filled rather than stroked: the button renders around 19px, and stroked
+     teeth at that size turn to mush. The fullscreen icon beside it is stroked
+     because four corner brackets are nothing but stroke.
 
      The panel is fixed and anchored under the header when it opens (the header
      WRAPS, so its height is not a constant and can't be a magic number). It
@@ -136,9 +145,17 @@
      configuring, and that is the right trade for a panel you are actively
      using. Nothing in it ever clips. --- */
   #cog {
-    font-family: Consolas, "Segoe UI Symbol", "Cascadia Mono", monospace;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-size: clamp(.95rem, 2.9vmin, 1.2rem);
     line-height: 1;
+  }
+  #cog svg {
+    display: block;
+    width: 1.05em;
+    height: 1.05em;
+    fill: currentColor;
   }
   #cog[aria-expanded="true"] { color: var(--accent); border-color: var(--accent); }
 
@@ -438,7 +455,11 @@
       <g class="fsExit"><path d="M1.6 6H6V1.6M14.4 6H10V1.6M1.6 10H6V14.4M14.4 10H10V14.4"/></g>
     </svg>
   </button>
-  <button id="cog" aria-expanded="false" aria-controls="settings" aria-label="Settings" title="Settings">☼</button>
+  <button id="cog" aria-expanded="false" aria-controls="settings" aria-label="Settings" title="Settings">
+    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <path fill-rule="evenodd" d="M6.75 3L6.8 0.85L9.2 0.85L9.25 3L9.73 3.15L10.2 3.35L10.65 3.59L12.21 2.1L13.9 3.79L12.41 5.35L12.65 5.8L12.85 6.27L13 6.75L15.15 6.8L15.15 9.2L13 9.25L12.85 9.73L12.65 10.2L12.41 10.65L13.9 12.21L12.21 13.9L10.65 12.41L10.2 12.65L9.73 12.85L9.25 13L9.2 15.15L6.8 15.15L6.75 13L6.27 12.85L5.8 12.65L5.35 12.41L3.79 13.9L2.1 12.21L3.59 10.65L3.35 10.2L3.15 9.73L3 9.25L0.85 9.2L0.85 6.8L3 6.75L3.15 6.27L3.35 5.8L3.59 5.35L2.1 3.79L3.79 2.1L5.35 3.59L5.8 3.35L6.27 3.15ZM5.55 8A2.45 2.45 0 1 0 10.45 8A2.45 2.45 0 1 0 5.55 8Z"/>
+    </svg>
+  </button>
   </div>
 </header>
 
@@ -529,7 +550,7 @@
 
    Appending ?v=<SITE_VERSION> makes every deploy a new URL, so no cache at any
    layer can pair new HTML with old data. */
-const SITE_VERSION = "1.1";
+const SITE_VERSION = "1.2";
 
 const LANGS = {
   sv: { file: "data/ORDSPRÅK.TXT",   cp437: true,  period: true,  more: "En till",
@@ -1518,55 +1539,25 @@ addEventListener("pointerdown", e => {
   closePanel();
 });
 
-/* --- fullscreen, and the glyph that isn't there ---------------------------
-   Two unrelated-looking fixes that are the same fix: a character is only a
-   picture if some font on the device happens to carry it.
+/* --- fullscreen -----------------------------------------------------------
+   There used to be a canvas glyph probe here, and the reason it is gone is
+   worth keeping. //Leif, 2026-08-10, about his Android 4.4.2 / Chrome 81
+   tablet: "the settings button renders as a square, invalid character" -- the
+   cog was U+263C and no font on that device carries it. CSS cannot ask "did
+   that render?", so the probe drew the character on a canvas and compared it to
+   a known notdef, swapping in an ASCII "[*]" when it matched. It worked on the
+   tablet. It is deleted anyway, because he then asked for a drawn settings icon
+   and a shape cannot go missing -- so there is no longer a font-dependent glyph
+   in the chrome for it to guard.
 
-   //Leif, 2026-08-10, about his Android 4.4.2 / Chrome 81 tablet: "the settings
-   button renders as a square, invalid character". The cog is CP437 0x0F drawn
-   as U+263C, and that tablet has no font carrying it -- Consolas and Segoe UI
-   Symbol are Windows faces, and Roboto stops well short of it. CSS cannot ask
-   "did that render?", so measure it: draw the character and two private-use
-   codepoints on a canvas. PUA has no glyph in any font we would meet, so if the
-   two PUA probes look identical they are both notdef -- and a candidate that
-   looks the same as they do is notdef too. Two probes rather than one because a
-   font that DOES ship a private-use glyph would otherwise make every character
-   look present.
-
-   The fallback is ASCII on purpose. [*] sits in the same idiom as [ ] Auto and
-   [X], so the one device that cannot draw the sun still gets a button that
-   reads as this page's own furniture rather than as a broken icon.
-
-   The baseline must be PERMANENTLY UNASSIGNED codepoints, not private-use ones.
-   Measured here 2026-08-10, and it killed the first version of this function:
-   Windows maps E000-F8FF to Segoe MDL2 Assets icons, so U+E000, U+E001 and
-   U+F8FF each drew a DIFFERENT real glyph and the probe cheerfully reported
-   that every character on the page was present. Three unassigned codepoints --
-   the Hebrew, Kangxi-radical and Kannada block gaps -- draw the same notdef box
-   as each other, and that agreement is also the guard: if they ever disagree,
-   this platform has no stable notdef to compare against and the honest answer
-   is "can't tell", which leaves the glyph exactly as the author wrote it. */
-function glyphMissing(ch, font) {
-  try {
-    const c = document.createElement("canvas");
-    c.width = c.height = 28;
-    const g = c.getContext("2d");
-    if (!g) return false;                       // can't tell -> leave it alone
-    g.font = "20px " + font;
-    const sig = s => {
-      g.clearRect(0, 0, 28, 28);
-      g.fillText(s, 3, 22);
-      return c.toDataURL();
-    };
-    const notdef = sig("\u05EB");
-    if (notdef !== sig("\u2FE1") || notdef !== sig("\u0CF3")) return false;
-    return sig(ch) === notdef;
-  } catch (e) { return false; }
-}
-
-if (glyphMissing(cogBtn.textContent.trim(), getComputedStyle(cogBtn).fontFamily)) {
-  cogBtn.textContent = "[*]";
-}
+   The one measurement in it that outlived it, in case this is ever needed
+   again: baseline against PERMANENTLY UNASSIGNED codepoints, never private-use
+   ones. Windows maps E000-F8FF to Segoe MDL2 Assets icons, so U+E000, U+E001
+   and U+F8FF each drew a DIFFERENT real glyph and the first version of the
+   probe reported that every character on the page was present. The Hebrew,
+   Kangxi-radical and Kannada block gaps draw the same notdef as each other,
+   and that agreement doubles as the guard: if they ever disagree, the platform
+   has no stable notdef and the honest answer is "can't tell". */
 
 /* The fullscreen button. Its icon is SVG rather than a character precisely
    because of the above -- U+26F6 would have tofu'd on the same tablet, and a
