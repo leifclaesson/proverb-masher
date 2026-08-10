@@ -153,7 +153,7 @@ Falar|(é/são) prata, calar é ouro|Speech|(is/are) silver, silence is gold
 Nem tudo o que reluz|(é/são) ouro|Not all that glitters|(is/are) gold
 Amigo|não empat(a/am) amigo|A friend|(doesn't/don't) get in a friend's way
 +Os amigos|(é/são) para as ocasiões|Friends|(is/are) there for the occasions
-+As árvores|não deix(a/am) não deix(a/am) ver a floresta por causa do mil-folhas|The trees|(doesn't/don't) let (doesn't/don't) let you see the forest for the mille-feuille
++As árvores|não deix(a/am) ver a floresta por causa do mil-folhas|The trees|(doesn't/don't) let you see the forest for the mille-feuille
 *
 #       Grupo 2 : quem ... | ...   (a cabeça está sempre no singular, por
 #       isso aqui não há uma única linha que precise de marca)

@@ -1,0 +1,260 @@
+#               Sananlaskut 0.2  —  suomalainen remaster Ordsprak 0.1:stä
+#               alkuperäinen: Leif Claesson (Liket of Goto10), n. 1996
+#
+#       Henkalle. Ihan vain siksi, että se on mahdollista.
+#
+#       LÄHDE: jokainen tämän tiedoston sananlasku on poimittu Wiktionaryn
+#       luokasta Category:Finnish_proverbs (luettu 2026-08-10), ei muistista.
+#       Versio 0.1 kirjoitettiin mallin omasta muistista ja se HYLÄTTIIN --
+#       Leifin pyynnöstä ja aivan oikein, koska kukaan täällä ei osaa suomea
+#       eikä olisi huomannut keksittyä sananlaskua. Ainoa rivi, joka EI ole
+#       aito, on ryhmän 2 "metsää jaloilta", ja se on tahallinen: se on
+#       vuoden 1996 sormenjälki, joka kulkee jokaisessa laitoksessa.
+#       Sanajärjestystä on paikoin käännetty (esim. "sitä tikulla silmään
+#       joka vanhoja muistelee" -> "Joka vanhoja muistelee, sitä tikulla
+#       silmään") ja pitkistä sananlaskuista on toisinaan otettu vain
+#       ensimmäinen puolisko. Sanat ovat lähteen sanoja.
+#
+#       Tiedostomuoto on hyvin yksinkertainen. Sananlaskut ovat ryhmissä,
+#       joiden sisällä puolikkaat ovat kieliopillisesti vaihdettavissa; sauma
+#       on pystyviiva (|). Yksinäinen * aloittaa seuraavan ryhmän. ** on
+#       tiedoston loppu: sen jälkeistä ohjelma ei lue.
+#
+#       Jokaisella rivillä on neljä kenttää:  pää|häntä|EN head|EN tail
+#       Englanninkielinen peili sekoitetaan SAMALLA indeksiparilla kuin suomi,
+#       joten englanniksi tulee täsmälleen sama hölynpöly -- ei käännöstä
+#       lopputuloksesta vaan sama sekoitus.
+#
+#       SUOMI TAIVUTTAA LUVUN MUKAAN, kuten englanti ja toisin kuin ruotsi,
+#       thai ja venäjä. Siksi tämä laitos tekee saman tempun kuin
+#       englanninkielinen: rivin alussa oleva + tarkoittaa, että SUBJEKTI ON
+#       MONIKOSSA, ja häntä kantaa itse molemmat muodot:
+#           kulta(a/avat)   yksikkö kultaa, monikko kultaavat
+#           (on/ovat)       yksikkö on, monikko ovat
+#           (ei/eivät)      KIELTOVERBI taipuu -- pääverbi jää kieltomuotoon
+#                           eikä muutu lainkaan
+#           soke(a/ita)     PREDIKATIIVI taipuu myös. Tätä ei ole tarvittu
+#                           yhdessäkään aiemmassa laitoksessa: hollanti ja
+#                           saksa jättävät nominaaliosan tahallaan törmäämään
+#                           ("Holle vaten zijn koning"), mutta suomessa
+#                           predikatiivin kongruenssi on pakollinen, joten
+#                           merkintä ulottuu verbistä adjektiiviin asti.
+#
+#       Vokaalisointu ratkaisee -vat/-vät -päätteen, ja sen ratkaisee sanan
+#       OMA vokaalisto: kolise(e/vat) mutta teke(e/vät) -- sama sauma, eri
+#       pääte. Sointu ei koskaan ylitä saumaa, koska pääte kiinnittyy omaan
+#       sanaansa. Juuri siksi merkintä kantaa molemmat muodot eikä johda
+#       toista toisesta: mikään päätesääntö ei tiedä vokaalisoinnusta.
+#
+#       Ryhmä 1 sisältää valheellisia "kalliita" sananlaskuja -- mutta vain
+#       VIISI, ja tässä tämä laitos poikkeaa kaikista kymmenestä muusta.
+#       Muissa niitä on 22-38 % ryhmän 1 riveistä; täällä alle 9 %.
+#       //Leif, 2026-08-10: "We should only add it where it makes it funnier.
+#       And only a handful." -- ja sitten hän valitsi ne itse: pääsky,
+#       tieto, kivi, kynä, kertaus. ÄLÄ LISÄÄ NIITÄ. Määrä ei ole vitsi;
+#       osuma on, ja osuman valitsee tekijä.
+#       Yksi viidestä osuu alkuperäisen omaan istutukseen ilman että sitä
+#       haettiin: vuoden 1996 tiedostossa on "En dyr svala | gör ingen
+#       sommar", ja hän valitsi pääskyn.
+#       Peili sanoo EXPENSIVE eikä dear: yhdeksän laitosta yhdestätoista
+#       tekee niin, ja saksa on dokumentoitu poikkeus eikä sääntö.
+#
+#       Ruotsalaisessa alkuperäisessä täällä oli valheellisia
+#       "dyr/dyrt/dyra" -- ja kallis on suomeksi sekä hintava että rakas,
+#       aivan kuten дорогой, drogi, cher, caro ja teuer. Suomi ei kuitenkaan
+#       ole indoeurooppalainen kieli, joten tämä ei ole sama SANA vaan sama
+#       KUVA. Kaksi aitoa riviä tulee samaan
+#       leikkiin ilmaiseksi: "Terveys on kultaa kalliimpi" (ryhmä 1) ja
+#       "Ei hinta hevosta korota" (ryhmä 5).
+#
+#       Pilkku kulkee PÄÄSSÄ (kuten hollannissa, toisin kuin venäjässä):
+#       suomi vaatii pilkun sivulauseen jälkeen, ja sivulause on päässä.
+#       Katso ryhmä 2. Englanninkielinen peili ei ota pilkkua mukaan, koska
+#       englanti ei sitä siinä kohdassa kirjoita.
+#
+#       CORNERCUT: ryhmässä 6 alun + merkitsee ENGLANNIN pään monikkoa, ei
+#       suomen. Suomessa omistus on <adessiivi> on <nominatiivi>, eli
+#       kieliopillinen subjekti on HÄNNÄSSÄ ja pää on paikka -- ja suomen
+#       häntä ei muutu luvun mukaan lainkaan, joten merkintä ohjaa vain
+#       peiliä. Jos jokin laitos joskus tarvitsee peilille OMAN lukunsa,
+#       tämä on se rivi, joka pitää korjata.
+#
+#       Ryhmä 1 : subjekti | predikaatti preesensissä
+#       Houkuttimet ovat KAHDESSA jaksossa, kuten vuoden 1996 tiedostossa --
+#       ei yhtenä pötkönä. Yhtenä lohkona luettuna sama määrä näyttää tuplalta.
+Kallis pääsky|(ei/eivät) kesää tee|An expensive swallow|(doesn't/don't) make a summer
+Kallis tieto|lisä(ä/ävät) tuskaa|Expensive knowledge|add(s) to the pain
+Kallis kivi|(ei/eivät) sammaloidu|An expensive stone|gather(s) no moss
+Raha|(ei/eivät) kasva puussa|Money|(doesn't/don't) grow on a tree
+Omena|(ei/eivät) kauas puusta putoa|The apple|(doesn't/don't) fall far from the tree
+Aika|paranta(a/vat) haavat|Time|heal(s) the wounds
+Yksi pääsky|(ei/eivät) kesää tee|One swallow|(doesn't/don't) make a summer
+Raha|(ei/eivät) haise|Money|(doesn't/don't) smell
+Vanha suola|janotta(a/vat)|Old salt|make(s) you thirsty
+Työ|tekijäänsä kiittä(ä/vät)|Work|praise(s) (its/their) maker
+Hätä|keinon keksi(i/vät)|Need|invent(s) the means
+Hätä|(ei/eivät) lue lakia|Need|(doesn't/don't) read the law
+Aika|kulta(a/avat) muistot|Time|gild(s) the memories
+Etsivä|löytä(ä/vät)|The seeker|find(s)
+Tieto|lisä(ä/ävät) tuskaa|Knowledge|add(s) to the pain
+Tilaisuus|teke(e/vät) varkaan|Opportunity|make(s) the thief
+Ulkonäkö|pettä(ä/vät)|Appearance|deceive(s)
+Vaihtelu|virkistä(ä/vät)|A change|refresh(es) you
+Ahkeruus|kovankin onnen voitta(a/vat)|Diligence|beat(s) even hard luck
+Rehellisyys|maan peri(i/vät)|Honesty|inherit(s) the earth
+Vierivä kivi|(ei/eivät) sammaloidu|A rolling stone|gather(s) no moss
+Vanha koira|(ei/eivät) opi uusia temppuja|An old dog|(doesn't/don't) learn new tricks
+Haukkuva koira|(ei/eivät) pure|A barking dog|(doesn't/don't) bite
+Seepra|(ei/eivät) pääse raidoistaan|A zebra|(doesn't/don't) escape (its/their) stripes
+Salama|(ei/eivät) iske kahta kertaa samaan paikkaan|Lightning|(doesn't/don't) strike the same place twice
+Vahinko|(ei/eivät) tule kello kaulassa|Misfortune|(doesn't/don't) come wearing a bell
+Vanhuus|(ei/eivät) tule yksin|Old age|(doesn't/don't) come alone
+Luulo|(ei/eivät) ole tiedon väärti|A guess|(is/are) not worth knowing
+Kaikki|(ei/eivät) ole kultaa mikä kiiltää|All|(is/are) not gold that glitters
+Kallis kynä|(on/ovat) miekkaa mahtavam(pi/pia)|An expensive pen|(is/are) mightier than the sword
+Kallis kertaus|(on/ovat) opintojen äi(ti/tejä)|Expensive repetition|(is/are) the mother(/s) of learning
+Nauru|pidentä(ä/vät) ikää|Laughter|lengthen(s) your life
+Rakkaus|(on/ovat) soke(a/ita)|Love|(is/are) blind
+Harjoitus|teke(e/vät) mestarin|Practice|make(s) the master
+Kynä|(on/ovat) miekkaa mahtavam(pi/pia)|The pen|(is/are) mightier than the sword
++Tyhjät tynnyrit|kolise(e/vat) eniten|Empty barrels|rattle(s) the most
++Vaatteet|(ei/eivät) tee miestä|Clothes|(doesn't/don't) make the man
++Kala ja vieraat|alka(a/vat) haista kolmantena päivänä|Fish and guests|start(s) to smell on the third day
+Veri|(on/ovat) vettä sakeamp(aa/ia)|Blood|(is/are) thicker than water
+Terveys|(on/ovat) kultaa kalliim(pi/pia)|Health|(is/are) dearer than gold
+Kauneus|(on/ovat) katsojan silmissä|Beauty|(is/are) in the eye of the beholder
+Kateus|(on/ovat) kunnian kumppan(i/eita)|Envy|(is/are) the companion(/s) of honour
+Lupaus|(on/ovat) pahem(pi/pia) velkaa|A promise|(is/are) worse than a debt
+Yhteistyö|(on/ovat) voimaa|Working together|(is/are) strength
+Laki|(on/ovat) niin kuin (se/ne) luetaan|The law|(is/are) as (it is/they are) read out
+Kertaus|(on/ovat) opintojen äi(ti/tejä)|Repetition|(is/are) the mother(/s) of learning
+Hyvin suunniteltu|(on/ovat) puoliksi teh(ty/tyjä)|Well planned|(is/are) half done
+Ruoho|(on/ovat) aina vihreämp(ää/iä) aidan toisella puolella|The grass|(is/are) always greener on the other side of the fence
+Puhuminen|(on/ovat) hopeaa, vaikeneminen kultaa|Speech|(is/are) silver, silence is gold
+Rohkea|rokan sy(ö/övät)|The bold one|eat(s) the soup
+Hyvä kello|kauas kuulu(u/vat)|A good bell|carr(ies/y) far
+Viina|viisaan villitse(e/vät)|Liquor|drive(s) the wise man wild
+Ylpeys|kä(y/yvät) lankeemuksen edellä|Pride|go(es) before a fall
+Yksi mätä omena|pila(a/avat) koko korin|One rotten apple|spoil(s) the whole basket
+Omena päivässä|pitä(ä/vät) lääkärin loitolla|An apple a day|keep(s) the doctor away
+Luja tahto|vie(/vät) läpi harmaan kiven|A firm will|go(es) through grey stone
++Nopeat|sy(ö/övät) hitaat|The quick|eat(s) the slow
+*
+#       Ryhmä 2 : joka ..., | se ...
+#       Pää on aina yksikössä, joten täällä ei tarvita yhtään merkintää.
+#       Suomi pitää sijamuodon poissa saumasta: hännän alussa on aina
+#       viittaava pronomini, ja se ottaa sen sijan jota HÄNNÄN oma verbi
+#       vaatii -- se, sen, sitä. Saksassa sija ylitti sauman ja pakotti
+#       kuudennen ryhmän; suomessa sitä ei tarvita.
+Joka kuuseen kurkottaa,|se katajaan kapsahtaa|He who reaches for the spruce|falls into the juniper
+Joka kuritta kasvaa,|se kunniatta kuolee|He who grows up without discipline|dies without honour
+Joka leikkiin ryhtyy,|se leikin kestäköön|He who joins the game|must endure the game
+Joka miekkaan tarttuu,|se miekkaan hukkuu|He who takes up the sword|perishes by the sword
+Joka vitsaa säästää,|se lastaan vihaa|He who spares the rod|hates his own child
+Joka myllyyn menee,|se tomuun tulee|He who goes into the mill|comes out in dust
+Joka on verassa,|se on velassa|He who is dressed in fine cloth|is in debt
+Joka viimeksi nauraa,|se parhaiten nauraa|He who laughs last|laughs best
+Joka ei nuorena työtä tee,|se vanhana kerjää|He who does not work when young|begs when old
+Joka on laiska lauantaina,|se on musta sunnuntaina|He who is lazy on Saturday|is black on Sunday
+Joka härjillä ajaa,|se härjistä puhuu|He who drives oxen|talks about oxen
+Joka keitetyn paistaa,|se makean maistaa|He who fries what was boiled|tastes the sweetness
+Joka koko kesän onkii,|sitä talvella nälkä tonkii|He who fishes all summer|is rooted at by hunger in winter
+Joka kerran keksitään,|sitä aina arvellaan|He who is caught out once|is doubted forever
+Joka vanhoja muistelee,|sitä tikulla silmään|He who dwells on old things|gets a stick in the eye
+#       Ja tässä on vuoden 1996 sormenjälki, jonka jokainen laitos kantaa,
+#       ja tämän tiedoston AINOA rivi jota ei ole poimittu lähteestä.
+#       Oikea sanonta on "ei näe metsää puilta", ja alkuperäisessä
+#       tiedostossa puut oli tahallaan vaihdettu SÄÄRIIN. Vitsi on vitsi
+#       eikä vika -- älä "korjaa" sitä takaisin puiksi.
+Joka aina on korea,|se ei näe metsää jaloilta|He who is always smartly dressed|does not see the wood for all the legs
+*
+#       Ryhmä 3 : parempi tämä | kuin tuo
+#       Ruotsalaisen ryhmän 3 suora vastine: vertailun operaattori on jaettu
+#       sauman yli, pää alkaa aina Parempi ja häntä aina kuin, joten
+#       jokainen vaihto on rakenteeltaan oikea.
+Parempi pyy pivossa|kuin kymmenen oksalla|Better a grouse in the hand|than ten on the branch
+Parempi katsoa|kuin katua|Better to look|than to regret
+Parempi laiha sopu|kuin lihava riita|Better a lean peace|than a fat quarrel
+Parempi virsta väärää|kuin vaaksa vaaraa|Better a verst of the wrong road|than a span of danger
+Parempi vara|kuin vahinko|Better a spare|than a mishap
+Parempi hyvä ystävä|kuin huono suku|Better a good friend|than bad relatives
+Parempi lusikka taskussa|kuin sulka lakissa|Better a spoon in your pocket|than a feather in your cap
+Parempi taipua|kuin taittua|Better to bend|than to break
+Parempi lehmä lypsää|kuin tappaa|Better to milk the cow|than to kill it
+Parempi oja tukkia|kuin joki|Better to dam a ditch|than a river
+Parempi tyhjä kukkaro|kuin vieras raha|Better an empty purse|than another man's money
+Parempi vähän annettu|kuin paljon luvattu|Better a little given|than a lot promised
+Parempi armo|kuin kova tuomio|Better mercy|than a hard sentence
+Parempi kunniaa kourallinen|kuin häpeää helmallinen|Better a handful of honour|than a lapful of shame
+Parempi on pala suussa|kuin haava päässä|Better a morsel in the mouth|than a wound in the head
+*
+#       Ryhmä 4 : älä tee tätä | ...
+#       Kielto pakottaa objektin partitiiviin, joten ryhmä on itsestään
+#       yhtenäinen: mikä tahansa pää käy mihin tahansa häntään.
+Älä herätä|nukkuvaa karhua|Don't wake|a sleeping bear
+Älä osta|sikaa säkissä|Don't buy|a pig in a poke
+Älä ammu|viestintuojaa|Don't shoot|the messenger
+Älä yllytä|hullua|Don't egg on|a madman
+Älä lyö|lyötyä|Don't hit|a man who is already down
+Älä katso|lahjahevosen suuhun|Don't look|a gift horse in the mouth
+Älä nylje|karhua ennen kuin se on kaadettu|Don't skin|the bear before it is felled
+Älä luule|luuta lihaksi|Don't take|a bone for meat
+Älä tee|jekkua, jos et kestä kakkua|Don't play|a prank if you can't take one back
+Älä nuolaise|ennen kuin tipahtaa|Don't lick|before it drops
+*
+#       Ryhmä 5 : ei + subjekti | ... kieltomuoto
+#       Tässä luku istuu KIELTOVERBISSÄ, joka on päässä (ei / eivät), joten
+#       häntä ei muutu lainkaan eikä yksikään rivi tarvitse merkintää.
+#       Ryhmässä 1 sama kieltoverbi on hännässä ja tarvitsee (ei/eivät):
+#       sama sana, eri puoli saumaa, eri lopputulos.
+#       Englannin peili kantaa kiellon PÄÄSSÄ (No ...), muuten liimauksesta
+#       tulisi kaksoiskielto.
+Ei nimi|miestä pahenna|No name|spoils the man
+Ei oppi|ojaan kaada|No learning|tips you into the ditch
+Ei vara|venettä kaada|No spare|capsizes the boat
+Ei kukko|käskien laula|No rooster|sings on command
+Ei kannettu vesi|kaivossa pysy|No carried water|stays in the well
+Ei kukaan|ole seppä syntyessään|No one|is a smith at birth
+Ei hätä|ole tämän näköinen|No trouble|looks like this
+Ei haukku|haavaa tee|No barking|makes a wound
+Ei velka|mätäne|No debt|rots
+Ei maantie|ruohotu|No highway|grows over with grass
+Ei lisä|pahaa tee|No extra|does any harm
+Ei kalu|lainassa parane|No tool|improves while it is on loan
+Ei paha|lyöden parane|No evil|improves by being beaten
+Ei silakka|suolassa mätäne|No herring|rots in the salt
+Ei puu|yksin pala|No tree|burns alone
+Ei laihan koiran haukku|taivaaseen kuulu|No lean dog's barking|is heard in heaven
+Ei sota|yhtä miestä kaipaa|No war|misses one man
+Ei kavaluus|kauas auta|No cunning|helps you far
+Ei hinta|hevosta korota|No price|makes the horse taller
+Ei tyhjä säkki|pystyssä pysy|No empty sack|stands upright
+Ei työ|tekemällä lopu|No work|runs out by being done
+Ei lämmin|luita riko|No warmth|breaks bones
+Ei parta|pahoille kasva|No beard|grows on the wicked
+*
+#       Ryhmä 6 : adessiivi | on + nominatiivi
+#       Suomessa ei ole verbiä "omistaa" tässä merkityksessä, joten koko
+#       "X:llä on Y" -perhe on oma ryhmänsä: pää on PAIKKA eikä subjekti.
+#       Kaksi asiaa tulee ilmaiseksi. Eksistentiaalinen on ei taivu luvussa,
+#       ja possessiivisuffiksi -nsa/-nsä on sama yksikössä ja monikossa --
+#       juuri se, mikä saksassa pakotti pudottamaan possessiivit kokonaan
+#       (seine/ihre kantaa vain luvun). Englannin peili joutuu kantamaan
+#       molemmat: ha(s/ve) ja (its/their).
++Seinillä|on korvat|The walls|ha(s/ve) ears
++Pienillä padoilla|on korvat|Small pots|ha(s/ve) ears
+Valheella|on lyhyet jäljet|A lie|ha(s/ve) short tracks
+Rakkaalla lapsella|on monta nimeä|A dear child|ha(s/ve) many names
+Kaikella|on aikansa ja paikkansa|Everything|ha(s/ve) (its/their) time and place
+Kepillä|on kaksi päätä|A stick|ha(s/ve) two ends
+Ahneella|on paskainen loppu|The greedy man|ha(s/ve) a shitty end
+Suutarin lapsella|ei ole kenkiä|The cobbler's child|ha(s/ve) no shoes
+Kätketyllä kullalla|ei ole hintaa|Hidden gold|ha(s/ve) no price
+**
+#       — varamiehet, piilossa ** :n takana, jonne ohjelma ei ylety.
+#       Kolme, kuten alkuperäisessä. Nämäkin ovat lähteestä; kolmannella on
+#       suomeksi muoto, joka on parempi kuin käännös olisi ollut, koska suomi
+#       laskee kokit vertailuasteikolla eikä lukumääränä.
+Ei ole kiirettä kirkkoon,|pappi on vielä paitasillaan|There is no hurry to church,|the priest is still in his shirtsleeves
+Kun kissa on poissa,|hiiret hyppivät pöydällä|When the cat is away,|the mice dance on the table
+Mitä useampi kokki,|sitä huonompi soppa|The more cooks,|the worse the soup

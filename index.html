@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>COOKIE — mashed-up proverbs</title>
-<meta name="description" content="A proverb masher from 1996: real proverbs chopped in half and glued back wrong, in Swedish, English, Thai, Russian, Dutch, Greek, Polish, French and German. Grammar right, meaning mangled.">
+<meta name="description" content="A proverb masher from 1996: real proverbs chopped in half and glued back wrong, in Swedish, English, Thai, Russian, Dutch, Greek, Polish, French, German, Portuguese and Finnish. Grammar right, meaning mangled.">
 <style>
   /* ============================================================
      COOKIE.BAS (Liket of Goto10, ~1996) -- the web port.
@@ -385,6 +385,7 @@
     <button data-lang="fr">FR</button>
     <button data-lang="de">DE</button>
     <button data-lang="pt">PT</button>
+    <button data-lang="fi">FI</button>
   </nav>
   <button id="more">One more</button>
   <button id="auto" aria-pressed="false">[ ] Auto</button>
@@ -670,6 +671,49 @@ const LANGS = {
         // and "Quem vê caras" (group 2, the faces) are the same letters twice
         // over -- where `chères` is not a word at all.
         agree: true },
+  fi: { file: "data/SANANLASKUT.TXT", cp437: false, period: true, more: "Vielä yksi",
+        title: "SANANLASKUT — sekoitetut sananlaskut",
+        tagline: "oikeita sananlaskuja, väärin yhteen liimattuina",
+        readme: "readme-fi.html",
+        readmeLabel: "Mikä tämä on?",
+        home: "Kuka on Leif?",
+        // NOT "Auto". Finnish `auto` is a CAR, and nothing else -- the one
+        // edition where the loanword every other language took went somewhere
+        // different. Automaatti is the machine sense.
+        auto: "Automaatti",
+        settings: "Asetukset", close: "Sulje", reset: "Palauta",
+        oneLang: "Yksi kieli", changeLang: "Satunnainen kieli", probability: "Todennäköisyys",
+        interval: "Väli", secs: "s",
+        // Finnish conjugates for number, so the marker rule again -- and it is
+        // the first edition where the marker has to leave the verb. Dutch and
+        // German let the nominal part collide on purpose ("Holle vaten zijn
+        // koning") because a wrong noun reads as the joke; Finnish cannot,
+        // because its PREDICATE ADJECTIVE agreement is obligatory and a bare
+        // "ovat sokea" reads as a typo rather than a punchline. So the file
+        // carries soke(a/ita), hankal(a/ia), teh(ty/tyjä), sep(pä/piä) -- the
+        // same bracket, one word further right.
+        //
+        // Its seam is chosen by VOWEL HARMONY: lakaise(e/vat) against
+        // teke(e/vät), identical cut, different suffix vowel, decided by the
+        // vowels already in that word. Harmony is word-internal, so unlike
+        // German case it never crosses the seam and costs the engine nothing
+        // -- but no suffix rule could derive it either, which is the Dutch
+        // doubled-vowel argument arriving from a completely unrelated family.
+        //
+        // The negation is a VERB here, and which side of the seam it lands on
+        // decides whether a marker is needed at all: in group 1 it is in the
+        // tail and carries (ei/eivät); in group 5 it is the first word of the
+        // head, so those seven lines need no marker whatsoever.
+        //
+        // Finnish has no verb "to have" -- possession is <adessive> on
+        // <nominative> -- so that whole proverb family got its own group 6,
+        // where the head is a PLACE rather than a subject. Two things fall out
+        // free: existential `on` does not inflect for number, and the
+        // possessive suffix -nsa/-nsä is identical in singular and plural.
+        // That is exactly what German could not do (seine/ihre carries only
+        // number, so no German tail carries a possessive at all). Here the
+        // English mirror is the only half that has to work for it.
+        agree: true },
 };
 
 /* CP437 high half (0x80..0xFF) -> Unicode, hand-spelled for the third time:
@@ -748,13 +792,22 @@ if (seedParam) {
 const randBelow = n => Math.floor(rng() * n);
 
 function cook(sections, agreeOn) {
-  // clever bit #1: population-weighted section choice. A section that can
-  // supply no tail (every line ^ head-only) is left out of the draw entirely,
-  // rather than picked and retried.
+  // clever bit #1: population-weighted section choice -- one slot per line that
+  // can LEND A TAIL. A section that can supply no tail (every line ^ head-only)
+  // is left out of the draw entirely, rather than picked and retried.
+  //
+  // Weighting by tailable count rather than line count is what keeps every tail
+  // in the file equally likely: P(tail) = P(section) / t, so a slot count of t
+  // cancels and a slot count of n does not. Before ^ existed n === t and the
+  // distinction was invisible. Section 6 WAS 12 lines with 2 tails, so counting
+  // lines fired ดีกว่าไส้ and ไม่เท่าตาเห็น at ~4.8x flat -- 12% of every draw
+  // between two tails, which is the repetition Leif spotted on the live page.
+  // It is now 20 lines / 10 tails, every one at 0.90x flat; the only tails
+  // above flat are the แพง decoy pairs at 1.80x, which is the intended joke.
   const grupp = [];
   sections.forEach((s, i) => {
     if (s.length < 2 || !s.some(p => !p.headOnly)) return;
-    s.forEach(() => grupp.push(i));
+    s.forEach(p => { if (!p.headOnly) grupp.push(i); });
   });
   let pool, r1, r2;
   // clever bit #2: fanheller -- the two lines must differ. Now the tail also
@@ -771,9 +824,12 @@ function cook(sections, agreeOn) {
   const tail = agreeOn ? agree(pool[r2][1], pool[r1].plural) : pool[r2][1];
 
   // same index pair for the native line and the English mirror -- and the
-  // mirror resolves its own alternations against the same head. Only Dutch
-  // reaches this: it is the one edition that both conjugates for number and
-  // carries a mirror, and the mirror is the half the author can actually read.
+  // mirror resolves its own alternations against the same head. Dutch was the
+  // first edition to reach this and the comment here said "only Dutch" for
+  // five editions after it stopped being true: every agree:true edition that
+  // also carries a mirror lands here, which is now nl, el, pl, fr, de, pt and
+  // fi. The mirror is the half the author can actually read, so it is the half
+  // a leaked (s) or ha(s/ve) shows up in.
   const native = glue(pool[r1][0], tail);
   const mirrorTail = agreeOn ? agree(pool[r2][3] || "", pool[r1].plural)
                              : (pool[r2][3] || "");

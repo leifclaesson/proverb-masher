@@ -204,7 +204,7 @@ Der Undank|(ist/sind) der Welten Lohn|Ingratitude|(is/are) the world's reward
 +Kleine Geschenke|erh(ält/alten) die Freundschaft|Small gifts|keep(s) the friendship alive
 +Hunde, die bellen,|beiß(t/en) nicht|Dogs that bark|(doesn't/don't) bite
 +Viele Hände|mach(t/en) der Arbeit schnell ein Ende|Many hands|make(s) short work
-Wer den Hals nicht voll kriegen kann,|s(ieht/ehen) s(ieht/ehen) den Wald vor lauter Beinen nicht|He who cannot get enough|(doesn't/don't) see (doesn't/don't) see the wood for all the legs
+Wer den Hals nicht voll kriegen kann,|s(ieht/ehen) den Wald vor lauter Beinen nicht|He who cannot get enough|(doesn't/don't) see the wood for all the legs
 *
 #       Gruppe 2 : Wer ..., | ...   (der Kopf ist immer Singular, hier
 #       braucht es also nicht eine einzige Markierung. Der Kopf ist ein

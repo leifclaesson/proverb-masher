@@ -40,7 +40,7 @@ A good conscience|-- the finest pillow there is
 A good laugh|will lengthen your life
 A little tussock|will often tip a heavy load
 A liar|must have a good memory
-He who gapes after a crazy bird|won't see won't see the forest for all the bones
+He who gapes after a crazy bird|won't see the forest for all the bones
 #       -- 2026 --
 An expensive morning hour|-- gold in the mouth
 Expensive practice|will make perfect
@@ -88,6 +88,7 @@ Once you've said A|you must say B
 As you make your bed|so you must lie
 As you shout into the forest|so you get your answer
 If you want something done|you must do it yourself
+Where the ale goes in|the wits go out
 #       -- 2026 --
 As you sow|so you must reap
 As you are dressed|so you will be addressed
@@ -135,12 +136,13 @@ When the need is greatest,|help is nearest
 Speak of the trolls,|and they stand in the hallway
 After rain,|comes sunshine
 As long as there is life,|there is hope
-First to the mill,|grinds first
 In need,|the friend is tested
 Far away,|the mountains look blue
 At night,|all cats are grey
 **
-#       -- 1996 -- the spares, behind the ** where the program never reads
+#       the spares, behind the ** where the program never reads
+#       -- 1996 --
 Strike while|the iron is warm
-Where the ale goes in|the wits go out
 The more cooks|the worse the soup
+#       -- 2026 --
+First to the mill,|grinds first

@@ -139,7 +139,7 @@ Chacun|voi(t/ent) midi à (sa/leur) porte|Everyone|see(s) noon at (his/their) ow
 +Les jours|se sui(t/vent) sans se ressembler|The days|follow(s) one another without resembling one another
 +Les bonnes clôtures|(fait/font) les bons voisins|Good fences|make(s) good neighbours
 +Les conseilleurs|(n'est/ne sont) pas les payeurs|The advisers|(isn't/aren't) the payers
-L'appétit|ne voi(t/ent) ne voi(t/ent) pas la forêt à cause du mille-feuille|Appetite|(doesn't/don't) see (doesn't/don't) see the forest for the mille-feuille
+L'appétit|ne voi(t/ent) pas la forêt à cause du mille-feuille|Appetite|(doesn't/don't) see the forest for the mille-feuille
 *
 #       Groupe 2 : qui ... | ...   (la tête est toujours au singulier,
 #       donc ici pas une seule ligne n'a besoin d'être marquée)

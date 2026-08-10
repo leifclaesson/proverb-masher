@@ -18,8 +18,18 @@
 #       Museif”rem†let „r allts† programmet, inte datafilen. 1996 †rs rader
 #       ligger kvar ord f”r ord, i sin ursprungliga ordning, under -- 1996 --
 #       i varje grupp; allt nytt ligger under -- 2026 --. Tar man bort
-#       2026-blocken f†r man tillbaka originalfilen precis som den var.
-#       Ingen gammal rad „r „ndrad, inte heller "Gamla kvastar sopar b„st"
+#       2026-blocken f†r man tillbaka originalfilen, s†n„r som p† de tv†
+#       avsteg som st†r h„r nedan. Fler „r det inte.
+#
+#       Det ena: "ser inte ser inte" var en ren felskrivning 1996 som ingen
+#       uppt„ckte p† trettio †r. Den togs bort 2026-08-09. D„remot st†r
+#       "f”r alla ben" kvar med flit -- det blir roligare s†.
+#
+#       Det andra: "D„r ”len g†r in|g†r vettet ut" l†g bland reserverna bakom
+#       filslutsmark”ren och ligger nu i grupp 2. Den beh”vde aldrig ligga
+#       d„r. Raden „r of”r„ndrad, bara flyttad.
+#
+#       Ingen annan gammal rad „r r”rd, inte heller "Gamla kvastar sopar b„st"
 #       d„r det egentligen heter nya. S† skrev jag, och s† f†r det st†.
 #
 #       Grupp 5 „r ny. Svenskan „r V2, s† efter en framf”rst„lld bisats
@@ -56,7 +66,7 @@ Ett gott samvete|„r den b„sta huvudkudden
 Ett gott skratt|f”rl„nger livet
 Liten tuva|stj„lper ofta stora lass
 En l”gnare|m†ste ha bra minne
-Den som gapar efter galen f†gel|ser inte ser inte skogen f”r alla ben
+Den som gapar efter galen f†gel|ser inte skogen f”r alla ben
 #       -- 2026 --
 En dyr morgonstund|har guld i mund
 Dyr ”vning|ger f„rdighet
@@ -104,9 +114,10 @@ Har man sagt a|f†r man s„ga b
 Som man b„ddar|f†r man ligga
 Som man ropar i skogen|f†r man svar
 Vill man ha n†gonting gjort|f†r man g”ra det sj„lv
+D„r ”len g†r in|g†r vettet ut
 #       -- 2026 --
 Som man s†r|f†r man sk”rda
-Som man „r kl„dd|blir man h„dd
+^Som man „r kl„dd|blir man h„dd
 Har man tagit fan i b†ten|f†r man ro honom i land
 Vill man ha fisk|f†r man bl”ta rumpan
 Vill man dansa|f†r man betala spelmannen
@@ -151,12 +162,13 @@ N„r n”den „r som st”rst,|„r hj„lpen som n„rmast
 N„r man talar om trollen,|st†r de i farstun
 Efter regn,|kommer solsken
 S† l„nge det finns liv,|finns det hopp
-F”rst till kvarn,|f†r f”rst mala
 I n”den,|pr”vas v„nnen
 L†ngt borta,|syns bergen bl†
 Om natten,|„r alla katter gr†
 **
-#       -- 1996 -- reserverna, dit programmet aldrig l„ser
+#       reserverna, dit programmet aldrig l„ser
+#       -- 1996 --
 Man ska smida medan|j„rnet „r varmt
-D„r ”len g†r in|g†r vettet ut
 Ju fler kockar|desto s„mre soppa
+#       -- 2026 --
+F”rst till kvarn,|f†r f”rst mala

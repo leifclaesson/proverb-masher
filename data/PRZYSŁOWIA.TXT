@@ -119,7 +119,7 @@ Krew|nie (jest/są) wodą|Blood|(is/are) not water
 Milczenie|(jest/są) złotem|Silence|(is/are) golden
 +Oczy|(jest/są) zwierciadłem duszy|The eyes|(is/are) the mirror of the soul
 Ciekawość|to pierwszy stopień do piekła|Curiosity|(is/are) the first step to hell
-Kto się na gorącym sparzył|nie wid(zi/zą) nie wid(zi/zą) lasu zza drzwi|He who was burnt by something hot|(doesn't/don't) see (doesn't/don't) see the forest for the doors
+Kto się na gorącym sparzył|nie wid(zi/zą) lasu zza drzwi|He who was burnt by something hot|(doesn't/don't) see the forest for the doors
 *
 #       Grupa 2 : kto ... | ...   (głowa jest zawsze w liczbie
 #       pojedynczej, więc tu nie trzeba absolutnie żadnej sygnatury)

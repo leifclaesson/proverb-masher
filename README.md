@@ -1,8 +1,8 @@
 # proverb-masher
 
 Real proverbs, chopped in half and glued back wrong -- in Swedish, English,
-Thai, Russian, Dutch, Greek, Polish, French, German and Portuguese. The grammar
-stays right; the meaning gets mangled. That's the whole point.
+Thai, Russian, Dutch, Greek, Polish, French, German, Portuguese and Finnish.
+The grammar stays right; the meaning gets mangled. That's the whole point.
 
 > A dear friend is better than two new ones. · Don't say "hop" -- then love
 > hauling the sled uphill too. · New brooms run deep.
@@ -200,6 +200,53 @@ no suffix rule in the world reaches a diacritic: `d(á/ão)`, `v(ai/ão)`,
 `v(ê/eem)`, `sa(i/em)`, and then `t(em/êm)` and `v(em/êm)`, where the two
 forms differ by a circumflex and nothing else and are still pronounced
 differently.
+
+Finnish is the first edition from outside the Indo-European family, and the
+decoy survives the jump: **`kallis` means both expensive and dear** -- *kallis
+ystävä* is a dear friend -- exactly like *dyr*, *duur*, *teuer*, *dear*,
+«дорогой», *drogi*, *cher* and *caro*, and this time it cannot be the same word
+inherited. It is the same picture arrived at twice. It also needs the fewest
+decoy forms of any edition, two against Greek's six, because Finnish has
+neither gender nor articles.
+
+What it does need is a marker that leaves the verb. Dutch and German let the
+nominal half collide on purpose -- *Holle vaten zijn koning* -- because a wrong
+noun reads as the joke where a wrong verb reads as a bug. Finnish gets no such
+choice: **predicate adjectives agree obligatorily**, so *ovat sokea* looks like
+a typo rather than a punchline, and the bracket moves one word to the right --
+`(on/ovat) soke(a/ita)`, `(on/ovat) aina hankal(a/ia)`, `(on/ovat) puoliksi
+teh(ty/tyjä)`. Nine editions had kept it inside the verb. The engine needed no
+change, because `agree()` was always replacing every bracket rather than the
+first.
+
+Its seam is chosen by **vowel harmony**: `lakaise(e/vat)` against
+`teke(e/vät)`, the same cut in the same place with a different suffix vowel,
+decided by the vowels already sitting in that word. That is the Dutch
+doubled-vowel argument for carrying both forms, made again from an unrelated
+language family -- and unlike German case, harmony never crosses the seam,
+because a suffix always attaches to its own word. It looks more frightening
+than case and costs exactly nothing.
+
+Two more things fall out of Finnish being Finnish. **Negation is a verb that
+conjugates** (*ei* / *eivät*, with the main verb frozen in a connegative form),
+so the same word needs a marker or doesn't depending on which side of the seam
+it lands: group 1 carries `(ei/eivät)` in the tail, while group 5 puts *Ei* at
+the front of the head and needs no marker at all. And **there is no verb "to
+have"** -- possession is *seinillä on korvat*, "on the walls are ears" -- so
+that whole family got its own group, the one group in the project whose head is
+a *place* rather than a subject. It is the exact spot where German gave up: a
+German possessive stem agrees with the possessor's gender, so no German tail
+carries one and two proverbs were cut for it. Finnish `-nsa/-nsä` is identical
+in singular and plural, so *aikansa* and *ristinsä* simply work, and only the
+English mirror has to carry `ha(s/ve)` and `(its/their)`.
+
+Case, the thing you would expect to break a language with fifteen of them, stays
+out of the seam by itself. Every tail in the *joka* group opens with a resumptive
+pronoun that takes whatever case the tail's own verb wants -- *se*, *sitä*,
+*sen* -- while *joka* is nominative in the head because it is its own clause's
+subject. And Finnish is the one edition where the word every other language
+borrowed went somewhere else: the autocycle button cannot say *Auto*, because in
+Finnish that is a car.
 
 ## Provenance
 
