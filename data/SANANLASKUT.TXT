@@ -135,7 +135,7 @@ Rohkea|rokan sy(ö/övät)|The bold one|eat(s) the soup
 Hyvä kello|kauas kuulu(u/vat)|A good bell|carr(ies/y) far
 Viina|viisaan villitse(e/vät)|Liquor|drive(s) the wise man wild
 Ylpeys|kä(y/yvät) lankeemuksen edellä|Pride|go(es) before a fall
-Yksi mätä omena|pila(a/avat) koko korin|One rotten apple|spoil(s) the whole basket
+Yksi mätäinen omena|pila(a/avat) koko korin|One rotten apple|spoil(s) the whole basket
 Omena päivässä|pitä(ä/vät) lääkärin loitolla|An apple a day|keep(s) the doctor away
 Luja tahto|vie(/vät) läpi harmaan kiven|A firm will|go(es) through grey stone
 +Nopeat|sy(ö/övät) hitaat|The quick|eat(s) the slow
