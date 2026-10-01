@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mashed-up Proverbs — English Edition</title>
+<title>Mashed-up Proverbs -- English Edition</title>
 <link rel="stylesheet" href="readme.css">
 </head>
 <body>
 <article>
 <a class="back" href="./?lang=en">← COOKIE</a>
 
-<h1>Mashed-up Proverbs — English Edition</h1>
+<h1>Mashed-up Proverbs -- English Edition</h1>
 
 <blockquote>
 <p><strong>Provenance.</strong> English remaster of <code>COOKIE.BAS</code> by
 <strong>Leif Claesson (Liket of Goto10)</strong>, ~1996, written in PowerBASIC
 for DOS and recovered decades later from a dig through old disks. Its data file
 <code>ORDSPRÅK.TXT</code> is still CP437, and stayed byte-for-byte pristine until
-2026-08-03, when Leif decided thirty years was long enough and let it grow —
+2026-08-03, when Leif decided thirty years was long enough and let it grow --
 the reasoning is on <a href="readme-sv.html">the Swedish page</a>. The Swedish
 original's own page is
 <a href="readme-sv.html">in Swedish</a>; the engine it describes is summarised
@@ -33,7 +33,7 @@ Finnish editions live here too
 <p>Same engine, same joke: real proverbs are split by a pipe into a HEAD and a
 TAIL, sorted into groups of interchangeable halves, and the program glues
 one proverb's HEAD to a <em>different</em> proverb's TAIL. It is structurally
-incapable of printing an intact line — it can only ever be wrong.</p>
+incapable of printing an intact line -- it can only ever be wrong.</p>
 
 <blockquote><p>A clear conscience is the finest headache. · New brooms run
 deep. · Don't count your chickens in public.</p></blockquote>
@@ -50,7 +50,7 @@ it above a dumb word-masher:</p>
 <p><strong>1. Population-weighted group choice.</strong> It does
 <strong>not</strong> pick a group uniformly. It builds a flat table
 <code>grupp[]</code> with <strong>one slot per proverb</strong>, each holding
-that proverb's group number, then picks a random slot — so a fat group is
+that proverb's group number, then picks a random slot -- so a fat group is
 chosen in proportion to how many proverbs it holds, and the decoy-stuffed
 Group 1 dominates the output. The weighting is what makes the joke land
 reliably.</p>
@@ -70,7 +70,7 @@ tradition every edition swears in its own language.</p>
 <tr><td><code>ORDSPRÅK.TXT</code>, CP437</td><td><code>PROVERBS.TXT</code>, plain ASCII</td></tr>
 <tr><td>Swedish proverbs</td><td>Real English proverbs (many are direct counterparts: <em>Bränt barn skyr elden</em> → "A burnt child dreads the fire")</td></tr>
 <tr><td><em>dyr/dyrt/dyra</em> ("expensive") decoys stuffed into Group 1</td><td><strong>"Expensive" decoys</strong>, planted next to their real partners the same way ("An expensive pot never boils")</td></tr>
-<tr><td><code>fanheller:</code> retry label (the curse <em>fan heller</em> ≈ "like hell")</td><td>The <strong>"like hell" rule</strong> — per remaster tradition the curse gets translated too (the Thai edition swears in Thai, the Russian one in Russian)</td></tr>
+<tr><td><code>fanheller:</code> retry label (the curse <em>fan heller</em> ≈ "like hell")</td><td>The <strong>"like hell" rule</strong> -- per remaster tradition the curse gets translated too (the Thai edition swears in Thai, the Russian one in Russian)</td></tr>
 <tr><td>Three spares parked past the <code>**</code> terminator</td><td>The <strong>same three spares</strong>, translated: strike-while-the-iron, ale-in-wit-out, too-many-cooks</td></tr>
 <tr><td>One pre-mashed proverb planted in the <em>data</em> (<em>Den som gapar efter galen fågel…</em>)</td><td>"He who lives in a glass house|shouldn't count his chickens"</td></tr>
 </table>
@@ -78,7 +78,7 @@ tradition every edition swears in its own language.</p>
 <h2>The English-only problem: number agreement</h2>
 
 <p>Swedish verbs don't conjugate for number (<em>barn leka</em>, <em>tunnor
-skramlar</em>, <em>en svala gör</em> — the same verb form regardless), so the
+skramlar</em>, <em>en svala gör</em> -- the same verb form regardless), so the
 1996 original could dump every subject+predicate proverb into one big Group 1
 and any swap stayed grammatical. <strong>English can't</strong>: "Expensive
 dogs catches the worm" leaks the seam, and the whole joke is <em>wrong
@@ -102,28 +102,28 @@ instead:</p>
 <code>A leopard|never change(s) (its/their) spots</code></p></blockquote>
 
 <p>The tail carries <em>both</em> forms, so gluing a head onto it is one
-search-and-replace — no verb table, no morphology, nothing anywhere that knows
+search-and-replace -- no verb table, no morphology, nothing anywhere that knows
 any English. That direction is also the only one on offer: deriving a base form
 from an inflected one needs a dictionary, because "rise<strong>s</strong>" cuts
 back to <em>rise</em> while "catch<strong>es</strong>" cuts back to
-<em>catch</em> — same ending, different seam.</p>
+<em>catch</em> -- same ending, different seam.</p>
 
 <p>Verbs that don't inflect need no marking and already fit both: past tense
 ("killed the cat"), modals ("will clutch at a straw"). And two tails end in a
-plural <em>noun</em>, left deliberately to clash — a mismatched verb reads as a
+plural <em>noun</em>, left deliberately to clash -- a mismatched verb reads as a
 bug, but a mismatched noun reads as the joke:</p>
 
 <blockquote><p>A watched pot will be boys. · Curiosity can't be
 choosers.</p></blockquote>
 
-<p>So it's one group again — 119 lines, <strong>14042</strong> reachable pairs
-against 8162 before — and the decoys still dominate, because the weighted pick
+<p>So it's one group again -- 119 lines, <strong>14042</strong> reachable pairs
+against 8162 before -- and the decoys still dominate, because the weighted pick
 counts proverbs and merging two groups doesn't change how many there are.</p>
 
 <p>Same trap, subtler form: a TAIL that is a <em>relative clause</em>
 re-agrees with its new head. "Don't bite the hand <strong>that feeds
 you</strong>" mashed onto "Don't count your chickens" gives "…chickens that
-feed<strong>s</strong> you" — broken. So the don't-group's tails are all
+feed<strong>s</strong> you" -- broken. So the don't-group's tails are all
 adverbial ("in one basket", "over spilled milk", "in public"), which fit any
 head. When adding proverbs, test the worst pairing in the group, not the
 average one.</p>
@@ -145,7 +145,7 @@ average one.</p>
 <h2>A pun the translation lost</h2>
 
 <p>The original's decoy word <em>dyr</em> and English <em>dear</em> are the
-same Germanic word — Old English <em>dēore</em> meant both "beloved" and
+same Germanic word -- Old English <em>dēore</em> meant both "beloved" and
 "costly" ("it cost him dear"). This edition chose "expensive" because
 dear-as-pricey reads archaic today, making English the one edition that
 <em>dropped</em> half the pun. The Russian edition got it back for free:
